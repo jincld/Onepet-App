@@ -3,18 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/group1">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:id="@+id/nav_homeDV"
+            android:icon="@drawable/homeicon"
+            android:title="Inicio                                           >" />
+
+    </group>
+    <group android:id="@+id/group2">
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/agregarempleadodv"
+            android:icon="@drawable/iconagregaremp"
+            android:title="Agregar empleados                  >" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/misempleadosdv"
+            android:icon="@drawable/iconmisempleados"
+            android:title="Mis empleados                          >"/>
+    </group>
+    <group android:id="@+id/group3">
+        <item
+            android:id="@+id/solicitudescitadv"
+            android:icon="@drawable/iconsolicitudes"
+            android:title="Solicitudes de cita                    >" />
+        <item
+            android:id="@+id/historialcitasdv"
+            android:icon="@drawable/iconhistorialcita"
+            android:title="Historial de citas                       >" />
+    </group>
+    <group android:id="@+id/group4">
+        <item
+            android:id="@+id/clientesdv"
+            android:icon="@drawable/iconclientes"
+            android:title="Clientes                                       >" />
+        <item
+            android:id="@+id/miveterinariadv"
+            android:icon="@drawable/iconmiveterinaria"
+            android:title="Mi veterinaria                             >" />
+        <item
+            android:id="@+id/chatdv"
+            android:icon="@drawable/iconchat"
+            android:title="Chat                                             >" />
+    </group>
+    <group android:id="@+id/group5">
+        <item
+            android:id="@+id/resenasdv"
+            android:icon="@drawable/iconresenas"
+            android:title="Reseñas                                      >" />
+    </group>
+    <group android:id="@+id/group5">
+        <item
+            android:title=""/>
+        <item
+            android:title=""/>
+    </group>
+    <group android:id="@+id/group6">
+        <item
+            android:id="@+id/ajustesdv"
+            android:icon="@drawable/iconajustes"
+            android:title="Configuración                            >" />
     </group>
 </menu>
