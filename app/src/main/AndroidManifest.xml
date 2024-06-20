@@ -15,6 +15,21 @@
         android:theme="@style/Theme.OnePetApp"
         tools:targetApi="31">
         <activity
+            android:name=".registroduenovet"
+            android:exported="false" />
+        <activity
+            android:name=".registroduenomascotas"
+            android:exported="false" />
+        <activity
+            android:name=".registrarse"
+            android:exported="false" />
+        <activity
+            android:name=".iniciarsesion"
+            android:exported="false" />
+        <activity
+            android:name=".login"
+            android:exported="false" />
+        <activity
             android:name=".PruebaMicelular"
             android:exported="false" />
         <activity
