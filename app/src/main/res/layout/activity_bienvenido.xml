@@ -89,7 +89,7 @@
             app:srcCompat="@drawable/circuloturquesa" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnbienvenido"
             android:layout_width="238dp"
             android:layout_height="63dp"
             android:background="@drawable/btnwhite"

@@ -1,6 +1,8 @@
 package jonathan.orellana.onepetapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,5 +19,16 @@ class bienvenido : AppCompatActivity() {
             insets
         }
         supportActionBar?.hide();
+
+        val btnbienvenido = findViewById<Button>(R.id.btnbienvenido)
+
+        //Programar al botón
+        btnbienvenido.setOnClickListener {
+            //Navegar entre pantallas
+            //Ir a la siguiente pantalla
+            val pantallaSiguiente = Intent(this, login::class.java)
+            startActivity(pantallaSiguiente)
+        }
+
     }
 }
