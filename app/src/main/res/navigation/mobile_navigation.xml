@@ -3,23 +3,82 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_homeDV">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_homeDV"
         android:name="jonathan.orellana.onepetapp.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="Inicio"
         tools:layout="@layout/fragment_home" />
-
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="jonathan.orellana.onepetapp.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        android:id="@+id/agregarempleadodv"
+        android:name="jonathan.orellana.onepetapp.agregarempleadodv"
+        android:label="Agregar empleado"
+        tools:layout="@layout/fragment_agregarempleadodv" />
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="jonathan.orellana.onepetapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/misempleadosdv"
+        android:name="jonathan.orellana.onepetapp.misempleadosdv"
+        android:label="Mis empelados"
+        tools:layout="@layout/fragment_misempleadosdv" />
+    <fragment
+        android:id="@+id/informacionempleadodv"
+        android:name="jonathan.orellana.onepetapp.informacionempleadodv"
+        android:label="Información empleado"
+        tools:layout="@layout/fragment_informacionempleadodv" />
+    <fragment
+        android:id="@+id/solicitudescitadv"
+        android:name="jonathan.orellana.onepetapp.solicitudescitadv"
+        android:label="Solicitudes de cita"
+        tools:layout="@layout/fragment_solicitudescitadv" />
+    <fragment
+        android:id="@+id/asignarcitadv"
+        android:name="jonathan.orellana.onepetapp.asignarcitadv"
+        android:label="Asignar cita"
+        tools:layout="@layout/fragment_asignarcitadv" />
+    <fragment
+        android:id="@+id/rechazarcitadv"
+        android:name="jonathan.orellana.onepetapp.rechazarcitadv"
+        android:label="Rechazar cita"
+        tools:layout="@layout/fragment_rechazarcitadv" />
+    <fragment
+        android:id="@+id/historialcitasdv"
+        android:name="jonathan.orellana.onepetapp.historialcitasdv"
+        android:label="Historial de citas"
+        tools:layout="@layout/fragment_historialcitasdv" />
+    <fragment
+        android:id="@+id/clientesdv"
+        android:name="jonathan.orellana.onepetapp.clientesdv"
+        android:label="Clientes"
+        tools:layout="@layout/fragment_clientesdv" />
+    <fragment
+        android:id="@+id/informacionclientedv"
+        android:name="jonathan.orellana.onepetapp.informacionclientedv"
+        android:label="Información cliente"
+        tools:layout="@layout/fragment_informacionclientedv" />
+    <fragment
+        android:id="@+id/miveterinariadv"
+        android:name="jonathan.orellana.onepetapp.miveterinariadv"
+        android:label="Mi veterinaria"
+        tools:layout="@layout/fragment_miveterinariadv" />
+    <fragment
+        android:id="@+id/contactosdv"
+        android:name="jonathan.orellana.onepetapp.contactosdv"
+        android:label="Contactos"
+        tools:layout="@layout/fragment_contactosdv" />
+    <fragment
+        android:id="@+id/chatdv"
+        android:name="jonathan.orellana.onepetapp.chatdv"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chatdv" />
+    <fragment
+        android:id="@+id/resenasdv"
+        android:name="jonathan.orellana.onepetapp.resenasdv"
+        android:label="Reseñas"
+        tools:layout="@layout/fragment_resenasdv" />
+    <fragment
+        android:id="@+id/ajustesdv"
+        android:name="jonathan.orellana.onepetapp.ajustesdv"
+        android:label="Ajustes"
+        tools:layout="@layout/fragment_ajustesdv" />
+
 </navigation>
