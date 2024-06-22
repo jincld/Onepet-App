@@ -15,17 +15,20 @@
         android:theme="@style/Theme.OnePetApp"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
+
             android:name=".agregarVeterinariadv"
             android:exported="false" />
+
         <activity
+
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.OnePetApp.NoActionBar">
-=======
+            android:theme="@style/Theme.OnePetApp.NoActionBar" />
+        <activity
             android:name=".registroduenovet"
             android:exported="false" />
+
         <activity
             android:name=".registroduenomascotas"
             android:exported="false" />
@@ -44,7 +47,6 @@
         <activity
             android:name=".bienvenido"
             android:exported="true">
->>>>>>> 56f46a0f02eb16704749eeb698e112e03138aa67
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,11 +59,6 @@
         <activity
             android:name=".registrarmascotadm"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.OnePetApp.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

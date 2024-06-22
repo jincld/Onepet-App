@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".miveterinariadv">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/imageView30"
+        android:layout_width="437dp"
+        android:layout_height="500dp"
+        android:src="@drawable/degabceleste"
+        tools:layout_editor_absoluteX="-36dp"
+        tools:layout_editor_absoluteY="364dp" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imageView36"
+        android:layout_width="437dp"
+        android:layout_height="500dp"
+        android:src="@drawable/degabceleste"
+        tools:layout_editor_absoluteX="-51dp"
+        tools:layout_editor_absoluteY="351dp" />
+
+    <ImageView
+        android:id="@+id/imageView31"
+        android:layout_width="265dp"
+        android:layout_height="263dp"
+        android:rotation="73"
+        android:src="@drawable/gbuno"
+        tools:layout_editor_absoluteX="-130dp"
+        tools:layout_editor_absoluteY="635dp" />
+
+    <Button
+        android:id="@+id/btnEditarVet"
+        android:layout_width="234dp"
+        android:layout_height="51dp"
+        android:background="@drawable/btnazul"
+        android:fontFamily="@font/alata"
+        android:text="Editar Datos"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="623dp" />
+
+    <ImageView
+        android:id="@+id/imageView33"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/circulocelesteazul"
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="701dp" />
+
+    <ImageView
+        android:id="@+id/imageView32"
+        android:layout_width="228dp"
+        android:layout_height="239dp"
+        android:src="@drawable/circulocelesteazul"
+        tools:layout_editor_absoluteX="272dp"
+        tools:layout_editor_absoluteY="659dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
