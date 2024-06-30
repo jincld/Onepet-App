@@ -47,7 +47,6 @@ class registroduenomascotas : AppCompatActivity() {
         val  txtnombreduenomas = findViewById<TextView>(R.id.txtnombreduenomas)
         val  txtcorreoduenomas = findViewById<TextView>(R.id.txtcorreoduenomas)
         val  txtcontraduenomas = findViewById<TextView>(R.id.txtcontraduenomas)
-        val txtrol = findViewById<TextView>(R.id.txtrol)
         val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)
         val  btnsiguiente = findViewById<TextView>(R.id.btnsieguienteduenomascota)
 
@@ -55,24 +54,19 @@ class registroduenomascotas : AppCompatActivity() {
         fun uuiduroll () : List<dataclassusuarios> {
 
             val objConexion = ClaseConexion().cadenaConexion()
-
             //Crear statements
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("Select uuid_rol from tbRoles where nombre_rol = 'Dueño mascota'")!!
+            val resulSet = statement?.executeQuery("Select UUID_roll from tbRoless where nombre_rol = 'Dueño mascota'")!!
             val usuarios = mutableListOf<dataclassusuarios>()
 
             while (resulSet.next()) {
-                val uuidsrol = resulSet.getString("uuid_rol")
+                val uuidsrol = resulSet.getString("UUID_roll")
 
                 val usuario = dataclassusuarios (uuidsrol)
                 usuarios.add(usuario)
             }
             return usuarios
         }
-
-
-
-
 
         btnsiguiente.setOnClickListener{
          GlobalScope.launch(Dispatchers.IO){
@@ -81,7 +75,7 @@ class registroduenomascotas : AppCompatActivity() {
 
              val uuidTraido = uuiduroll().toString()
 
-             val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, (Select uuid_rol from tbRoles where nombre_rol = 'Dueño mascota'))")!!
+             val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosss (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, roll) values (?, ?, ?, ?, ?)")!!
              crearusuario.setString(1, UUID.randomUUID().toString())
              crearusuario.setString(2, txtnombreduenomas.text.toString())
              crearusuario.setString(3,contraencriptada)
@@ -95,7 +89,6 @@ class registroduenomascotas : AppCompatActivity() {
                  txtnombreduenomas.setText("")
                  txtcontraduenomas.setText("")
                 txtcorreoduenomas.setText("")
-                 txtrol.setText("")
                  val login = Intent(this@registroduenomascotas, iniciarsesion::class.java)
                  startActivity(login)
 
