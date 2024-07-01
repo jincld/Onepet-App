@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import dataclassusuarios
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -40,16 +41,35 @@ class registroduenovet : AppCompatActivity() {
         val txtcontraadminvet =findViewById<TextView>(R.id.txtcontraadminvet)
         val btninicarsesionvet =findViewById<TextView>(R.id.btniniciarsesionvet)
 
+        fun uuiduroll () : List<dataclassusuarios> {
+
+            val objConexion = ClaseConexion().cadenaConexion()
+            //Crear statements
+            val statement = objConexion?.createStatement()
+            val resulSet = statement?.executeQuery("Select UUID_rol from tbRoles where nombre_rol = 'Dueño veterinaria'")!!
+            val usuarios = mutableListOf<dataclassusuarios>()
+
+            while (resulSet.next()) {
+                val uuidsrol = resulSet.getString("UUID_rol")
+
+                val usuario = dataclassusuarios (uuidsrol)
+                usuarios.add(usuario)
+            }
+            return usuarios
+        }
+
         btninicarsesionvet.setOnClickListener{
             GlobalScope.launch(Dispatchers.IO){
                 val objConexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
+                val uuidTraido = uuiduroll().toString()
 
                 val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, (Select uuid_rol from tbRoles where nombre_rol = 'Dueño mascota'))")!!
                 crearusuario.setString(1, UUID.randomUUID().toString())
                 crearusuario.setString(2, txtnombreadminvet.text.toString())
                 crearusuario.setString(3,contraencriptada)
                 crearusuario.setString(4, txtcorreoadminvet.text.toString())
+                crearusuario.setString(5,uuidTraido)
                 crearusuario.executeUpdate()
 
                 withContext(Dispatchers.Main){
