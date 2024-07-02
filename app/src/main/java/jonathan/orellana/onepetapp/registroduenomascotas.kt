@@ -56,7 +56,7 @@ class registroduenomascotas : AppCompatActivity() {
             val objConexion = ClaseConexion().cadenaConexion()
             //Crear statements
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("Select UUID_rol from tbRoless where nombre_rol = 'Dueño mascota'")!!
+            val resulSet = statement?.executeQuery("Select UUID_rol from tbRoles where nombre_rol = 'Dueño mascota'")!!
             val usuarios = mutableListOf<dataclassusuarios>()
 
             while (resulSet.next()) {
@@ -69,20 +69,23 @@ class registroduenomascotas : AppCompatActivity() {
         }
 
         btnsiguiente.setOnClickListener{
+
+
          GlobalScope.launch(Dispatchers.IO){
+
           val objConexion = ClaseConexion().cadenaConexion()
              val contraencriptada = hashSHA256(txtcontraduenomas.text.toString())
 
              val uuidTraido = uuiduroll().toString()
 
-             val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, roll) values (?, ?, ?, ?, ?)")!!
+             val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
              crearusuario.setString(1, UUID.randomUUID().toString())
              crearusuario.setString(2, txtnombreduenomas.text.toString())
-             crearusuario.setString(3,contraencriptada)
+             crearusuario.setString(3, contraencriptada)
              crearusuario.setString(4, txtcorreoduenomas.text.toString())
-             crearusuario.setString(5, uuidTraido)
+             crearusuario.setString(5, "533AB67605CB4470BDA26F51E466BAC2")
              crearusuario.executeUpdate()
-
+             println("entray ejecutaaaaaaaaa asdfasdfasdfasdfasdfasdfasdfasdf")
                 withContext(Dispatchers.Main){
                  //mostrar mensaje y limpiar campos
                  Toast.makeText(this@registroduenomascotas, "Usuario registrado", Toast.LENGTH_SHORT).show()
