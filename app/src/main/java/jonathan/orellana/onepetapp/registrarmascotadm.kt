@@ -20,12 +20,5 @@ class registrarmascotadm : AppCompatActivity() {
             insets
         }
         supportActionBar?.hide();
-
-        val btnSiguiente = findViewById<Button>(R.id.btnsiguienterm)
-
-        btnSiguiente.setOnClickListener {
-            val pantallaSiguiente = Intent(this, registrarotramascota::class.java)
-            startActivity(pantallaSiguiente)
         }
     }
-}

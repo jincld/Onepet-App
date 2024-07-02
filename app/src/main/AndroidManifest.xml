@@ -15,6 +15,9 @@
         android:theme="@style/Theme.OnePetApp"
         tools:targetApi="31">
         <activity
+            android:name=".correoderecuperacion"
+            android:exported="false" />
+        <activity
             android:name=".registroduenovet"
             android:exported="false" />
         <activity

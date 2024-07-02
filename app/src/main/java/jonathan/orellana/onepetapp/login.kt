@@ -19,6 +19,8 @@ class login : AppCompatActivity() {
             insets
         }
 //Mandar a llamar a todos los elementos
+
+
         val btnregistrarse = findViewById<Button>(R.id.btnregistrarse)
 
         //Programar al botón
