@@ -39,30 +39,42 @@ class registroduenovet : AppCompatActivity() {
         val txtnombreadminvet =findViewById<TextView>(R.id.txtnombreadminvet)
         val txtcorreoadminvet =findViewById<TextView>(R.id.txtcorreodminvet)
         val txtcontraadminvet =findViewById<TextView>(R.id.txtcontraadminvet)
+        val btnfoto = findViewById<Button>(R.id.btnftdeperfil)
         val btninicarsesionvet =findViewById<TextView>(R.id.btniniciarsesionvet)
 
-        fun uuiduroll () : List<dataclassusuarios> {
-
+        fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
-            //Crear statements
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("Select UUID_rol from tbRoles where nombre_rol = 'Dueño veterinaria'")!!
-            val usuarios = mutableListOf<dataclassusuarios>()
+            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRoles WHERE nombre_rol = 'Due o mascota'")
+            var uuidRol: String? = null
 
-            while (resulSet.next()) {
-                val uuidsrol = resulSet.getString("UUID_rol")
-
-                val usuario = dataclassusuarios (uuidsrol)
-                usuarios.add(usuario)
+            if (resulSet?.next() == true) {
+                uuidRol = resulSet.getString("UUID_rol")
+                println("este es el uuid traido desde el if $uuidRol")
             }
-            return usuarios
+
+            println("este es el uuid traido desde la funcion $uuidRol")
+            return uuidRol
         }
 
         btninicarsesionvet.setOnClickListener{
+
+            if (txtnombreadminvet.text.isEmpty() || txtcorreoadminvet.text.isEmpty() || txtcontraadminvet.text.isEmpty()) {
+                Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_LONG).show()
+
+            if (txtcorreoadminvet.text.matches("[a-zA-Z0-9._-]+@[a-z]\\\\.+[a-z]+]".toRegex())) {
+                Toast.makeText(this, "campo agregado", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "ingrese campos validos", Toast.LENGTH_LONG).show()
+
+            }
+            if (txtcontraadminvet.text.length <= 7) {
+                Toast.makeText(this, "La contraseña debe tenr mas de 8 digitos", Toast.LENGTH_LONG).show()
+            }
             GlobalScope.launch(Dispatchers.IO){
                 val objConexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
-                val uuidTraido = uuiduroll().toString()
+                val uuidTraido = obtenerUuidRol()
 
                 val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, (Select uuid_rol from tbRoles where nombre_rol = 'Dueño mascota'))")!!
                 crearusuario.setString(1, UUID.randomUUID().toString())
@@ -70,6 +82,7 @@ class registroduenovet : AppCompatActivity() {
                 crearusuario.setString(3,contraencriptada)
                 crearusuario.setString(4, txtcorreoadminvet.text.toString())
                 crearusuario.setString(5,uuidTraido)
+                println("este es el uuid traido antes del execute  $uuidTraido")
                 crearusuario.executeUpdate()
 
                 withContext(Dispatchers.Main){
@@ -83,6 +96,8 @@ class registroduenovet : AppCompatActivity() {
                     startActivity(login)
 
 
+
+                }
                 }
             }
         }
