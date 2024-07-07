@@ -54,7 +54,7 @@ class registroduenomascotas : AppCompatActivity() {
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRoles WHERE nombre_rol = 'Due o mascota'")
+            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRoles WHERE nombre_rol = 'Dueno mascota'")
             var uuidRol: String? = null
 
             if (resulSet?.next() == true) {

@@ -76,7 +76,7 @@ class registroduenovet : AppCompatActivity() {
                 val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
                 val uuidTraido = obtenerUuidRol()
 
-                val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, (Select uuid_rol from tbRoles where nombre_rol = 'Dueño mascota'))")!!
+                val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, (Select uuid_rol from tbRoles where nombre_rol = 'Dueno mascota'))")!!
                 crearusuario.setString(1, UUID.randomUUID().toString())
                 crearusuario.setString(2, txtnombreadminvet.text.toString())
                 crearusuario.setString(3,contraencriptada)
