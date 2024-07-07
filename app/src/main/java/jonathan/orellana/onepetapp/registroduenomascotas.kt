@@ -51,41 +51,37 @@ class registroduenomascotas : AppCompatActivity() {
         val  btnsiguiente = findViewById<TextView>(R.id.btnsieguienteduenomascota)
 
 
-        fun uuiduroll () : List<dataclassusuarios> {
-
+        fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
-            //Crear statements
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("Select UUID_rol from tbRoles where nombre_rol = 'Dueño mascota'")!!
-            val usuarios = mutableListOf<dataclassusuarios>()
+            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRoles WHERE nombre_rol = 'Due o mascota'")
+            var uuidRol: String? = null
 
-            while (resulSet.next()) {
-                val uuidsrol = resulSet.getString("UUID_rol")
-
-                val usuario = dataclassusuarios (uuidsrol)
-                usuarios.add(usuario)
+            if (resulSet?.next() == true) {
+                uuidRol = resulSet.getString("UUID_rol")
+                println("este es el uuid traido desde el if $uuidRol")
             }
-            return usuarios
+
+            println("este es el uuid traido desde la funcion $uuidRol")
+            return uuidRol
         }
 
         btnsiguiente.setOnClickListener{
-
-
          GlobalScope.launch(Dispatchers.IO){
 
           val objConexion = ClaseConexion().cadenaConexion()
              val contraencriptada = hashSHA256(txtcontraduenomas.text.toString())
 
-             val uuidTraido = uuiduroll().toString()
+             val uuidTraido = obtenerUuidRol()
 
              val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
              crearusuario.setString(1, UUID.randomUUID().toString())
              crearusuario.setString(2, txtnombreduenomas.text.toString())
              crearusuario.setString(3, contraencriptada)
              crearusuario.setString(4, txtcorreoduenomas.text.toString())
-             crearusuario.setString(5, "533AB67605CB4470BDA26F51E466BAC2")
+             crearusuario.setString(5, uuidTraido)
+             println("este es el uuid traido antes del execute  $uuidTraido")
              crearusuario.executeUpdate()
-             println("entray ejecutaaaaaaaaa asdfasdfasdfasdfasdfasdfasdfasdf")
                 withContext(Dispatchers.Main){
                  //mostrar mensaje y limpiar campos
                  Toast.makeText(this@registroduenomascotas, "Usuario registrado", Toast.LENGTH_SHORT).show()
