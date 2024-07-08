@@ -39,37 +39,40 @@ class registroduenovet : AppCompatActivity() {
         val txtnombreadminvet =findViewById<TextView>(R.id.txtnombreadminvet)
         val txtcorreoadminvet =findViewById<TextView>(R.id.txtcorreodminvet)
         val txtcontraadminvet =findViewById<TextView>(R.id.txtcontraadminvet)
-        val btninicarsesionvet =findViewById<TextView>(R.id.btniniciarsesionvet)
+        val btnfoto = findViewById<Button>(R.id.btnftdeperfil)
+        val btninicarsesionvet = findViewById<TextView>(R.id.btniniciarsesionvet)
 
-        fun uuiduroll () : List<dataclassusuarios> {
-
+        fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
-            //Crear statements
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("Select UUID_rol from tbRoles where nombre_rol = 'Dueño veterinaria'")!!
+            val resulSet = statement?.executeQuery("Select UUID_rol from tbRolesUsuarios where nombre_rol = 'Admin Vet'")!!
             val usuarios = mutableListOf<dataclassusuarios>()
 
-            while (resulSet.next()) {
-                val uuidsrol = resulSet.getString("UUID_rol")
+            var uuidRol = resulSet.getString("UUID_rol")
 
-                val usuario = dataclassusuarios (uuidsrol)
-                usuarios.add(usuario)
+            if (resulSet?.next() == true) {
+                uuidRol = resulSet.getString("UUID_rol")
+                println("este es el uuid traido desde el if $uuidRol")
             }
-            return usuarios
+
+            println("este es el uuid traido desde la funcion $uuidRol")
+            return uuidRol
         }
 
         btninicarsesionvet.setOnClickListener{
+
             GlobalScope.launch(Dispatchers.IO){
                 val objConexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
-                val uuidTraido = uuiduroll().toString()
+                val uuidTraido = obtenerUuidRol()
 
-                val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, (Select uuid_rol from tbRoles where nombre_rol = 'Dueño mascota'))")!!
+                val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?")!!
                 crearusuario.setString(1, UUID.randomUUID().toString())
                 crearusuario.setString(2, txtnombreadminvet.text.toString())
                 crearusuario.setString(3,contraencriptada)
                 crearusuario.setString(4, txtcorreoadminvet.text.toString())
                 crearusuario.setString(5,uuidTraido)
+                println("este es el uuid traido antes del execute  $uuidTraido")
                 crearusuario.executeUpdate()
 
                 withContext(Dispatchers.Main){
@@ -81,11 +84,9 @@ class registroduenovet : AppCompatActivity() {
 
                     val login = Intent(this@registroduenovet, iniciarsesion::class.java)
                     startActivity(login)
-
-
+                 }
                 }
             }
         }
     }
-}
 

@@ -58,7 +58,7 @@ class iniciarsesion : AppCompatActivity() {
 
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
-                val comprobarusuario = objconexion?.prepareStatement("select tbUsuarioss where correo_usuario = ? and contra_usuario = ?")!!
+                val comprobarusuario = objconexion?.prepareStatement("SELECT uuid_usuario FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                 comprobarusuario.setString(1, txtcorreoiniciar.text.toString())
                 comprobarusuario.setString(2, contraencriptada)
 

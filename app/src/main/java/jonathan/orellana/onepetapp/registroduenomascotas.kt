@@ -25,7 +25,7 @@ import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.spec.SecretKeySpec
 
-class registroduenomascotas : AppCompatActivity() {
+class  registroduenomascotas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -48,13 +48,13 @@ class registroduenomascotas : AppCompatActivity() {
         val  txtcorreoduenomas = findViewById<TextView>(R.id.txtcorreoduenomas)
         val  txtcontraduenomas = findViewById<TextView>(R.id.txtcontraduenomas)
         val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)
-        val  btnsiguiente = findViewById<TextView>(R.id.btnsieguienteduenomascota)
+        val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
 
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRoles WHERE nombre_rol = 'Due o mascota'")
+            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRolesUsuarios WHERE nombre_rol = 'Dueno Mascota'")
             var uuidRol: String? = null
 
             if (resulSet?.next() == true) {
@@ -74,7 +74,7 @@ class registroduenomascotas : AppCompatActivity() {
 
              val uuidTraido = obtenerUuidRol()
 
-             val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
+             val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
              crearusuario.setString(1, UUID.randomUUID().toString())
              crearusuario.setString(2, txtnombreduenomas.text.toString())
              crearusuario.setString(3, contraencriptada)
@@ -99,6 +99,4 @@ class registroduenomascotas : AppCompatActivity() {
 
 
 
-//enlace iniciar sesion
 
-//
