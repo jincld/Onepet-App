@@ -45,7 +45,7 @@ class registroduenovet : AppCompatActivity() {
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRoles WHERE nombre_rol = 'Due o mascota'")
+            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRoles WHERE nombre_rol = 'Admin Vet'")
             var uuidRol: String? = null
 
             if (resulSet?.next() == true) {
@@ -59,24 +59,12 @@ class registroduenovet : AppCompatActivity() {
 
         btninicarsesionvet.setOnClickListener{
 
-            if (txtnombreadminvet.text.isEmpty() || txtcorreoadminvet.text.isEmpty() || txtcontraadminvet.text.isEmpty()) {
-                Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_LONG).show()
-
-            if (txtcorreoadminvet.text.matches("[a-zA-Z0-9._-]+@[a-z]\\\\.+[a-z]+]".toRegex())) {
-                Toast.makeText(this, "", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Ingrese campos validos", Toast.LENGTH_LONG).show()
-
-            }
-            if (txtcontraadminvet.text.length <= 7) {
-                Toast.makeText(this, "La contraseña debe tener mas de 8 digitos", Toast.LENGTH_LONG).show()
-            }
             GlobalScope.launch(Dispatchers.IO){
                 val objConexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
                 val uuidTraido = obtenerUuidRol()
 
-                val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, (Select uuid_rol from tbRoles where nombre_rol = 'Dueno mascota'))")!!
+                val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?")!!
                 crearusuario.setString(1, UUID.randomUUID().toString())
                 crearusuario.setString(2, txtnombreadminvet.text.toString())
                 crearusuario.setString(3,contraencriptada)
@@ -94,13 +82,10 @@ class registroduenovet : AppCompatActivity() {
 
                     val login = Intent(this@registroduenovet, iniciarsesion::class.java)
                     startActivity(login)
-
-
-
-                }
+                 }
                 }
             }
         }
     }
-}
+
 

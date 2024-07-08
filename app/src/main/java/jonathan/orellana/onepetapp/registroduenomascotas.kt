@@ -67,18 +67,6 @@ class registroduenomascotas : AppCompatActivity() {
         }
 
         btnsiguiente.setOnClickListener{
-            if (txtnombreduenomas.text.isEmpty() || txtcorreoduenomas.text.isEmpty() || txtcontraduenomas.text.isEmpty()) {
-                Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_LONG).show()
-
-                if (txtcorreoduenomas.text.matches("[a-zA-Z0-9._-]+@[a-z]\\\\.+[a-z]+]".toRegex())) {
-                    Toast.makeText(this, "", Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(this, "Ingrese campos validos", Toast.LENGTH_LONG).show()
-
-                }
-                if (txtcontraduenomas.text.length <= 7) {
-                    Toast.makeText(this, "La contraseña debe tener mas de 8 digitos", Toast.LENGTH_LONG).show()
-                }
          GlobalScope.launch(Dispatchers.IO){
 
           val objConexion = ClaseConexion().cadenaConexion()
@@ -108,7 +96,7 @@ class registroduenomascotas : AppCompatActivity() {
           }
        }
     }
-}
+
 
 
 
