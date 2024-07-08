@@ -61,4 +61,15 @@
         tools:layout_editor_absoluteX="272dp"
         tools:layout_editor_absoluteY="659dp" />
 
+    <TextView
+        android:id="@+id/txtTituloMiVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alata"
+        android:text="Mi veterinaria"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="69dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
