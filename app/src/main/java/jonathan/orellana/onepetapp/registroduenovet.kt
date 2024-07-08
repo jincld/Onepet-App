@@ -2,7 +2,6 @@ package jonathan.orellana.onepetapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -46,7 +45,7 @@ class registroduenovet : AppCompatActivity() {
             val objConexion = ClaseConexion().cadenaConexion()
             //Crear statements
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("Select UUID_rol from tbRoles where nombre_rol = 'Dueño veterinaria'")!!
+            val resulSet = statement?.executeQuery("Select UUID_rol from tbRolesUsuarios where nombre_rol = 'Admin Vet'")!!
             val usuarios = mutableListOf<dataclassusuarios>()
 
             while (resulSet.next()) {
