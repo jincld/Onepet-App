@@ -54,7 +54,7 @@ class registroduenomascotas : AppCompatActivity() {
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRoles WHERE nombre_rol = 'Dueno mascota'")
+            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRolesUsuarios WHERE nombre_rol = 'Dueno Mascota'")
             var uuidRol: String? = null
 
             if (resulSet?.next() == true) {
@@ -74,7 +74,7 @@ class registroduenomascotas : AppCompatActivity() {
 
              val uuidTraido = obtenerUuidRol()
 
-             val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
+             val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
              crearusuario.setString(1, UUID.randomUUID().toString())
              crearusuario.setString(2, txtnombreduenomas.text.toString())
              crearusuario.setString(3, contraencriptada)

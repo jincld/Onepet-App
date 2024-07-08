@@ -2,7 +2,6 @@ package jonathan.orellana.onepetapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -45,8 +44,11 @@ class registroduenovet : AppCompatActivity() {
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRoles WHERE nombre_rol = 'Admin Vet'")
-            var uuidRol: String? = null
+            val resulSet = statement?.executeQuery("Select UUID_rol from tbRolesUsuarios where nombre_rol = 'Admin Vet'")!!
+            val usuarios = mutableListOf<dataclassusuarios>()
+
+            while (resulSet.next()) {
+                val uuidsrol = resulSet.getString("UUID_rol")
 
             if (resulSet?.next() == true) {
                 uuidRol = resulSet.getString("UUID_rol")
