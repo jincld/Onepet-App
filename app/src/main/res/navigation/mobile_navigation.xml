@@ -85,5 +85,10 @@
         android:name="jonathan.orellana.onepetapp.agregarmascotas"
         android:label="fragment_agregarmascotas"
         tools:layout="@layout/fragment_agregarmascotas" />
+    <fragment
+        android:id="@+id/agregarmascotaas"
+        android:name="jonathan.orellana.onepetapp.agregarmascotaas"
+        android:label="fragment_agregarmascotaas"
+        tools:layout="@layout/fragment_agregarmascotaas" />
 
 </navigation>
