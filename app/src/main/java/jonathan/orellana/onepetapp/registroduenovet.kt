@@ -45,7 +45,7 @@ class registroduenovet : AppCompatActivity() {
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("Select UUID_rol from tbRolesUsuarios where nombre_rol = 'Admin Vet'")!!
+            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRolesUsuarios WHERE nombre_rol = 'Admin Vet'")!!
             val usuarios = mutableListOf<dataclassusuarios>()
 
             var uuidRol = resulSet.getString("UUID_rol")
@@ -66,7 +66,7 @@ class registroduenovet : AppCompatActivity() {
                 val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
                 val uuidTraido = obtenerUuidRol()
 
-                val crearusuario = objConexion?.prepareStatement("insert into tbUsuarios (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?")!!
+                val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
                 crearusuario.setString(1, UUID.randomUUID().toString())
                 crearusuario.setString(2, txtnombreadminvet.text.toString())
                 crearusuario.setString(3,contraencriptada)
@@ -74,17 +74,7 @@ class registroduenovet : AppCompatActivity() {
                 crearusuario.setString(5,uuidTraido)
                 println("este es el uuid traido antes del execute  $uuidTraido")
                 crearusuario.executeUpdate()
-
-                withContext(Dispatchers.Main){
-                    //mostrar mensaje y limpiar campos
-                    Toast.makeText(this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
-                    txtnombreadminvet.setText("")
-                    txtcontraadminvet.setText("")
-                    txtcorreoadminvet.setText("")
-
-                    val login = Intent(this@registroduenovet, iniciarsesion::class.java)
-                    startActivity(login)
-                 }
+                Toast.makeText(this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
                 }
             }
         }
