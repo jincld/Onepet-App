@@ -48,7 +48,7 @@ class registroduenomascotas : AppCompatActivity() {
         val  txtcorreoduenomas = findViewById<TextView>(R.id.txtcorreoduenomas)
         val  txtcontraduenomas = findViewById<TextView>(R.id.txtcontraduenomas)
         val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)
-        val  btnsiguiente = findViewById<TextView>(R.id.btnsieguienteduenomascota)
+        val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
 
 
         fun obtenerUuidRol(): String? {

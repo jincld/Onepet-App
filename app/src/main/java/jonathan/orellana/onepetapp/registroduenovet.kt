@@ -2,6 +2,7 @@ package jonathan.orellana.onepetapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -39,7 +40,7 @@ class registroduenovet : AppCompatActivity() {
         val txtcorreoadminvet =findViewById<TextView>(R.id.txtcorreodminvet)
         val txtcontraadminvet =findViewById<TextView>(R.id.txtcontraadminvet)
         val btnfoto = findViewById<Button>(R.id.btnftdeperfil)
-        val btninicarsesionvet =findViewById<TextView>(R.id.btniniciarsesionvet)
+        val btninicarsesionvet = findViewById<TextView>(R.id.btniniciarsesionvet)
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
@@ -47,8 +48,7 @@ class registroduenovet : AppCompatActivity() {
             val resulSet = statement?.executeQuery("Select UUID_rol from tbRolesUsuarios where nombre_rol = 'Admin Vet'")!!
             val usuarios = mutableListOf<dataclassusuarios>()
 
-            while (resulSet.next()) {
-                val uuidsrol = resulSet.getString("UUID_rol")
+            var uuidRol = resulSet.getString("UUID_rol")
 
             if (resulSet?.next() == true) {
                 uuidRol = resulSet.getString("UUID_rol")
@@ -89,5 +89,4 @@ class registroduenovet : AppCompatActivity() {
             }
         }
     }
-
 
