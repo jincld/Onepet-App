@@ -15,7 +15,6 @@
         android:theme="@style/Theme.OnePetApp"
         tools:targetApi="31">
         <activity
-
             android:name=".agregarVeterinariadv"
             android:exported="false" />
 
@@ -25,6 +24,9 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.OnePetApp.NoActionBar" />
+<activity
+            android:name=".correoderecuperacion"
+            android:exported="false" />
         <activity
             android:name=".registroduenovet"
             android:exported="false" />
