@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_homeDV">
+    app:startDestination="@id/agregarempleadodv"
+    tools:ignore="ExtraText">
+
 
     <fragment
         android:id="@+id/nav_homeDV"
@@ -14,7 +16,11 @@
         android:id="@+id/agregarempleadodv"
         android:name="jonathan.orellana.onepetapp.agregarempleadodv"
         android:label="Agregar empleado"
-        tools:layout="@layout/fragment_agregarempleadodv" />
+        tools:layout="@layout/fragment_agregarempleadodv"
+
+        />
+
+
     <fragment
         android:id="@+id/misempleadosdv"
         android:name="jonathan.orellana.onepetapp.misempleadosdv"
@@ -80,5 +86,11 @@
         android:name="jonathan.orellana.onepetapp.ajustesdv"
         android:label="Ajustes"
         tools:layout="@layout/fragment_ajustesdv" />
+
+
+
+
+
+
 
 </navigation>
