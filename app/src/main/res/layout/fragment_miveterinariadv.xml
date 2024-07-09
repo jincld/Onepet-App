@@ -7,6 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".miveterinariadv">
 
+    <TextView
+        android:id="@+id/txtVerServiciosVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="386dp" />
+
+    <TextView
+        android:id="@+id/txtVerNitVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="243dp" />
+
+    <TextView
+        android:id="@+id/txtVerUbicacionVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="200dp" />
+
     <ImageView
         android:id="@+id/imageView30"
         android:layout_width="437dp"
@@ -34,7 +58,7 @@
 
     <Button
         android:id="@+id/btnEditarVet"
-        android:layout_width="234dp"
+        android:layout_width="204dp"
         android:layout_height="51dp"
         android:background="@drawable/btnazul"
         android:fontFamily="@font/alata"
@@ -42,8 +66,21 @@
         android:textAllCaps="false"
         android:textSize="20sp"
         app:backgroundTint="@null"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="623dp" />
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+    <Button
+        android:id="@+id/btnEliminarVet"
+        android:layout_width="204dp"
+        android:layout_height="51dp"
+        android:background="@drawable/btnazul"
+        android:fontFamily="@font/alata"
+        android:text="Eliminar Datos"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="557dp" />
 
     <ImageView
         android:id="@+id/imageView33"
@@ -71,5 +108,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="69dp" />
+
+    <TextView
+        android:id="@+id/txtVerNombreVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="158dp" />
+
+    <TextView
+        android:id="@+id/txtVerContactoVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="288dp" />
+
+    <TextView
+        android:id="@+id/txtVerCorreoVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="177dp"
+        tools:layout_editor_absoluteY="335dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

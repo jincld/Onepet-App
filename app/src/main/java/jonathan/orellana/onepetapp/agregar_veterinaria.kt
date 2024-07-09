@@ -1,5 +1,7 @@
 package jonathan.orellana.onepetapp
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import jonathan.orellana.onepetapp.ui.detalle_veterinaria
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import modelo.ClaseConexion
+import modelo.dataClassVeterinaria
 import java.util.UUID
 
 // TODO: Rename parameter arguments, choose names that match
@@ -50,6 +54,7 @@ class agregar_veterinaria : Fragment() {
         val txtContactoVet = root.findViewById<TextView>(R.id.txtConctactoVet)
         val txtCorreoVet = root.findViewById<TextView>(R.id.txtCorreoVet)
         val txtDescripcionVet = root.findViewById<TextView>(R.id.txtDescripcionServicios)
+        lateinit var veterinaria : dataClassVeterinaria
         val btnRegistrarVet = root.findViewById<Button>(R.id.btnRegistrarVet)
 
         btnRegistrarVet.setOnClickListener {
@@ -133,22 +138,21 @@ class agregar_veterinaria : Fragment() {
                     addVet.setString(7, txtDescripcionVet.text.toString())
                     addVet.executeUpdate()
 
+
+                    val pantallaDetalle = Intent(context, detalle_veterinaria::class.java)
+                    pantallaDetalle.putExtra("UUID_veterinaria", veterinaria.UUID_veterinaria)
+                    pantallaDetalle.putExtra("nombre_veterinaria", veterinaria.nombre_veterinaria)
+                    pantallaDetalle.putExtra("ubicacion_veterinaria", veterinaria.ubicacion_veterinaria)
+                    pantallaDetalle.putExtra("NIT", veterinaria.nit)
+                    pantallaDetalle.putExtra("contacto_veterinaria", veterinaria.contacto_veterinaria)
+                    pantallaDetalle.putExtra("correo_veterinaria", veterinaria.correo_veterinaria)
+                    pantallaDetalle.putExtra("descripcion_servicios", veterinaria.descripcion_servicios)
+                    requireContext().startActivity(pantallaDetalle)
+
                 }
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         return root
