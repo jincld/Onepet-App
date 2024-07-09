@@ -46,7 +46,7 @@ class agregarmascotaas : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //Creo la variable root
-        val root = inflater.inflate(R.layout.fragment_agregarmascotas, container, false)
+        val root = inflater.inflate(R.layout.fragment_agregarmascotaas, container, false)
         //Mando a llamar el boton usando la variable root
         val txtNomAddMascota = root.findViewById<EditText>(R.id.txtNombreMascota)
         val spSelectEspecie = root.findViewById<Spinner>(R.id.spEspecie)
@@ -59,6 +59,27 @@ class agregarmascotaas : Fragment() {
         val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascota)
         val btnAddFotoMascota = root.findViewById<Button>(R.id.btnAgregarFotoMascota)
         val btnAgregarMascotas = root.findViewById<Button>(R.id.btnAgregarMascotas)
+
+        //Obtener UUID de Dueño de Mascota (Usuario)
+        fun obtenerUUIDDueno(): String? {
+
+            val correoGlobalEscrito = login.variablesGlobalesLogin.correodelUsuarioGlobal
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            val tarerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?")!!
+            tarerUUIDUsuario.setString(1, correoGlobalEscrito)
+            val resultSet = tarerUUIDUsuario.executeQuery()
+
+            var uuidUsuario: String? = null
+
+            if (resultSet?.next() == true) {
+                uuidUsuario = resultSet.getString("UUID_usuario")
+                println("este es el uuid traido desde el if $uuidUsuario")
+            }
+
+            println("este es el uuid traido desde la funcion $uuidUsuario")
+            return uuidUsuario
+        }
 
         //1-Creamos la funcion que haga un select
         fun obtenerEspecie(): List<dataClassEspecie> {
@@ -200,6 +221,9 @@ class agregarmascotaas : Fragment() {
                     //1- Creo un objeto de la clase conexion
                     val claseC = ClaseConexion().cadenaConexion()
 
+                    //Traer el codigo de UUID Usuario
+                    val uuidUsuarioTraido = obtenerUUIDDueno()
+
                     //2- creo una variable que contenga un PrepareStatement
                     val addMascota =
                         claseC?.prepareStatement("into tbMascotas(uuid_mascota, nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso,  especie, dueno) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )")!!
@@ -212,8 +236,9 @@ class agregarmascotaas : Fragment() {
                     addMascota.setString(7, txtEnferCAddMascota.text.toString())
                     addMascota.setString(8, txtAñoAddMascota.text.toString())
                     addMascota.setInt(9, txtPesoAddMascota.text.toString().toInt())
-                    //FALTA DUEÑO
-                    addMascota.setString(2, especieID)
+                    addMascota.setString(10, uuidUsuarioTraido)
+                    println("este es el uuid traido antes del execute  $uuidUsuarioTraido")
+                    addMascota.setString(11, especieID)
                     addMascota.executeUpdate()
 
                     //Abro una corrutina para mostrar una alerta y limpiar los campos

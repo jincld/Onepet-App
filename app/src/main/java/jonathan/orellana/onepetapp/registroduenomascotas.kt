@@ -26,6 +26,7 @@ import javax.crypto.KeyGenerator
 import javax.crypto.spec.SecretKeySpec
 
 class  registroduenomascotas : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -68,7 +69,6 @@ class  registroduenomascotas : AppCompatActivity() {
 
         btnsiguiente.setOnClickListener{
          GlobalScope.launch(Dispatchers.IO){
-
           val objConexion = ClaseConexion().cadenaConexion()
              val contraencriptada = hashSHA256(txtcontraduenomas.text.toString())
 
