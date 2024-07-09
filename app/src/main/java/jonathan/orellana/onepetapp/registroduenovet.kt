@@ -21,6 +21,11 @@ import java.security.MessageDigest
 import java.util.UUID
 
 class registroduenovet : AppCompatActivity() {
+
+    companion object VariablesGlobalesRegistroDuenio{
+        lateinit var txtcorreoadminvetGlobal: String
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -128,6 +133,7 @@ class registroduenovet : AppCompatActivity() {
                         val login = Intent(this@registroduenovet, iniciarsesion::class.java)
                         startActivity(login)
                     }
+
                 }
             }
 
