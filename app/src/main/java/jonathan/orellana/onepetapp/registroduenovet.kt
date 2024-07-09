@@ -77,7 +77,7 @@ class registroduenovet : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
                     //mostrar mensaje y limpiar campos
-                    Toast.makeText(this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@registrod uenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
                     txtnombreadminvet.setText("")
                     txtcontraadminvet.setText("")
                     txtcorreoadminvet.setText("")
