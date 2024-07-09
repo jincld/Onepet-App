@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -20,6 +21,11 @@ import java.security.MessageDigest
 import java.util.UUID
 
 class registroduenovet : AppCompatActivity() {
+
+    companion object VariablesGlobalesRegistroDuenio{
+        lateinit var txtcorreoadminvetGlobal: String
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -37,7 +43,7 @@ class registroduenovet : AppCompatActivity() {
         }
 
         val txtnombreadminvet =findViewById<TextView>(R.id.txtnombreadminvet)
-        val txtcorreoadminvet =findViewById<TextView>(R.id.txtcorreodminvet)
+        var txtcorreoadminvet =findViewById<EditText>(R.id.txtcorreodminvet)
         val txtcontraadminvet =findViewById<TextView>(R.id.txtcontraadminvet)
         val btnfoto = findViewById<Button>(R.id.btnftdeperfil)
         val btninicarsesionvet = findViewById<TextView>(R.id.btniniciarsesionvet)
@@ -60,7 +66,7 @@ class registroduenovet : AppCompatActivity() {
         }
 
         btninicarsesionvet.setOnClickListener{
-
+            txtcorreoadminvetGlobal = txtcorreoadminvet.text.toString()
             GlobalScope.launch(Dispatchers.IO){
                 val objConexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())

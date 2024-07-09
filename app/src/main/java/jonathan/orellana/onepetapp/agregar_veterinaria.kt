@@ -125,10 +125,13 @@ class agregar_veterinaria : Fragment() {
             //
             }
             else {
+
                 CoroutineScope(Dispatchers.IO).launch {
+
+
                     val objConexion = ClaseConexion().cadenaConexion()
                     val addVet =
-                        objConexion?.prepareStatement("into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio) values (?,?,?,?,?,?,?,?)")!!
+                        objConexion?.prepareStatement("Insert into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio) values (?,?,?,?,?,?,?,?)")!!
                     addVet.setString(1, UUID.randomUUID().toString())
                     addVet.setString(2, txtNombreVet.text.toString())
                     addVet.setString(3, txtUbicacionVet.text.toString())

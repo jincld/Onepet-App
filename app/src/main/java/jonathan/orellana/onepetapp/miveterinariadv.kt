@@ -142,17 +142,19 @@ class miveterinariadv : Fragment() {
             else {
 
 
+                val correoGLobalTraido = registroduenovet.VariablesGlobalesRegistroDuenio.txtcorreoadminvetGlobal
+
                 ///1 - creo un objeto de la clase conexion
                 val objConexion = ClaseConexion().cadenaConexion()
 
                 //2 - Creo una variable que tenga un prepareStatement
-                val updateVet = objConexion?.prepareStatement("UPDATE tbveterinarias set nombre_veterinaria = '?', ubicacion_veterinaria = '?', nit = '?', contacto_veterinaria = '?', correo_veterinaria = '?' descripcion_servicio = '?' where uuid_veterinaria = '';")!!
+                val updateVet = objConexion?.prepareStatement("UPDATE tbveterinarias set nombre_veterinaria = '?', ubicacion_veterinaria = '?', nit = '?', contacto_veterinaria = '?', correo_veterinaria = '?' descripcion_servicio = '?' where correo_usuario = '';")!!
                 updateVet.setString(1, nombreNuevo)
                 updateVet.setString(2, ubicacionNueva)
                 updateVet.setString(3, NITNuevo)
                 updateVet.setString(4, ContactoNuevo)
                 updateVet.setString(5, CorreoNuevo)
-                updateVet.setString(6, uuid_traido)
+                updateVet.setString(6, correoGLobalTraido)
 
                 updateVet.executeUpdate()
 
