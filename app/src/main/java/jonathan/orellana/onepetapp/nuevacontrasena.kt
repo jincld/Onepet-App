@@ -9,24 +9,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class correoderecuperacion : AppCompatActivity() {
+class nuevacontrasena : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_correoderecuperacion)
+        setContentView(R.layout.activity_nuevacontrasena)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val correorecuperacion = findViewById<TextView>(R.id.txtcorreorecupracion)
-        val btnrecupercion = findViewById<Button>(R.id.btncorreorecuperacion)
+        val txtnuevacontra = findViewById<TextView>(R.id.txtnuevacontra)
+        val btnnuevacontra = findViewById<Button>(R.id.btnnuevacontra)
 
-       btnrecupercion.setOnClickListener {
+        btnnuevacontra.setOnClickListener {
 
-            val recuperarcorreo = Intent(this, codigoconfimarcion::class.java)
-            startActivity(recuperarcorreo)
+            val recuperar = Intent(this, iniciarsesion::class.java)
+            startActivity(recuperar)
         }
     }
 }
