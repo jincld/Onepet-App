@@ -7,5 +7,6 @@ data class dataClassVeterinaria(
     var ubicacion_veterinaria:String,
     var nit: Int,
    var contacto_veterinaria: String,
-    var personal: Int
+    var correo_veterinaria: String,
+    var descripcion_servicios: String,
 )
