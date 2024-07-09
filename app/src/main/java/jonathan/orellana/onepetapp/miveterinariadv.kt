@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -58,7 +59,6 @@ class miveterinariadv : Fragment() {
 
 
 
-        val txt = activity?.intent?.getStringExtra("")
         val nombreRecibido= activity?.intent?.getStringExtra("nombre_veterinaria")
         val ubicacionRecibido = activity?.intent?.getStringExtra("ubicacion_veterinaria")
         val nitRecibido = activity?.intent?.getIntExtra("NIT", 0)
@@ -78,89 +78,58 @@ class miveterinariadv : Fragment() {
         txtVerServiciosVet.text = txtVerServiciosVet.toString()
 
 
+        fun uodate(nombreNuevo: String, ubicacionNueva:String, NITNuevo:String ,ContactoNuevo:String, CorreoNuevo: String ) {
+            val correoGLobalTraido =
+                registroduenovet.VariablesGlobalesRegistroDuenio.txtcorreoadminvetGlobal
 
+            ///1 - creo un objeto de la clase conexion
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            //2 - Creo una variable que tenga un prepareStatement
+            val updateVet =
+                objConexion?.prepareStatement("UPDATE tbveterinarias set nombre_veterinaria = '?', ubicacion_veterinaria = '?', nit = '?', contacto_veterinaria = '?', correo_veterinaria = '?' descripcion_servicio = '?' where correo_usuario = '';")!!
+            updateVet.setString(1, nombreNuevo)
+            updateVet.setString(2, ubicacionNueva)
+            updateVet.setString(3, NITNuevo)
+            updateVet.setString(4, ContactoNuevo)
+            updateVet.setString(5, CorreoNuevo)
+            updateVet.setString(6, correoGLobalTraido)
+            updateVet.executeUpdate()
+        }
 
         btnEditarVet.setOnClickListener {
-            val nombreNuevo = txtVerNombreVet.text.toString()
-            val ubicacionNueva = txtVerUbicacionVet.text.toString()
-            val NITNuevo = txtVerNitVet.text.toString()
-            val ContactoNuevo = txtVerContactoVet.text.toString()
-            val CorreoNuevo = txtVerCorreoVet.text.toString()
-            val descripcionNueva = txtVerServiciosVet.text.toString()
-
-            var hayerrores = false;
-
-            if (nombreNuevo.isEmpty()){
-                txtVerNombreVet.error = "El nombre es obligatorio"
-                hayerrores = true
-            }else{
-                txtVerNombreVet.error = null;
-            }
-
-            if (ubicacionNueva.isEmpty()){
-                txtVerUbicacionVet.error = "La ubicación es obligatoria"
-                hayerrores = true }
-            else{
-                txtVerUbicacionVet.error = null;
-            }
-
-
-            if (NITNuevo.isEmpty()){
-                txtVerNitVet.error = "El NIT es obligatorio"
-                hayerrores = true }
-            else {
-                txtVerNitVet.error = null;
-            }
-
-
-            if (ContactoNuevo.isEmpty()){
-                txtVerContactoVet.error = "El contacto es obligatorio"
-                hayerrores = true }
-            else{
-                txtVerContactoVet.error = null;
-            }
-
-
-            if (CorreoNuevo.isEmpty()){
-                txtVerCorreoVet.error = "El correo es obligatorio"
-                hayerrores = true }
-            else{
-                txtVerCorreoVet.error = null;
-            }
-
-            if (descripcionNueva.isEmpty()){
-                txtVerServiciosVet.error = "la descripción de servicios es obligatorio"
-                hayerrores = true }
-            else{
-                txtVerServiciosVet.error = null;
-            }
-
-            if (!CorreoNuevo.matches(Regex( "[a-zA-Z0-9._-]+@[a-z]+[.][a-z+]"))) {
-                txtVerCorreoVet.error = "El correo no tiene el formato válido"
-                hayerrores = true
-            }
-            else {
-
-
-                val correoGLobalTraido = registroduenovet.VariablesGlobalesRegistroDuenio.txtcorreoadminvetGlobal
-
-                ///1 - creo un objeto de la clase conexion
-                val objConexion = ClaseConexion().cadenaConexion()
-
-                //2 - Creo una variable que tenga un prepareStatement
-                val updateVet = objConexion?.prepareStatement("UPDATE tbveterinarias set nombre_veterinaria = '?', ubicacion_veterinaria = '?', nit = '?', contacto_veterinaria = '?', correo_veterinaria = '?' descripcion_servicio = '?' where correo_usuario = '';")!!
-                updateVet.setString(1, nombreNuevo)
-                updateVet.setString(2, ubicacionNueva)
-                updateVet.setString(3, NITNuevo)
-                updateVet.setString(4, ContactoNuevo)
-                updateVet.setString(5, CorreoNuevo)
-                updateVet.setString(6, correoGLobalTraido)
-
-                updateVet.executeUpdate()
-
                 val builder = AlertDialog.Builder(context)
                 builder.setTitle("Editar")
                 builder.setMessage("Estas seguro que quieres editar?")
+
+                val nombrenuevo = EditText(context)
+                nombrenuevo.setHint(nombreRecibido)
+                 builder.setView(nombrenuevo)
+
+            val nuevaubicacion = EditText(context)
+            nuevaubicacion.setHint(ubicacionRecibido)
+            builder.setView(nuevaubicacion)
+
+            val nuevoNit = EditText(context)
+            nombrenuevo.setHint(nitRecibido!!.toInt())
+            builder.setView(nuevoNit)
+
+
+            val nuevoContacto = EditText(context)
+            nombrenuevo.setHint(contactoRecibido)
+            builder.setView(nuevoContacto)
+
+            val correoNuevo = EditText(context)
+            nombrenuevo.setHint(correoRecibido)
+            builder.setView(correoNuevo)
+
+
+            builder.setPositiveButton("Si") { dialog, which ->
+             uodate(nombrenuevo.text.toString(), nuevaubicacion.text.toString(), nuevoNit.text.toString(), nuevoContacto.text.toString(), correoNuevo.text.toString())
+                }
+                builder.setNegativeButton("no") { dialog, which ->
+                    dialog.dismiss()
+                }
 
 
 
@@ -177,12 +146,25 @@ class miveterinariadv : Fragment() {
                 // 2- Crear una variable que contenga un preparestatement (donde se mete el código de sqlserver
                 val deleteVeterinaria = objConexion?.prepareStatement( "delete from tbveterinarias where nombre_veterinaria = ?")!!
                 deleteVeterinaria.setString(1, nombreRecibido)
-                deleteVeterinaria.executeUpdate()
 
-                val commit = objConexion.prepareStatement("commit")!!
-                commit.executeUpdate()
+
+
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle("Eliminar")
+                builder.setMessage("Estas seguro que quieres eliminar tu veterinaria?")
+
+                builder.setPositiveButton("Si") { dialog, which ->
+                    deleteVeterinaria.executeUpdate()
+                    val commit = objConexion.prepareStatement("commit")!!
+                    commit.executeUpdate()
+
+
+                }
+                builder.setNegativeButton("no") { dialog, which ->
+                    dialog.dismiss()
+                }
             }
-        }
+        
 
 
 
