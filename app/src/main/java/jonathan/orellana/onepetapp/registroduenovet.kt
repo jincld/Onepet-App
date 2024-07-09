@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -36,9 +37,9 @@ class registroduenovet : AppCompatActivity() {
 
         }
 
-        val txtnombreadminvet =findViewById<TextView>(R.id.txtnombreadminvet)
-        val txtcorreoadminvet =findViewById<TextView>(R.id.txtcorreodminvet)
-        val txtcontraadminvet =findViewById<TextView>(R.id.txtcontraadminvet)
+        val txtnombreadminvet =findViewById<EditText>(R.id.txtnombreadminvet)
+        val txtcorreoadminvet =findViewById<EditText>(R.id.txtcorreodminvet)
+        val txtcontraadminvet =findViewById<EditText>(R.id.txtcontraadminvet)
         val btnfoto = findViewById<Button>(R.id.btnftdeperfil)
         val btninicarsesionvet = findViewById<TextView>(R.id.btniniciarsesionvet)
 

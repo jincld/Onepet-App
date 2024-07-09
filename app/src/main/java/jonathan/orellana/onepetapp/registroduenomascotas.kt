@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -44,9 +45,9 @@ class registroduenomascotas : AppCompatActivity() {
 
         }
 
-        val  txtnombreduenomas = findViewById<TextView>(R.id.txtnombreduenomas)
-        val  txtcorreoduenomas = findViewById<TextView>(R.id.txtcorreoduenomas)
-        val  txtcontraduenomas = findViewById<TextView>(R.id.txtcontraduenomas)
+        val  txtnombreduenomas = findViewById<EditText>(R.id.txtnombreduenomas)
+        val  txtcorreoduenomas = findViewById<EditText>(R.id.txtcorreoduenomas)
+        val  txtcontraduenomas = findViewById<EditText>(R.id.txtcontraduenomas)
         val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
 
