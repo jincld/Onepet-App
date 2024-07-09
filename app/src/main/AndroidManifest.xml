@@ -15,9 +15,6 @@
         android:theme="@style/Theme.OnePetApp"
         tools:targetApi="31">
         <activity
-            android:name=".agregarmascotaas"
-            android:exported="false" />
-      
             android:name=".nuevacontrasena"
             android:exported="false" />
         <activity

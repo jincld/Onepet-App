@@ -49,6 +49,10 @@
             android:id="@+id/resenasdv"
             android:icon="@drawable/iconresenas"
             android:title="Reseñas                                      >" />
+        <item
+            android:id="@+id/agregarmascotaas"
+            android:icon="@drawable/iconresenas"
+            android:title="Mascotas                                    >" />
     </group>
     <group android:id="@+id/group5">
         <item
