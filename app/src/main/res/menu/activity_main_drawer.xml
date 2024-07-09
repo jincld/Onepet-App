@@ -36,7 +36,7 @@
             android:icon="@drawable/iconclientes"
             android:title="Clientes                                       >" />
         <item
-            android:id="@+id/miveterinariadv"
+            android:id="@+id/agregar_vet"
             android:icon="@drawable/iconmiveterinaria"
             android:title="Mi veterinaria                             >" />
         <item
