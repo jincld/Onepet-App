@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import java.security.MessageDigest
+import java.util.UUID
 
 class iniciarsesion : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +43,23 @@ class iniciarsesion : AppCompatActivity() {
         val txtcontrainiciar = findViewById<TextView>(R.id.txtcontrasenainicio)
         val btnrecuperarcontra = findViewById<TextView>(R.id.btnrecuperarcontra)
         val btninicarsesion = findViewById<TextView>(R.id.btniniciarsesionhome)
-        val  btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
+        val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
+
+        /*fun obtenerUuidRol(): String? {
+            val objConexion = ClaseConexion().cadenaConexion()
+            val statement = objConexion?.createStatement()
+            val resulSet = objConexion?.prepareStatement("SELECT UUID_Rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
+            resulSet.setString(1, txtcorreoiniciar.text.toString())
+            var uuidRol: String? = null
+
+            if (resulSet.next()) {
+                uuidRol = resulSet.getString("UUID_rol")
+                println("este es el uuid traido desde el if $uuidRol")
+            }
+
+            println("este es el uuid traido desde la funcion $uuidRol")
+            return uuidRol
+        }*/
 
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, registrarse::class.java)
@@ -53,9 +70,7 @@ class iniciarsesion : AppCompatActivity() {
             val pantallaprincipal = Intent (this, MainActivity::class.java)
 
             GlobalScope.launch (Dispatchers.IO) {
-
                 val objconexion = ClaseConexion().cadenaConexion()
-
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
                 val comprobarusuario = objconexion?.prepareStatement("SELECT uuid_usuario FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
@@ -71,8 +86,7 @@ class iniciarsesion : AppCompatActivity() {
                         Toast.makeText(this@iniciarsesion, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show()
                     }
                 }
-
-                }
+                /*valorRolUsuario =*/
             }
         btnrecuperarcontra.setOnClickListener {
 
@@ -83,3 +97,7 @@ class iniciarsesion : AppCompatActivity() {
         }
 
     }
+    /*companion object variablesLogin {
+        lateinit var valorRolUsuario: String
+    }*/
+}
