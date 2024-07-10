@@ -51,6 +51,7 @@ class iniciarsesion : AppCompatActivity() {
             val resulSet = objConexion?.prepareStatement("SELECT UUID_Rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
             resulSet.setString(1, txtcorreoiniciar.text.toString())
             var uuidRol: String? = null
+            resulSet.executeQuery()
 
             if (resulSet.next()) {
                 uuidRol = resulSet.getString("UUID_rol")
