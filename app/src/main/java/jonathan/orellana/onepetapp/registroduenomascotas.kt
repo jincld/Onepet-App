@@ -35,8 +35,7 @@ class registroduenomascotas : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-
+        supportActionBar?.hide();
 
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
@@ -49,7 +48,12 @@ class registroduenomascotas : AppCompatActivity() {
         val  txtcontraduenomas = findViewById<TextView>(R.id.txtcontraduenomas)
         val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
+        val  btnVolver = findViewById<ImageButton>(R.id.btnVolverDM)
 
+        btnVolver.setOnClickListener {
+            val pantallaAnterior = Intent(this, registrarse::class.java)
+            startActivity(pantallaAnterior)
+        }
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()

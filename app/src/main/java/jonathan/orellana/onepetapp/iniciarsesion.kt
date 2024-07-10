@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -30,24 +31,23 @@ class iniciarsesion : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-
+        supportActionBar?.hide();
 
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
             return bytes.joinToString("") {"%02x".format(it)}
-
         }
-
-
 
         val txtcorreoiniciar = findViewById<TextView>(R.id.txtcorreoiniciar)
         val txtcontrainiciar = findViewById<TextView>(R.id.txtcontrasenainicio)
         val btnrecuperarcontra = findViewById<TextView>(R.id.btnrecuperarcontra)
         val btninicarsesion = findViewById<TextView>(R.id.btniniciarsesionhome)
+        val  btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
-
-
+        btnVolver.setOnClickListener {
+            val pantallaAnterior = Intent(this, registrarse::class.java)
+            startActivity(pantallaAnterior)
+        }
 
         btninicarsesion.setOnClickListener{
             val pantallaprincipal = Intent (this, MainActivity::class.java)
