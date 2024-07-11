@@ -53,6 +53,8 @@ class  registroduenomascotas : AppCompatActivity() {
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
 
 
+
+
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()

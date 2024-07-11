@@ -123,6 +123,11 @@ class miveterinariadv : Fragment() {
             nombrenuevo.setHint(correoRecibido)
             builder.setView(correoNuevo)
 
+            val descripcionNueva = EditText(context)
+            nombrenuevo.setHint(descripcionRecibida)
+            builder.setView(descripcionNueva)
+
+
 
             builder.setPositiveButton("Si") { dialog, which ->
              uodate(nombrenuevo.text.toString(), nuevaubicacion.text.toString(), nuevoNit.text.toString(), nuevoContacto.text.toString(), correoNuevo.text.toString())

@@ -66,7 +66,7 @@ class agregarmascotaas : Fragment() {
             val correoGlobalEscrito = login.variablesGlobalesLogin.correodelUsuarioGlobal
             val objConexion = ClaseConexion().cadenaConexion()
 
-            val tarerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?")!!
+            val tarerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = '?'")!!
             tarerUUIDUsuario.setString(1, correoGlobalEscrito)
             val resultSet = tarerUUIDUsuario.executeQuery()
 
