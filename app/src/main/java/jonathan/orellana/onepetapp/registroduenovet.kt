@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -36,6 +37,8 @@ class registroduenovet : AppCompatActivity() {
             insets
         }
 
+        supportActionBar?.hide();
+
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
             return bytes.joinToString("") {"%02x".format(it)}
@@ -47,6 +50,12 @@ class registroduenovet : AppCompatActivity() {
         val txtcontraadminvet =findViewById<EditText>(R.id.txtcontraadminvet)
         val btnfoto = findViewById<Button>(R.id.btnftdeperfil)
         val btninicarsesionvet = findViewById<TextView>(R.id.btniniciarsesionvet)
+        val  btnVolver = findViewById<ImageButton>(R.id.btnVolverAV)
+
+        btnVolver.setOnClickListener {
+            val pantallaAnterior = Intent(this, registrarse::class.java)
+            startActivity(pantallaAnterior)
+        }
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()

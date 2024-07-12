@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,23 +22,23 @@ class registrarse : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //Mandar a llamar a todos los elementos
-        val btnduenomas = findViewById<Button>(R.id.btnduenomascota)
+        supportActionBar?.hide();
 
-        //Programar al botón
+        val btnduenomas = findViewById<Button>(R.id.btnduenomascota)
+        val btnVolverComo = findViewById<ImageButton>(R.id.btnVolverComo)
+
+        btnVolverComo.setOnClickListener {
+            val pantallaAnterior = Intent(this, login::class.java)
+            startActivity(pantallaAnterior)
+        }
+
         btnduenomas.setOnClickListener {
-            //Navegar entre pantallas
-            //Ir a la siguiente pantalla
             val pantallaSiguiente = Intent(this, registroduenomascotas::class.java)
             startActivity(pantallaSiguiente)
         }
 
-        //Mandar a llamar
         val btnclinicvet = findViewById<Button>(R.id.btnclinicaveterinaria)
-        //Programar al botón
         btnclinicvet.setOnClickListener {
-            //Navegar entre pantallas
-            //Ir a la siguiente pantalla
             val pantallaSiguiente = Intent(this, registroduenovet::class.java)
             startActivity(pantallaSiguiente)
         }

@@ -15,16 +15,32 @@
         android:theme="@style/Theme.OnePetApp"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name="agregar_vet"
-            android:exported="false" />
+=======
+            android:name=".splash_screen"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity
+            android:name=".agregarVeterinariadv"
+>>>>>>> 3bafb5cb958f95ac5b8de292e02b0bf776095ef9
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false"/>
          <activity
             android:name=".agregarmascotaas"
             android:exported="false" />
+<<<<<<< HEAD
         <activity
+=======
+         <activity
+>>>>>>> 3bafb5cb958f95ac5b8de292e02b0bf776095ef9
             android:name=".nuevacontrasena"
             android:exported="false" />
         <activity
@@ -50,17 +66,8 @@
             android:name=".login"
             android:exported="false" />
         <activity
-            android:name=".PruebaMicelular"
-            android:exported="false" />
-        <activity
             android:name=".bienvenido"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".registrarotramascota"
             android:exported="false" />
