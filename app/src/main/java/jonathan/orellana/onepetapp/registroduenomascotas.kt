@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -25,7 +26,8 @@ import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.spec.SecretKeySpec
 
-class registroduenomascotas : AppCompatActivity() {
+class  registroduenomascotas : AppCompatActivity() {
+  
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -43,9 +45,9 @@ class registroduenomascotas : AppCompatActivity() {
 
         }
 
-        val  txtnombreduenomas = findViewById<TextView>(R.id.txtnombreduenomas)
-        val  txtcorreoduenomas = findViewById<TextView>(R.id.txtcorreoduenomas)
-        val  txtcontraduenomas = findViewById<TextView>(R.id.txtcontraduenomas)
+        val  txtnombreduenomas = findViewById<EditText>(R.id.txtnombreduenomas)
+        val  txtcorreoduenomas = findViewById<EditText>(R.id.txtcorreoduenomas)
+        val  txtcontraduenomas = findViewById<EditText>(R.id.txtcontraduenomas)
         val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
         val  btnVolver = findViewById<ImageButton>(R.id.btnVolverDM)
@@ -72,7 +74,7 @@ class registroduenomascotas : AppCompatActivity() {
 
 
         btnsiguiente.setOnClickListener{
-             val nombre = txtnombreduenomas.text.toString()
+            val nombre = txtnombreduenomas.text.toString()
             val correo = txtcorreoduenomas.text.toString()
             val contra = txtcontraduenomas.text.toString()
             var hayerrores = false
@@ -99,7 +101,6 @@ class registroduenomascotas : AppCompatActivity() {
             }
 
             if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
-
               txtcorreoduenomas.error = "Ingrese un correo valido"
               hayerrores = true
             } else {
