@@ -12,15 +12,15 @@
     </group>
     <group android:id="@+id/group2">
         <item
-            android:id="@+id/agregarempleadodv"
+            android:id="@+id/fragment_citas"
             android:icon="@drawable/iconcitas"
             android:title="Citas                                            >" />
         <item
-            android:id="@+id/agregarempleadodv"
+            android:id="@+id/fragment_agendarCita"
             android:icon="@drawable/iconagendar"
             android:title="Agendar cita                              >" />
         <item
-            android:id="@+id/agregarempleadodv"
+            android:id="@+id/fragment_estadoSolicitud"
             android:icon="@drawable/iconestado"
             android:title="Estado de solicitudes               >" />
         <item
@@ -32,15 +32,15 @@
             android:icon="@drawable/iconmisempleados"
             android:title="Mis empleados                          >"/>
         <item
-            android:id="@+id/agregarempleadodv"
+            android:id="@+id/solicitudescitadv"
             android:icon="@drawable/iconsolicitudes"
             android:title="Solicitudes de cita                    >" />
         <item
-            android:id="@+id/agregarempleadodv"
+            android:id="@+id/historialcitasdv"
             android:icon="@drawable/iconestado"
             android:title="Historial de citas                       >" />
         <item
-            android:id="@+id/agregarempleadodv"
+            android:id="@+id/fragment_asignaciones"
             android:icon="@drawable/iconsolicitudes"
             android:title="Asignaciones                             >" />
     </group>
@@ -48,19 +48,19 @@
 
     <group android:id="@+id/group3">
         <item
-            android:id="@+id/solicitudescitadv"
+            android:id="@+id/chatdv"
             android:icon="@drawable/iconchat"
             android:title="Chat                                             >" />
         <item
-            android:id="@+id/historialcitasdv"
+            android:id="@+id/fragment_veterinarias"
             android:icon="@drawable/iconmiveterinaria"
             android:title="Veterinarias                                >" />
         <item
-            android:id="@+id/agregarempleadodv"
+            android:id="@+id/clientesdv"
             android:icon="@drawable/iconclientes"
             android:title="Clientes                                       >" />
         <item
-            android:id="@+id/agregarempleadodv"
+            android:id="@+id/miveterinariadv"
             android:icon="@drawable/iconmiveterinaria"
             android:title="Mi veterinaria                             >" />
     </group>
@@ -81,7 +81,7 @@
     </group>
     <group android:id="@+id/group6">
         <item
-            android:id="@+id/agregarempleadodv"
+            android:id="@+id/fragment_misMascotas"
             android:icon="@drawable/iconmascotas"
             android:title="Mis mascotas                            >" />
         <item

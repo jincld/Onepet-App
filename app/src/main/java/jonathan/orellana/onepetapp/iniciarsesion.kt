@@ -23,6 +23,9 @@ import java.security.MessageDigest
 import java.util.UUID
 
 class iniciarsesion : AppCompatActivity() {
+    companion object variablesLogin {
+        lateinit var valorRolUsuario: String
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -45,22 +48,21 @@ class iniciarsesion : AppCompatActivity() {
         val btninicarsesion = findViewById<TextView>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
-        /*fun obtenerUuidRol(): String? {
+        fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
-            val statement = objConexion?.createStatement()
-            val resulSet = objConexion?.prepareStatement("SELECT UUID_Rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
+            val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
             resulSet.setString(1, txtcorreoiniciar.text.toString())
             var uuidRol: String? = null
-            resulSet.executeQuery()
+            val resultado = resulSet.executeQuery()
 
-            if (resulSet.next()) {
-                uuidRol = resulSet.getString("UUID_rol")
+            if (resultado.next()) {
+                uuidRol = resultado.getString("UUID_rol")
                 println("este es el uuid traido desde el if $uuidRol")
             }
 
             println("este es el uuid traido desde la funcion $uuidRol")
             return uuidRol
-        }*/
+        }
 
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, registrarse::class.java)
@@ -68,6 +70,8 @@ class iniciarsesion : AppCompatActivity() {
         }
 
         btninicarsesion.setOnClickListener{
+            valorRolUsuario = obtenerUuidRol().toString()
+
             val pantallaprincipal = Intent (this, MainActivity::class.java)
 
             GlobalScope.launch (Dispatchers.IO) {
@@ -80,14 +84,16 @@ class iniciarsesion : AppCompatActivity() {
 
                 val resultado = comprobarusuario.executeQuery()
 
+                println("este es el resultado que traigo con el select $resultado")
+
                 if (resultado.next()){
                     startActivity(pantallaprincipal)
+
                 } else {
                     withContext(Dispatchers.Main){
                         Toast.makeText(this@iniciarsesion, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show()
                     }
                 }
-                /*valorRolUsuario =*/
             }
         btnrecuperarcontra.setOnClickListener {
 
@@ -98,7 +104,5 @@ class iniciarsesion : AppCompatActivity() {
         }
 
     }
-    /*companion object variablesLogin {
-        lateinit var valorRolUsuario: String
-    }*/
 }
+

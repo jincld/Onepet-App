@@ -80,5 +80,35 @@
         android:name="jonathan.orellana.onepetapp.ajustesdv"
         android:label="Ajustes"
         tools:layout="@layout/fragment_ajustesdv" />
+    <fragment
+        android:id="@+id/fragment_citas"
+        android:name="jonathan.orellana.onepetapp.fragment_citas"
+        android:label="fragment_citas"
+        tools:layout="@layout/fragment_citas" />
+    <fragment
+        android:id="@+id/fragment_agendarCita"
+        android:name="jonathan.orellana.onepetapp.fragment_agendarCita"
+        android:label="fragment_agendar_cita"
+        tools:layout="@layout/fragment_agendar_cita" />
+    <fragment
+        android:id="@+id/fragment_estadoSolicitud"
+        android:name="jonathan.orellana.onepetapp.fragment_estadoSolicitud"
+        android:label="fragment_estado_solicitud"
+        tools:layout="@layout/fragment_estado_solicitud" />
+    <fragment
+        android:id="@+id/fragment_asignaciones"
+        android:name="jonathan.orellana.onepetapp.fragment_asignaciones"
+        android:label="fragment_asignaciones"
+        tools:layout="@layout/fragment_asignaciones" />
+    <fragment
+        android:id="@+id/fragment_veterinarias"
+        android:name="jonathan.orellana.onepetapp.fragment_veterinarias"
+        android:label="fragment_veterinarias"
+        tools:layout="@layout/fragment_veterinarias" />
+    <fragment
+        android:id="@+id/fragment_misMascotas"
+        android:name="jonathan.orellana.onepetapp.fragment_misMascotas"
+        android:label="fragment_mis_mascotas"
+        tools:layout="@layout/fragment_mis_mascotas" />
 
 </navigation>
