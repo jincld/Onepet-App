@@ -26,7 +26,8 @@ import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.spec.SecretKeySpec
 
-class registroduenomascotas : AppCompatActivity() {
+class  registroduenomascotas : AppCompatActivity() {
+  
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,8 +37,7 @@ class registroduenomascotas : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-
+        supportActionBar?.hide();
 
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
@@ -50,7 +50,12 @@ class registroduenomascotas : AppCompatActivity() {
         val  txtcontraduenomas = findViewById<EditText>(R.id.txtcontraduenomas)
         val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
+        val  btnVolver = findViewById<ImageButton>(R.id.btnVolverDM)
 
+        btnVolver.setOnClickListener {
+            val pantallaAnterior = Intent(this, registrarse::class.java)
+            startActivity(pantallaAnterior)
+        }
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
@@ -69,7 +74,7 @@ class registroduenomascotas : AppCompatActivity() {
 
 
         btnsiguiente.setOnClickListener{
-             val nombre = txtnombreduenomas.text.toString()
+            val nombre = txtnombreduenomas.text.toString()
             val correo = txtcorreoduenomas.text.toString()
             val contra = txtcontraduenomas.text.toString()
             var hayerrores = false
@@ -96,7 +101,6 @@ class registroduenomascotas : AppCompatActivity() {
             }
 
             if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
-
               txtcorreoduenomas.error = "Ingrese un correo valido"
               hayerrores = true
             } else {

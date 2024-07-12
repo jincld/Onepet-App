@@ -5,11 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF"
     tools:context=".bienvenido">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="409dp"
         android:layout_height="844dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
@@ -66,16 +69,6 @@
             app:srcCompat="@drawable/gbuno" />
 
         <ImageView
-            android:id="@+id/imageView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="136dp"
-            android:layout_marginTop="324dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/dogdos" />
-
-        <ImageView
             android:id="@+id/imageView24"
             android:layout_width="85dp"
             android:layout_height="85dp"
@@ -90,12 +83,13 @@
 
         <Button
             android:id="@+id/btnbienvenido"
-            android:layout_width="238dp"
-            android:layout_height="63dp"
+            android:layout_width="243dp"
+            android:layout_height="58dp"
             android:background="@drawable/btnwhite"
             android:backgroundTint="#FFFFFF"
-            android:fontFamily="@font/alata"
+            android:fontFamily="sans-serif"
             android:text="Continuar"
+            android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#333333"
             android:textSize="24sp"
@@ -103,7 +97,7 @@
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.093"
+            app:layout_constraintHorizontal_bias="0.186"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.888" />
@@ -120,10 +114,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintHorizontal_bias="0.377"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.069" />
+            app:layout_constraintVertical_bias="0.077" />
 
         <TextView
             android:id="@+id/textView4"
@@ -135,10 +129,22 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.098"
+            app:layout_constraintHorizontal_bias="0.245"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.183" />
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="309dp"
+            android:layout_height="540dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/imagendalmata1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

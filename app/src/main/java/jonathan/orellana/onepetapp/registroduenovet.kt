@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -21,6 +22,11 @@ import java.security.MessageDigest
 import java.util.UUID
 
 class registroduenovet : AppCompatActivity() {
+
+    companion object VariablesGlobalesRegistroDuenio{
+        lateinit var txtcorreoadminvetGlobal: String
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +36,8 @@ class registroduenovet : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        supportActionBar?.hide();
 
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
@@ -42,6 +50,12 @@ class registroduenovet : AppCompatActivity() {
         val txtcontraadminvet =findViewById<EditText>(R.id.txtcontraadminvet)
         val btnfoto = findViewById<Button>(R.id.btnftdeperfil)
         val btninicarsesionvet = findViewById<TextView>(R.id.btniniciarsesionvet)
+        val  btnVolver = findViewById<ImageButton>(R.id.btnVolverAV)
+
+        btnVolver.setOnClickListener {
+            val pantallaAnterior = Intent(this, registrarse::class.java)
+            startActivity(pantallaAnterior)
+        }
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
@@ -128,6 +142,7 @@ class registroduenovet : AppCompatActivity() {
                         val login = Intent(this@registroduenovet, iniciarsesion::class.java)
                         startActivity(login)
                     }
+
                 }
             }
 
