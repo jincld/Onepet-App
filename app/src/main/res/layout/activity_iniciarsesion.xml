@@ -5,67 +5,231 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#61777C"
+    android:backgroundTint="#52B6CC"
     tools:context=".iniciarsesion">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Iniciar sesion"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.156" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondologin"
+        android:backgroundTint="#52B6CC"
+        android:foregroundTint="#4ECFEB"
+        app:backgroundTint="@null">
 
-    <EditText
-        android:id="@+id/txtcorreoiniciar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="Correo Electronico"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/txtcontrasenainicio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.838" />
+        <ImageView
+            android:id="@+id/imageView55"
+            android:layout_width="464dp"
+            android:layout_height="216dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView28"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/fondologin"
+            tools:layout_editor_absoluteX="-21dp" />
 
-    <EditText
-        android:id="@+id/txtcontrasenainicio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/btniniciarsesionhome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.759" />
+        <ImageView
+            android:id="@+id/imageView70"
+            android:layout_width="163dp"
+            android:layout_height="156dp"
+            android:layout_marginEnd="272dp"
+            android:rotation="53"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.147"
+            app:srcCompat="@drawable/circulocelesteis" />
 
-    <Button
-        android:id="@+id/btniniciarsesionhome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Iniciar sesion"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        <ImageView
+            android:id="@+id/imageView72"
+            android:layout_width="412dp"
+            android:layout_height="246dp"
+            android:alpha="0.2"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.318"
+            app:srcCompat="@drawable/rectangulosombra" />
 
-    <TextView
-        android:id="@+id/btnrecuperarcontra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="¿Olvidaste tu contraseña?"
-        app:layout_constraintBottom_toTopOf="@+id/btniniciarsesionhome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.404"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtcontrasenainicio"
-        app:layout_constraintVertical_bias="0.247" />
+        <ImageView
+            android:id="@+id/imageView28"
+            android:layout_width="410dp"
+            android:layout_height="647dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/rectangulowis" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
+            android:text="Iniciar sesión"
+            android:textColor="#34313F"
+            android:textSize="34dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.309" />
+
+        <Button
+            android:id="@+id/btniniciarsesionhome"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btnazul"
+            android:text="Ingresar"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.667" />
+
+        <EditText
+            android:id="@+id/txtcorreoiniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Correo Electrónico"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.438" />
+
+        <EditText
+            android:id="@+id/txtcontrasenainicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.515" />
+
+        <TextView
+            android:id="@+id/btnrecuperarcontra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Olvidaste tu contraseña?"
+            android:textColor="#3C87D1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.404"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.567" />
+
+        <ImageButton
+            android:id="@+id/btnVolverIS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00FFFFFF"
+            android:tint="#34313F"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.019"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+        <ImageView
+            android:id="@+id/imageView60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="392dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/degcelesteinf" />
+
+        <ImageView
+            android:id="@+id/imageView65"
+            android:layout_width="225dp"
+            android:layout_height="262dp"
+            android:layout_marginEnd="208dp"
+            android:rotation="109"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.945"
+            app:srcCompat="@drawable/bgdos" />
+
+        <ImageView
+            android:id="@+id/imageView64"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/imagenconejo1" />
+
+        <ImageView
+            android:id="@+id/imageView67"
+            android:layout_width="94dp"
+            android:layout_height="206dp"
+            android:layout_marginStart="332dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.428"
+            app:srcCompat="@drawable/halfblob1" />
+
+        <ImageView
+            android:id="@+id/imageView68"
+            android:layout_width="124dp"
+            android:layout_height="124dp"
+            android:layout_marginStart="308dp"
+            android:layout_marginBottom="732dp"
+            android:alpha="0.6"
+            android:rotation="23"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/circulocelesteis" />
+
+        <ImageView
+            android:id="@+id/imageView69"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:alpha="0.8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.762"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.127"
+            app:srcCompat="@drawable/circulocelesteis" />
+
+        <ImageView
+            android:id="@+id/imageView71"
+            android:layout_width="141dp"
+            android:layout_height="184dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            app:srcCompat="@drawable/logowhite" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
