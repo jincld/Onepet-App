@@ -55,10 +55,10 @@ class agregarmascotaas : Fragment() {
         val spGeneroMascota = root.findViewById<Spinner>(R.id.spGenero)
         val txtPesoAddMascota = root.findViewById<EditText>(R.id.txtPesoMascotas)
         val txtAñoAddMascota = root.findViewById<EditText>(R.id.txtAñoMascota)
-        val txtEnferCAddMascota = root.findViewById<EditText>(R.id.txtEnfermedadesCMascota)
-        val txtProceMAddMascota = root.findViewById<EditText>(R.id.txtProcedimientosMAscota)
+        val txtEnferCAddMascota = root.findViewById<EditText>(R.id.txtEnfermedadesCM)
+        val txtProceMAddMascota = root.findViewById<EditText>(R.id.txtProcedimientosMAscotas)
         val txtRazaMascota = root.findViewById<EditText>(R.id.txtRazaMascota)
-        val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascota)
+        val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascotas)
         val btnAddFotoMascota = root.findViewById<Button>(R.id.btnAgregarFotoMascota)
         val btnAgregarMascotas = root.findViewById<Button>(R.id.btnAgregarMascotas)
 
@@ -83,7 +83,7 @@ class agregarmascotaas : Fragment() {
         //Obtener UUID de Dueño de Mascota (Usuario)
         fun obtenerUUIDDueno(): String? {
 
-            val correoGlobalEscrito = login.variablesGlobalesLogin.correodelUsuarioGlobal
+            val correoGlobalEscrito = iniciarsesion.variablesGlobalesLogin.correodelUsuarioGlobal
             val objConexion = ClaseConexion().cadenaConexion()
 
             val traerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = '?'")!!

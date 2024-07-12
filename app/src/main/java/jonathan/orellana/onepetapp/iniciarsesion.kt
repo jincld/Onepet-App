@@ -21,6 +21,11 @@ import modelo.ClaseConexion
 import java.security.MessageDigest
 
 class iniciarsesion : AppCompatActivity() {
+
+    companion object variablesGlobalesLogin{
+        lateinit var correodelUsuarioGlobal: String
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

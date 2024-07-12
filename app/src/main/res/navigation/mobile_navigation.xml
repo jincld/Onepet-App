@@ -81,14 +81,14 @@
         android:label="Ajustes"
         tools:layout="@layout/fragment_ajustesdv" />
     <fragment
-        android:id="@+id/agregarmascotas2"
-        android:name="jonathan.orellana.onepetapp.agregarmascotas"
-        android:label="fragment_agregarmascotas"
-        tools:layout="@layout/fragment_agregarmascotas" />
-    <fragment
         android:id="@+id/agregarmascotaas"
         android:name="jonathan.orellana.onepetapp.agregarmascotaas"
         android:label="fragment_agregarmascotaas"
         tools:layout="@layout/fragment_agregarmascotaas" />
+    <fragment
+        android:id="@+id/mismascotas"
+        android:name="jonathan.orellana.onepetapp.mismascotas"
+        android:label="fragment_mismascotas"
+        tools:layout="@layout/fragment_mismascotas" />
 
 </navigation>

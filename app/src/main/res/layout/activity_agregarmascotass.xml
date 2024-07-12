@@ -52,7 +52,7 @@
             app:layout_constraintVertical_bias="0.28" />
 
         <EditText
-            android:id="@+id/txtEspecieMascota"
+            android:id="@+id/txtEspecieMascotaCard"
             android:layout_width="241dp"
             android:layout_height="51dp"
             android:ems="10"
@@ -66,7 +66,7 @@
             app:layout_constraintVertical_bias="0.361" />
 
         <EditText
-            android:id="@+id/txtGeneroMascota"
+            android:id="@+id/txtGeneroCard"
             android:layout_width="116dp"
             android:layout_height="55dp"
             android:ems="10"
@@ -80,7 +80,7 @@
             app:layout_constraintVertical_bias="0.454" />
 
         <EditText
-            android:id="@+id/txtPesoMascota"
+            android:id="@+id/txtPesoMascotaCard"
             android:layout_width="113dp"
             android:layout_height="58dp"
             android:ems="10"
@@ -107,7 +107,7 @@
             app:layout_constraintVertical_bias="0.543" />
 
         <EditText
-            android:id="@+id/txtEnfermedadesCMascota"
+            android:id="@+id/txtEnfermedadesCM"
             android:layout_width="242dp"
             android:layout_height="45dp"
             android:ems="10"
@@ -120,7 +120,7 @@
             app:layout_constraintVertical_bias="0.622" />
 
         <EditText
-            android:id="@+id/txtProcedimientosMAscota"
+            android:id="@+id/txtProcedimientosMAscotas"
             android:layout_width="246dp"
             android:layout_height="41dp"
             android:ems="10"
@@ -133,7 +133,7 @@
             app:layout_constraintVertical_bias="0.703" />
 
         <EditText
-            android:id="@+id/txtAlergiasMascota"
+            android:id="@+id/txtAlergiasMascotas"
             android:layout_width="246dp"
             android:layout_height="44dp"
             android:ems="10"
