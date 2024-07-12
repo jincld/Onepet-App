@@ -25,6 +25,7 @@ import java.util.UUID
 class iniciarsesion : AppCompatActivity() {
     companion object variablesLogin {
         lateinit var valorRolUsuario: String
+        var uuidRol: String? = null
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +49,13 @@ class iniciarsesion : AppCompatActivity() {
         val btninicarsesion = findViewById<TextView>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
-        fun obtenerUuidRol(): String? {
+     //   fun obtenerUuidRol(): String? {
+            GlobalScope.launch(Dispatchers.IO) {
+
             val objConexion = ClaseConexion().cadenaConexion()
             val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
             resulSet.setString(1, txtcorreoiniciar.text.toString())
-            var uuidRol: String? = null
+
             val resultado = resulSet.executeQuery()
 
             if (resultado.next()) {
@@ -61,16 +64,15 @@ class iniciarsesion : AppCompatActivity() {
             }
 
             println("este es el uuid traido desde la funcion $uuidRol")
-            return uuidRol
-        }
 
+}
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, registrarse::class.java)
             startActivity(pantallaAnterior)
         }
 
         btninicarsesion.setOnClickListener{
-            valorRolUsuario = obtenerUuidRol().toString()
+            valorRolUsuario = uuidRol.toString()
 
             val pantallaprincipal = Intent (this, MainActivity::class.java)
 
