@@ -58,7 +58,7 @@ class iniciarsesion : AppCompatActivity() {
 
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
-                val comprobarusuario = objconexion?.prepareStatement("SELECT uuid_usuario FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
+                val comprobarusuario = objconexion?.prepareStatement("SELECT uuid_usuario FROM tbUsuariosOne where correo_usuario = '?' and contra_usuario = '?'")!!
                 comprobarusuario.setString(1, txtcorreoiniciar.text.toString())
                 comprobarusuario.setString(2, contraencriptada)
 
@@ -66,6 +66,7 @@ class iniciarsesion : AppCompatActivity() {
 
                 if (resultado.next()){
                     startActivity(pantallaprincipal)
+                    println("El botón si funciona")
                 } else {
                     withContext(Dispatchers.Main){
                         Toast.makeText(this@iniciarsesion, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show()

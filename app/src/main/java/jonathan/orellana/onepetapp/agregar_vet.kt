@@ -135,7 +135,7 @@ class agregar_vet : Fragment() {
                     addVet.setString(7, txtDescripcionVet.text.toString())
                     addVet.executeUpdate()
 
-                    val pantallaDetalle = Intent(context, detalle_veterinaria::class.java)
+                    val pantallaDetalle = Intent(context, miveterinariadv::class.java)
                     pantallaDetalle.putExtra("UUID_veterinaria", veterinaria.UUID_veterinaria)
                     pantallaDetalle.putExtra("nombre_veterinaria", veterinaria.nombre_veterinaria)
                     pantallaDetalle.putExtra(

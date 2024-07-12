@@ -35,7 +35,7 @@ class  registroduenomascotas : AppCompatActivity() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+             insets
         }
 
 
@@ -119,7 +119,7 @@ class  registroduenomascotas : AppCompatActivity() {
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontraduenomas.text.toString())
 
-                    val uuidTraido = obtenerUuidRol()
+                      val uuidTraido = obtenerUuidRol()
 
                     val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
                     crearusuario.setString(1, UUID.randomUUID().toString())
