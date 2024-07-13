@@ -15,3 +15,5 @@ data class tbMascotas(
     val peso: Int,
     val especie: String
 )
+
+

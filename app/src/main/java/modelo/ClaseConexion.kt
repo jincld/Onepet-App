@@ -11,6 +11,7 @@ class ClaseConexion {
             val usuario = "FERNANDO_DEVELOPER"
             val contrasena = "4O32PcEI"
 
+
             val connection = DriverManager.getConnection(url, usuario, contrasena)
             return connection
         }catch (error:Exception) {

@@ -19,25 +19,18 @@ class login : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //Mandar a llamar a todos los elementos
-
+        supportActionBar?.hide();
 
         val btnregistrarse = findViewById<Button>(R.id.btnregistrarse)
 
-        //Programar al botón
         btnregistrarse.setOnClickListener {
-            //Navegar entre pantallas
-            //Ir a la siguiente pantalla
             val pantallaSiguiente = Intent(this, registrarse::class.java)
             startActivity(pantallaSiguiente)
         }
 
-        //Mandar a llamar
         val btninicarsesion = findViewById<Button>(R.id.btniniciarsesion)
-        //Programar al botón
+
         btninicarsesion.setOnClickListener {
-            //Navegar entre pantallas
-            //Ir a la siguiente pantalla
             val pantallaSiguiente = Intent(this, iniciarsesion::class.java)
             startActivity(pantallaSiguiente)
         }
