@@ -87,7 +87,8 @@ class miveterinariadv : Fragment() {
 
             //2 - Creo una variable que tenga un prepareStatement
             val updateVet =
-                objConexion?.prepareStatement("UPDATE tbveterinarias set nombre_veterinaria = '?', ubicacion_veterinaria = '?', nit = '?', contacto_veterinaria = '?', correo_veterinaria = '?' descripcion_servicio = '?' where correo_usuario = '';")!!
+                objConexion?.prepareStatement("UPDATE tbveterinarias set nombre_veterinaria = '?', ubicacion_veterinaria = '?'," +
+                        " nit = '?', contacto_veterinaria = '?', correo_veterinaria = '?' descripcion_servicio = '?' where correo_usuario = '';")!!
             updateVet.setString(1, nombreNuevo)
             updateVet.setString(2, ubicacionNueva)
             updateVet.setString(3, NITNuevo)

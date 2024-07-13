@@ -49,8 +49,8 @@ class iniciarsesion : AppCompatActivity() {
         val btninicarsesion = findViewById<TextView>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
-     //   fun obtenerUuidRol(): String? {
-            GlobalScope.launch(Dispatchers.IO) {
+        //   fun obtenerUuidRol(): String? {
+        GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
             val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
@@ -59,13 +59,13 @@ class iniciarsesion : AppCompatActivity() {
             val resultado = resulSet.executeQuery()
 
             if (resultado.next()) {
-                uuidRol = resultado.getString("UUID_rol")
+                uuidRol = resultado.getString("ROL")
                 println("este es el uuid traido desde el if $uuidRol")
             }
 
             println("este es el uuid traido desde la funcion $uuidRol")
 
-}
+        }
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, registrarse::class.java)
             startActivity(pantallaAnterior)
@@ -80,7 +80,7 @@ class iniciarsesion : AppCompatActivity() {
                 val objconexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
-                val comprobarusuario = objconexion?.prepareStatement("SELECT uuid_usuario FROM tbUsuariosOne where correo_usuario = '?' and contra_usuario = '?'")!!
+                val comprobarusuario = objconexion?.prepareStatement("SELECT uuid_usuario FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                 comprobarusuario.setString(1, txtcorreoiniciar.text.toString())
                 comprobarusuario.setString(2, contraencriptada)
 
@@ -90,25 +90,20 @@ class iniciarsesion : AppCompatActivity() {
 
                 if (resultado.next()){
                     startActivity(pantallaprincipal)
-<<<<<<< HEAD
-                    println("El botón si funciona")
-=======
 
->>>>>>> 3bafb5cb958f95ac5b8de292e02b0bf776095ef9
                 } else {
                     withContext(Dispatchers.Main){
                         Toast.makeText(this@iniciarsesion, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show()
                     }
                 }
             }
-        btnrecuperarcontra.setOnClickListener {
+            btnrecuperarcontra.setOnClickListener {
 
-            val recuperar = Intent(this, correoderecuperacion::class.java)
-            startActivity(recuperar)
-        }
+                val recuperar = Intent(this, correoderecuperacion::class.java)
+                startActivity(recuperar)
+            }
 
         }
 
     }
 }
-

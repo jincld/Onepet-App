@@ -112,21 +112,20 @@
         tools:layout="@layout/fragment_mis_mascotas" />
     <fragment
         android:id="@+id/agregarmascotas2"
-        android:name="jonathan.orellana.onepetapp.agregarmascotas"
+        android:name="jonathan.orellana.onepetapp.agregarmascotaas"
         android:label="fragment_agregarmascotas"
-        tools:layout="@layout/fragment_agregarmascotas" />
+        tools:layout="@layout/fragment_agregarmascotaas" />
     <fragment
         android:id="@+id/agregarmascotaas"
         android:name="jonathan.orellana.onepetapp.agregarmascotaas"
         android:label="fragment_agregarmascotaas"
         tools:layout="@layout/fragment_agregarmascotaas" />
-<<<<<<< HEAD
+
     <fragment
         android:id="@+id/agregar_vet"
         android:name="jonathan.orellana.onepetapp.agregar_vet"
         android:label="fragment_agregar_vet"
         tools:layout="@layout/fragment_agregar_vet" />
 
-=======
->>>>>>> 3bafb5cb958f95ac5b8de292e02b0bf776095ef9
+
 </navigation>

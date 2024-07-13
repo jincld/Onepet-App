@@ -52,13 +52,13 @@
             android:icon="@drawable/iconchat"
             android:title="Chat                                             >" />
         <item
-            android:id="@+id/fragment_veterinarias"
+            android:id="@+id/miveterinariadv"
             android:icon="@drawable/iconmiveterinaria"
             android:title="Veterinarias                                >" />
         <item
             android:id="@+id/clientesdv"
             android:icon="@drawable/iconclientes"
-            android:title="Clientes                                       >" />
+            android:title="Clientes                                       " />
         <item
             android:id="@+id/agregar_vet"
             android:icon="@drawable/iconmiveterinaria"

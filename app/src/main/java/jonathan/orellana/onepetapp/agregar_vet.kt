@@ -44,6 +44,8 @@ class agregar_vet : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_agregar_vet, container, false)
 
@@ -53,8 +55,10 @@ class agregar_vet : Fragment() {
         val txtContactoVet = root.findViewById<EditText>(R.id.txtConctactoVet)
         val txtCorreoVet = root.findViewById<EditText>(R.id.txtCorreoVet)
         val txtDescripcionVet = root.findViewById<EditText>(R.id.txtDescripcionServicios)
-        lateinit var veterinaria: dataClassVeterinaria
         val btnRegistrarVet = root.findViewById<Button>(R.id.btnRegistrarVet)
+        lateinit var veterinaria : dataClassVeterinaria
+
+
 
         btnRegistrarVet.setOnClickListener {
             val nombre = txtNombreVet.text.toString()
@@ -110,11 +114,14 @@ class agregar_vet : Fragment() {
                 txtDescripcionVet.error = null;
             }
 
-            if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z+]"))) {
+            if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))) {
                 txtCorreoVet.error = "El correo no tiene el formato válido"
                 hayerrores = true
+
             } else {
                 txtCorreoVet.error = null
+
+
             }
             if (hayerrores) {
                 //
@@ -123,9 +130,10 @@ class agregar_vet : Fragment() {
                 CoroutineScope(Dispatchers.IO).launch {
 
 
+
                     val objConexion = ClaseConexion().cadenaConexion()
                     val addVet =
-                        objConexion?.prepareStatement("Insert into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio) values (?,?,?,?,?,?,?,?)")!!
+                        objConexion?.prepareStatement("Insert into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio) values (?,?,?,?,?,?,?)")!!
                     addVet.setString(1, UUID.randomUUID().toString())
                     addVet.setString(2, txtNombreVet.text.toString())
                     addVet.setString(3, txtUbicacionVet.text.toString())
@@ -138,20 +146,11 @@ class agregar_vet : Fragment() {
                     val pantallaDetalle = Intent(context, miveterinariadv::class.java)
                     pantallaDetalle.putExtra("UUID_veterinaria", veterinaria.UUID_veterinaria)
                     pantallaDetalle.putExtra("nombre_veterinaria", veterinaria.nombre_veterinaria)
-                    pantallaDetalle.putExtra(
-                        "ubicacion_veterinaria",
-                        veterinaria.ubicacion_veterinaria
-                    )
+                    pantallaDetalle.putExtra("ubicacion_veterinaria", veterinaria.ubicacion_veterinaria)
                     pantallaDetalle.putExtra("NIT", veterinaria.nit)
-                    pantallaDetalle.putExtra(
-                        "contacto_veterinaria",
-                        veterinaria.contacto_veterinaria
-                    )
+                    pantallaDetalle.putExtra("contacto_veterinaria", veterinaria.contacto_veterinaria)
                     pantallaDetalle.putExtra("correo_veterinaria", veterinaria.correo_veterinaria)
-                    pantallaDetalle.putExtra(
-                        "descripcion_servicios",
-                        veterinaria.descripcion_servicios
-                    )
+                    pantallaDetalle.putExtra("descripcion_servicios", veterinaria.descripcion_servicios)
                     requireContext().startActivity(pantallaDetalle)
 
                 }
