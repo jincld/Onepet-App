@@ -49,7 +49,7 @@ class iniciarsesion : AppCompatActivity() {
         val btninicarsesion = findViewById<TextView>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
-     //   fun obtenerUuidRol(): String? {
+       //fun obtenerUuidRol(): String? {
             GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
