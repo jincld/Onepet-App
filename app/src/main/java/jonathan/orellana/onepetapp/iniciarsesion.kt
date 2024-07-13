@@ -49,8 +49,8 @@ class iniciarsesion : AppCompatActivity() {
         val btninicarsesion = findViewById<TextView>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
-     //   fun obtenerUuidRol(): String? {
-            GlobalScope.launch(Dispatchers.IO) {
+        //   fun obtenerUuidRol(): String? {
+        GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
             val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
@@ -65,7 +65,7 @@ class iniciarsesion : AppCompatActivity() {
 
             println("este es el uuid traido desde la funcion $uuidRol")
 
-}
+        }
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, registrarse::class.java)
             startActivity(pantallaAnterior)
@@ -97,14 +97,15 @@ class iniciarsesion : AppCompatActivity() {
                     }
                 }
             }
-        btnrecuperarcontra.setOnClickListener {
 
-            val recuperar = Intent(this, correoderecuperacion::class.java)
-            startActivity(recuperar)
-        }
+            }
+            btnrecuperarcontra.setOnClickListener {
 
+                val recuperar = Intent(this, correoderecuperacion::class.java)
+                startActivity(recuperar)
         }
 
     }
 }
+
 

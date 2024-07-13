@@ -5,15 +5,18 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
+import java.security.MessageDigest
 
 class nuevacontrasena : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,34 +28,50 @@ class nuevacontrasena : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        fun hashSHA256(contraescrita: String): String {
+            val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
+            return bytes.joinToString("") {"%02x".format(it)}
 
-
+        }
 
         val txtnuevacontra = findViewById<EditText>(R.id.txtnuevacontra)
         val btnnuevacontra = findViewById<Button>(R.id.btnnuevacontra)
-
-        fun actualizardatos(nuevacontra: String){
-            GlobalScope.launch(Dispatchers.IO) {
-                val objConexion = ClaseConexion().cadenaConexion()
+        val correoop = correoderecuperacion.globalvariables.correo
 
 
-                val updatecontra = objConexion?.prepareStatement("update tbUsuariosOne set contra_usuario = ? where correo_usuario = ?")!!
-                updatecontra.setString(1, nuevacontra)
-                updatecontra.executeUpdate()
 
-                val commit = objConexion.prepareStatement("commit")!!
-                commit.executeUpdate()
+        btnnuevacontra.setOnClickListener {
+            val contra = txtnuevacontra.text.toString()
+            var hayerrores = false
 
-                withContext(Dispatchers.Main){
-                    actualizardatos(nuevacontra)
-                }
-
+            if (contra.length <= 8) {
+               txtnuevacontra.error = "La contraseña debe tener más de 8 caracteres"
+                hayerrores = true
+            } else {
+                txtnuevacontra.error = null
             }
-            btnnuevacontra.setOnClickListener {
-            actualizardatos(nuevacontra)
+
+            if (hayerrores){
+            } else {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val contranueva = hashSHA256(txtnuevacontra.text.toString())
+                    val objConexion = ClaseConexion().cadenaConexion()
+
+                    val resulSet = objConexion?.prepareStatement("update tbUsuariosOne set contra_usuario = ? where correo_usuario = ? ")!!
+                    resulSet.setString(1, contranueva)
+                    resulSet.setString(2,correoop )
+                    resulSet.executeUpdate()
+
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@nuevacontrasena, "Contraseña actualizada correctamente", Toast.LENGTH_SHORT).show()
+                    }
+
+
         }
             val recuperar = Intent(this, iniciarsesion::class.java)
            startActivity(recuperar)
         }
+        }
+
    }
 }
