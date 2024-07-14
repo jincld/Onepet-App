@@ -52,12 +52,10 @@ class iniciarsesion : AppCompatActivity() {
         val btninicarsesion = findViewById<Button>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
-        //fun obtenerUuidRol(): String? {
         GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
-            val resulSet =
-                objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
+            val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
             resulSet.setString(1, txtcorreoiniciar.text.toString())
 
             val resultado = resulSet.executeQuery()
@@ -86,8 +84,7 @@ class iniciarsesion : AppCompatActivity() {
                 val objconexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
-                val comprobarusuario =
-                    objconexion?.prepareStatement("SELECT uuid_usuario FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
+                val comprobarusuario = objconexion?.prepareStatement("SELECT uuid_usuario FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                 comprobarusuario.setString(1, txtcorreoiniciar.text.toString())
                 comprobarusuario.setString(2, contraencriptada)
 
@@ -108,6 +105,7 @@ class iniciarsesion : AppCompatActivity() {
                     }
                 }
             }
+
             btnrecuperarcontra.setOnClickListener {
 
                 val recuperar = Intent(this, correoderecuperacion::class.java)
@@ -118,4 +116,5 @@ class iniciarsesion : AppCompatActivity() {
 
     }
 }
+
 
