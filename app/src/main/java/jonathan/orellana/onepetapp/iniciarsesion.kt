@@ -69,14 +69,12 @@ class iniciarsesion : AppCompatActivity() {
 
         }
         btnVolver.setOnClickListener {
-            val pantallaAnterior = Intent(this, registrarse::class.java)
+            val pantallaAnterior = Intent(this, login::class.java)
             startActivity(pantallaAnterior)
         }
 
         btninicarsesion.setOnClickListener {
             valorRolUsuario = txtcorreoiniciar.text.toString()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
 
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
@@ -106,14 +104,11 @@ class iniciarsesion : AppCompatActivity() {
                 }
             }
 
-            btnrecuperarcontra.setOnClickListener {
-
-                val recuperar = Intent(this, correoderecuperacion::class.java)
-                startActivity(recuperar)
-            }
-
         }
-
+        btnrecuperarcontra.setOnClickListener {
+            val recuperar = Intent(this, correoderecuperacion::class.java)
+            startActivity(recuperar)
+        }
     }
 }
 
