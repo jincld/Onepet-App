@@ -1,10 +1,20 @@
 package jonathan.orellana.onepetapp
 
+import RecyclerViewHelpers.Adaptador
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import modelo.ClaseConexion
+import modelo.tbMascotas
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,9 +43,66 @@ class fragment_misMascotas : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mis_mascotas, container, false)
+        //Creo la variable root
+        val root = inflater.inflate(R.layout.fragment_mismascotas, container, false)
+
+
+        val rcvMisMascotas = root.findViewById<RecyclerView>(R.id.rcvMisMascotas)
+
+        //Agregar un layout al RecyclerView
+        rcvMisMascotas.layoutManager = LinearLayoutManager(context)
+
+        //TODO: mostrar datos
+
+
+        fun obtenerMascotas(): List<tbMascotas> {
+            //1- Crear un objeto de clase conexion
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            //2- Crear un Statement
+            val statement = objConexion?.createStatement()
+            val resultSet = statement?.executeQuery("SELECT * FROM tbMascotas")!!
+
+            val listaMisMascotas = mutableListOf<tbMascotas>()
+
+            while (resultSet.next()){
+                val nombre_mascota = resultSet.getString("nombre_mascota")
+                val raza = resultSet.getString("raza")
+                val procesos_previos = resultSet.getString("procesos_previos")
+                val alergias = resultSet.getString("alergias")
+                val enfermedades_cronicas = resultSet.getString("enfermedades_cronicas")
+                val fecha_nacimiento = resultSet.getString("fecha_nacimiento")
+                val peso = resultSet.getInt("peso")
+
+                //SPINNERS
+                val spinnerSexo = agregarmascotaas.sexo
+
+                val traerSpinner = objConexion?.prepareStatement("SELECT sexo FROM tbMascotas WHERE sexo = ?")!!
+                traerSpinner.setString(1, spinnerSexo)
+                val resultSet = traerSpinner.executeQuery()
+
+                val sexo = resultSet.getString("sexo")
+                val especie = resultSet.getString("especie")
+
+                val valoresJuntos = tbMascotas(nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso, especie)
+
+                listaMisMascotas.add(valoresJuntos)
+            }
+            return listaMisMascotas
+        }
+
+        //Asignarle el adaptador al RecyclerView
+        CoroutineScope(Dispatchers.IO).launch {
+            val misMascotasDB = obtenerMascotas()
+            withContext(Dispatchers.Main){
+                val adapter = Adaptador(misMascotasDB)
+                rcvMisMascotas.adapter = adapter
+            }
+        }
+
+        return root
     }
+
 
     companion object {
         /**

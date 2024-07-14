@@ -43,6 +43,11 @@ class agregarmascotaas : Fragment() {
         }
     }
 
+    companion object variableGlobalMascotas {
+        lateinit var sexo: String
+        lateinit var  especie: String
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,6 +66,7 @@ class agregarmascotaas : Fragment() {
         val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascotas)
         val btnAddFotoMascota = root.findViewById<Button>(R.id.btnAgregarFotoMascota)
         val btnAgregarMascotas = root.findViewById<Button>(R.id.btnAgregarMascotas)
+
 
         txtAñoAddMascota.setOnClickListener {
             val calendario = Calendar.getInstance()
@@ -86,7 +92,7 @@ class agregarmascotaas : Fragment() {
             val correoGlobalEscrito = iniciarsesion.variablesGlobalesLogin.correodelUsuarioGlobal
             val objConexion = ClaseConexion().cadenaConexion()
 
-            val traerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = '?'")!!
+            val traerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?")!!
             traerUUIDUsuario.setString(1, correoGlobalEscrito)
             val resultSet = traerUUIDUsuario.executeQuery()
 
@@ -237,21 +243,26 @@ class agregarmascotaas : Fragment() {
 
                     //2- creo una variable que contenga un PrepareStatement
                     val addMascota =
-                        claseC?.prepareStatement("into tbMascotas(uuid_mascota, nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso,  especie, dueno) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )")!!
+                        claseC?.prepareStatement("insert into tbMascotas(uuid_mascota, nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso,  especie, dueno) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )")!!
                     //UUID de usuario no mostrado al dueno, estando solo adentro de la base de datos
                     addMascota.setString(1, UUID.randomUUID().toString())
                     addMascota.setString(2, txtNomAddMascota.text.toString())
                     addMascota.setString(3, txtRazaMascota.text.toString())
+
                     //Spinner Generado en codigo
                     addMascota.setString(4, spGeneroMascota.selectedItem.toString())
+
                     addMascota.setString(5, txtProceMAddMascota.text.toString())
                     addMascota.setString(6, txtAlerAddMascota.text.toString())
                     addMascota.setString(7, txtEnferCAddMascota.text.toString())
                     addMascota.setString(8, txtAñoAddMascota.text.toString())
                     addMascota.setInt(9, txtPesoAddMascota.text.toString().toInt())
-                    addMascota.setString(10, uuidUsuarioTraido)
+
+                    addMascota.setString(10, especieID)
+
+                    addMascota.setString(11, uuidUsuarioTraido)
                     println("este es el uuid traido antes del execute  $uuidUsuarioTraido")
-                    addMascota.setString(11, especieID)
+
                     addMascota.executeUpdate()
 
                     //Abro una corrutina para mostrar una alerta y limpiar los campos
@@ -271,25 +282,5 @@ class agregarmascotaas : Fragment() {
         }
         //retornar root
         return root
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment agregarmascotaas.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            agregarmascotaas().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

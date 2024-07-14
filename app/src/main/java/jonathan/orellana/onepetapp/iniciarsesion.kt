@@ -76,6 +76,7 @@ class iniciarsesion : AppCompatActivity() {
 
         btninicarsesion.setOnClickListener{
             valorRolUsuario = uuidRol.toString()
+            correodelUsuarioGlobal = txtcorreoiniciar.text.toString()
 
             val pantallaprincipal = Intent (this, MainActivity::class.java)
 

@@ -16,14 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imgFotoMCard"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@tools:sample/avatars" />
         </LinearLayout>
-
 
         <TextView
             android:id="@+id/txtNombreMascota"
@@ -31,7 +24,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="34sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtEspecieMascotaCard"
@@ -39,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="34sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtGeneroCard"
@@ -47,7 +40,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="34sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtPesoMascotaCard"
@@ -55,7 +48,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="34sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtAñoMascota"
@@ -63,7 +56,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="34sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtEnfermedadesCM"
@@ -71,7 +64,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="34sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtProcedimientosMAscotas"
@@ -79,7 +72,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="34sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtRazaMascota"
@@ -87,7 +80,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="34sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtAlergiasMascotas"
@@ -95,7 +88,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="34sp"/>
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

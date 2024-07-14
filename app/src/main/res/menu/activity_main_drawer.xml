@@ -85,7 +85,7 @@
     </group>
     <group android:id="@+id/group6">
         <item
-            android:id="@+id/fragment_misMascotas"
+            android:id="@+id/fragment_mismascotas"
             android:icon="@drawable/iconmascotas"
             android:title="Mis mascotas                            >" />
         <item
