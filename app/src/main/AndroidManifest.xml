@@ -44,7 +44,6 @@
         <activity
             android:name=".registroduenovet"
             android:exported="false" />
-
         <activity
             android:name=".registroduenomascotas"
             android:exported="false" />
@@ -66,7 +65,6 @@
         <activity
             android:name=".registrarmascotadm"
             android:exported="false" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
