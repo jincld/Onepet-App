@@ -3,10 +3,12 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -27,6 +29,7 @@ class iniciarsesion : AppCompatActivity() {
         lateinit var valorRolUsuario: String
         var uuidRol: String? = null
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,16 +43,15 @@ class iniciarsesion : AppCompatActivity() {
 
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
-            return bytes.joinToString("") {"%02x".format(it)}
+            return bytes.joinToString("") { "%02x".format(it) }
         }
 
-        val txtcorreoiniciar = findViewById<TextView>(R.id.txtcorreoiniciar)
-        val txtcontrainiciar = findViewById<TextView>(R.id.txtcontrasenainicio)
+        val txtcorreoiniciar = findViewById<EditText>(R.id.txtcorreoiniciar)
+        val txtcontrainiciar = findViewById<EditText>(R.id.txtcontrasenainicio)
         val btnrecuperarcontra = findViewById<TextView>(R.id.btnrecuperarcontra)
-        val btninicarsesion = findViewById<TextView>(R.id.btniniciarsesionhome)
+        val btninicarsesion = findViewById<Button>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
-        //   fun obtenerUuidRol(): String? {
         GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
@@ -59,7 +61,7 @@ class iniciarsesion : AppCompatActivity() {
             val resultado = resulSet.executeQuery()
 
             if (resultado.next()) {
-                uuidRol = resultado.getString("UUID_rol")
+                uuidRol = resultado.getString("rol")
                 println("este es el uuid traido desde el if $uuidRol")
             }
 
@@ -71,12 +73,14 @@ class iniciarsesion : AppCompatActivity() {
             startActivity(pantallaAnterior)
         }
 
-        btninicarsesion.setOnClickListener{
-            valorRolUsuario = uuidRol.toString()
+        btninicarsesion.setOnClickListener {
+            valorRolUsuario = txtcorreoiniciar.text.toString()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
 
-            val pantallaprincipal = Intent (this, MainActivity::class.java)
+            val pantallaprincipal = Intent(this, MainActivity::class.java)
 
-            GlobalScope.launch (Dispatchers.IO) {
+            GlobalScope.launch(Dispatchers.IO) {
                 val objconexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
@@ -88,21 +92,26 @@ class iniciarsesion : AppCompatActivity() {
 
                 println("este es el resultado que traigo con el select $resultado")
 
-                if (resultado.next()){
+                if (resultado.next()) {
                     startActivity(pantallaprincipal)
 
                 } else {
-                    withContext(Dispatchers.Main){
-                        Toast.makeText(this@iniciarsesion, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            this@iniciarsesion,
+                            "Usuario o contraseña invalidos",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
 
-            }
             btnrecuperarcontra.setOnClickListener {
 
                 val recuperar = Intent(this, correoderecuperacion::class.java)
                 startActivity(recuperar)
+            }
+
         }
 
     }
