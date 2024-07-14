@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -37,7 +38,12 @@ class nuevacontrasena : AppCompatActivity() {
         val txtnuevacontra = findViewById<EditText>(R.id.txtnuevacontra)
         val btnnuevacontra = findViewById<Button>(R.id.btnnuevacontra)
         val correoop = correoderecuperacion.globalvariables.correo
+        val btnVolver = findViewById<ImageButton>(R.id.btnVolverCDCC)
 
+        btnVolver.setOnClickListener {
+            val pantallaAnterior = Intent(this, correoderecuperacion::class.java)
+            startActivity(pantallaAnterior)
+        }
 
 
         btnnuevacontra.setOnClickListener {
