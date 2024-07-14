@@ -43,11 +43,6 @@ class agregarmascotaas : Fragment() {
         }
     }
 
-    companion object variableGlobalMascotas {
-        lateinit var sexo: String
-        lateinit var  especie: String
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

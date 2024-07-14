@@ -1,8 +1,5 @@
 package modelo
 
-import java.sql.Struct
-import java.util.UUID
-
 data class tbMascotas(
     var nombre_mascota: String?,
     val raza: String?,
@@ -11,7 +8,7 @@ data class tbMascotas(
     val alergias: String?,
     val enfermedades_cronicas: String?,
     val fecha_nacimiento: String?,
-    val peso: Int?,
+    val peso: String,
     val especie: String?
 )
 

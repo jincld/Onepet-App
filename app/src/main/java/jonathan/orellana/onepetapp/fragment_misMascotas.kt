@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -45,23 +44,19 @@ class fragment_misMascotas : Fragment() {
     ): View? {
         //Creo la variable root
         val root = inflater.inflate(R.layout.fragment_mismascotas, container, false)
-
-
         val rcvMisMascotas = root.findViewById<RecyclerView>(R.id.rcvMisMascotas)
 
         //Agregar un layout al RecyclerView
         rcvMisMascotas.layoutManager = LinearLayoutManager(context)
 
         //TODO: mostrar datos
-
-
         fun obtenerMascotas(): List<tbMascotas> {
             //1- Crear un objeto de clase conexion
             val objConexion = ClaseConexion().cadenaConexion()
 
             //2- Crear un Statement
             val statement = objConexion?.createStatement()
-            val resultSet = statement?.executeQuery("SELECT * FROM tbMascotas")!!
+            val resultSet = statement?.executeQuery("SELECT * FROM tbMascotas ")!!
 
             val listaMisMascotas = mutableListOf<tbMascotas>()
 
@@ -73,18 +68,12 @@ class fragment_misMascotas : Fragment() {
                 val enfermedades_cronicas = resultSet.getString("enfermedades_cronicas")
                 val fecha_nacimiento = resultSet.getString("fecha_nacimiento")
                 val peso = resultSet.getInt("peso")
-
                 //SPINNERS
-                val spinnerSexo = agregarmascotaas.sexo
-
-                val traerSpinner = objConexion?.prepareStatement("SELECT sexo FROM tbMascotas WHERE sexo = ?")!!
-                traerSpinner.setString(1, spinnerSexo)
-                val resultSet = traerSpinner.executeQuery()
-
                 val sexo = resultSet.getString("sexo")
                 val especie = resultSet.getString("especie")
 
-                val valoresJuntos = tbMascotas(nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso, especie)
+                val valoresJuntos = tbMascotas(nombre_mascota, raza, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento,
+                    peso.toString(), sexo, especie)
 
                 listaMisMascotas.add(valoresJuntos)
             }

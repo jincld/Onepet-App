@@ -24,17 +24,22 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
         //Controlar a la card
         val nombreCard = Datos[position]
         holder.txtNombreMCard.text = nombreCard.nombre_mascota
+
         //FALTA SPINNER DE GENERO
 
-        //val sexoCard = agregarmascotaas.variableGlobalMascotas.sexo
-        //holder.txtGeneroMCard.text = sexoCard.sexo
+        val sexoCard = Datos[position]
+        holder.txtGeneroMCard.text = sexoCard.sexo
 
         //FALTA SPINNER DE ESPECIE
+        val especieCard = Datos[position]
+        holder.txtEspecieMCard.text = especieCard.sexo
 
         val razaCard = Datos[position]
         holder.txtRazaMCard.text = razaCard.raza
+
         val pesoCard = Datos[position]
-        holder.txtPesoMCard.text = pesoCard.peso.toString()
+        holder.txtPesoMCard.text = pesoCard.peso
+
         val procesosCard = Datos[position]
         holder.txtProcedimientoMCard.text = procesosCard.procesos_previos
         val añoCard = Datos[position]
