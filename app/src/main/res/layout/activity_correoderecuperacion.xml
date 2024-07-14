@@ -13,6 +13,17 @@
         android:background="#FFFFFF"
         android:backgroundTint="#FFFFFF">
 
+        <ImageView
+            android:id="@+id/imageView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="392dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/waverec1" />
+
         <EditText
             android:id="@+id/txtcorreorecupracion"
             android:layout_width="299dp"
@@ -20,16 +31,22 @@
             android:ems="10"
             android:hint="Correo Electrónico"
             android:inputType="text"
-            tools:layout_editor_absoluteX="56dp"
-            tools:layout_editor_absoluteY="379dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btncorreorecuperacion"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="Siguiente"
-            tools:layout_editor_absoluteX="149dp"
-            tools:layout_editor_absoluteY="557dp" />
+        <ImageView
+            android:id="@+id/imageView75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="464dp"
+            android:rotation="90"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView29"
+            app:srcCompat="@drawable/degcelest" />
 
         <TextView
             android:id="@+id/textView13"
@@ -38,19 +55,146 @@
             android:fontFamily="@font/alata"
             android:text="Recuperación de contraseña"
             android:textAlignment="textStart"
+            android:textColor="#34313F"
             android:textSize="34sp"
-            tools:layout_editor_absoluteX="56dp"
-            tools:layout_editor_absoluteY="151dp" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.204" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="229dp"
             android:layout_height="55dp"
             android:text="Ingrese el correo electrónico de su cuenta"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
+            android:textColor="#34313F"
             android:textSize="18sp"
-            tools:layout_editor_absoluteX="91dp"
-            tools:layout_editor_absoluteY="324dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.335"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.431" />
+
+        <ImageView
+            android:id="@+id/imageView77"
+            android:layout_width="195dp"
+            android:layout_height="206dp"
+            android:rotation="-23"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.925"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.943"
+            app:srcCompat="@drawable/bgtres" />
+
+        <ImageView
+            android:id="@+id/imageView66"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="396dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/waverec2" />
+
+        <ImageView
+            android:id="@+id/imageView73"
+            android:layout_width="277dp"
+            android:layout_height="230dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/imagengato4" />
+
+        <ImageButton
+            android:id="@+id/btnVolverCDR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00FFFFFF"
+            android:tint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.019"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+        <Button
+            android:id="@+id/btncorreorecuperacion"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btnazul"
+            android:fontFamily="@font/alata"
+            android:text="Siguiente"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.668" />
+
+        <ImageView
+            android:id="@+id/imageView76"
+            android:layout_width="206dp"
+            android:layout_height="181dp"
+            android:layout_marginStart="256dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/blobw4" />
+
+        <ImageView
+            android:id="@+id/imageView78"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:rotation="-75"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.781"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.784"
+            app:srcCompat="@drawable/circulocelesteazul" />
+
+        <ImageView
+            android:id="@+id/imageView79"
+            android:layout_width="366dp"
+            android:layout_height="323dp"
+            android:layout_marginStart="172dp"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25"
+            app:srcCompat="@drawable/degb5" />
+
+        <ImageView
+            android:id="@+id/imageView80"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.112"
+            app:srcCompat="@drawable/circulocelesteazul" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

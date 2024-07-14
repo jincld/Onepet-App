@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -36,8 +37,12 @@ class correoderecuperacion : AppCompatActivity() {
 
         val correorecuperacion = findViewById<EditText>(R.id.txtcorreorecupracion)
         val btnrecupercion = findViewById<Button>(R.id.btncorreorecuperacion)
+        val btnVolver = findViewById<ImageButton>(R.id.btnVolverCDR)
 
-
+        btnVolver.setOnClickListener {
+            val pantallaAnterior = Intent(this, iniciarsesion::class.java)
+            startActivity(pantallaAnterior)
+        }
 
        btnrecupercion.setOnClickListener {
 
@@ -59,7 +64,7 @@ class correoderecuperacion : AppCompatActivity() {
 
            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
 
-               correorecuperacion.error = "Ingrese un correo valido"
+               correorecuperacion.error = "Ingrese un correo válido"
                hayerrores = true
            } else {
                correorecuperacion.error = null
@@ -71,13 +76,13 @@ try {
 
                CoroutineScope(Dispatchers.Main).launch {
                    numeroaleatorio = (1000..10000).random().toString()
-                   enviarCorreo("$correo", "Codigo de recuperacion", "Codigo de recuperacion, No olvide su contraseña: $numeroaleatorio")
+                   enviarCorreo("$correo", "Código de recuperación cuenta OnePet!", "Este es su código de recuperación, ingréselo en la aplicación: $numeroaleatorio")
 
-                   println("este es el coresrasfasdf $correo")
+                   println("este es el correo $correo")
                }
 }catch (e: Exception){
-    println("este es el eroaeroasdf $e")
-    Toast.makeText(this, "aasdfdsf $e", Toast.LENGTH_SHORT).show()
+    println("este es el error $e")
+    Toast.makeText(this, "Error $e", Toast.LENGTH_SHORT).show()
 
            }
                val recuperarcorreo = Intent(this, codigoconfimarcion::class.java)
