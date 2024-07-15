@@ -41,6 +41,9 @@ class iniciarsesion : AppCompatActivity() {
         }
         supportActionBar?.hide();
 
+        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
+
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
             return bytes.joinToString("") { "%02x".format(it) }
@@ -103,7 +106,7 @@ class iniciarsesion : AppCompatActivity() {
                     }
                 }
             }
-
+            println("este es el resultado que traigo con el select $txtcorreoiniciar")
         }
         btnrecuperarcontra.setOnClickListener {
             val recuperar = Intent(this, correoderecuperacion::class.java)
