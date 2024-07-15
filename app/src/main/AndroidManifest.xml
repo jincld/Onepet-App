@@ -13,8 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnePetApp.NoActionBar"
+
         tools:targetApi="31">
         <activity
+
+            android:name="agregar_vet"/>
+<activity
             android:name=".splash_screen"
             android:exported="true">
         <intent-filter>
@@ -23,16 +27,14 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity
-            android:name=".agregarVeterinariadv"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false"/>
          <activity
             android:name=".agregarmascotaas"
             android:exported="false" />
-         <activity
+        <activity
             android:name=".nuevacontrasena"
             android:exported="false" />
         <activity

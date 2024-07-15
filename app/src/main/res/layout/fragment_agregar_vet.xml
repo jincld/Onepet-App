@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout5"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".agregar_veterinaria">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="397dp"
+        android:layout_height="790dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/txtDescripcionServicios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="555dp"
+            android:layout_marginEnd="95dp"
+            android:layout_marginBottom="190dp"
+            android:ems="10"
+            android:hint="Descripción servicios"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtUbicacionVet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="94dp"
+            android:layout_marginTop="269dp"
+            android:layout_marginEnd="94dp"
+            android:layout_marginBottom="476dp"
+            android:ems="10"
+            android:hint="Dirección"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtNombreVet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="93dp"
+            android:layout_marginTop="205dp"
+            android:layout_marginEnd="94dp"
+            android:layout_marginBottom="540dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Nombre"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTituloVet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="61dp"
+            android:layout_marginEnd="118dp"
+            android:layout_marginBottom="665dp"
+            android:fontFamily="@font/alata"
+            android:text="Agregar "
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="42dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="99dp"
+            android:layout_marginTop="121dp"
+            android:layout_marginEnd="85dp"
+            android:layout_marginBottom="605dp"
+            android:fontFamily="@font/alata"
+            android:text="Veterinaria"
+            android:textColor="@color/black"
+            android:textSize="42dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView46"
+            android:layout_width="668dp"
+            android:layout_height="952dp"
+            android:rotation="-236"
+            android:rotationY="-171"
+            android:src="@drawable/degcelest"
+            tools:layout_editor_absoluteX="-27dp"
+            tools:layout_editor_absoluteY="-25dp" />
+
+        <EditText
+            android:id="@+id/txtNitVet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="93dp"
+            android:layout_marginTop="342dp"
+            android:layout_marginEnd="94dp"
+            android:layout_marginBottom="403dp"
+            android:ems="10"
+            android:hint="Número de identificación tributaria"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtConctactoVet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="411dp"
+            android:layout_marginEnd="95dp"
+            android:layout_marginBottom="334dp"
+            android:ems="10"
+            android:hint="Número Teléfono Clínica"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtCorreoVet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="488dp"
+            android:layout_marginEnd="95dp"
+            android:layout_marginBottom="257dp"
+            android:ems="10"
+            android:hint="Correo de veterinaria"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnRegistrarVet"
+            android:layout_width="234dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="87dp"
+            android:layout_marginTop="606dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginBottom="133dp"
+            android:background="@drawable/btnazul"
+            android:fontFamily="@font/alata"
+            android:text="Agregar"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="312dp"
+            android:src="@drawable/vetagregar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView32"
+        android:layout_width="228dp"
+        android:layout_height="239dp"
+        android:layout_marginStart="266dp"
+        android:layout_marginTop="699dp"
+        android:src="@drawable/circulocelesteazul"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView33"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="186dp"
+        android:layout_marginTop="715dp"
+        android:layout_marginEnd="131dp"
+        android:src="@drawable/circulocelesteazul"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView34"
+        android:layout_width="308dp"
+        android:layout_height="252dp"
+        android:layout_marginTop="618dp"
+        android:layout_marginEnd="261dp"
+        android:src="@drawable/blobuno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView35"
+        android:layout_width="281dp"
+        android:layout_height="194dp"
+        android:layout_marginStart="255dp"
+        android:layout_marginBottom="683dp"
+        android:rotationX="3"
+        android:src="@drawable/bgdos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView39"
+        android:layout_width="186dp"
+        android:layout_height="266dp"
+        android:layout_marginEnd="294dp"
+        android:layout_marginBottom="595dp"
+        android:src="@drawable/blobdos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView37"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="114dp"
+        android:layout_marginEnd="352dp"
+        android:layout_marginBottom="595dp"
+        android:src="@drawable/btnsi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,7 +64,9 @@ class iniciarsesion : AppCompatActivity() {
             val resultado = resulSet.executeQuery()
 
             if (resultado.next()) {
+
                 uuidRol = resultado.getString("rol")
+
                 println("este es el uuid traido desde el if $uuidRol")
             }
 
