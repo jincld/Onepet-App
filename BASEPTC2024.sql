@@ -7,7 +7,7 @@ UUID_especie varchar2(50) primary key,
 nombre_especie char(15) not null);
 
 
-create table tbVeterinaria (
+create table tbVeterinaria(
 UUID_veterinaria varchar2(50) primary key,
 nombre_veterinaria varchar2(50) not null,
 ubicacion_veterinaria varchar2(250) not null,
@@ -19,15 +19,15 @@ descripcion_servicio varchar2(50) not null
 
 Create table tbUsuariosOne (
 UUID_usuario varchar2(50) primary key,
-nombre_usuario varchar2(20) not null,
+nombre_usuario varchar2(100) not null,
 contra_usuario varchar2(100) not null,
-correo_usuario varchar2(20) not null,
+correo_usuario varchar2(100) not null,
 foto_usuario varchar2(1000),
 rol varchar(50) not null,
 constraint fk_roles 
 foreign key (rol)
 references tbRolesUsuarios (UUID_rol)
-);
+); 
 
 Create table tbAdmins (
 UUID_admin varchar2(50) primary key,
@@ -113,11 +113,11 @@ into tbespecies (uuid_especie, nombre_especie) values (SYS_GUID(), 'Reptiles')
 Select  * from DUAL;
 
 Insert ALL 
-into tbveterinaria (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'Las patitas', 'Sonsonate', '12345678912345', '+503 1234-5678', 'vet1@gmail.com', 'Especializada en corte de pelo' )
-into tbveterinaria (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'HappyTails', 'San Salvador', '12345678912346', '+503 1234-5679', 'vet2@gmail.com', 'Especializada en duchas medicados' )
-into tbveterinaria (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'Peluditos', 'La libertad', '12345678912347', '+503 1234-5670', 'vet3@gmail.com', 'Especializada en cirugias' ) 
-into tbveterinaria (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'Veterinaria las narices frias', 'Santa Ana', '12345678912348', '+503 1234-5671', 'vet4@gmail.com', 'Especializada en citas medicas' )
-into tbveterinaria (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'Los nudos', 'La paz', '12345678912349', '+503 1234-5672', 'vet5@gmail.com', 'Especializada en partos' )
+into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'Las patitas', 'Sonsonate', '12345678912345', '+503 1234-5678', 'vet1@gmail.com', 'Especializada en corte de pelo' )
+into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'HappyTails', 'San Salvador', '12345678912346', '+503 1234-5679', 'vet2@gmail.com', 'Especializada en duchas medicados' )
+into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'Peluditos', 'La libertad', '12345678912347', '+503 1234-5670', 'vet3@gmail.com', 'Especializada en cirugias' ) 
+into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'Veterinaria las narices frias', 'Santa Ana', '12345678912348', '+503 1234-5671', 'vet4@gmail.com', 'Especializada en citas medicas' )
+into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (SYS_GUID(),'Los nudos', 'La paz', '12345678912349', '+503 1234-5672', 'vet5@gmail.com', 'Especializada en partos' )
 Select * from dual;
     
 
@@ -232,7 +232,7 @@ select * from tbAdmins;
 select * from tbresenas;
 select * from tbMascotas;
 select * from tbCitas;
-select * from tbVeterinaria;
+select * from tbVeterinarias;
 select * from tbServicios;
 
 Drop table tbRolesUsuarios;
@@ -242,6 +242,5 @@ drop table tbAdmins;
 drop table tbResenas
 drop table tbMascotas;
 drop table tbCitas;
-drop table tbVeterinaria;
+drop table tbVeterinarias;
 drop table tbServicios;
-
