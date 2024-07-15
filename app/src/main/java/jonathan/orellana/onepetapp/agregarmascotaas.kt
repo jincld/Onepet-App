@@ -35,6 +35,10 @@ class agregarmascotaas : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    companion object variablesGlobalesMascota{
+        lateinit var variableMascotaGlobal: String
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {

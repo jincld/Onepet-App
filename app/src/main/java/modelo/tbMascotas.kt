@@ -1,15 +1,16 @@
 package modelo
 
 data class tbMascotas(
+    val UUID_mascota: String,
     var nombre_mascota: String,
-    val raza: String?,
-    val sexo: String?,
-    val procesos_previos: String?,
-    val alergias: String?,
-    val enfermedades_cronicas: String?,
-    val fecha_nacimiento: String?,
-    val peso: String,
-    val especie: String?
+    var raza: String?,
+    var sexo: String?,
+    var procesos_previos: String?,
+    var alergias: String?,
+    var enfermedades_cronicas: String?,
+    var fecha_nacimiento: String?,
+    var peso: String?,
+    var especie: String?
 )
 
 
