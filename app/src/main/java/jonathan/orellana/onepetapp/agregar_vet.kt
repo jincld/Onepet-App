@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import jonathan.orellana.onepetapp.ui.detalle_veterinaria
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import modelo.dataClassVeterinaria
 import java.util.UUID
@@ -39,14 +41,20 @@ class agregar_vet : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+    companion object VariablesGlobalesVeterinaria{
+        lateinit var NombreVet: String
+        lateinit var UbicacionVet: String
+        lateinit var NitVet: String
+        lateinit var ContactoVet: String
+        lateinit var CorreoVet: String
+        lateinit var DescripcionVet: String
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-        // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_agregar_vet, container, false)
 
         val txtNombreVet = root.findViewById<EditText>(R.id.txtNombreVet)
@@ -56,7 +64,6 @@ class agregar_vet : Fragment() {
         val txtCorreoVet = root.findViewById<EditText>(R.id.txtCorreoVet)
         val txtDescripcionVet = root.findViewById<EditText>(R.id.txtDescripcionServicios)
         val btnRegistrarVet = root.findViewById<Button>(R.id.btnRegistrarVet)
-        lateinit var veterinaria : dataClassVeterinaria
 
 
 
@@ -129,29 +136,29 @@ class agregar_vet : Fragment() {
 
                 CoroutineScope(Dispatchers.IO).launch {
 
-
-
                     val objConexion = ClaseConexion().cadenaConexion()
                     val addVet =
                         objConexion?.prepareStatement("Insert into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio) values (?,?,?,?,?,?,?)")!!
                     addVet.setString(1, UUID.randomUUID().toString())
                     addVet.setString(2, txtNombreVet.text.toString())
-                    addVet.setString(3, txtUbicacionVet.text.toString())
+                    addVet.setString( 3, txtUbicacionVet.text.toString())
                     addVet.setString(4, txtNitVet.text.toString())
                     addVet.setString(5, txtContactoVet.text.toString())
                     addVet.setString(6, txtCorreoVet.text.toString())
                     addVet.setString(7, txtDescripcionVet.text.toString())
                     addVet.executeUpdate()
 
-                    val pantallaDetalle = Intent(context, miveterinariadv::class.java)
-                    pantallaDetalle.putExtra("UUID_veterinaria", veterinaria.UUID_veterinaria)
-                    pantallaDetalle.putExtra("nombre_veterinaria", veterinaria.nombre_veterinaria)
-                    pantallaDetalle.putExtra("ubicacion_veterinaria", veterinaria.ubicacion_veterinaria)
-                    pantallaDetalle.putExtra("NIT", veterinaria.nit)
-                    pantallaDetalle.putExtra("contacto_veterinaria", veterinaria.contacto_veterinaria)
-                    pantallaDetalle.putExtra("correo_veterinaria", veterinaria.correo_veterinaria)
-                    pantallaDetalle.putExtra("descripcion_servicios", veterinaria.descripcion_servicios)
-                    requireContext().startActivity(pantallaDetalle)
+               NombreVet = txtNombreVet.text.toString()
+                UbicacionVet = txtUbicacionVet.text.toString()
+                    NitVet = txtNitVet.text.toString()
+                    ContactoVet = txtUbicacionVet.text.toString()
+                    CorreoVet = txtCorreoVet.text.toString()
+                    DescripcionVet = txtDescripcionVet.text.toString()
+                    withContext(Dispatchers.Main){
+                    findNavController().navigate(R.id.action_agregar_vet_to_actualizar_y_eliminar_vet2)
+                    }
+
+
 
                 }
             }
@@ -163,24 +170,4 @@ class agregar_vet : Fragment() {
         return root
 
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment agregar_vet.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            agregar_vet().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
             }
-    }
-}
