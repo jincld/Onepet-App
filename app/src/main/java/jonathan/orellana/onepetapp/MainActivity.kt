@@ -91,10 +91,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             println("*******este es el resultado que traigo con el select ROL USUARIO MAIN $RolUsuarioMainActivity")
-            println("*************este es el resultado que traigo con el select CORREO INICIAR $txtcorreoiniciar")
+            println("*************este es el resultado que traigo con el select CORREO INICIAR $txtcorreoiniciarval")
         }
 
-        println("*************este es el resultado que traigo con el select CORREO INICIAR $txtcorreoiniciar")
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
