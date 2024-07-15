@@ -83,7 +83,6 @@ class iniciarsesion : AppCompatActivity() {
 
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
-            btninicarsesion.setOnClickListener {
                 GlobalScope.launch(Dispatchers.IO) {
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
@@ -95,6 +94,7 @@ class iniciarsesion : AppCompatActivity() {
 
                     if (resultado.next()) {
                         valorRolUsuario = resultado.getString("ROL")
+                        startActivity(pantallaprincipal)
 
                     }else {
                         withContext(Dispatchers.Main) {
@@ -102,8 +102,8 @@ class iniciarsesion : AppCompatActivity() {
                         }
                     }
                 }
-                startActivity(pantallaprincipal)
-            }
+                /*startActivity(pantallaprincipal)*/
+
             /*GlobalScope.launch(Dispatchers.IO) {
                 val objconexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
@@ -132,7 +132,7 @@ class iniciarsesion : AppCompatActivity() {
             println("este es el resultado que traigo con el select $txtcorreoiniciar")
         }
         btnrecuperarcontra.setOnClickListener {
-            val recuperar = Intent(this, correoderecuperacion::class.java)
+           val recuperar = Intent(this, correoderecuperacion::class.java)
             startActivity(recuperar)
         }
     }
