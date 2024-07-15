@@ -68,6 +68,7 @@ class fragment_misMascotas : Fragment() {
                 val enfermedades_cronicas = resultSet.getString("enfermedades_cronicas")
                 val fecha_nacimiento = resultSet.getString("fecha_nacimiento")
                 val peso = resultSet.getInt("peso")
+
                 //SPINNERS
                 val sexo = resultSet.getString("sexo")
                 val especie = resultSet.getString("especie")

@@ -1,7 +1,7 @@
 package modelo
 
 data class tbMascotas(
-    var nombre_mascota: String?,
+    var nombre_mascota: String,
     val raza: String?,
     val sexo: String?,
     val procesos_previos: String?,

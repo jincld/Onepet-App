@@ -5,9 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import jonathan.orellana.onepetapp.R
 import jonathan.orellana.onepetapp.agregarmascotaas
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import modelo.ClaseConexion
 import modelo.tbMascotas
 
 class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>() {
@@ -17,37 +22,70 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
         return ViewHolder(vista)
     }
 
+    /////////////////// TODO: Eliminar datos
+    fun eliminarDatos(nombreMascota: String, posicion: Int){
+        //Actualizo la lista de datos y notifico al adaptador
+        val listaDatos = Datos.toMutableList()
+        listaDatos.removeAt(posicion)
+
+        GlobalScope.launch(Dispatchers.IO){
+            //1- Creamos un objeto de la clase conexion
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            //2- Crear una variable que contenga un PrepareStatement
+            val deleteMascota = objConexion?.prepareStatement("delete from tbMascotas where nombreMascota = ?")!!
+            deleteMascota.setString(1, nombreMascota)
+            deleteMascota.executeUpdate()
+
+            val commit = objConexion.prepareStatement("commit")!!
+            commit.executeUpdate()
+        }
+        Datos = listaDatos.toList()
+        // Notificar al adaptador sobre los cambios
+        notifyItemRemoved(posicion)
+        notifyDataSetChanged()
+    }
+
     //Devolver la cantidad de datos que se muestran
     override fun getItemCount() = Datos.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //Controlar a la card
-        val nombreCard = Datos[position]
-        holder.txtNombreMCard.text = nombreCard.nombre_mascota
+        val controlCard = Datos[position]
+        holder.txtNombreMCard.text = controlCard.nombre_mascota
+        //SPINNER DE GENERO
+        holder.txtGeneroMCard.text = controlCard.sexo
+        //SPINNER DE ESPECIE
+        holder.txtEspecieMCard.text = controlCard.especie
+        holder.txtRazaMCard.text = controlCard.raza
+        holder.txtPesoMCard.text = controlCard.peso
+        holder.txtProcedimientoMCard.text = controlCard.procesos_previos
+        holder.txtAñoMCard.text = controlCard.fecha_nacimiento
+        holder.txtEnfermedadesMCard.text = controlCard.enfermedades_cronicas
+        holder.txtAlergiasMCard.text = controlCard.alergias
 
-        //FALTA SPINNER DE GENERO
+        //todo: clic al boton de eliminar
+        holder.btnEliminarMCard.setOnClickListener {
 
-        val sexoCard = Datos[position]
-        holder.txtGeneroMCard.text = sexoCard.sexo
+            //Creamos un Alert Dialog
+            val context = holder.itemView.context
 
-        //FALTA SPINNER DE ESPECIE
-        val especieCard = Datos[position]
-        holder.txtEspecieMCard.text = especieCard.sexo
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Eliminar")
+            builder.setMessage("¿Desea eliminar la mascota?")
 
-        val razaCard = Datos[position]
-        holder.txtRazaMCard.text = razaCard.raza
+            //Botones
+            builder.setPositiveButton("Si") { dialog, which ->
+                eliminarDatos(controlCard.nombre_mascota, position)
+            }
 
-        val pesoCard = Datos[position]
-        holder.txtPesoMCard.text = pesoCard.peso
+            builder.setNegativeButton("No"){dialog, which ->
+                dialog.dismiss()
+            }
 
-        val procesosCard = Datos[position]
-        holder.txtProcedimientoMCard.text = procesosCard.procesos_previos
-        val añoCard = Datos[position]
-        holder.txtAñoMCard.text = añoCard.fecha_nacimiento
-        val enfermedadesCard = Datos[position]
-        holder.txtEnfermedadesMCard.text = enfermedadesCard.enfermedades_cronicas
-        val alergiasCard = Datos[position]
-        holder.txtAlergiasMCard.text = alergiasCard.alergias
+            val dialog = builder.create()
+            dialog.show()
 
+        }
     }
 }
