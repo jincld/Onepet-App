@@ -83,7 +83,33 @@ class iniciarsesion : AppCompatActivity() {
 
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
-            GlobalScope.launch(Dispatchers.IO) {
+            btninicarsesion.setOnClickListener {
+                GlobalScope.launch(Dispatchers.IO) {
+                    val objConexion = ClaseConexion().cadenaConexion()
+
+                    val resulSet =
+                        objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
+                    resulSet.setString(1, txtcorreoiniciar.text.toString())
+                    val resultado = resulSet.executeQuery()
+
+                    if (resultado.next()) {
+                        valorRolUsuario = resultado.getString("rol")
+
+                    }else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                this@iniciarsesion,
+                                "Usuario o contraseña invalidos",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+
+                val pantallaprincipal = Intent(this, MainActivity::class.java)
+                startActivity(pantallaprincipal)
+            }
+            /*GlobalScope.launch(Dispatchers.IO) {
                 val objconexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
@@ -107,7 +133,7 @@ class iniciarsesion : AppCompatActivity() {
                         ).show()
                     }
                 }
-            }
+            }*/
             println("este es el resultado que traigo con el select $txtcorreoiniciar")
         }
         btnrecuperarcontra.setOnClickListener {

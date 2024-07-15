@@ -83,7 +83,7 @@ class actualizar_y_eliminar_vet : Fragment() {
                 //2 - Creo una variable que tenga un prepareStatement
                 val updateVet =
                     objConexion?.prepareStatement(
-                        "UPDATE tbveterinarias set nombre_veterinaria = ?, ubicacion_veterinaria = ?, nit = ?, contacto_veterinaria = ?, correo_veterinaria = ?, descripcion_servicio = ? where correo_veterinaria = ?"
+                        "UPDATE tbveterinaria set nombre_veterinaria = ?, ubicacion_veterinaria = ?, nit = ?, contacto_veterinaria = ?, correo_veterinaria = ?, descripcion_servicio = ? where correo_veterinaria = ?"
                     )!!
                 updateVet.setString(1, nombreNuevo)
                 updateVet.setString(2, ubicacionNueva)
@@ -105,7 +105,7 @@ class actualizar_y_eliminar_vet : Fragment() {
 
                 // 2- Crear una variable que contenga un preparestatement (donde se mete el código de sqlserver
                 val deleteVeterinaria =
-                    objConexion?.prepareStatement("delete from tbveterinarias where nombre_veterinaria = ?")!!
+                    objConexion?.prepareStatement("delete from tbveterinaria where nombre_veterinaria = ?")!!
                 deleteVeterinaria.setString(1, agregar_vet.VariablesGlobalesVeterinaria.NombreVet)
                 deleteVeterinaria.executeUpdate()
 
