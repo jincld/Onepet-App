@@ -48,10 +48,9 @@ class codigoconfimarcion : AppCompatActivity() {
           Toast.makeText(this, "Número incorrecto, intenta de nuevo", Toast.LENGTH_SHORT).show()
         }
 
-              val recuperar = Intent(this, nuevacontrasena::class.java)
-              startActivity(recuperar)
 
        }
-
+        val recuperar = Intent(this, nuevacontrasena::class.java)
+        startActivity(recuperar)
     }
 }

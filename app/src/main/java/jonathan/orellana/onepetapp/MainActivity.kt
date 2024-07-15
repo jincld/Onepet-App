@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.miveterinariadv, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_veterinarias, R.id.fragment_misMascotas
+                R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.miveterinariadv, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_misMascotas
             ), drawerLayout
         )
 
@@ -76,15 +76,17 @@ class MainActivity : AppCompatActivity() {
             val txtcorreoiniciarval = iniciarsesion.variablesLogin.valorRolUsuario
             val RolUsuarioMainActivity = traerID()
             if (txtcorreoiniciarval == RolUsuarioMainActivity) {
-                navView.menu.findItem(R.id.fragment_asignaciones).isVisible = true
-                navView.menu.findItem(R.id.fragment_veterinarias).isVisible = true
-                navView.menu.findItem(R.id.resenasdv).isVisible = true
+                navView.menu.findItem(R.id.nav_homeDV).isVisible = true
+                navView.menu.findItem(R.id.fragment_citas).isVisible = true
+                navView.menu.findItem(R.id.fragment_agendarCita).isVisible = true
                 navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = true
-                navView.menu.findItem(R.id.ajustesdv).isVisible = true
+                navView.menu.findItem(R.id.chatdv).isVisible = true
+                navView.menu.findItem(R.id.resenasdv).isVisible = true
                 navView.menu.findItem(R.id.fragment_misMascotas).isVisible = true
-            } else {
+                navView.menu.findItem(R.id.ajustesdv).isVisible = true
                 navView.menu.findItem(R.id.fragment_asignaciones).isVisible = false
-                navView.menu.findItem(R.id.fragment_veterinarias).isVisible = false
+            } else {
+                navView.menu.findItem(R.id.fragment_asignaciones).isVisible = true
                 navView.menu.findItem(R.id.resenasdv).isVisible = false
                 navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = false
                 navView.menu.findItem(R.id.ajustesdv).isVisible = false

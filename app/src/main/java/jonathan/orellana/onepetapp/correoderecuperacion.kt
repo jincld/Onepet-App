@@ -49,7 +49,7 @@ class correoderecuperacion : AppCompatActivity() {
            correo = correorecuperacion.text.toString()
            var hayerrores = false
 
-           btnrecupercion.setOnClickListener {
+
                if (buttonClickCount < 3) {
                    buttonClickCount++
                } else {
@@ -92,4 +92,3 @@ try {
          }
       }
    }
-}
