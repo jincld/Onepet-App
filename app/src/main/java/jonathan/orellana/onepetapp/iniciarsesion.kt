@@ -86,27 +86,22 @@ class iniciarsesion : AppCompatActivity() {
             btninicarsesion.setOnClickListener {
                 GlobalScope.launch(Dispatchers.IO) {
                     val objConexion = ClaseConexion().cadenaConexion()
+                    val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
-                    val resulSet =
-                        objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
+                    val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                     resulSet.setString(1, txtcorreoiniciar.text.toString())
+                    resulSet.setString(2, contraencriptada)
                     val resultado = resulSet.executeQuery()
 
                     if (resultado.next()) {
-                        valorRolUsuario = resultado.getString("rol")
+                        valorRolUsuario = resultado.getString("ROL")
 
                     }else {
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(
-                                this@iniciarsesion,
-                                "Usuario o contraseña invalidos",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            Toast.makeText(this@iniciarsesion, "Usuario o contraseña inválidos", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
-
-                val pantallaprincipal = Intent(this, MainActivity::class.java)
                 startActivity(pantallaprincipal)
             }
             /*GlobalScope.launch(Dispatchers.IO) {

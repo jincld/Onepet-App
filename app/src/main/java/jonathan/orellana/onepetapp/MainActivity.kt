@@ -76,11 +76,15 @@ class MainActivity : AppCompatActivity() {
             val txtcorreoiniciarval = iniciarsesion.variablesLogin.valorRolUsuario
             val RolUsuarioMainActivity = traerID()
             if (txtcorreoiniciarval == RolUsuarioMainActivity) {
-                navView.menu.findItem(R.id.fragment_asignaciones).isVisible = true
-                navView.menu.findItem(R.id.resenasdv).isVisible = true
+                navView.menu.findItem(R.id.nav_homeDV).isVisible = true
+                navView.menu.findItem(R.id.fragment_citas).isVisible = true
+                navView.menu.findItem(R.id.fragment_agendarCita).isVisible = true
                 navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = true
-                navView.menu.findItem(R.id.ajustesdv).isVisible = true
+                navView.menu.findItem(R.id.chatdv).isVisible = true
+                navView.menu.findItem(R.id.fragment_veterinarias).isVisible = true
+                navView.menu.findItem(R.id.resenasdv).isVisible = true
                 navView.menu.findItem(R.id.fragment_misMascotas).isVisible = true
+                navView.menu.findItem(R.id.ajustesdv).isVisible = true
             } else {
                 navView.menu.findItem(R.id.fragment_asignaciones).isVisible = false
                 navView.menu.findItem(R.id.resenasdv).isVisible = false
