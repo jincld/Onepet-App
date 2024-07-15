@@ -10,10 +10,6 @@ import androidx.core.view.WindowInsetsCompat
 
 class login : AppCompatActivity() {
 
-    companion object variablesGlobalesLogin{
-        lateinit var correodelUsuarioGlobal: String
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

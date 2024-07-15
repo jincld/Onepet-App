@@ -63,10 +63,10 @@ class agregarmascotaas : Fragment() {
         //Obtener UUID de Dueño de Mascota (Usuario)
         fun obtenerUUIDDueno(): String? {
 
-            val correoGlobalEscrito = login.variablesGlobalesLogin.correodelUsuarioGlobal
+            val correoGlobalEscrito = registroduenovet.VariablesGlobalesRegistroDuenio.txtcorreoadminvetGlobal
             val objConexion = ClaseConexion().cadenaConexion()
 
-            val tarerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?")!!
+            val tarerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = '?'")!!
             tarerUUIDUsuario.setString(1, correoGlobalEscrito)
             val resultSet = tarerUUIDUsuario.executeQuery()
 
