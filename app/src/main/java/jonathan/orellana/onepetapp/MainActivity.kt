@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            val txtcorreoiniciarval = iniciarsesion.variablesLogin.valorRolUsuario
+            val txtcorreoiniciarval = valorRolUsuario
             val RolUsuarioMainActivity = traerID()
             if (txtcorreoiniciarval == RolUsuarioMainActivity) {
                 navView.menu.findItem(R.id.nav_homeDV).isVisible = true
