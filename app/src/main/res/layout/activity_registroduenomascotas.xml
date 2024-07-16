@@ -48,22 +48,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/degradadogristop" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alata"
-            android:text="Dueño de mascota"
-            android:textColor="#34313F"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.154" />
-
         <EditText
             android:id="@+id/txtcorreoduenomas"
             android:layout_width="wrap_content"
@@ -105,22 +89,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.535" />
-
-        <Button
-            android:id="@+id/btnagregarimagendueno"
-            android:layout_width="260dp"
-            android:layout_height="40dp"
-            android:background="@drawable/btngris"
-            android:text="Agregar foto de perfil"
-            android:textAllCaps="false"
-            android:textSize="15sp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.631" />
 
         <Button
             android:id="@+id/btnSiguienteDuenoMascota"
@@ -175,17 +143,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/bgdos" />
-
-        <ImageView
-            android:id="@+id/imageView49"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.248"
-            app:srcCompat="@drawable/iconuser" />
 
         <ImageView
             android:id="@+id/imageView50"
@@ -256,6 +213,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/imagenperro5" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
+            android:text="Dueño de mascota"
+            android:textColor="#34313F"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.463"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.197" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
