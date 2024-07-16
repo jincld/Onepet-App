@@ -14,8 +14,8 @@ class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
     //En el ViewHolder mando a llamar los elementos de la card
     val txtNombreMCard = view.findViewById<TextView>(R.id.txtNombreMascota)
 
-    val txtEspecieMCard= view.findViewById<TextView>(R.id.txtEspecieMascotaCard)
-    val txtGeneroMCard= view.findViewById<TextView>(R.id.txtGeneroCard)
+//    val txtEspecieMCard= view.findViewById<TextView>(R.id.txtEspecieMascotaCard)
+//    val txtGeneroMCard= view.findViewById<TextView>(R.id.txtGeneroCard)
 
     val txtPesoMCard = view.findViewById<TextView>(R.id.txtPesoMascotaCard)
     val txtAñoMCard = view.findViewById<TextView>(R.id.txtAñoMascota)

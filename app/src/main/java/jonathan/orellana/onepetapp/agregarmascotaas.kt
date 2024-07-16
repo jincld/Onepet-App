@@ -39,6 +39,8 @@ class agregarmascotaas : Fragment() {
         lateinit var variableMascotaGlobal: String
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -65,6 +67,8 @@ class agregarmascotaas : Fragment() {
         val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascotas)
         val btnAddFotoMascota = root.findViewById<Button>(R.id.btnAgregarFotoMascota)
         val btnAgregarMascotas = root.findViewById<Button>(R.id.btnAgregarMascotas)
+
+
 
 
         txtAñoAddMascota.setOnClickListener {
@@ -153,6 +157,9 @@ class agregarmascotaas : Fragment() {
 
 
         btnAgregarMascotas.setOnClickListener{
+
+            variableMascotaGlobal = txtNomAddMascota.text.toString()
+
             //Guardar en una variable los valores que escribio el  usuario
             val nombreMascota = txtNomAddMascota.text.toString()
             val pesoMascota = txtPesoAddMascota.text.toString()
@@ -161,6 +168,8 @@ class agregarmascotaas : Fragment() {
             val procedimientoMA = txtProceMAddMascota.text.toString()
             val razaMascota = txtRazaMascota.text.toString()
             val alergiaMascota = txtAlerAddMascota.text.toString()
+
+
 
             //Variable para verificar si hay errores la inicializamos en false
             var hayErrores = false

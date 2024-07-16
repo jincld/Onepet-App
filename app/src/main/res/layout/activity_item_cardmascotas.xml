@@ -27,22 +27,6 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/txtEspecieMascotaCard"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/txtGeneroCard"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textSize="20sp" />
-
-        <TextView
             android:id="@+id/txtPesoMascotaCard"
             android:layout_width="300dp"
             android:layout_height="match_parent"
