@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -43,11 +44,12 @@ class iniciarsesion : AppCompatActivity() {
             return bytes.joinToString("") {"%02x".format(it)}
         }
 
-        val txtcorreoiniciar = findViewById<TextView>(R.id.txtcorreoiniciar)
-        val txtcontrainiciar = findViewById<TextView>(R.id.txtcontrasenainicio)
+        val txtcorreoiniciar = findViewById<EditText>(R.id.txtcorreoiniciar)
+        val txtcontrainiciar = findViewById<EditText>(R.id.txtcontrasenainicio)
         val btnrecuperarcontra = findViewById<TextView>(R.id.btnrecuperarcontra)
         val btninicarsesion = findViewById<TextView>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
+
 
         //   fun obtenerUuidRol(): String? {
         GlobalScope.launch(Dispatchers.IO) {
@@ -62,6 +64,8 @@ class iniciarsesion : AppCompatActivity() {
                 uuidRol = resultado.getString("ROL")
                 println("este es el uuid traido desde el if $uuidRol")
             }
+
+
 
             println("este es el uuid traido desde la funcion $uuidRol")
 

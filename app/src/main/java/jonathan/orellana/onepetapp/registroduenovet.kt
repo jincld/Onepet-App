@@ -80,6 +80,7 @@ class registroduenovet : AppCompatActivity() {
             val contra = txtcontraadminvet.text.toString()
             var hayerrores = false
 
+
             if (nombre.isEmpty()) {
                txtnombreadminvet.error = "Complete todos lo campos"
                 hayerrores = true

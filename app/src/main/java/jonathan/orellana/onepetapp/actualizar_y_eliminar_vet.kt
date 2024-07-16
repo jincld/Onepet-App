@@ -2,13 +2,16 @@ package jonathan.orellana.onepetapp
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.InputType
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -65,18 +68,11 @@ class actualizar_y_eliminar_vet : Fragment() {
         txtVerServiciosVet.text = agregar_vet.VariablesGlobalesVeterinaria.DescripcionVet
 
 
-        fun uodate(
-            nombreNuevo: String,
-            ubicacionNueva: String,
-            NITNuevo: String,
-            ContactoNuevo: String,
-            CorreoNuevo: String,
-            descripcion: String
-        ) {
-            val correoGLobalTraido =
-                registroduenovet.VariablesGlobalesRegistroDuenio.txtcorreoadminvetGlobal
 
+        fun uodate(nombreNuevo: String, ubicacionNueva: String, NITNuevo: String, ContactoNuevo: String, CorreoNuevo: String, descripcion: String) {
             GlobalScope.launch(Dispatchers.IO) {
+                val correoGLobalTraido = agregar_vet.VariablesGlobalesVeterinaria.CorreoVet
+
                 ///1 - creo un objeto de la clase conexion
                 val objConexion = ClaseConexion().cadenaConexion()
 
@@ -95,6 +91,82 @@ class actualizar_y_eliminar_vet : Fragment() {
                 updateVet.executeUpdate()
             }
         }
+        fun isValid(vararg editTexts: EditText): Boolean {
+            for (editText in editTexts) {
+                if (editText.text.toString().isEmpty()) {
+                    Toast.makeText(context, "Porfavor llene todos los datos", Toast.LENGTH_SHORT).show()
+                    return false
+                }
+            }
+            return true
+        }
+
+
+        btnEditarVet.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Editar")
+            builder.setMessage("Estas seguro que quieres editar?")
+
+            val nombrenuevo = EditText(context)
+            nombrenuevo.setHint("Nombre")
+
+            val nuevaubicacion = EditText(context)
+            nuevaubicacion.setHint("Ubicación")
+
+            val nuevoNit = EditText(context)
+            nuevoNit.setHint("NIT")
+            nuevoNit.inputType = InputType.TYPE_CLASS_NUMBER //
+
+            val nuevoContacto = EditText(context)
+            nuevoContacto.setHint("Contacto")
+
+            val correoNuevo = EditText(context)
+            correoNuevo.setHint("Correo")
+
+            val descripcionNueva = EditText(context)
+            descripcionNueva.setHint("Descripción servicios")
+
+            val layout = LinearLayout(requireContext()).apply {
+                orientation = LinearLayout.VERTICAL
+                addView(nombrenuevo)
+                addView(nuevaubicacion)
+                addView(nuevoNit)
+                addView(nuevoContacto)
+                addView(correoNuevo)
+                addView(descripcionNueva)
+            }
+
+            builder.setView(layout)
+
+            builder.setPositiveButton("Si") { dialog, which ->
+                if (isValid(nombrenuevo, nuevaubicacion, nuevoNit, nuevoContacto, correoNuevo, descripcionNueva)) {
+                    uodate(
+                        nombrenuevo.text.toString(),
+                        nuevaubicacion.text.toString(),
+                        nuevoNit.text.toString(),
+                        nuevoContacto.text.toString(),
+                        correoNuevo.text.toString(),
+                        descripcionNueva.text.toString()
+                    )
+                    Toast.makeText(context, "Datos actualizados", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                    txtVerNombreVet.text = nombrenuevo.text.toString()
+                    txtVerUbicacionVet.text = nuevaubicacion.text.toString()
+                    txtVerNitVet.text = nuevoNit.text.toString()
+                    txtVerContactoVet.text = nuevoContacto.text.toString()
+                    txtVerCorreoVet.text = correoNuevo.text.toString()
+                    txtVerServiciosVet.text = descripcionNueva.text.toString()
+                }
+            }
+            builder.setNegativeButton("no") { dialog, which ->
+                dialog.dismiss()
+            }
+            builder.show()
+        }
+
+
+
+
 
         fun eliminarVet() {
             GlobalScope.launch(Dispatchers.IO) {
@@ -109,59 +181,13 @@ class actualizar_y_eliminar_vet : Fragment() {
                 deleteVeterinaria.setString(1, agregar_vet.VariablesGlobalesVeterinaria.NombreVet)
                 deleteVeterinaria.executeUpdate()
 
-                println("este es el nombre de la vet que quiero eliminar $agregar_vet.NombreVet")
+                println("este es el nombre de la vet que quiero eliminar ${agregar_vet.NombreVet}")
 
                 val commit = objConexion.prepareStatement("commit")!!
                 commit.executeUpdate()
             }
 
         }
-        btnEditarVet.setOnClickListener {
-            val builder = AlertDialog.Builder(context)
-            builder.setTitle("Editar")
-            builder.setMessage("Estas seguro que quieres editar?")
-
-            val nombrenuevo = EditText(context)
-            builder.setView(nombrenuevo)
-
-            val nuevaubicacion = EditText(context)
-            builder.setView(nuevaubicacion)
-
-            val nuevoNit = EditText(context)
-            builder.setView(nuevoNit)
-
-
-            val nuevoContacto = EditText(context)
-            builder.setView(nuevoContacto)
-
-            val correoNuevo = EditText(context)
-            builder.setView(correoNuevo)
-
-            val descripcionNueva = EditText(context)
-            builder.setView(descripcionNueva)
-
-
-
-            builder.setPositiveButton("Si") { dialog, which ->
-                uodate(
-                    nombrenuevo.text.toString(),
-                    nuevaubicacion.text.toString(),
-                    nuevoNit.text.toString(),
-                    nuevoContacto.text.toString(),
-                    correoNuevo.text.toString(),
-                    descripcionNueva.text.toString()
-                )
-                builder.setMessage("Datos actualizados")
-
-
-            }
-            builder.setNegativeButton("no") { dialog, which ->
-                dialog.dismiss()
-            }
-
-
-        }
-
         btnEliminarVet.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Eliminar")
@@ -169,12 +195,14 @@ class actualizar_y_eliminar_vet : Fragment() {
 
             builder.setPositiveButton("Si") { dialog, which ->
                 eliminarVet()
-                builder.setMessage("Datos eliminados")
+                Toast.makeText(context, "Datos eliminados", Toast.LENGTH_SHORT).show()
+
 
             }
             builder.setNegativeButton("no") { dialog, which ->
                 dialog.dismiss()
             }
+            builder.show()
         }
         return  root
 
