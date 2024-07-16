@@ -107,9 +107,9 @@ class iniciarsesion : AppCompatActivity() {
                         }
                     }
                 }
-                startActivity(pantallaprincipal)
+            /*    startActivity(pantallaprincipal)*/
 
-            GlobalScope.launch(Dispatchers.IO) {
+           /* GlobalScope.launch(Dispatchers.IO) {
                 val objconexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
@@ -133,7 +133,7 @@ class iniciarsesion : AppCompatActivity() {
                         ).show()
                     }
                 }
-            }
+            }*/
             println("este es el resultado que traigo con el select $txtcorreoiniciar")
         }
         btnrecuperarcontra.setOnClickListener {
