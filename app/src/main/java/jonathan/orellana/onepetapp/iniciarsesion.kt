@@ -55,6 +55,9 @@ class iniciarsesion : AppCompatActivity() {
         val btninicarsesion = findViewById<Button>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
+
+        //   fun obtenerUuidRol(): String? {
+
         GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
@@ -69,6 +72,8 @@ class iniciarsesion : AppCompatActivity() {
 
                 println("este es el uuid traido desde el if $uuidRol")
             }
+
+
 
             println("este es el uuid traido desde la funcion $uuidRol")
 
@@ -102,9 +107,9 @@ class iniciarsesion : AppCompatActivity() {
                         }
                     }
                 }
-                /*startActivity(pantallaprincipal)*/
+                startActivity(pantallaprincipal)
 
-            /*GlobalScope.launch(Dispatchers.IO) {
+            GlobalScope.launch(Dispatchers.IO) {
                 val objconexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
@@ -128,7 +133,7 @@ class iniciarsesion : AppCompatActivity() {
                         ).show()
                     }
                 }
-            }*/
+            }
             println("este es el resultado que traigo con el select $txtcorreoiniciar")
         }
         btnrecuperarcontra.setOnClickListener {
