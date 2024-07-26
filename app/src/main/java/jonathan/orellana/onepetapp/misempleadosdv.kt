@@ -61,7 +61,7 @@ class misempleadosdv : Fragment() {
             //crear statement
 
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = '6C418E33A736429C8A693CF7FDDBB137'")!!
+            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = '083AA3F2DEFB49168B8E4F1CA6D3CE6B'")!!
             val empleados = mutableListOf<dataClassEmpleado>()
 
             //recorro todos los registos de la base de datos
