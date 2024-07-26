@@ -39,7 +39,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
 
             //Botones
 
-            builder.setPositiveButton("si") { dialog, which ->
+            builder.setPositiveButton("Si") { dialog, which ->
                 eliminarDatos(empleado.nombreEmpleado, position)
             }
 
