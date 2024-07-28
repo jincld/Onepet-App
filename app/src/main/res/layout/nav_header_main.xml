@@ -132,7 +132,7 @@
                         android:layout_height="29dp">
 
                         <TextView
-                            android:id="@+id/textView7"
+                            android:id="@+id/txtNombreUserMenu"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/alata"
@@ -151,7 +151,7 @@
                             android:id="@+id/textView8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rol del usuario"
+                            android:text="Usuario de OnePet!"
                             android:textColor="#348CD5"
                             android:textSize="10sp" />
                     </TableRow>

@@ -48,7 +48,7 @@ class  registroduenomascotas : AppCompatActivity() {
         val  txtnombreduenomas = findViewById<EditText>(R.id.txtnombreduenomas)
         val  txtcorreoduenomas = findViewById<EditText>(R.id.txtcorreoduenomas)
         val  txtcontraduenomas = findViewById<EditText>(R.id.txtcontraduenomas)
-        val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)
+       /* val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)*/
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
         val  btnVolver = findViewById<ImageButton>(R.id.btnVolverDM)
 

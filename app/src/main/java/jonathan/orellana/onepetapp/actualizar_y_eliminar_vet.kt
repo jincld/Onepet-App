@@ -79,7 +79,7 @@ class actualizar_y_eliminar_vet : Fragment() {
                 //2 - Creo una variable que tenga un prepareStatement
                 val updateVet =
                     objConexion?.prepareStatement(
-                        "UPDATE tbveterinaria set nombre_veterinaria = ?, ubicacion_veterinaria = ?, nit = ?, contacto_veterinaria = ?, correo_veterinaria = ?, descripcion_servicio = ? where correo_veterinaria = ?"
+                        "UPDATE tbveterinarias set nombre_veterinaria = ?, ubicacion_veterinaria = ?, nit = ?, contacto_veterinaria = ?, correo_veterinaria = ?, descripcion_servicio = ? where correo_veterinaria = ?"
                     )!!
                 updateVet.setString(1, nombreNuevo)
                 updateVet.setString(2, ubicacionNueva)
@@ -165,9 +165,6 @@ class actualizar_y_eliminar_vet : Fragment() {
         }
 
 
-
-
-
         fun eliminarVet() {
             GlobalScope.launch(Dispatchers.IO) {
                 // creamos un objeto de la clase conexion
@@ -175,13 +172,14 @@ class actualizar_y_eliminar_vet : Fragment() {
                 val objConexion = ClaseConexion().cadenaConexion()
                 println("estamos dentro de una corrutina")
 
+val nombrevett = agregar_vet.VariablesGlobalesVeterinaria.NombreVet
+
                 // 2- Crear una variable que contenga un preparestatement (donde se mete el código de sqlserver
-                val deleteVeterinaria =
-                    objConexion?.prepareStatement("delete from tbveterinaria where nombre_veterinaria = ?")!!
-                deleteVeterinaria.setString(1, agregar_vet.VariablesGlobalesVeterinaria.NombreVet)
+                val deleteVeterinaria = objConexion?.prepareStatement("delete from tbVeterinarias where nombre_veterinaria = ?")!!
+                deleteVeterinaria.setString(1,nombrevett)
                 deleteVeterinaria.executeUpdate()
 
-                println("este es el nombre de la vet que quiero eliminar ${agregar_vet.NombreVet}")
+                println("este es el nombre de la vet que quiero eliminar ${nombrevett}")
 
                 val commit = objConexion.prepareStatement("commit")!!
                 commit.executeUpdate()

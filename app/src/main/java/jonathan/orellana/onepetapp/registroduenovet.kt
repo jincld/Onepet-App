@@ -48,7 +48,7 @@ class registroduenovet : AppCompatActivity() {
         val txtnombreadminvet =findViewById<EditText>(R.id.txtnombreadminvet)
         val txtcorreoadminvet =findViewById<EditText>(R.id.txtcorreodminvet)
         val txtcontraadminvet =findViewById<EditText>(R.id.txtcontraadminvet)
-        val btnfoto = findViewById<Button>(R.id.btnftdeperfil)
+        /*val btnfoto = findViewById<Button>(R.id.btnftdeperfil)*/
         val btninicarsesionvet = findViewById<TextView>(R.id.btniniciarsesionvet)
         val  btnVolver = findViewById<ImageButton>(R.id.btnVolverAV)
 

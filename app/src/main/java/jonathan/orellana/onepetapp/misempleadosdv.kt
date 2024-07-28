@@ -1,11 +1,22 @@
 package jonathan.orellana.onepetapp
 
+import RecyclerViewHelpers.Adaptador
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import modelo.ClaseConexion
+import modelo.dataClassEmpleado
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,21 +41,52 @@ class misempleadosdv : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
 
          val root = inflater.inflate(R.layout.fragment_misempleadosdv, container, false)
+         val rcvEmpleado = root.findViewById<RecyclerView>(R.id.rcvEmpleados)
 
+        rcvEmpleado.layoutManager = LinearLayoutManager(context)
+        fun obtenerDatos(): List<dataClassEmpleado>{
 
+            //crear objeto conexion
 
+            val objConexion = ClaseConexion().cadenaConexion()
 
+            //crear statement
 
+            val statement = objConexion?.createStatement()
+            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = '083AA3F2DEFB49168B8E4F1CA6D3CE6B'")!!
+            val empleados = mutableListOf<dataClassEmpleado>()
 
+            //recorro todos los registos de la base de datos
+
+            while(resulSet.next()){
+                val UUID = resulSet.getString("UUID_usuario")
+                val Nombre = resulSet.getString("nombre_usuario")
+                val Correo = resulSet.getString("correo_usuario")
+                val Contra = resulSet.getString("contra_usuario")
+
+                val ValoresJuntos = dataClassEmpleado(UUID, Nombre, Correo, Contra)
+                empleados.add(ValoresJuntos)
+            }
+            return empleados
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            val EmpleadoDB = obtenerDatos()
+            withContext(Dispatchers.Main){
+                val adapter = Adaptador(EmpleadoDB)
+                rcvEmpleado.adapter= adapter
+            }
+        }
 
         return root
+
     }
 
     companion object {

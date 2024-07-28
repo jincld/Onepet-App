@@ -8,13 +8,23 @@
     tools:context=".agregar_veterinaria">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="397dp"
-        android:layout_height="790dp"
+        android:layout_width="416dp"
+        android:layout_height="857dp"
         android:layout_marginTop="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView46"
+            android:layout_width="668dp"
+            android:layout_height="952dp"
+            android:rotation="-236"
+            android:rotationY="-171"
+            android:src="@drawable/degcelest"
+            tools:layout_editor_absoluteX="-27dp"
+            tools:layout_editor_absoluteY="-25dp" />
 
         <EditText
             android:id="@+id/txtDescripcionServicios"
@@ -102,16 +112,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView46"
-            android:layout_width="668dp"
-            android:layout_height="952dp"
-            android:rotation="-236"
-            android:rotationY="-171"
-            android:src="@drawable/degcelest"
-            tools:layout_editor_absoluteX="-27dp"
-            tools:layout_editor_absoluteY="-25dp" />
-
         <EditText
             android:id="@+id/txtNitVet"
             android:layout_width="wrap_content"
@@ -183,11 +183,21 @@
             android:id="@+id/imageView38"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:layout_marginBottom="312dp"
+            android:layout_marginEnd="72dp"
+            android:layout_marginBottom="412dp"
             android:src="@drawable/vetagregar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView34"
+            android:layout_width="255dp"
+            android:layout_height="216dp"
+            android:layout_marginTop="652dp"
+            android:layout_marginEnd="208dp"
+            android:src="@drawable/blobuno"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
@@ -211,16 +221,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView34"
-        android:layout_width="308dp"
-        android:layout_height="252dp"
-        android:layout_marginTop="618dp"
-        android:layout_marginEnd="261dp"
-        android:src="@drawable/blobuno"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
