@@ -8,9 +8,8 @@ class ClaseConexion {
 
     fun cadenaConexion(): Connection? {
         try{
-
             System.setProperty("oracle.jdbc.disableMBean", "true")
-            val url = "jdbc:oracle:thin:@ 192.168.1.14:1521:xe"
+            val url = "jdbc:oracle:thin:@192.168.1.13:1521:xe"
             val usuario = "AARON_PTC"
             val contrasena = "Aaron230107"
 

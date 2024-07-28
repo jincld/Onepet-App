@@ -137,8 +137,7 @@ class agregar_vet : Fragment() {
                 CoroutineScope(Dispatchers.IO).launch {
 
                     val objConexion = ClaseConexion().cadenaConexion()
-                    val addVet =
-                        objConexion?.prepareStatement("Insert into tbveterinaria (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio) values (?,?,?,?,?,?,?)")!!
+                    val addVet =  objConexion?.prepareStatement("insert into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (?,?, ?, ?, ?, ?, ? )")!!
                     addVet.setString(1, UUID.randomUUID().toString())
                     addVet.setString(2, txtNombreVet.text.toString())
                     addVet.setString( 3, txtUbicacionVet.text.toString())
@@ -155,7 +154,7 @@ class agregar_vet : Fragment() {
                     CorreoVet = txtCorreoVet.text.toString()
                     DescripcionVet = txtDescripcionVet.text.toString()
                     withContext(Dispatchers.Main){
-                    findNavController().navigate(R.id.action_agregar_vet_to_actualizar_y_eliminar_vet2)
+                    findNavController().navigate(R.id.action_agregar_vet_to_veterinarias)
                     }
 
 

@@ -54,6 +54,8 @@ class iniciarsesion : AppCompatActivity() {
         val btnrecuperarcontra = findViewById<TextView>(R.id.btnrecuperarcontra)
         val btninicarsesion = findViewById<Button>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
+        valorRolUsuario = txtcorreoiniciar.text.toString()
+
 
 
         //   fun obtenerUuidRol(): String? {
@@ -84,7 +86,6 @@ class iniciarsesion : AppCompatActivity() {
         }
 
         btninicarsesion.setOnClickListener {
-            valorRolUsuario = txtcorreoiniciar.text.toString()
 
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
@@ -100,6 +101,7 @@ class iniciarsesion : AppCompatActivity() {
                     if (resultado.next()) {
                         valorRolUsuario = resultado.getString("ROL")
                         startActivity(pantallaprincipal)
+
 
                     }else {
                         withContext(Dispatchers.Main) {
