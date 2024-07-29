@@ -9,7 +9,7 @@ data class tbMascotas(
     var alergias: String?,
     var enfermedades_cronicas: String?,
     var fecha_nacimiento: String?,
-    var peso: String?,
+    var peso: Int,
 //    var especie: String?
 )
 

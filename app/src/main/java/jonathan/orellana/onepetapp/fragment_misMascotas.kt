@@ -61,7 +61,7 @@ class fragment_misMascotas : Fragment() {
             val listaMisMascotas = mutableListOf<tbMascotas>()
 
             while (resultSet.next()){
-//                val UUID_mascota = resultSet.getString("UUID_mascota")
+                val UUID_mascota = resultSet.getString("UUID_mascota")
                 val nombre_mascota = resultSet.getString("nombre_mascota")
 //                val sexo = resultSet.getString("sexo")
 //                val especie = resultSet.getString("especie")
@@ -73,7 +73,7 @@ class fragment_misMascotas : Fragment() {
                 val peso = resultSet.getInt("peso")
 
                 //SPINNERS
-                val valoresJuntos = tbMascotas( nombre_mascota, raza, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso.toString())
+                val valoresJuntos = tbMascotas(UUID_mascota, nombre_mascota, raza, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso.toInt())
 
                 listaMisMascotas.add(valoresJuntos)
             }

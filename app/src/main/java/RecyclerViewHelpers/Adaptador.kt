@@ -122,7 +122,7 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
         holder.txtAñoMCard.text = controlCard.fecha_nacimiento
         holder.txtEnfermedadesMCard.text = controlCard.enfermedades_cronicas
         holder.txtAlergiasMCard.text = controlCard.alergias
-        holder.txtPesoMCard.text = controlCard.peso
+        holder.txtPesoMCard.text = controlCard.peso.toString()
 
         //todo: clic al boton de eliminar
         holder.btnEliminarMCard.setOnClickListener {
@@ -177,7 +177,7 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
                 setText(controlCard.fecha_nacimiento)
             }
             val pesoMascota = EditText(context).apply {
-                setText(controlCard.peso)
+                setText(controlCard.peso.toInt())
             }
 
             val layout = LinearLayout(context).apply {
