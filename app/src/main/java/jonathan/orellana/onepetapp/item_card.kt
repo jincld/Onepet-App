@@ -10,8 +10,8 @@ class item_card : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_item_card)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cardVeterinaria)) { v, insets ->
+        setContentView(R.layout.activity_item_cardmv)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cardVeterinarias)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
