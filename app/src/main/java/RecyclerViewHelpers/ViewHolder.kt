@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import jonathan.orellana.onepetapp.R
 
 class ViewHolder(view:View): RecyclerView.ViewHolder(view) {
+
     var txtNombreEmp = view.findViewById<TextView>(R.id.txtNombreEmp)
     var txtCorreoEmp = view.findViewById<TextView>(R.id.txtCorreoEmp)
     var txtContraEmp = view.findViewById<TextView>(R.id.txtContraEmp)
-    val btnBorrarCard: ImageButton = view.findViewById(R.id.btnBorrarCard)
+    val btnBorrarCard = view.findViewById<ImageButton>(R.id.btnBorrarCard)
+    val btneditarcard = view.findViewById<ImageView>(R.id.btneditarcard)
 
 }
