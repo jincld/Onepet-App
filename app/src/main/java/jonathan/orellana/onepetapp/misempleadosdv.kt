@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
+import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,6 +50,7 @@ class misempleadosdv : Fragment() {
     ): View? {
 
 
+
          val root = inflater.inflate(R.layout.fragment_misempleadosdv, container, false)
          val rcvEmpleado = root.findViewById<RecyclerView>(R.id.rcvEmpleados)
 
@@ -61,18 +64,18 @@ class misempleadosdv : Fragment() {
             //crear statement
 
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = '083AA3F2DEFB49168B8E4F1CA6D3CE6B'")!!
+            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = '208808FF44E44AB7A4DF8293AC9C2006'")!!
             val empleados = mutableListOf<dataClassEmpleado>()
 
             //recorro todos los registos de la base de datos
 
             while(resulSet.next()){
-                val UUID = resulSet.getString("UUID_usuario")
+                val uuid = resulSet.getString("UUID_usuario")
                 val Nombre = resulSet.getString("nombre_usuario")
                 val Correo = resulSet.getString("correo_usuario")
                 val Contra = resulSet.getString("contra_usuario")
 
-                val ValoresJuntos = dataClassEmpleado(UUID, Nombre, Correo, Contra)
+                val ValoresJuntos = dataClassEmpleado(uuid, Nombre, Correo, Contra)
                 empleados.add(ValoresJuntos)
             }
             return empleados
@@ -84,6 +87,8 @@ class misempleadosdv : Fragment() {
                 rcvEmpleado.adapter= adapter
             }
         }
+
+
 
         return root
 

@@ -136,6 +136,7 @@ class agregarempleadodv : Fragment() {
                     txtNombre_empleado.setText("")
                     txtCorreoEmpleado.setText("")
                     txtContra_empleado.setText("")
+
                 }
 
             }
