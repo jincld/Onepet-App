@@ -17,7 +17,7 @@ import modelo.dataClassEmpleado
 class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val vista = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_item_cardmv, parent, false)
+            .inflate(R.layout.activity_item_card_empleados, parent, false)
         return ViewHolder(vista)
     }
 

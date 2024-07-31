@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import jonathan.orellana.onepetapp.R
 
 class ViewHolderVet(view: View) : RecyclerView.ViewHolder(view) {
-    val textView: TextView = view.findViewById(R.id.cardVeterinarias)
+    val txtNombreVet: TextView = view.findViewById(R.id.txtNombreVetCard)
+    val txtUbicacionVet: TextView = view.findViewById(R.id.txtUbicacionVetCard)
+    val txtDescripcionVetCard: TextView = view.findViewById(R.id.txtServiciosVetCard)
     val imgBorrar: ImageView = view.findViewById(R.id.imgBorrar)
 
 }

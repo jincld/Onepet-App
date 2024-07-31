@@ -24,6 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 
 class MainActivity : AppCompatActivity() {
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.miveterinariadv, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_misMascotas, R.id.agregar_vet, R.id.actualizar_y_eliminar_vet2, R.id.agregarempleadodv
+                R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.fragment_veterinarias, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_misMascotas, R.id.agregar_vet, R.id.actualizar_y_eliminar_vet2, R.id.agregarempleadodv
             ), drawerLayout
         )
 
@@ -75,43 +76,47 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val txtcorreoiniciarval = valorRolUsuario
             val RolUsuarioMainActivity = traerID()
-            if (txtcorreoiniciarval == RolUsuarioMainActivity) {
-                navView.menu.findItem(R.id.nav_homeDV).isVisible = true
-                navView.menu.findItem(R.id.fragment_citas).isVisible = true
-                navView.menu.findItem(R.id.fragment_agendarCita).isVisible = true
-                navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = true
-                navView.menu.findItem(R.id.chatdv).isVisible = true
-                navView.menu.findItem(R.id.resenasdv).isVisible = true
-                navView.menu.findItem(R.id.fragment_misMascotas).isVisible = true
-                navView.menu.findItem(R.id.ajustesdv).isVisible = true
-                navView.menu.findItem(R.id.fragment_asignaciones).isVisible = false
-                navView.menu.findItem(R.id.agregar_vet).isVisible = false
-                navView.menu.findItem(R.id.agregarempleadodv).isVisible = false
-                navView.menu.findItem(R.id.misempleadosdv).isVisible = false
-                navView.menu.findItem(R.id.solicitudescitadv).isVisible = false
-                navView.menu.findItem(R.id.clientesdv).isVisible = false
-            } else {
-                navView.menu.findItem(R.id.fragment_asignaciones).isVisible = true
-                navView.menu.findItem(R.id.resenasdv).isVisible = false
-                navView.menu.findItem(R.id.fragment_agendarCita).isVisible = false
-                navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = false
-                navView.menu.findItem(R.id.ajustesdv).isVisible = false
-                navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
-                navView.menu.findItem(R.id.agregar_vet).isVisible = true
-                navView.menu.findItem(R.id.agregarempleadodv).isVisible = true
-                navView.menu.findItem(R.id.resenasdv).isVisible = true
-                navView.menu.findItem(R.id.ajustesdv).isVisible = true
+            withContext(Dispatchers.Main){
+                if (txtcorreoiniciarval == RolUsuarioMainActivity) {
+                    navView.menu.findItem(R.id.nav_homeDV).isVisible = true
+                    navView.menu.findItem(R.id.fragment_citas).isVisible = true
+                    navView.menu.findItem(R.id.fragment_agendarCita).isVisible = true
+                    navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = true
+                    navView.menu.findItem(R.id.chatdv).isVisible = true
+                    navView.menu.findItem(R.id.resenasdv).isVisible = true
+                    navView.menu.findItem(R.id.fragment_misMascotas).isVisible = true
+                    navView.menu.findItem(R.id.ajustesdv).isVisible = true
+                    navView.menu.findItem(R.id.fragment_asignaciones).isVisible = false
+                    navView.menu.findItem(R.id.agregar_vet).isVisible = false
+                    navView.menu.findItem(R.id.agregarempleadodv).isVisible = false
+                    navView.menu.findItem(R.id.misempleadosdv).isVisible = false
+                    navView.menu.findItem(R.id.solicitudescitadv).isVisible = false
+                    navView.menu.findItem(R.id.clientesdv).isVisible = false
+                } else {
+                    navView.menu.findItem(R.id.fragment_asignaciones).isVisible = true
+                    navView.menu.findItem(R.id.resenasdv).isVisible = false
+                    navView.menu.findItem(R.id.fragment_agendarCita).isVisible = false
+                    navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = false
+                    navView.menu.findItem(R.id.ajustesdv).isVisible = false
+                    navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
+                    navView.menu.findItem(R.id.agregar_vet).isVisible = true
+                    navView.menu.findItem(R.id.agregarempleadodv).isVisible = true
+                    navView.menu.findItem(R.id.resenasdv).isVisible = true
+                    navView.menu.findItem(R.id.ajustesdv).isVisible = true
+                }
+
+                println("*******este es el resultado que traigo con el select ROL USUARIO MAIN $RolUsuarioMainActivity")
+                println("*************este es el resultado que traigo con el select CORREO INICIAR $txtcorreoiniciarval")
             }
 
-            println("*******este es el resultado que traigo con el select ROL USUARIO MAIN $RolUsuarioMainActivity")
-            println("*************este es el resultado que traigo con el select CORREO INICIAR $txtcorreoiniciarval")
-        }
 
+
+        }
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+            }
 
-       }
 
    private fun changeStatusBarColor(color: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

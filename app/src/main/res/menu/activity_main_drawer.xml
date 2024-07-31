@@ -52,7 +52,7 @@
             android:icon="@drawable/iconchat"
             android:title="Chat                                             >" />
         <item
-            android:id="@+id/miveterinariadv"
+            android:id="@+id/fragment_veterinarias"
             android:icon="@drawable/iconmiveterinaria"
             android:title="Veterinarias                                >" />
         <item
@@ -73,12 +73,6 @@
     </group>
 
 
-    <group android:id="@+id/group5">
-        <item
-            android:title=""/>
-        <item
-            android:title=""/>
-    </group>
     <group android:id="@+id/group6">
         <item
             android:id="@+id/fragment_misMascotas"
