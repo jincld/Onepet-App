@@ -56,24 +56,25 @@ class fragment_misMascotas : Fragment() {
 
             //2- Crear un Statement
             val statement = objConexion?.createStatement()
-            val resultSet = statement?.executeQuery("SELECT * FROM tbMascotas ")!!
+            val resultSet = statement?.executeQuery("SELECT m.uuid_mascota, m.nombre_mascota, m.raza, m.sexo, m.procesos_previos, m.alergias, m.enfermedades_cronicas, m.fecha_nacimiento, m.peso,e.nombre_especie, u.nombre_usuario FROM tbMascotas m RIGHT JOIN tbEspecies  e ON m.especie = e.uuid_especie LEFT JOIN tbUsuariosOne u ON m.dueno = u.uuid_usuario")!!
 
             val listaMisMascotas = mutableListOf<tbMascotas>()
 
             while (resultSet.next()){
-                val UUID_mascota = resultSet.getString("UUID_mascota")
+                val UUID_mascota = resultSet.getString("uuid_mascota")
                 val nombre_mascota = resultSet.getString("nombre_mascota")
-//                val sexo = resultSet.getString("sexo")
-//                val especie = resultSet.getString("especie")
                 val raza = resultSet.getString("raza")
+                val sexo = resultSet.getString("sexo")
                 val procesos_previos = resultSet.getString("procesos_previos")
                 val alergias = resultSet.getString("alergias")
                 val enfermedades_cronicas = resultSet.getString("enfermedades_cronicas")
                 val fecha_nacimiento = resultSet.getString("fecha_nacimiento")
-                val peso = resultSet.getInt("peso")
+                val peso = resultSet.getString("peso")
+                val nombre_especie = resultSet.getString("nombre_especie")
+                val nombre_usuario = resultSet.getString("nombre_usuario")
 
                 //SPINNERS
-                val valoresJuntos = tbMascotas(UUID_mascota, nombre_mascota, raza, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso.toInt())
+                val valoresJuntos = tbMascotas(UUID_mascota, nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso, nombre_especie, nombre_usuario)
 
                 listaMisMascotas.add(valoresJuntos)
             }

@@ -26,6 +26,10 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
         return ViewHolder(vista)
     }
 
+    companion object variablesGlobalesMascota {
+        lateinit var variableMascotaGlobal: String
+    }
+
     /////////////////// TODO: Eliminar datos
     fun eliminarDatos(nombreMascota: String, posicion: Int){
         //Actualizo la lista de datos y notifico al adaptador
@@ -37,7 +41,7 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
             val objConexion = ClaseConexion().cadenaConexion()
 
             //2- Crear una variable que contenga un PrepareStatement
-            val deleteMascota = objConexion?.prepareStatement("delete from tbMascotas where nombreMascota = ?")!!
+            val deleteMascota = objConexion?.prepareStatement("delete from tbMascotas where nombre_mascota = ?")!!
             deleteMascota.setString(1, nombreMascota)
             deleteMascota.executeUpdate()
 
@@ -58,7 +62,7 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
 
     fun obtenerUUIDMascota(): String? {
 
-        val mascotaGlobalEscrito = agregarmascotaas.variablesGlobalesMascota.variableMascotaGlobal
+        val mascotaGlobalEscrito = variableMascotaGlobal
         val objConexion = ClaseConexion().cadenaConexion()
 
         val traerUUIDMascota = objConexion?.prepareStatement("Select UUID_mascota from tbMascotas where nombre_mascota = ?")!!
@@ -76,7 +80,7 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
         return uuidmascota
     }
 
-    //////////////////////TODO: Actalizar datos
+    //////////////////////TODO: Actualizar datos
     fun actualizarDato(nuevoNombre: String, nuevaRaza: String, nuevosProcesosP: String, nuevaAlergia: String, nuevaEnfermedadC: String, nuevaFechaNacimiento: String, nuevoPeso: Int, nuevoUUID: String ){
         GlobalScope.launch(Dispatchers.IO){
 
@@ -112,17 +116,16 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //Controlar a la card
         val controlCard = Datos[position]
-        holder.txtNombreMCard.text = controlCard.nombre_mascota
-        //SPINNER DE GENERO
-//        holder.txtGeneroMCard.text = controlCard.sexo
-//        //SPINNER DE ESPECIE
-//        holder.txtEspecieMCard.text = controlCard.especie
-        holder.txtRazaMCard.text = controlCard.raza
-        holder.txtProcedimientoMCard.text = controlCard.procesos_previos
-        holder.txtAñoMCard.text = controlCard.fecha_nacimiento
-        holder.txtEnfermedadesMCard.text = controlCard.enfermedades_cronicas
-        holder.txtAlergiasMCard.text = controlCard.alergias
-        holder.txtPesoMCard.text = controlCard.peso.toString()
+        holder.txtNombreMascota.text = controlCard.nombre_mascota
+        holder.txtRazaMascotaCard.text = controlCard.raza
+        holder.txtSexoMascota.text = controlCard.sexo
+        holder.txtProcesosPrevios.text = controlCard.procesos_previos
+        holder.txtAlergiasMascotas.text = controlCard.alergias
+        holder.txtEnfermedadesCM.text = controlCard.enfermedades_cronicas
+        holder.txtFechaNacimiento.text = controlCard.fecha_nacimiento
+        holder.txtPesoMascotas.text = controlCard.peso
+        holder.txtNombreEspecie.text = controlCard.nombre_especie
+        holder.txtDueno.text = controlCard.nombre_usuario
 
         //todo: clic al boton de eliminar
         holder.btnEliminarMCard.setOnClickListener {
@@ -177,7 +180,7 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
                 setText(controlCard.fecha_nacimiento)
             }
             val pesoMascota = EditText(context).apply {
-                setText(controlCard.peso.toInt())
+                setText(controlCard.peso)
             }
 
             val layout = LinearLayout(context).apply {

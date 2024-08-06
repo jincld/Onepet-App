@@ -12,18 +12,16 @@ import modelo.tbMascotas
 class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     //En el ViewHolder mando a llamar los elementos de la card
-    val txtNombreMCard = view.findViewById<TextView>(R.id.txtNombreMascota)
-
-//    val txtEspecieMCard= view.findViewById<TextView>(R.id.txtEspecieMascotaCard)
-//    val txtGeneroMCard= view.findViewById<TextView>(R.id.txtGeneroCard)
-
-    val txtPesoMCard = view.findViewById<TextView>(R.id.txtPesoMascotaCard)
-    val txtAñoMCard = view.findViewById<TextView>(R.id.txtAñoMascota)
-    val txtEnfermedadesMCard = view.findViewById<TextView>(R.id.txtEnfermedadesCM)
-    val txtProcedimientoMCard= view.findViewById<TextView>(R.id.txtProcedimientosMAscotas)
-    val txtRazaMCard = view.findViewById<TextView>(R.id.txtRazaMascota)
-    val txtAlergiasMCard = view.findViewById<TextView>(R.id.txtAlergiasMascotas)
-
-    val btnActualizarMCard = view.findViewById<Button>(R.id.btnActualizarMCard)
+    val txtNombreMascota = view.findViewById<TextView>(R.id.txtNombreMascota)
+    val txtRazaMascotaCard = view.findViewById<TextView>(R.id.txtRazaMascotaCard)
+    val txtSexoMascota = view.findViewById<TextView>(R.id.txtSexoMascota)
+    val txtProcesosPrevios = view.findViewById<TextView>(R.id.txtProcesosPrevios)
+    val txtAlergiasMascotas = view.findViewById<TextView>(R.id.txtAlergiasMascotas)
+    val txtEnfermedadesCM = view.findViewById<TextView>(R.id.txtEnfermedadesCM)
+    val txtFechaNacimiento = view.findViewById<TextView>(R.id.txtFechaNacimiento)
+    val txtPesoMascotas = view.findViewById<TextView>(R.id.txtPesoMascotas)
+    val txtNombreEspecie = view.findViewById<TextView>(R.id.txtNombreEspecie)
+    val txtDueno = view.findViewById<TextView>(R.id.txtDueno)
     val btnEliminarMCard = view.findViewById<Button>(R.id.btnEliminarMCard)
+    val btnActualizarMCard = view.findViewById<Button>(R.id.btnActualizarMCard)
 }

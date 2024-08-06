@@ -93,6 +93,8 @@ class agregarmascotaas : Fragment() {
         fun obtenerUUIDDueno(): String? {
 
             val correoGlobalEscrito = iniciarsesion.variablesGlobalesLogin.correodelUsuarioGlobal
+
+
             val objConexion = ClaseConexion().cadenaConexion()
 
             val traerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?")!!
@@ -291,4 +293,6 @@ class agregarmascotaas : Fragment() {
         //retornar root
         return root
     }
+
+    
 }
