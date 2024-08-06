@@ -88,7 +88,7 @@ class iniciarsesion : AppCompatActivity() {
 
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
-                GlobalScope.launch(Dispatchers.IO) {
+            GlobalScope.launch(Dispatchers.IO) {
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
