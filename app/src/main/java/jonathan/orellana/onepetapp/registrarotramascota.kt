@@ -19,20 +19,5 @@ class registrarotramascota : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        supportActionBar?.hide();
-
-        val btnVolver = findViewById<ImageButton>(R.id.btnVolverrom)
-
-        btnVolver.setOnClickListener {
-            val pantallaSiguiente = Intent(this, registrarmascotadm::class.java)
-            startActivity(pantallaSiguiente)
-        }
-
-        val btnRegistrarOtra = findViewById<Button>(R.id.btnRegistrarOtra)
-
-        btnRegistrarOtra.setOnClickListener {
-            val pantallaSiguiente = Intent(this, registrarmascotadm::class.java)
-            startActivity(pantallaSiguiente)
-        }
     }
 }

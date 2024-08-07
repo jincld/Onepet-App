@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".correoderecuperacion">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF">
+
+        <EditText
+            android:id="@+id/txtcorreorecupracion"
+            android:layout_width="299dp"
+            android:layout_height="49dp"
+            android:ems="10"
+            android:hint="Correo Electrónico"
+            android:inputType="text"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="379dp" />
+
+        <Button
+            android:id="@+id/btncorreorecuperacion"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Siguiente"
+            tools:layout_editor_absoluteX="149dp"
+            tools:layout_editor_absoluteY="557dp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="288dp"
+            android:layout_height="98dp"
+            android:fontFamily="@font/alata"
+            android:text="Recuperación de contraseña"
+            android:textAlignment="textStart"
+            android:textSize="34sp"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="151dp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="229dp"
+            android:layout_height="55dp"
+            android:text="Ingrese el correo electrónico de su cuenta"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="324dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,18 @@
     </group>
     <group android:id="@+id/group2">
         <item
+            android:id="@+id/fragment_citas"
+            android:icon="@drawable/iconcitas"
+            android:title="Citas                                            >" />
+        <item
+            android:id="@+id/fragment_agendarCita"
+            android:icon="@drawable/iconagendar"
+            android:title="Agendar cita                              >" />
+        <item
+            android:id="@+id/fragment_estadoSolicitud"
+            android:icon="@drawable/iconestado"
+            android:title="Estado de solicitudes               >" />
+        <item
             android:id="@+id/agregarempleadodv"
             android:icon="@drawable/iconagregaremp"
             android:title="Agregar empleados                  >" />
@@ -19,18 +31,30 @@
             android:id="@+id/misempleadosdv"
             android:icon="@drawable/iconmisempleados"
             android:title="Mis empleados                          >"/>
-    </group>
-    <group android:id="@+id/group3">
         <item
             android:id="@+id/solicitudescitadv"
             android:icon="@drawable/iconsolicitudes"
             android:title="Solicitudes de cita                    >" />
         <item
             android:id="@+id/historialcitasdv"
-            android:icon="@drawable/iconhistorialcita"
+            android:icon="@drawable/iconestado"
             android:title="Historial de citas                       >" />
+        <item
+            android:id="@+id/fragment_asignaciones"
+            android:icon="@drawable/iconsolicitudes"
+            android:title="Asignaciones                             >" />
     </group>
-    <group android:id="@+id/group4">
+
+
+    <group android:id="@+id/group3">
+        <item
+            android:id="@+id/chatdv"
+            android:icon="@drawable/iconchat"
+            android:title="Chat                                             >" />
+        <item
+            android:id="@+id/fragment_veterinarias"
+            android:icon="@drawable/iconmiveterinaria"
+            android:title="Veterinarias                                >" />
         <item
             android:id="@+id/clientesdv"
             android:icon="@drawable/iconclientes"
@@ -39,17 +63,20 @@
             android:id="@+id/miveterinariadv"
             android:icon="@drawable/iconmiveterinaria"
             android:title="Mi veterinaria                             >" />
-        <item
-            android:id="@+id/chatdv"
-            android:icon="@drawable/iconchat"
-            android:title="Chat                                             >" />
     </group>
+
     <group android:id="@+id/group5">
         <item
             android:id="@+id/resenasdv"
             android:icon="@drawable/iconresenas"
             android:title="Reseñas                                      >" />
+        <item
+            android:id="@+id/agregarmascotaas"
+            android:icon="@drawable/iconresenas"
+            android:title="Mascotas                                    >" />
     </group>
+
+
     <group android:id="@+id/group5">
         <item
             android:title=""/>
@@ -57,6 +84,10 @@
             android:title=""/>
     </group>
     <group android:id="@+id/group6">
+        <item
+            android:id="@+id/fragment_misMascotas"
+            android:icon="@drawable/iconmascotas"
+            android:title="Mis mascotas                            >" />
         <item
             android:id="@+id/ajustesdv"
             android:icon="@drawable/iconajustes"
