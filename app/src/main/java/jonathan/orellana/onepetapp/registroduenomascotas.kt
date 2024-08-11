@@ -2,6 +2,9 @@ package jonathan.orellana.onepetapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -51,6 +54,8 @@ class  registroduenomascotas : AppCompatActivity() {
        /* val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)*/
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
         val  btnVolver = findViewById<ImageButton>(R.id.btnVolverDM)
+
+
 
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, registrarse::class.java)
@@ -135,7 +140,8 @@ class  registroduenomascotas : AppCompatActivity() {
                     crearusuario.executeUpdate()
                     withContext(Dispatchers.Main){
                         //mostrar mensaje y limpiar campos
-                        Toast.makeText(this@registroduenomascotas, "Usuario registrado", Toast.LENGTH_SHORT).show()
+                       Toast.makeText(this@registroduenomascotas, "Usuario registrado", Toast.LENGTH_SHORT).show()
+
                         txtnombreduenomas.setText("")
                         txtcontraduenomas.setText("")
                         txtcorreoduenomas.setText("")
@@ -143,11 +149,16 @@ class  registroduenomascotas : AppCompatActivity() {
                         startActivity(login)
 
                     }
+
                 }
+
             }
-          }
+        }
+
        }
+
     }
+
 
 
 

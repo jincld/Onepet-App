@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import jonathan.orellana.onepetapp.databinding.ActivityMainBinding
 import android.view.Window
 import android.view.WindowManager
+import android.widget.ImageButton
 import androidx.core.view.GravityCompat
 import jonathan.orellana.onepetapp.iniciarsesion.variablesLogin.valorRolUsuario
 import kotlinx.coroutines.CoroutineScope
@@ -59,6 +60,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.miveterinariadv, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_misMascotas, R.id.agregar_vet, R.id.actualizar_y_eliminar_vet2, R.id.agregarempleadodv
             ), drawerLayout
         )
+
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+
+        val headerView = navigationView.getHeaderView(0)
+        val imgAtras: ImageButton = headerView.findViewById(R.id.btnCerrarDrawer)
+
+        imgAtras.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
 
         fun traerID(): String? {
             var uuidRol: String? = null
