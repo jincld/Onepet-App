@@ -25,17 +25,8 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_cardmascotas, parent, false)
         return ViewHolder(vista)
     }
-
-    companion object variablesGlobalesMascota {
-        lateinit var variableMascotaGlobal: String
-    }
-
     /////////////////// TODO: Eliminar datos
     fun eliminarDatos(nombreMascota: String, posicion: Int){
-        //Actualizo la lista de datos y notifico al adaptador
-        val listaDatos = Datos.toMutableList()
-        listaDatos.removeAt(posicion)
-
         GlobalScope.launch(Dispatchers.IO){
             //1- Creamos un objeto de la clase conexion
             val objConexion = ClaseConexion().cadenaConexion()
@@ -47,65 +38,51 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
 
             val commit = objConexion.prepareStatement("commit")!!
             commit.executeUpdate()
+
+            withContext(Dispatchers.Main){
+                val listaDatos = Datos.toMutableList()
+                listaDatos.removeAt(posicion)
+                notifyItemRemoved(posicion)
+                notifyDataSetChanged()
+            }
         }
-        Datos = listaDatos.toList()
-        // Notificar al adaptador sobre los cambios
-        notifyItemRemoved(posicion)
-        notifyDataSetChanged()
     }
 
-    fun actualicePantalla(nuevoNombre: String, nuevaRaza: String, nuevosProcesosP: String, nuevaAlergia: String, nuevaEnfermedadC: String, nuevaFechaNacimiento: String, nuevoPeso: Int, nuevoUUID: String ){
-        val index = Datos.indexOfFirst { it.UUID_mascota == nuevoUUID }
-        Datos[index].nombre_mascota = nuevoNombre
-        notifyDataSetChanged()
-    }
-
-    fun obtenerUUIDMascota(): String? {
-
-        val mascotaGlobalEscrito = variableMascotaGlobal
-        val objConexion = ClaseConexion().cadenaConexion()
-
-        val traerUUIDMascota = objConexion?.prepareStatement("Select UUID_mascota from tbMascotas where nombre_mascota = ?")!!
-        traerUUIDMascota.setString(1, mascotaGlobalEscrito)
-        val resultSet = traerUUIDMascota.executeQuery()
-
-        var uuidmascota: String? = null
-
-        if (resultSet?.next() == true) {
-            uuidmascota = resultSet.getString("UUID_mascota")
-            println("este es el uuid traido desde el if $uuidmascota")
+    fun actualicePantalla(UUID_mascota: String, nuevoNombre: String, nuevaRaza: String, nuevosProcesosP: String, nuevaAlergia: String, nuevaEnfermedadC: String, nuevaFechaNacimiento: String, nuevoPeso: Double){
+        val index = Datos.indexOfFirst { it.UUID_mascota == UUID_mascota }
+        if(index != -1) {
+            Datos[index].nombre_mascota = nuevoNombre
+            Datos[index].raza = nuevaRaza
+            Datos[index].procesos_previos = nuevosProcesosP
+            Datos[index].alergias = nuevaAlergia
+            Datos[index].enfermedades_cronicas = nuevaEnfermedadC
+            Datos[index].fecha_nacimiento = nuevaFechaNacimiento
+            Datos[index].peso = nuevoPeso.toString()
+            notifyDataSetChanged()
         }
-
-        println("este es el uuid traido desde la funcion $uuidmascota")
-        return uuidmascota
     }
 
     //////////////////////TODO: Actualizar datos
-    fun actualizarDato(nuevoNombre: String, nuevaRaza: String, nuevosProcesosP: String, nuevaAlergia: String, nuevaEnfermedadC: String, nuevaFechaNacimiento: String, nuevoPeso: Int, nuevoUUID: String ){
+    fun actualizarDato(nuevoNombre: String, nuevaRaza: String, nuevosProcesosP: String, nuevaAlergia: String, nuevaEnfermedadC: String, nuevaFechaNacimiento: String, nuevoPeso: Double, UUID_mascota: String) {
         GlobalScope.launch(Dispatchers.IO){
-
-            //1- Creo un objeto de la clase de conexion
             val objConexion = ClaseConexion().cadenaConexion()
 
-            val uuidMascotaTraido = obtenerUUIDMascota()
-
-            //2- creo una variable que contenga un PrepareStatement
-            val updateMascota = objConexion?.prepareStatement("Update tbMascotas set nombre_mascota =  ?, raza = ? , procesos_previos = ?, alergias = ?, enfermedades_cronicas = ?, fecha_nacimiento = ?, peso = ? where nombre_mascota = ?")!!
+            val updateMascota = objConexion?.prepareStatement("Update tbMascotas set nombre_mascota =  ?, raza = ? , procesos_previos = ?, alergias = ?, enfermedades_cronicas = ?, fecha_nacimiento = ?, peso = ? where UUID_mascota = ?")!!
             updateMascota.setString(1, nuevoNombre)
             updateMascota.setString(2, nuevaRaza)
             updateMascota.setString(3, nuevosProcesosP)
             updateMascota.setString(4, nuevaAlergia)
             updateMascota.setString(5, nuevaEnfermedadC)
             updateMascota.setString(6, nuevaFechaNacimiento)
-            updateMascota.setInt(7, nuevoPeso)
-
-            updateMascota.setString(8, uuidMascotaTraido )
-            println("este es el uuid traido antes del execute  $uuidMascotaTraido")
-
+            updateMascota.setDouble(7, nuevoPeso)
+            updateMascota.setString(8, UUID_mascota)
             updateMascota.executeUpdate()
 
+            val commit = objConexion.prepareStatement("COMMIT")!!
+            commit.executeUpdate()
+
             withContext(Dispatchers.Main){
-                actualicePantalla(nuevoNombre, nuevaRaza, nuevosProcesosP, nuevaAlergia, nuevaEnfermedadC, nuevaFechaNacimiento, nuevoPeso, nuevoUUID)
+                actualicePantalla(UUID_mascota, nuevoNombre, nuevaRaza, nuevosProcesosP, nuevaAlergia, nuevaEnfermedadC, nuevaFechaNacimiento, nuevoPeso)
             }
         }
     }
@@ -116,6 +93,7 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //Controlar a la card
         val controlCard = Datos[position]
+
         holder.txtNombreMascota.text = controlCard.nombre_mascota
         holder.txtRazaMascotaCard.text = controlCard.raza
         holder.txtSexoMascota.text = controlCard.sexo
@@ -123,7 +101,7 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
         holder.txtAlergiasMascotas.text = controlCard.alergias
         holder.txtEnfermedadesCM.text = controlCard.enfermedades_cronicas
         holder.txtFechaNacimiento.text = controlCard.fecha_nacimiento
-        holder.txtPesoMascotas.text = controlCard.peso
+        holder.txtPesoMascotas.text = controlCard.peso.toString()
         holder.txtNombreEspecie.text = controlCard.nombre_especie
         holder.txtDueno.text = controlCard.nombre_usuario
 
@@ -204,12 +182,9 @@ class Adaptador (var Datos: List<tbMascotas>): RecyclerView.Adapter<ViewHolder>(
                     alergiasMascota.text.toString(),
                     enfermedadesCMascota.text.toString(),
                     fechanacimientoMascota.text.toString(),
-                    //ERROR AQUI
-                    pesoMascota.text.toString().toInt(),
-                    //FALTA nuevoUUID
-                    obtenerUUIDMascota().toString()
+                    pesoMascota.text.toString().toDouble(),
+                    controlCard.UUID_mascota
                 )
-                builder.setMessage("Datos Actualizados")
             }
 
             builder.setNegativeButton("Cancelar"){dialog, which ->

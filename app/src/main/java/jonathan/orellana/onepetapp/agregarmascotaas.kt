@@ -47,6 +47,16 @@ class agregarmascotaas : Fragment() {
         lateinit var variableMascotaGlobal: String
     }
 
+    val codigo_opcion_galeria = 102
+    val codigo_opcion_tomar_foto = 103
+    val CAMERA_REQUEST_CODE = 0
+    val STORAGE_REQUEST_CODE = 1
+
+    lateinit var imageView: ImageView
+    lateinit var miPath: String
+
+    val uuid = UUID.randomUUID().toString()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
