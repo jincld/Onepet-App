@@ -2,86 +2,72 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
+    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".miveterinariadv">
+    tools:context=".actualizar_y_eliminar_vet">
 
     <TextView
         android:id="@+id/txtVerServiciosVet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="386dp"
-        android:layout_marginEnd="181dp"
-        android:layout_marginBottom="326dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnEliminarVet"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtVerCorreoVet"
+        app:layout_constraintVertical_bias="0.234" />
 
     <TextView
         android:id="@+id/txtVerNitVet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="243dp"
-        android:layout_marginEnd="181dp"
-        android:layout_marginBottom="469dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView36"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtVerUbicacionVet"
+        app:layout_constraintVertical_bias="0.188" />
 
     <TextView
         android:id="@+id/txtVerUbicacionVet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="181dp"
-        android:layout_marginBottom="512dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEliminarVet"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView30"
-        android:layout_width="437dp"
-        android:layout_height="500dp"
-        android:src="@drawable/degabceleste"
-        tools:layout_editor_absoluteX="-36dp"
-        tools:layout_editor_absoluteY="364dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtVerNombreVet"
+        app:layout_constraintVertical_bias="0.076" />
 
     <ImageView
         android:id="@+id/imageView36"
         android:layout_width="437dp"
         android:layout_height="500dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="360dp"
         android:src="@drawable/degabceleste"
-        tools:layout_editor_absoluteX="-51dp"
-        tools:layout_editor_absoluteY="351dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtTituloMiVet" />
 
     <ImageView
         android:id="@+id/imageView31"
         android:layout_width="265dp"
         android:layout_height="263dp"
+        android:layout_marginTop="596dp"
+        android:layout_marginEnd="271dp"
         android:rotation="73"
         android:src="@drawable/gbuno"
-        tools:layout_editor_absoluteX="-130dp"
-        tools:layout_editor_absoluteY="635dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnEditarVet"
         android:layout_width="204dp"
         android:layout_height="51dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="458dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="222dp"
         android:background="@drawable/btnazul"
         android:fontFamily="@font/alata"
         android:text="Editar Datos"
@@ -90,17 +76,15 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.591" />
 
     <Button
         android:id="@+id/btnEliminarVet"
         android:layout_width="204dp"
         android:layout_height="51dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="553dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="127dp"
         android:background="@drawable/btnazul"
         android:fontFamily="@font/alata"
         android:text="Eliminar Datos"
@@ -109,35 +93,39 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEditarVet"
+        app:layout_constraintVertical_bias="0.131" />
 
     <ImageView
         android:id="@+id/imageView33"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="702dp"
         android:src="@drawable/circulocelesteazul"
-        tools:layout_editor_absoluteX="222dp"
-        tools:layout_editor_absoluteY="701dp" />
+        app:layout_constraintEnd_toStartOf="@+id/imageView32"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView32"
         android:layout_width="228dp"
         android:layout_height="239dp"
+        android:layout_marginStart="293dp"
+        android:layout_marginTop="608dp"
         android:src="@drawable/circulocelesteazul"
-        tools:layout_editor_absoluteX="272dp"
-        tools:layout_editor_absoluteY="659dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtTituloMiVet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="69dp"
-        android:layout_marginBottom="616dp"
         android:fontFamily="@font/alata"
         android:text="Mi veterinaria"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -146,42 +134,38 @@
         android:id="@+id/txtVerNombreVet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="158dp"
-        android:layout_marginEnd="181dp"
-        android:layout_marginBottom="554dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEliminarVet"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTituloMiVet"
+        app:layout_constraintVertical_bias="0.066" />
 
     <TextView
         android:id="@+id/txtVerContactoVet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="288dp"
-        android:layout_marginEnd="181dp"
-        android:layout_marginBottom="424dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView36"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtVerNitVet"
+        app:layout_constraintVertical_bias="0.264" />
 
     <TextView
         android:id="@+id/txtVerCorreoVet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginTop="335dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginBottom="377dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnEditarVet"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/txtVerContactoVet"
+        app:layout_constraintVertical_bias="0.282" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

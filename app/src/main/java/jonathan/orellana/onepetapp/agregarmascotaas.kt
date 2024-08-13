@@ -1,13 +1,6 @@
 package jonathan.orellana.onepetapp
 
-import android.app.Activity
-import android.app.DatePickerDialog
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,20 +8,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import modelo.dataClassEspecie
-import java.io.ByteArrayOutputStream
-import java.util.Calendar
 import java.util.UUID
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,24 +29,15 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class agregarmascotaas : Fragment() {
-
-    companion object variablesGlobalesMascota{
-        lateinit var variableMascotaGlobal: String
-    }
-
-    val codigo_opcion_galeria = 102
-    val codigo_opcion_tomar_foto = 103
-    val CAMERA_REQUEST_CODE = 0
-    val STORAGE_REQUEST_CODE = 1
-
-    lateinit var imageView: ImageView
-    lateinit var miPath: String
-
-    val uuid = UUID.randomUUID().toString()
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -72,48 +50,25 @@ class agregarmascotaas : Fragment() {
         //Mando a llamar el boton usando la variable root
         val txtNomAddMascota = root.findViewById<EditText>(R.id.txtNombreMascota)
         val spSelectEspecie = root.findViewById<Spinner>(R.id.spEspecie)
-        val spGeneroMascota = root.findViewById<Spinner>(R.id.spGenero)
-        val txtPesoAddMascota = root.findViewById<EditText>(R.id.txtPesoMascotas)
+        val txtGenAddMascota = root.findViewById<EditText>(R.id.txtGeneroMascota)
+        val txtPesoAddMascota = root.findViewById<EditText>(R.id.txtPesoMascota)
         val txtAñoAddMascota = root.findViewById<EditText>(R.id.txtAñoMascota)
-        val txtEnferCAddMascota = root.findViewById<EditText>(R.id.txtEnfermedadesCM)
-        val txtProceMAddMascota = root.findViewById<EditText>(R.id.txtProcedimientosMAscotas)
+        val txtEnferCAddMascota = root.findViewById<EditText>(R.id.txtEnfermedadesCMascota)
+        val txtProceMAddMascota = root.findViewById<EditText>(R.id.txtProcedimientosMAscota)
         val txtRazaMascota = root.findViewById<EditText>(R.id.txtRazaMascota)
-        val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascotas)
+        val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascota)
         val btnAddFotoMascota = root.findViewById<Button>(R.id.btnAgregarFotoMascota)
         val btnAgregarMascotas = root.findViewById<Button>(R.id.btnAgregarMascotas)
-
-
-
-
-        txtAñoAddMascota.setOnClickListener {
-            val calendario = Calendar.getInstance()
-            val anio = calendario.get(Calendar.YEAR)
-            val mes = calendario.get(Calendar.MONTH)
-            val dia = calendario.get(Calendar.DAY_OF_MONTH)
-            val datePickerDialog = DatePickerDialog(
-                requireContext(),
-                { view, anioSeleccionado, mesSeleccionado, diaSeleccionado ->
-                    val fechaSeleccionada =
-                        "$diaSeleccionado/${mesSeleccionado + 1}/$anioSeleccionado"
-                    txtAñoAddMascota.setText(fechaSeleccionada)
-                },
-                anio, mes, dia
-            )
-            datePickerDialog.show()
-        }
-
 
         //Obtener UUID de Dueño de Mascota (Usuario)
         fun obtenerUUIDDueno(): String? {
 
-            val correoGlobalEscrito = iniciarsesion.variablesGlobalesLogin.correodelUsuarioGlobal
-
-
+            val correoGlobalEscrito = login.variablesGlobalesLogin.correodelUsuarioGlobal
             val objConexion = ClaseConexion().cadenaConexion()
 
-            val traerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?")!!
-            traerUUIDUsuario.setString(1, correoGlobalEscrito)
-            val resultSet = traerUUIDUsuario.executeQuery()
+            val tarerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?")!!
+            tarerUUIDUsuario.setString(1, correoGlobalEscrito)
+            val resultSet = tarerUUIDUsuario.executeQuery()
 
             var uuidUsuario: String? = null
 
@@ -163,29 +118,17 @@ class agregarmascotaas : Fragment() {
             }
         }
 
-        //Obtener Lista del Spinner de Genero
-        val listadoGenero = arrayOf("Masculino", "Femenino")
-
-        //Crear y configurar el adaptador
-        //El adaptador solicita tres cosas: el contexto, un layout y los datos
-        val miAdaptadorDeLinea = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, listadoGenero)
-        spGeneroMascota.adapter = miAdaptadorDeLinea
-
 
         btnAgregarMascotas.setOnClickListener{
-
-            variableMascotaGlobal = txtNomAddMascota.text.toString()
-
             //Guardar en una variable los valores que escribio el  usuario
             val nombreMascota = txtNomAddMascota.text.toString()
+            val generoMascota = txtGenAddMascota.text.toString()
             val pesoMascota = txtPesoAddMascota.text.toString()
             val añoMascota = txtAñoAddMascota.text.toString()
             val enfermedadesCronicas = txtEnferCAddMascota.text.toString()
             val procedimientoMA = txtProceMAddMascota.text.toString()
             val razaMascota = txtRazaMascota.text.toString()
             val alergiaMascota = txtAlerAddMascota.text.toString()
-
-
 
             //Variable para verificar si hay errores la inicializamos en false
             var hayErrores = false
@@ -198,6 +141,14 @@ class agregarmascotaas : Fragment() {
             }
             else {
                 txtNomAddMascota.error = null
+            }
+            //Genero de Mascota
+            if (generoMascota.isEmpty()) {
+                txtGenAddMascota.error = "El Genero de la Mascota es obligatorio"
+                hayErrores = true
+            }
+            else {
+                txtGenAddMascota.error = null
             }
             //Peso Mascota
             if (pesoMascota.isEmpty()) {
@@ -248,16 +199,24 @@ class agregarmascotaas : Fragment() {
                 txtAlerAddMascota.error = null
             }
 
+            //TODO: 2- Validacion de Numeros
+            if (!pesoMascota.matches(Regex("¨[0-9]+")))  {
+                txtPesoAddMascota.error = "El peso solo debe contener numeros"
+                hayErrores = true
+            }
+            else {
+                txtPesoAddMascota.error = null
+            }
+
             //Si hay errores no procede a guardar los datos
             if(hayErrores) {
                 //Hacer algo si hay errores
             }
             else {
-                //Si todas las validaciones son correcta, procede a guardar los datos en la base de datos
+                //Si todas las validaciones son correcta, procede a guardar los daots
                 CoroutineScope(Dispatchers.IO).launch {
                     val especiee = obtenerEspecie()
                     val especieID = especiee[spSelectEspecie.selectedItemPosition].UUID_especie
-
                     //Guardar datos
                     //1- Creo un objeto de la clase conexion
                     val claseC = ClaseConexion().cadenaConexion()
@@ -267,33 +226,28 @@ class agregarmascotaas : Fragment() {
 
                     //2- creo una variable que contenga un PrepareStatement
                     val addMascota =
-                        claseC?.prepareStatement("insert into tbMascotas(uuid_mascota, nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso,  especie, dueno) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )")!!
-                    //UUID de usuario no mostrado al dueno, estando solo adentro de la base de datos
+                        claseC?.prepareStatement("into tbMascotas(uuid_mascota, nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso,  especie, dueno) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )")!!
                     addMascota.setString(1, UUID.randomUUID().toString())
                     addMascota.setString(2, txtNomAddMascota.text.toString())
                     addMascota.setString(3, txtRazaMascota.text.toString())
-
-                    //Spinner Generado en codigo
-                    addMascota.setString(4, spGeneroMascota.selectedItem.toString())
-
+                    addMascota.setString(4, txtGenAddMascota.text.toString())
                     addMascota.setString(5, txtProceMAddMascota.text.toString())
                     addMascota.setString(6, txtAlerAddMascota.text.toString())
                     addMascota.setString(7, txtEnferCAddMascota.text.toString())
                     addMascota.setString(8, txtAñoAddMascota.text.toString())
                     addMascota.setInt(9, txtPesoAddMascota.text.toString().toInt())
-
-                    addMascota.setString(10, especieID)
-
-                    addMascota.setString(11, uuidUsuarioTraido)
+                    addMascota.setString(10, uuidUsuarioTraido)
                     println("este es el uuid traido antes del execute  $uuidUsuarioTraido")
-
+                    addMascota.setString(11, especieID)
                     addMascota.executeUpdate()
 
                     //Abro una corrutina para mostrar una alerta y limpiar los campos
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(context, "Datos registrados", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Datos guardados", Toast.LENGTH_SHORT).show()
                         txtNomAddMascota.setText("")
                         txtRazaMascota.setText("")
+                        txtGenAddMascota.setText("")
+                        txtGenAddMascota.setText("")
                         txtProceMAddMascota.setText("")
                         txtAlerAddMascota.setText("")
                         txtEnferCAddMascota.setText("")
@@ -306,5 +260,25 @@ class agregarmascotaas : Fragment() {
         }
         //retornar root
         return root
+    }
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment agregarmascotaas.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            agregarmascotaas().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
     }
 }

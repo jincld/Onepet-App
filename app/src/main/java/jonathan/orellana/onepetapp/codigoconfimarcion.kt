@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,8 +27,13 @@ class codigoconfimarcion : AppCompatActivity() {
 
         val txtcodigoconfimacion = findViewById<EditText>(R.id.txtcodigorecuperacion)
         val btncodigoconfirmacion = findViewById<Button>(R.id.btncodigorecuperacion)
-
         val numeroTraido = correoderecuperacion.globalvariables.numeroaleatorio
+        val btnVolver = findViewById<ImageButton>(R.id.btnVolverCCR)
+
+        btnVolver.setOnClickListener {
+            val pantallaAnterior = Intent(this, correoderecuperacion::class.java)
+            startActivity(pantallaAnterior)
+        }
 
       btncodigoconfirmacion.setOnClickListener{
           val numerobtenido = txtcodigoconfimacion.text.toString().toIntOrNull()
@@ -38,12 +44,12 @@ class codigoconfimarcion : AppCompatActivity() {
        }
          if (numerobtenido.toString() == numeroTraido){
              Toast.makeText(this, "Codigo de confimacion correcto", Toast.LENGTH_SHORT).show()
+             val recuperar = Intent(this, nuevacontrasena::class.java)
+             startActivity(recuperar)
          } else {
           Toast.makeText(this, "Número incorrecto, intenta de nuevo", Toast.LENGTH_SHORT).show()
         }
 
-              val recuperar = Intent(this, nuevacontrasena::class.java)
-              startActivity(recuperar)
 
        }
 

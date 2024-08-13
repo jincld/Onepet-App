@@ -35,7 +35,7 @@ class  registroduenomascotas : AppCompatActivity() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+             insets
         }
         supportActionBar?.hide();
 
@@ -48,7 +48,7 @@ class  registroduenomascotas : AppCompatActivity() {
         val  txtnombreduenomas = findViewById<EditText>(R.id.txtnombreduenomas)
         val  txtcorreoduenomas = findViewById<EditText>(R.id.txtcorreoduenomas)
         val  txtcontraduenomas = findViewById<EditText>(R.id.txtcontraduenomas)
-        val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)
+       /* val  btnftoperfil = findViewById<Button>(R.id.btnagregarimagendueno)*/
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
         val  btnVolver = findViewById<ImageButton>(R.id.btnVolverDM)
 
@@ -56,6 +56,8 @@ class  registroduenomascotas : AppCompatActivity() {
             val pantallaAnterior = Intent(this, registrarse::class.java)
             startActivity(pantallaAnterior)
         }
+
+
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
@@ -121,7 +123,7 @@ class  registroduenomascotas : AppCompatActivity() {
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontraduenomas.text.toString())
 
-                    val uuidTraido = obtenerUuidRol()
+                      val uuidTraido = obtenerUuidRol()
 
                     val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
                     crearusuario.setString(1, UUID.randomUUID().toString())

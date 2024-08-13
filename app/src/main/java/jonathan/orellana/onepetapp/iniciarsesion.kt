@@ -43,6 +43,9 @@ class iniciarsesion : AppCompatActivity() {
         }
         supportActionBar?.hide();
 
+        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
+
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
             return bytes.joinToString("") { "%02x".format(it) }
@@ -54,6 +57,9 @@ class iniciarsesion : AppCompatActivity() {
         val btninicarsesion = findViewById<Button>(R.id.btniniciarsesionhome)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
 
+
+        //   fun obtenerUuidRol(): String? {
+
         GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
@@ -63,9 +69,13 @@ class iniciarsesion : AppCompatActivity() {
             val resultado = resulSet.executeQuery()
 
             if (resultado.next()) {
+
                 uuidRol = resultado.getString("rol")
+
                 println("este es el uuid traido desde el if $uuidRol")
             }
+
+
 
             println("este es el uuid traido desde la funcion $uuidRol")
 
@@ -82,7 +92,28 @@ class iniciarsesion : AppCompatActivity() {
 
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
-            GlobalScope.launch(Dispatchers.IO) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    val objConexion = ClaseConexion().cadenaConexion()
+                    val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
+
+                    val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
+                    resulSet.setString(1, txtcorreoiniciar.text.toString())
+                    resulSet.setString(2, contraencriptada)
+                    val resultado = resulSet.executeQuery()
+
+                    if (resultado.next()) {
+                        valorRolUsuario = resultado.getString("ROL")
+                        startActivity(pantallaprincipal)
+
+                    }else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@iniciarsesion, "Usuario o contraseña inválidos", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            /*    startActivity(pantallaprincipal)*/
+
+           /* GlobalScope.launch(Dispatchers.IO) {
                 val objconexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
@@ -106,11 +137,11 @@ class iniciarsesion : AppCompatActivity() {
                         ).show()
                     }
                 }
-            }
-
+            }*/
+            println("este es el resultado que traigo con el select $txtcorreoiniciar")
         }
         btnrecuperarcontra.setOnClickListener {
-            val recuperar = Intent(this, correoderecuperacion::class.java)
+           val recuperar = Intent(this, correoderecuperacion::class.java)
             startActivity(recuperar)
         }
     }

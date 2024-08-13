@@ -130,6 +130,10 @@ class miveterinariadv : Fragment() {
                 builder.setNegativeButton("no") { dialog, which ->
                     dialog.dismiss()
                 }
+
+
+
+
             }
 
         btnEliminarVet.setOnClickListener {

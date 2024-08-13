@@ -1,10 +1,13 @@
 package jonathan.orellana.onepetapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,13 +32,24 @@ class ajustesdv : Fragment() {
         }
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ajustesdv, container, false)
+
+        val root = inflater.inflate(R.layout.fragment_ajustesdv, container, false)
+
+        val btnCerrar = root.findViewById<Button>(R.id.btnCerrarSesion)
+        btnCerrar.setOnClickListener {
+            val cerrar = Intent(context, login::class.java)
+            startActivity(cerrar)
+        }
+       return root
     }
+
+
 
     companion object {
         /**

@@ -1,6 +1,6 @@
 package jonathan.orellana.onepetapp
 
-import RecyclerViewHelpers.Adaptador
+import RecyclerViewHelpers.AdaptadorMascotas
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -85,7 +85,7 @@ class fragment_misMascotas : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             val misMascotasDB = obtenerMascotas()
             withContext(Dispatchers.Main){
-                val adapter = Adaptador(misMascotasDB)
+                val adapter = AdaptadorMascotas(misMascotasDB)
                 rcvMisMascotas.adapter = adapter
             }
         }
