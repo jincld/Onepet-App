@@ -14,7 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import jonathan.orellana.onepetapp.databinding.ActivityMainBinding
-import jonathan.orellana.onepetapp.iniciarsesion.variablesLogin.valorRolUsuario
+import jonathan.orellana.onepetapp.iniciarsesion.variablesGlobalesLogin.valorRolUsuario
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.miveterinariadv, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_veterinarias, R.id.fragment_misMascotas
             ), drawerLayout
         )
-        val txtcorreoiniciarval = iniciarsesion.variablesLogin.valorRolUsuario
+        val txtcorreoiniciarval = iniciarsesion.variablesGlobalesLogin.valorRolUsuario
         /*val uuidRolMain = iniciarsesion.variablesLogin.uuidRol*/
 
         if(txtcorreoiniciarval == "9AEC296BDC494D83B611986353B7F4E1"){

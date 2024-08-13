@@ -59,7 +59,7 @@
         android:id="@+id/miveterinariadv"
         android:name="jonathan.orellana.onepetapp.miveterinariadv"
         android:label="Mi veterinaria"
-        tools:layout="@layout/fragment_miveterinariadv" />
+        tools:layout="@layout/fragment_actualizar_y_eliminar_vet" />
     <fragment
         android:id="@+id/contactosdv"
         android:name="jonathan.orellana.onepetapp.contactosdv"
@@ -109,12 +109,12 @@
         android:id="@+id/fragment_misMascotas"
         android:name="jonathan.orellana.onepetapp.fragment_misMascotas"
         android:label="fragment_mis_mascotas"
-        tools:layout="@layout/fragment_mis_mascotas" />
+        tools:layout="@layout/fragment_mismascotas" />
     <fragment
         android:id="@+id/agregarmascotas2"
-        android:name="jonathan.orellana.onepetapp.agregarmascotas"
+        android:name="jonathan.orellana.onepetapp.agregarmascotaas"
         android:label="fragment_agregarmascotas"
-        tools:layout="@layout/fragment_agregarmascotas" />
+        tools:layout="@layout/fragment_agregarmascotaas" />
     <fragment
         android:id="@+id/agregarmascotaas"
         android:name="jonathan.orellana.onepetapp.agregarmascotaas"
