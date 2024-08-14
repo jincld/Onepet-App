@@ -6,6 +6,9 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
@@ -75,6 +78,8 @@ class  registroduenomascotas : AppCompatActivity() {
         val tomarft = findViewById<Button>(R.id.btntomarftduenomas)
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
         val  btnVolver = findViewById<ImageButton>(R.id.btnVolverDM)
+
+
 
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, registrarse::class.java)
@@ -173,6 +178,32 @@ class  registroduenomascotas : AppCompatActivity() {
 
             if (hayerrores){
             } else {
+
+                GlobalScope.launch(Dispatchers.IO){
+
+                    val objConexion = ClaseConexion().cadenaConexion()
+                    val contraencriptada = hashSHA256(txtcontraduenomas.text.toString())
+
+                      val uuidTraido = obtenerUuidRol()
+
+                    val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
+                    crearusuario.setString(1, UUID.randomUUID().toString())
+                    crearusuario.setString(2, txtnombreduenomas.text.toString())
+                    crearusuario.setString(3, contraencriptada)
+                    crearusuario.setString(4, txtcorreoduenomas.text.toString())
+                    crearusuario.setString(5, uuidTraido)
+                    println("este es el uuid traido antes del execute  $uuidTraido")
+                    crearusuario.executeUpdate()
+                    withContext(Dispatchers.Main){
+                        //mostrar mensaje y limpiar campos
+                       Toast.makeText(this@registroduenomascotas, "Usuario registrado", Toast.LENGTH_SHORT).show()
+
+                        txtnombreduenomas.setText("")
+                        txtcontraduenomas.setText("")
+                        txtcorreoduenomas.setText("")
+                        val login = Intent(this@registroduenomascotas, iniciarsesion::class.java)
+                        startActivity(login)
+
                guardarUsuarioconft(imageView.toString())
             }
 
@@ -289,7 +320,14 @@ class  registroduenomascotas : AppCompatActivity() {
                             imageView.setImageURI(it)
                         }
                     }
+
                 }
+
+
+            }
+        }
+
+       }
 
                 codigo_opcion_tomar_foto -> {
                     val imageBitmap = data?.extras?.get("data")as? Bitmap
@@ -310,6 +348,7 @@ class  registroduenomascotas : AppCompatActivity() {
     }
 
 }
+
 
 
 

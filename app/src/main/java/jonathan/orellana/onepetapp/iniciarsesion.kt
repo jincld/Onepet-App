@@ -27,6 +27,7 @@ import java.util.UUID
 class iniciarsesion : AppCompatActivity() {
     companion object variablesLogin {
         lateinit var valorRolUsuario: String
+        lateinit var valorNombreUser: String
         var uuidRol: String? = null
     }
 
