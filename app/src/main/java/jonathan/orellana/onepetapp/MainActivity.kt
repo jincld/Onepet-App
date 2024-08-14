@@ -64,11 +64,23 @@ class MainActivity : AppCompatActivity() {
         val navigationView: NavigationView = findViewById(R.id.nav_view)
 
         val headerView = navigationView.getHeaderView(0)
-        val imgAtras: ImageButton = headerView.findViewById(R.id.btnCerrarDrawer)
+        val btnCerrarMenu: ImageButton = headerView.findViewById(R.id.btnCerrarDrawer)
 
-        imgAtras.setOnClickListener {
+        btnCerrarMenu.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
         }
+
+        /*fun traerNombreUser(): String? {
+            var nombreUser: String? = null
+            val objConexion = ClaseConexion().cadenaConexion()
+            val resulSet = objConexion?.prepareStatement("SELECT nombre_usuario FROM tbusuariosOne WHERE correo_usuario = ?")!!
+            resulSet.setString(1, txtcorreoiniciar)
+
+            if (resulSet.next()) {
+                nombreUser = resulSet.getString("UUID_Rol")
+            }
+            return nombreUser
+        }*/
 
         fun traerID(): String? {
             var uuidRol: String? = null
