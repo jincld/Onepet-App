@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1081838246493",
+    "project_id": "onepet-b651e",
+    "storage_bucket": "onepet-b651e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081838246493:android:c70fd000f8c6fbb0094bb4",
+        "android_client_info": {
+          "package_name": "jonathan.orellana.onepetapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqkS7va2s7w1H2_gIU2VnJxqdCKtzCqLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
