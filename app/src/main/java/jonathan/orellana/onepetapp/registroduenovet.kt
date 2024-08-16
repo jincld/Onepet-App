@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.InputType
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.EditText
@@ -71,12 +72,35 @@ class registroduenovet : AppCompatActivity() {
         val txtcontraadminvet =findViewById<EditText>(R.id.txtcontraadminvet)
         val  subirft = findViewById<Button>(R.id.btnsubirftadvet)
         val tomarft = findViewById<Button>(R.id.btntomarftadvet)
+        val contraconfirm = findViewById<EditText>(R.id.txtcontraconfirm)
         val btninicarsesionvet = findViewById<TextView>(R.id.btniniciarsesionvet)
+        val ojo = findViewById<ImageButton>(R.id.btnojovet1)
+        val ojo2 = findViewById<ImageButton>(R.id.btnojovet2)
         val  btnVolver = findViewById<ImageButton>(R.id.btnVolverAV)
 
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, registrarse::class.java)
             startActivity(pantallaAnterior)
+        }
+
+        ojo.setOnClickListener{
+            if (txtcontraadminvet.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD){
+                txtcontraadminvet.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                txtcontraadminvet.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+            }
+
+        }
+
+       ojo2.setOnClickListener{
+            if (contraconfirm.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD){
+                contraconfirm.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                contraconfirm.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+            }
+
         }
 
         fun obtenerUuidRol(): String? {
@@ -134,6 +158,7 @@ class registroduenovet : AppCompatActivity() {
             val nombre = txtnombreadminvet.text.toString()
             val correo = txtcorreoadminvet.text.toString()
             val contra = txtcontraadminvet.text.toString()
+            val contraconfrimada = contraconfirm.text.toString()
             var hayerrores = false
 
 
@@ -151,13 +176,27 @@ class registroduenovet : AppCompatActivity() {
                 txtcorreoadminvet.error = null
             }
 
+            if (contraconfrimada.isEmpty()) {
+                contraconfirm.error = "Complete todos lo campos"
+                hayerrores = true
+            } else {
+                contraconfirm.error = null
+            }
+
             if (contra.isEmpty()) {
                 txtcontraadminvet.error = "Complete todos lo campos"
                 hayerrores = true
             } else {
                 txtcontraadminvet.error = null
             }
+            if (contraconfrimada == txtcontraadminvet.text.toString()) {
 
+                contraconfirm.error = null
+            } else {
+
+               contraconfirm.error = "Las contraseñas no coinciden"
+                hayerrores = true
+            }
             if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
 
                 txtcorreoadminvet.error = "Ingrese un correo valido"
