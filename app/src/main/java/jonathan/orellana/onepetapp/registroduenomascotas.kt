@@ -6,9 +6,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
@@ -24,21 +21,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.storage.storage
-import dataclassusuarios
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
-
 import java.util.UUID
-import javax.crypto.Cipher
-import javax.crypto.KeyGenerator
-import javax.crypto.spec.SecretKeySpec
 
 class  registroduenomascotas : AppCompatActivity() {
 
@@ -61,7 +51,7 @@ class  registroduenomascotas : AppCompatActivity() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-             insets
+            insets
         }
         supportActionBar?.hide();
 
@@ -74,12 +64,10 @@ class  registroduenomascotas : AppCompatActivity() {
         val  txtnombreduenomas = findViewById<EditText>(R.id.txtnombreduenomas)
         val  txtcorreoduenomas = findViewById<EditText>(R.id.txtcorreoduenomas)
         val  txtcontraduenomas = findViewById<EditText>(R.id.txtcontraduenomas)
-       val  subirft = findViewById<Button>(R.id.btnsubirftduenomas)
+        val  subirft = findViewById<Button>(R.id.btnsubirftduenomas)
         val tomarft = findViewById<Button>(R.id.btntomarftduenomas)
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
         val  btnVolver = findViewById<ImageButton>(R.id.btnVolverDM)
-
-
 
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, registrarse::class.java)
@@ -163,8 +151,8 @@ class  registroduenomascotas : AppCompatActivity() {
             }
 
             if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
-              txtcorreoduenomas.error = "Ingrese un correo valido"
-              hayerrores = true
+                txtcorreoduenomas.error = "Ingrese un correo valido"
+                hayerrores = true
             } else {
                 txtcorreoduenomas.error = null
             }
@@ -178,33 +166,7 @@ class  registroduenomascotas : AppCompatActivity() {
 
             if (hayerrores){
             } else {
-
-                GlobalScope.launch(Dispatchers.IO){
-
-                    val objConexion = ClaseConexion().cadenaConexion()
-                    val contraencriptada = hashSHA256(txtcontraduenomas.text.toString())
-
-                      val uuidTraido = obtenerUuidRol()
-
-                    val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
-                    crearusuario.setString(1, UUID.randomUUID().toString())
-                    crearusuario.setString(2, txtnombreduenomas.text.toString())
-                    crearusuario.setString(3, contraencriptada)
-                    crearusuario.setString(4, txtcorreoduenomas.text.toString())
-                    crearusuario.setString(5, uuidTraido)
-                    println("este es el uuid traido antes del execute  $uuidTraido")
-                    crearusuario.executeUpdate()
-                    withContext(Dispatchers.Main){
-                        //mostrar mensaje y limpiar campos
-                       Toast.makeText(this@registroduenomascotas, "Usuario registrado", Toast.LENGTH_SHORT).show()
-
-                        txtnombreduenomas.setText("")
-                        txtcontraduenomas.setText("")
-                        txtcorreoduenomas.setText("")
-                        val login = Intent(this@registroduenomascotas, iniciarsesion::class.java)
-                        startActivity(login)
-
-               guardarUsuarioconft(imageView.toString())
+                guardarUsuarioconft(imageView.toString())
             }
 
         }
@@ -238,28 +200,28 @@ class  registroduenomascotas : AppCompatActivity() {
 
         }
     }
-       private fun checkStoragePermission() {
-       if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
-        pedirpermisocamara()
-      }else {
-       val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, codigo_opcion_tomar_foto)
-      }
-       }
+    private fun checkStoragePermission() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            pedirpermisocamara()
+        }else {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, codigo_opcion_tomar_foto)
+        }
+    }
 
     private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
             pedirpermisoalmacenamiento()
-     else {
-     val intent = Intent (Intent.ACTION_PICK)
+        else {
+            val intent = Intent (Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, codigo_opcion_galeria)
-    }
+        }
     }
 
     private fun pedirpermisocamara() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.CAMERA)
-            ){
+        ){
 
         } else {
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), CAMERA_REQUEST_CODE
@@ -284,27 +246,27 @@ class  registroduenomascotas : AppCompatActivity() {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                     startActivityForResult(intent, codigo_opcion_tomar_foto)
-            } else {
+                } else {
                     Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show()
-            }
+                }
                 return
-        }
+            }
             STORAGE_REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty()&& grantResults[0] == PackageManager.PERMISSION_GRANTED)){
                     val intent = Intent(Intent.ACTION_PICK)
                     intent.type = "image/*"
                     startActivityForResult(intent,codigo_opcion_galeria)
-            } else {
-                Toast.makeText(this, "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT).show()
-            }
+                } else {
+                    Toast.makeText(this, "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT).show()
+                }
 
-        }
+            }
             else -> {
 
             }
 
+        }
     }
-}
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -320,14 +282,7 @@ class  registroduenomascotas : AppCompatActivity() {
                             imageView.setImageURI(it)
                         }
                     }
-
                 }
-
-
-            }
-        }
-
-       }
 
                 codigo_opcion_tomar_foto -> {
                     val imageBitmap = data?.extras?.get("data")as? Bitmap
@@ -342,12 +297,14 @@ class  registroduenomascotas : AppCompatActivity() {
 
             }
 
+           }
+
+
         }
 
-
-    }
-
 }
+
+
 
 
 

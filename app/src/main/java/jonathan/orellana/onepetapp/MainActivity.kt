@@ -2,30 +2,29 @@ package jonathan.orellana.onepetapp
 
 import android.os.Build
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.view.Window
+import android.view.WindowManager
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import jonathan.orellana.onepetapp.databinding.ActivityMainBinding
-import android.view.Window
-import android.view.WindowManager
-import android.widget.ImageButton
-import androidx.core.view.GravityCompat
 import jonathan.orellana.onepetapp.iniciarsesion.variablesLogin.valorRolUsuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
+import java.sql.SQLException
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val txtcorreoiniciar = findViewById<EditText>(R.id.txtcorreoiniciar)
+        //val txtNombreMenu = findViewById<TextView>(R.id.txtNombreUserMenu)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -70,17 +71,45 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
         }
 
-        /*fun traerNombreUser(): String? {
-            var nombreUser: String? = null
-            val objConexion = ClaseConexion().cadenaConexion()
-            val resulSet = objConexion?.prepareStatement("SELECT nombre_usuario FROM tbusuariosOne WHERE correo_usuario = ?")!!
-            resulSet.setString(1, txtcorreoiniciar)
+        val navigationView2: NavigationView = findViewById(R.id.nav_view)
+        val headerView2 = navigationView2.getHeaderView(0)
+        val txtNombreMenu: TextView = headerView2.findViewById(R.id.txtNombreUserMenu)
 
-            if (resulSet.next()) {
-                nombreUser = resulSet.getString("UUID_Rol")
+        suspend fun traerNombreUser(valorRolUsuario: String): String? {
+            return withContext(Dispatchers.IO) {
+                var nombreUser: String? = null
+                val objConexion = ClaseConexion().cadenaConexion()
+                val preparedStatement = objConexion?.prepareStatement("SELECT nombre_usuario FROM tbusuariosOne WHERE correo_usuario = ?")
+                preparedStatement?.setString(1, valorRolUsuario)
+
+                try {
+                    val resultSet = preparedStatement?.executeQuery()
+                    if (resultSet?.next() == true) {
+                        nombreUser = resultSet.getString("nombre_usuario")
+                    }
+                } catch (e: SQLException) {
+                    // Manejar la excepción
+                    e.printStackTrace()
+                } finally {
+                    // Asegúrate de cerrar recursos aquí
+                    preparedStatement?.close()
+                    objConexion?.close()
+                }
+
+                nombreUser
             }
-            return nombreUser
-        }*/
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val valorRolUsuario = valorRolUsuario// O el valor adecuado
+            val nombreUsuario = traerNombreUser(valorRolUsuario)
+            // Usa el nombreUsuario aquí, por ejemplo, actualizando la UI
+            // textView.text = nombreUsuario
+            txtNombreMenu.text = nombreUsuario
+            println(nombreUsuario)
+        }
+
+      // txtNombreMenu.text = traerNombreUser()
 
         fun traerID(): String? {
             var uuidRol: String? = null

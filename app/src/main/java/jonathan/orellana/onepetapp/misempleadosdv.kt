@@ -2,15 +2,10 @@ package jonathan.orellana.onepetapp
 
 import RecyclerViewHelpers.Adaptador
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -64,7 +59,7 @@ class misempleadosdv : Fragment() {
             //crear statement
 
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = '208808FF44E44AB7A4DF8293AC9C2006'")!!
+            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = '37B86277FA994DD7BE53ED78FF54AE2D'")!!
             val empleados = mutableListOf<dataClassEmpleado>()
 
             //recorro todos los registos de la base de datos
