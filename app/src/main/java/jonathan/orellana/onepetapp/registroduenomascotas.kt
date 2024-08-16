@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -73,7 +74,10 @@ class  registroduenomascotas : AppCompatActivity() {
         val  txtcontraduenomas = findViewById<EditText>(R.id.txtcontraduenomas)
        val  subirft = findViewById<Button>(R.id.btnsubirftduenomas)
         val tomarft = findViewById<Button>(R.id.btntomarftduenomas)
+        val contraconfirm = findViewById<EditText>(R.id.contraconfirm)
         val  btnsiguiente = findViewById<TextView>(R.id.btnSiguienteDuenoMascota)
+        val ojomascotas = findViewById<ImageButton>(R.id.btnojomascotas1)
+        val ojomascota2 = findViewById<ImageButton>(R.id.btnmascotas2)
         val  btnVolver = findViewById<ImageButton>(R.id.btnVolverDM)
 
         btnVolver.setOnClickListener {
@@ -81,7 +85,25 @@ class  registroduenomascotas : AppCompatActivity() {
             startActivity(pantallaAnterior)
         }
 
+       ojomascotas.setOnClickListener{
+            if (txtcontraduenomas.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD){
+               txtcontraduenomas.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                txtcontraduenomas.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
+            }
+
+           }
+
+           ojomascota2.setOnClickListener{
+               if (contraconfirm.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD){
+                   contraconfirm.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+               } else {
+                   contraconfirm.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+               }
+
+           }
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
@@ -134,6 +156,7 @@ class  registroduenomascotas : AppCompatActivity() {
             val nombre = txtnombreduenomas.text.toString()
             val correo = txtcorreoduenomas.text.toString()
             val contra = txtcontraduenomas.text.toString()
+            val confirmcontra = contraconfirm.text.toString()
             var hayerrores = false
 
             if (nombre.isEmpty()) {
@@ -163,6 +186,14 @@ class  registroduenomascotas : AppCompatActivity() {
             } else {
                 txtcorreoduenomas.error = null
             }
+
+            if ( confirmcontra == txtcontraduenomas.text.toString()){
+                contraconfirm.error = null
+            } else {
+
+            contraconfirm.error = "Las contraseñas no coinciden"
+            hayerrores = true
+        }
 
             if (contra.length <= 8) {
                 txtcontraduenomas.error = "La contraseña debe tener más de 8 caracteres"
@@ -301,15 +332,12 @@ class  registroduenomascotas : AppCompatActivity() {
                         }
                     }
                 }
-
             }
-
         }
-
-
     }
-
 }
+
+
 
 
 
