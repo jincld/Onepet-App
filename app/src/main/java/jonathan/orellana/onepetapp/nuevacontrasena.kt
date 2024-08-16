@@ -56,14 +56,17 @@ btnojo1.setOnClickListener{
     txtnuevacontra.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
     }
+}
 
     btnojo2.setOnClickListener{
-        if (txtnuevacontra.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD){
-            txtnuevacontra.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+        if (txtcontraconfirm.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD){
+            txtcontraconfirm.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
         } else {
-            txtnuevacontra.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            txtcontraconfirm.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
         }
+
+    }
 
         btnnuevacontra.setOnClickListener {
             val contra = txtnuevacontra.text.toString()
@@ -125,5 +128,4 @@ btnojo1.setOnClickListener{
           }
       }
    }
-}
-}
+
