@@ -173,7 +173,7 @@ class  registroduenomascotas : AppCompatActivity() {
                 txtcontraduenomas.error = null
             }
 
-            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
+            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
                 txtcorreoduenomas.error = "Ingrese un correo valido"
                 hayerrores = true
             } else {

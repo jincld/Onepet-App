@@ -197,7 +197,7 @@ class registroduenovet : AppCompatActivity() {
                contraconfirm.error = "Las contraseñas no coinciden"
                 hayerrores = true
             }
-            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
+            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"))){
 
                 txtcorreoadminvet.error = "Ingrese un correo valido"
                 hayerrores = true
@@ -205,7 +205,7 @@ class registroduenovet : AppCompatActivity() {
                 txtcorreoadminvet.error = null
             }
 
-            if (contra.length <= 8) {
+            if (contra.length <= 7) {
                 txtcontraadminvet.error = "La contraseña debe tener más de 8 caracteres"
                 hayerrores = true
             } else {
