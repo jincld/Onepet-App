@@ -53,7 +53,6 @@ class fragment_veterinarias : Fragment() {
        val rcvVeterinarias = root.findViewById<RecyclerView>(R.id.rcvVeterinarias)
         rcvVeterinarias.layoutManager = LinearLayoutManager(context)
 
-
         fun obtenerDatos(): List<dataClassVeterinaria>{
 
             //crear objeto conexion
@@ -87,7 +86,7 @@ class fragment_veterinarias : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             val veterinaria = obtenerDatos()
             withContext(Dispatchers.Main){
-                val adapter = AdaptadorVet(veterinaria)
+                val adapter = AdaptadorVet(veterinaria, this@fragment_veterinarias)
                 rcvVeterinarias.adapter= adapter
             }
         }
@@ -95,6 +94,9 @@ class fragment_veterinarias : Fragment() {
         return root
     }
 
+    fun navigateToEliminar(){
+        findNavController().navigate(R.id.action_veterinarias_to_actualizar_y_eliminar_vet2)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

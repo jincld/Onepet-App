@@ -67,6 +67,7 @@ class agregar_vet : Fragment() {
 
 
 
+
         btnRegistrarVet.setOnClickListener {
             val nombre = txtNombreVet.text.toString()
             val ubicacion = txtUbicacionVet.text.toString()
@@ -146,23 +147,24 @@ class agregar_vet : Fragment() {
                     addVet.setString(6, txtCorreoVet.text.toString())
                     addVet.setString(7, txtDescripcionVet.text.toString())
                     addVet.executeUpdate()
-
-               NombreVet = txtNombreVet.text.toString()
-                UbicacionVet = txtUbicacionVet.text.toString()
+                    
+                    NombreVet = txtNombreVet.text.toString()
+                    UbicacionVet = txtUbicacionVet.text.toString()
                     NitVet = txtNitVet.text.toString()
                     ContactoVet = txtUbicacionVet.text.toString()
                     CorreoVet = txtCorreoVet.text.toString()
                     DescripcionVet = txtDescripcionVet.text.toString()
+
                     withContext(Dispatchers.Main){
                     findNavController().navigate(R.id.action_agregar_vet_to_veterinarias)
                     }
-
 
 
                 }
             }
 
         }
+
 
 
 

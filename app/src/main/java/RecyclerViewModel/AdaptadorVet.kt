@@ -2,16 +2,19 @@ package RecyclerViewHelper
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.AbstractListDetailFragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import jonathan.orellana.onepetapp.R
 import jonathan.orellana.onepetapp.agregar_vet
 import jonathan.orellana.onepetapp.fragment_veterinarias
 import jonathan.orellana.onepetapp.item_card
+import jonathan.orellana.onepetapp.ui.ActualizarVetActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -19,7 +22,7 @@ import modelo.ClaseConexion
 import modelo.dataClassVeterinaria
 
 
-class AdaptadorVet(private var Datos: List<dataClassVeterinaria>) : RecyclerView.Adapter<ViewHolderVet>() {
+class AdaptadorVet(private var Datos: List<dataClassVeterinaria>, private val fragment:fragment_veterinarias) : RecyclerView.Adapter<ViewHolderVet>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderVet {
         val vista =
@@ -37,9 +40,29 @@ class AdaptadorVet(private var Datos: List<dataClassVeterinaria>) : RecyclerView
 
 
         holder.itemView.setOnClickListener {
-            val navController = Navigation.findNavController(holder.itemView)
-            val action = R.id.action_agregar_vet_to_veterinarias
-            navController.navigate(action)
+            val context = holder.itemView.context
+            val pantalla = Intent(context, ActualizarVetActivity::class.java)
+            pantalla.putExtra("Nombre",
+                producto.nombre_veterinaria
+            )
+            pantalla.putExtra("Ubicacion",
+                producto.ubicacion_veterinaria
+            )
+            pantalla.putExtra("NIT",
+            producto.nit
+            )
+            pantalla.putExtra("Contacto",
+            producto.contacto_veterinaria
+        )
+            pantalla.putExtra("Correo",
+            producto.correo_veterinaria
+            )
+            pantalla.putExtra("Descripcion",
+            producto.descripcion_servicios
+        )
+
+            context.startActivity(pantalla)
+
         }
 
         holder.imgBorrar.setOnClickListener {
@@ -54,8 +77,9 @@ class AdaptadorVet(private var Datos: List<dataClassVeterinaria>) : RecyclerView
                     println("este es el nombre de la vet que quiero eliminar ${nombrevet}")
 
                     // 2- Crear una variable que contenga un preparestatement (donde se mete el código de sqlserver
-                    val deleteVeterinaria = objConexion?.prepareStatement("delete from tbVeterinarias where nombre_veterinaria = ?")!!
-                    deleteVeterinaria.setString(1,nombrevet)
+                    val deleteVeterinaria =
+                        objConexion?.prepareStatement("delete from tbVeterinarias where nombre_veterinaria = ?")!!
+                    deleteVeterinaria.setString(1, nombrevet)
                     deleteVeterinaria.executeUpdate()
 
 
@@ -65,8 +89,8 @@ class AdaptadorVet(private var Datos: List<dataClassVeterinaria>) : RecyclerView
 
 
             }
-            val context = holder.itemView.context
 
+            val context = holder.itemView.context
             val builder = AlertDialog.Builder(context)
                 builder.setTitle("Eliminar")
                 builder.setMessage("Estas seguro que quieres eliminar tu veterinaria?")

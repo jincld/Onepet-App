@@ -64,7 +64,7 @@ class iniciarsesion : AppCompatActivity() {
 
             val objConexion = ClaseConexion().cadenaConexion()
             val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
-            resulSet.setString(1, txtcorreoiniciar.text.toString())
+            resulSet.setString(1, txtcorreoiniciar.text.toString().trim())
 
             val resultado = resulSet.executeQuery()
 
@@ -86,7 +86,6 @@ class iniciarsesion : AppCompatActivity() {
         }
 
         btninicarsesion.setOnClickListener {
-
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
                 GlobalScope.launch(Dispatchers.IO) {
