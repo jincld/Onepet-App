@@ -22,7 +22,7 @@ import java.security.MessageDigest
 class iniciarsesion : AppCompatActivity() {
     companion object variablesLogin {
         lateinit var valorRolUsuario: String
-        lateinit var valorNombreUser: String
+        lateinit var valorCorreoUsuario: String
         var uuidRol: String? = null
     }
 
@@ -94,7 +94,7 @@ class iniciarsesion : AppCompatActivity() {
 
 
         btninicarsesion.setOnClickListener {
-            valorRolUsuario = txtcorreoiniciar.text.toString()
+            valorCorreoUsuario = txtcorreoiniciar.text.toString()
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
             val contra = txtcontrainiciar.text.toString()
