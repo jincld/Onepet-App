@@ -15,21 +15,21 @@
 
         <ImageView
             android:id="@+id/imageView44"
-            android:layout_width="190dp"
-            android:layout_height="194dp"
-            android:layout_marginEnd="308dp"
+            android:layout_width="165dp"
+            android:layout_height="171dp"
+            android:layout_marginEnd="324dp"
             android:rotation="87"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.006"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/bgtres" />
 
         <ImageView
             android:id="@+id/ftperfilduenomas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="380dp"
+            android:layout_marginBottom="400dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -146,14 +146,14 @@
 
         <ImageView
             android:id="@+id/imageView50"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginStart="356dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="376dp"
             android:rotation="45"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.112"
+            app:layout_constraintVertical_bias="0.111"
             app:srcCompat="@drawable/circuloazuloscuro" />
 
         <ImageView
@@ -162,10 +162,10 @@
             android:layout_height="44dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.91"
+            app:layout_constraintHorizontal_bias="0.904"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.019"
+            app:layout_constraintVertical_bias="0.036"
             app:srcCompat="@drawable/circuloazuloscuro" />
 
         <ImageView
@@ -193,23 +193,11 @@
             app:srcCompat="@drawable/circulocelesteqqh" />
 
         <ImageView
-            android:id="@+id/imageView54"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="148dp"
-            android:rotation="87"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ftperfilduenomas"
-            app:layout_constraintVertical_bias="0.384"
-            app:srcCompat="@drawable/degcelesteinf" />
-
-        <ImageView
             android:id="@+id/imageView47"
             android:layout_width="314dp"
             android:layout_height="313dp"
-            android:layout_marginTop="612dp"
-            android:layout_marginEnd="140dp"
+            android:layout_marginTop="648dp"
+            android:layout_marginEnd="164dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/imagenperro5" />
@@ -218,6 +206,7 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/alata"
             android:text="Dueño de mascota"
             android:textColor="#34313F"
@@ -228,44 +217,60 @@
             app:layout_constraintHorizontal_bias="0.565"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.041" />
+            app:layout_constraintVertical_bias="0.091" />
 
-        <ImageView
-            android:id="@+id/imgftperfilduenomas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="-470dp"
+            app:cardCornerRadius="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.133"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgftperfilduenomas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.512"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.133"
+                tools:srcCompat="@tools:sample/avatars" />
+        </androidx.cardview.widget.CardView>
 
 
         <Button
             android:id="@+id/btnsubirftduenomas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btngris2"
             android:text="Tomar foto"
+            app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.614" />
 
         <Button
             android:id="@+id/btntomarftduenomas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btngris"
             android:text="Subir foto"
+            app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.687" />
+            app:layout_constraintVertical_bias="0.681" />
 
         <EditText
             android:id="@+id/contraconfirm"
@@ -308,6 +313,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.542"
             app:srcCompat="@drawable/eyeantifragile" />
+
+        <ImageView
+            android:id="@+id/imageView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="180dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.471"
+            app:srcCompat="@drawable/degizq" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

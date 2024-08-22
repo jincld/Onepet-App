@@ -61,7 +61,7 @@ class  registroduenomascotas : AppCompatActivity() {
             return bytes.joinToString("") {"%02x".format(it)}
 
         }
-        imageView = findViewById(R.id.ftperfilduenomas)
+        imageView = findViewById(R.id.imgftperfilduenomas)
         val  txtnombreduenomas = findViewById<EditText>(R.id.txtnombreduenomas)
         val  txtcorreoduenomas = findViewById<EditText>(R.id.txtcorreoduenomas)
         val  txtcontraduenomas = findViewById<EditText>(R.id.txtcontraduenomas)

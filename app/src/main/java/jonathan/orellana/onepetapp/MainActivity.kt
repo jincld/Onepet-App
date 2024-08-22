@@ -18,6 +18,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import jonathan.orellana.onepetapp.databinding.ActivityMainBinding
+import jonathan.orellana.onepetapp.iniciarsesion.variablesLogin.valorCorreoUsuario
 import jonathan.orellana.onepetapp.iniciarsesion.variablesLogin.valorRolUsuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -75,17 +76,22 @@ class MainActivity : AppCompatActivity() {
         val headerView2 = navigationView2.getHeaderView(0)
         val txtNombreMenu: TextView = headerView2.findViewById(R.id.txtNombreUserMenu)
 
-        suspend fun traerNombreUser(valorRolUsuario: String): String? {
+        suspend fun traerNombreUser(valorCorreoUsuario: String): String? {
             return withContext(Dispatchers.IO) {
                 var nombreUser: String? = null
                 val objConexion = ClaseConexion().cadenaConexion()
                 val preparedStatement = objConexion?.prepareStatement("SELECT nombre_usuario FROM tbusuariosOne WHERE correo_usuario = ?")
-                preparedStatement?.setString(1, valorRolUsuario)
+                preparedStatement?.setString(1, valorCorreoUsuario)
+                println("..........ESTE ES EL VALOR CORREO: " + valorCorreoUsuario)
 
                 try {
                     val resultSet = preparedStatement?.executeQuery()
                     if (resultSet?.next() == true) {
                         nombreUser = resultSet.getString("nombre_usuario")
+                        println("++++ESTE ES EL NOMBRE DENTRO DE LA FUNCION DE TRAER NOMBRE: " + nombreUser)
+                    }
+                    else    {
+                        println("++++POSIBLE ERROR EN ELSE: " + nombreUser)
                     }
                 } catch (e: SQLException) {
                     // Manejar la excepción
@@ -101,12 +107,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         CoroutineScope(Dispatchers.Main).launch {
-            val valorRolUsuario = valorRolUsuario// O el valor adecuado
-            val nombreUsuario = traerNombreUser(valorRolUsuario)
+            val valorRolUsuario = valorCorreoUsuario// O el valor adecuado
+            val nombreUsuario = traerNombreUser(valorCorreoUsuario)
             // Usa el nombreUsuario aquí, por ejemplo, actualizando la UI
             // textView.text = nombreUsuario
             txtNombreMenu.text = nombreUsuario
-            println(nombreUsuario)
+            println("ESTE ES EL NOMBRE TRAIDO:" + nombreUsuario)
         }
 
       // txtNombreMenu.text = traerNombreUser()
