@@ -9,8 +9,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.InputType
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -30,7 +30,6 @@ import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
-
 import java.util.UUID
 
 class registroduenovet : AppCompatActivity() {
@@ -197,7 +196,7 @@ class registroduenovet : AppCompatActivity() {
                contraconfirm.error = "Las contraseñas no coinciden"
                 hayerrores = true
             }
-            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
+            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
 
                 txtcorreoadminvet.error = "Ingrese un correo valido"
                 hayerrores = true

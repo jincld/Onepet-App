@@ -1,25 +1,20 @@
 package jonathan.orellana.onepetapp
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
-import modelo.dataClassEmpleado
-import modelo.dataClassEtiqueta
 import java.security.MessageDigest
 import java.util.UUID
-import kotlin.coroutines.coroutineContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -114,6 +109,27 @@ class agregarempleadodv : Fragment() {
         }
 
         btnAgregarEmpleado.setOnClickListener {
+            val correo = txtCorreoEmpleado.text.toString()
+            val contra = txtContra_empleado.text.toString()
+            val nombre = txtNombre_empleado.text.toString()
+            var hayerrores = false
+
+            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
+                txtCorreoEmpleado.error = "Ingrese un correo válido"
+                hayerrores = true
+            } else {
+                txtCorreoEmpleado.error = null
+            }
+
+            if (contra.length <= 8) {
+                txtContra_empleado.error = "La contraseña debe tener más de 8 carácteres"
+                hayerrores = true
+            } else {
+                txtContra_empleado.error = null
+            }
+
+            if (hayerrores){
+            } else{
             CoroutineScope(Dispatchers.IO).launch {
 
                 val objConexion = ClaseConexion().cadenaConexion()
@@ -142,6 +158,7 @@ class agregarempleadodv : Fragment() {
             }
 
 
+        }
         }
 
         return root

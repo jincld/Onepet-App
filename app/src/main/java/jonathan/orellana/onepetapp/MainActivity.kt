@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity() {
                 navView.menu.findItem(R.id.chatdv).isVisible = true
                 navView.menu.findItem(R.id.resenasdv).isVisible = true
                 navView.menu.findItem(R.id.fragment_misMascotas).isVisible = true
-
+                navView.menu.findItem(R.id.ajustesdv).isVisible = true
                 navView.menu.findItem(R.id.fragment_asignaciones).isVisible = false
                 navView.menu.findItem(R.id.agregar_vet).isVisible = false
                 navView.menu.findItem(R.id.agregarempleadodv).isVisible = false
@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity() {
 
                 navView.menu.findItem(R.id.fragment_agendarCita).isVisible = false
                 navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = false
-                navView.menu.findItem(R.id.ajustesdv).isVisible = false
+                navView.menu.findItem(R.id.ajustesdv).isVisible = true
                 navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
                 navView.menu.findItem(R.id.agregar_vet).isVisible = true
                 navView.menu.findItem(R.id.agregarempleadodv).isVisible = true

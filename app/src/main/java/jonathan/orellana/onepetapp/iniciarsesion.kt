@@ -51,6 +51,7 @@ class iniciarsesion : AppCompatActivity() {
         val btninicarsesion = findViewById<Button>(R.id.btniniciarsesionhome)
         val ojolog = findViewById<ImageButton>(R.id.btnojolog)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
+        val btnNoCuenta = findViewById<TextView>(R.id.txtNoCuenta)
 
 
 
@@ -108,7 +109,7 @@ class iniciarsesion : AppCompatActivity() {
                 txtcorreoiniciar.error = null
             }
 
-            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
+            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
 
              txtcorreoiniciar.error = "Correo invalido"
                 hayerrores = true
@@ -190,6 +191,11 @@ class iniciarsesion : AppCompatActivity() {
         btnrecuperarcontra.setOnClickListener {
             val recuperar = Intent(this, correoderecuperacion::class.java)
             startActivity(recuperar)
+        }
+
+        btnNoCuenta.setOnClickListener {
+            val noCuenta = Intent(this, registrarse::class.java)
+            startActivity(noCuenta)
         }
             println("este es el resultado que traigo con el select $txtcorreoiniciar")
         }
