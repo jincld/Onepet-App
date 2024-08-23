@@ -30,6 +30,10 @@ class iniciarsesion : AppCompatActivity() {
         lateinit var correodelUsuarioGlobal: String
         lateinit var valorRolUsuario: String
         var uuidRol: String? = null
+
+        //MODIFICADO
+        //ERROR AQUI PORQUE NO LO INICIALIZO DE ALGUNA FORMA
+        lateinit var idDeUsuario: String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +84,27 @@ class iniciarsesion : AppCompatActivity() {
             println("este es el uuid traido desde la funcion $uuidRol")
 
         }
+
+        //MODIFICADO
+        //ERROR POR invokeSuspend, no se lo que significa pero no me deja iniciar sesion
+        GlobalScope.launch(Dispatchers.IO) {
+
+            val objConexion = ClaseConexion().cadenaConexion()
+            val resulSet = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
+            resulSet.setString(1, txtcorreoiniciar.text.toString())
+
+            val resultado = resulSet.executeQuery()
+
+            if (resultado.next()) {
+
+                idDeUsuario = resultado.getString("UUID_usuario")
+
+                println("este es el uuid traido desde el if $idDeUsuario")
+            }
+            println("este es el uuid traido desde la funcion $idDeUsuario")
+
+        }
+
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, login::class.java)
             startActivity(pantallaAnterior)

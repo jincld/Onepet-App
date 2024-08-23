@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
+import java.util.UUID
 
 class fragment_agendarCita : Fragment() {
 
@@ -59,15 +60,22 @@ class fragment_agendarCita : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 val idVetC = getIdVet(vetSeleccionado)
                 val idMascotaC = getIdMascota(mascotaSeleccionada)
+                //MODIFICADO
+                val idUsuarioOne = iniciarsesion.variablesGlobalesLogin.idDeUsuario
 
-                if (idVetC != null && idMascotaC != null) {
+
+
+                if (idVetC != null && idMascotaC != null && idUsuarioOne != null) {
                     val result =
                         saveEnviarCita(
                             fechaCita,
                             idVetC,
                             idMascotaC,
+                            //MODIFICADO
+                            idUsuarioOne,
                             motivoCita,
                             descripcionCita
+
                         )
                     if (result) {
                         Toast.makeText(
@@ -231,39 +239,43 @@ class fragment_agendarCita : Fragment() {
             null
         }
 
-    private suspend fun getIdUsuarioOne(nombre_usuario: String): Int? = withContext(Dispatchers.IO) {
-        val query = "SELECT UUID_Usuario FROM tbUsuarios WHERE nombre_usuario = ?"
-        val objConexion = ClaseConexion().cadenaConexion()
 
-        objConexion?.let {
-            try {
-                val statement = it.prepareStatement(query)
-                statement.setString(1, nombre_usuario)
-                val resultSet = statement.executeQuery()
+    //MODIFICADO
+//    private suspend fun getIdUsuarioOne(nombre_usuario: String): Int? = withContext(Dispatchers.IO) {
+//        val query = "SELECT UUID_Usuario FROM tbUsuarios WHERE nombre_usuario = ?"
+//        val objConexion = ClaseConexion().cadenaConexion()
+//
+//        objConexion?.let {
+//            try {
+//                val statement = it.prepareStatement(query)
+//                statement.setString(1, nombre_usuario)
+//                val resultSet = statement.executeQuery()
+//
+//                if (resultSet.next()) {
+//                    val idUsuarioOne = resultSet.getInt("UUID_Usuario")
+//                    resultSet.close()
+//                    return@withContext idUsuarioOne
+//                }
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            } finally {
+//                it.close()
+//            }
+//        }
+//        null
+//    }
 
-                if (resultSet.next()) {
-                    val idUsuarioOne = resultSet.getInt("UUID_Usuario")
-                    resultSet.close()
-                    return@withContext idUsuarioOne
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            } finally {
-                it.close()
-            }
-        }
-        null
-    }
-
-    // Luego, en el método saveEnviarCita, puedes obtener el ID del usuario y pasararlo como parámetro
     private suspend fun saveEnviarCita(
         fecha_cita: String,
         idVetC: Int,
         idMascotaC: Int,
+        //MODIFICADO
+        idUsuarioOne: String,
         motivo_cita: String,
         descripcion_motivo: String
     ): Boolean = withContext(Dispatchers.IO) {
-        val idUsuarioOne = getIdUsuarioOne("nombre_usuario")
+        //MODIFICADO
+        val idUsuarioOne = iniciarsesion.variablesGlobalesLogin.idDeUsuario
         if (idUsuarioOne != null) {
             val query =
                 "INSERT INTO tbCitas (fecha_cita, vet, mascota, usuario, motivo_cita, descripcion_motivo) VALUES (?, ?, ?, ?, ?, ?)"
@@ -275,7 +287,7 @@ class fragment_agendarCita : Fragment() {
                     statement.setString(1, fecha_cita)
                     statement.setInt(2, idVetC)
                     statement.setInt(3, idMascotaC)
-                    statement.setInt(4, idUsuarioOne)
+                    statement.setString(4, idUsuarioOne)
                     statement.setString(5, motivo_cita)
                     statement.setString(6, descripcion_motivo)
                     statement.executeUpdate()
