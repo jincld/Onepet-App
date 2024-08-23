@@ -56,7 +56,6 @@ class ActualizarVetActivity : AppCompatActivity() {
         txtVerCorreoVet.text = correo
         txtVerServiciosVet.text =  descripcion
 
- nombre = txtVerNombreVet.text.toString()
 
         fun uodate(nombreNuevo: String, ubicacionNueva: String, NITNuevo: String, ContactoNuevo: String, CorreoNuevo: String, descripcion: String) {
             GlobalScope.launch(Dispatchers.IO) {
@@ -77,6 +76,8 @@ class ActualizarVetActivity : AppCompatActivity() {
                 updateVet.setString(5, CorreoNuevo)
                 updateVet.setString(6, descripcion)
                 updateVet.setString(7, correoGLobalTraido)
+                nombre = txtVerNombreVet.text.toString()
+
                 updateVet.executeUpdate()
             }
         }
