@@ -123,7 +123,7 @@ class iniciarsesion : AppCompatActivity() {
                 txtcontrainiciar.error = null
             }
 
-            if (contra.length <= 8) {
+            if (contra.length < 7) {
                 txtcontrainiciar.error = "Contraseña invalida"
                 hayerrores = true
             } else {

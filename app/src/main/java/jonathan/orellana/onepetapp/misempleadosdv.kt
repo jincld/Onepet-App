@@ -67,10 +67,11 @@ class misempleadosdv : Fragment() {
             while(resulSet.next()){
                 val uuid = resulSet.getString("UUID_usuario")
                 val Nombre = resulSet.getString("nombre_usuario")
-                val Correo = resulSet.getString("correo_usuario")
                 val Contra = resulSet.getString("contra_usuario")
+                val Correo = resulSet.getString("correo_usuario")
 
-                val ValoresJuntos = dataClassEmpleado(uuid, Nombre, Correo, Contra)
+
+                val ValoresJuntos = dataClassEmpleado(uuid, Nombre, Contra, Correo)
                 empleados.add(ValoresJuntos)
             }
             return empleados
