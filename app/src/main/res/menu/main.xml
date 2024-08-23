@@ -3,10 +3,5 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group>
-        <item
-            android:id="@+id/nav_homeDV"
-            android:orderInCategory="100"
-            android:title="Inicio"
-            app:showAsAction="never" />
     </group>
 </menu>

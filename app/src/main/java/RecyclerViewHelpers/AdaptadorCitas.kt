@@ -1,0 +1,5 @@
+package RecyclerViewHelpers
+
+class AdaptadorCitas {
+
+}

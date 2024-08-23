@@ -1,10 +1,25 @@
 package jonathan.orellana.onepetapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import modelo.ClaseConexion
+import modelo.dataClassEmpleado
+import modelo.dataClassEtiqueta
+import java.security.MessageDigest
+import java.util.UUID
+import kotlin.coroutines.coroutineContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,15 +44,111 @@ class agregarempleadodv : Fragment() {
         }
     }
 
+    companion object VariablesGlobalesEmpleado{
+        lateinit var NombreEmpVG: String
+        lateinit var CorreoEmVG: String
+        lateinit var ContraEmpVG: String
+        lateinit var RolEmpVG: String
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_agregarempleadodv, container, false)
+
+        val root = inflater.inflate(R.layout.fragment_agregarempleadodv, container, false)
+
+
+     // val uuid_admin = 'Codigo para que mande a llamar el uuid del admin de veterinaria'
+
+        val txtNombre_empleado = root.findViewById<TextView>(R.id.txtNombre_empleado)
+        val txtContra_empleado = root.findViewById<TextView>(R.id.txtContra_empleado)
+        val txtCorreoEmpleado = root.findViewById<TextView>(R.id.txtCorreo_empleado)
+        val btnAgregarEmpleado = root.findViewById<Button>(R.id.btnAgregarEmpleado)
+
+        fun hashSHA256(contraescrita: String): String {
+            val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
+            return bytes.joinToString("") {"%02x".format(it)}
+
+        }
+
+        /*fun obtenerEtiquetas(): List<dataClassEtiqueta> {
+
+
+            val conexion = ClaseConexion().cadenaConexion()
+
+            //Creo un statement que me ejecute el select
+            val statement = conexion?.createStatement()
+
+            val resultSet = statement?.executeQuery("select * from tbEtiquetas")!!
+
+            val listaEtiqueta = mutableListOf<dataClassEtiqueta>()
+
+            while (resultSet.next()) {
+                val uuidEtiqueta = resultSet.getString("UUID_etiqueta")
+                val nombreEtiqueta = resultSet.getString("nombre_etiqueta")
+
+                val unaEtiquetaCompleta =
+                    dataClassEtiqueta(uuidEtiqueta, nombreEtiqueta, )
+                listaEtiqueta.add(unaEtiquetaCompleta)
+
+            }
+            return listaEtiqueta
+        }*/
+
+        fun obtenerUuidRol(): String? {
+            val objConexion = ClaseConexion().cadenaConexion()
+            val statement = objConexion?.createStatement()
+            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRolesUsuarios WHERE nombre_rol = 'Empleado'")!!
+            var uuidRol: String? = null
+
+            if (resulSet.next()) {
+                uuidRol = resulSet.getString("UUID_rol")
+                println("este es el uuid traido desde el if $uuidRol")
+            }
+
+            println("este es el uuid traido desde la funcion $uuidRol")
+            return uuidRol
+        }
+
+        btnAgregarEmpleado.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+
+                val objConexion = ClaseConexion().cadenaConexion()
+                val contraencriptada = hashSHA256(txtContra_empleado.text.toString())
+
+                val uuidTraido = obtenerUuidRol()
+
+                val crearEmpleado = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
+                crearEmpleado.setString(1, UUID.randomUUID().toString())
+                crearEmpleado.setString(2, txtNombre_empleado.text.toString())
+                crearEmpleado.setString(3, contraencriptada)
+                crearEmpleado.setString(4, txtCorreoEmpleado.text.toString())
+                crearEmpleado.setString(5, uuidTraido)
+                println("este es el uuid traido antes del execute  $uuidTraido")
+                crearEmpleado.executeUpdate()
+
+                withContext(Dispatchers.Main){
+                    //mostrar mensaje y limpiar campos
+                    Toast.makeText(context, "Empleado registrado", Toast.LENGTH_SHORT).show()
+                    txtNombre_empleado.setText("")
+                    txtCorreoEmpleado.setText("")
+                    txtContra_empleado.setText("")
+
+                }
+
+            }
+
+
+        }
+
+        return root
+
     }
 
-    companion object {
+    /*companion object {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
@@ -55,5 +166,5 @@ class agregarempleadodv : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
-    }
+    }*/
 }

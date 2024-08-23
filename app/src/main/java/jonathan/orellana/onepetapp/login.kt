@@ -9,6 +9,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class login : AppCompatActivity() {
+
+    companion object variablesGlobalesLogin{
+        lateinit var correodelUsuarioGlobal: String
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -18,25 +24,18 @@ class login : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-//Mandar a llamar a todos los elementos
-
+        supportActionBar?.hide();
 
         val btnregistrarse = findViewById<Button>(R.id.btnregistrarse)
 
-        //Programar al botón
         btnregistrarse.setOnClickListener {
-            //Navegar entre pantallas
-            //Ir a la siguiente pantalla
             val pantallaSiguiente = Intent(this, registrarse::class.java)
             startActivity(pantallaSiguiente)
         }
 
-        //Mandar a llamar
         val btninicarsesion = findViewById<Button>(R.id.btniniciarsesion)
-        //Programar al botón
+
         btninicarsesion.setOnClickListener {
-            //Navegar entre pantallas
-            //Ir a la siguiente pantalla
             val pantallaSiguiente = Intent(this, iniciarsesion::class.java)
             startActivity(pantallaSiguiente)
         }
