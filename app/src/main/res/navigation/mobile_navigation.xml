@@ -135,6 +135,11 @@
         android:name="jonathan.orellana.onepetapp.actualizar_y_eliminar_vet"
         android:label="fragment_actualizar_y_eliminar_vet"
         tools:layout="@layout/fragment_actualizar_y_eliminar_vet" />
+    <fragment
+        android:id="@+id/ver_veterinarias_usuario"
+        android:name="jonathan.orellana.onepetapp.Ver_veterinarias_usuario"
+        android:label="fragment_ver_veterinarias_usuario"
+        tools:layout="@layout/fragment_ver_veterinarias_usuario" />
 
 
 </navigation>
