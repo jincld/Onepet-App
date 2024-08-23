@@ -37,26 +37,8 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             //1- Creo un objeto de la clase de conexion
             val objConexion = ClaseConexion().cadenaConexion()
             val contraencriptada = hashSHA256(nuevacontra.toString())
-          /*  val correo = nuevocorreo.toString()
-            val contra = nuevacontra.toString()
-            var hayerrores = false
 
-            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
-                nuevocorreo.error = "Ingrese un correo valido"
-                hayerrores = true
-            } else {
-                nuevocorreo.error = null
-            }
 
-            if (contra.length <= 8) {
-                nuevacontra.error = "La contraseña debe tener más de 8 caracteres"
-                hayerrores = true
-            } else {
-                nuevacontra.error = null
-            }
-
-            if (hayerrores){
-            } else {*/
 
 
 
@@ -72,8 +54,8 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
                 actualicePantalla(uuid, nuevoNombre, nuevocorreo,  nuevacontra) // Corregido el orden de los parámetros
             }
 
-           /* }*/
-        }
+            }
+
     }
 
     fun actualicePantalla( uuid: String, nuevoNombre: String, nuevacontra: String, nuevocorreo:String ){
@@ -178,13 +160,34 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
 
             //Botones
             builder.setPositiveButton("Actualizar") { dialog, which ->
-                actualizarDato(cuadroTextoNombre.text.toString(), cuadroTextoCorreo.text.toString(), cuadroTextoContra.text.toString(), empleado.empleadoUUID)
+
+                val correo = cuadroTextoCorreo.text.toString()
+                val contra = cuadroTextoContra.text.toString()
+                var hayerrores = false
+
+                if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
+                    cuadroTextoCorreo.error = "Ingrese un correo válido"
+                    hayerrores = true
+                } else {
+                    cuadroTextoCorreo.error = null
+                }
+
+                if (contra.length <= 8) {
+                    cuadroTextoContra.error = "La contraseña debe tener más de 8 carácteres"
+                    hayerrores = true
+                } else {
+                    cuadroTextoContra.error = null
+                }
+
+                if (hayerrores){
+                } else {
+                    actualizarDato(cuadroTextoNombre.text.toString(), cuadroTextoCorreo.text.toString(), cuadroTextoContra.text.toString(), empleado.empleadoUUID)
+                }
             }
 
             builder.setNegativeButton("Cancelar"){dialog, which ->
                 dialog.dismiss()
             }
-
             val dialog = builder.create()
             dialog.show()
         }
