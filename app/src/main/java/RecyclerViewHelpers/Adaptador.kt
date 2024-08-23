@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
-import jonathan.orellana.onepetapp.R
 import androidx.recyclerview.widget.RecyclerView
-import jonathan.orellana.onepetapp.agregar_vet
-import jonathan.orellana.onepetapp.agregarempleadodv
+import jonathan.orellana.onepetapp.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,9 +14,6 @@ import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import modelo.dataClassEmpleado
 import java.security.MessageDigest
-import android.widget.TextView
-import java.util.UUID
-import kotlin.error
 
 class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHolder>(){
 
@@ -33,14 +28,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
         notifyDataSetChanged() // Notificar al adaptador sobre los cambios
     }
 
-    fun actualicePantalla( uuid: String, nuevoNombre: String,  nuevacontra: String, nuevocorreo:String ){
-        val index = Datos.indexOfFirst { it.empleadoUUID == uuid }
-        Datos[index].nombreEmpleado = nuevoNombre
-        Datos[index].contraEmpleado = nuevacontra
-        Datos[index].correoEmpleado = nuevocorreo
 
-        notifyDataSetChanged()
-    }
 
 
     fun actualizarDato( nuevoNombre: String, nuevacontra: String, nuevocorreo:String, uuid: String){
@@ -73,7 +61,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
 
 
             //2- creo una variable que contenga un PrepareStatement
-            val updateMascota = objConexion?.prepareStatement("update tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ? where UUID_usuario= ?")!!
+            val updateMascota = objConexion?.prepareStatement("update tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ? where UUID_usuario = ?")!!
             updateMascota.setString(1, nuevoNombre)
             updateMascota.setString(2, contraencriptada)
             updateMascota.setString(3, nuevocorreo)
@@ -81,11 +69,23 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             updateMascota.executeUpdate()
 
             withContext(Dispatchers.Main){
-                actualicePantalla(uuid, nuevoNombre, nuevacontra, nuevocorreo) // Corregido el orden de los parámetros
+                actualicePantalla(uuid, nuevoNombre, nuevocorreo,  nuevacontra) // Corregido el orden de los parámetros
             }
 
            /* }*/
         }
+    }
+
+    fun actualicePantalla( uuid: String, nuevoNombre: String, nuevacontra: String, nuevocorreo:String ){
+        val index = Datos.indexOfFirst { it.empleadoUUID == uuid }
+        Datos[index].nombreEmpleado = nuevoNombre
+        Datos[index].contraEmpleado = nuevacontra
+        Datos[index].correoEmpleado = nuevocorreo
+
+
+
+
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -98,8 +98,10 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val empleado = Datos[position]
         holder.txtNombreEmp.text = empleado.nombreEmpleado
-        holder.txtContraEmp.text = empleado.contraEmpleado
-        holder.txtCorreoEmp.text = empleado.correoEmpleado
+        holder.txtCorreoEmp.text = empleado.contraEmpleado
+        holder.txtContraEmp.text = empleado.correoEmpleado
+
+
 
         holder.btnBorrarCard.setOnClickListener() {
 
@@ -155,10 +157,9 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             //Creamos un Alert Dialog
             val context = holder.itemView.context
 
-
             val builder = androidx.appcompat.app.AlertDialog.Builder(context)
             builder.setTitle("Editar Empleado")
-            builder.setMessage("¿Desea editar Empleado?")
+            builder.setMessage("¿Desea editar a este empleado?")
 
             //Agregarle un cuadro de texto para
             //que el usuario escriba el nuevo nombre
@@ -171,13 +172,13 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             val layout = LinearLayout(context)
             layout.orientation = LinearLayout.VERTICAL
             layout.addView(cuadroTextoNombre)
-            layout.addView(cuadroTextoContra)
             layout.addView(cuadroTextoCorreo)
+            layout.addView(cuadroTextoContra)
             builder.setView(layout)
 
             //Botones
             builder.setPositiveButton("Actualizar") { dialog, which ->
-                actualizarDato(cuadroTextoNombre.text.toString(), cuadroTextoContra.text.toString(), cuadroTextoCorreo.text.toString(), empleado.empleadoUUID)
+                actualizarDato(cuadroTextoNombre.text.toString(), cuadroTextoCorreo.text.toString(), cuadroTextoContra.text.toString(), empleado.empleadoUUID)
             }
 
             builder.setNegativeButton("Cancelar"){dialog, which ->
