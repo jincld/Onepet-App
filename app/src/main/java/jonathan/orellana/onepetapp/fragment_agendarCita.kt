@@ -1,7 +1,6 @@
 package jonathan.orellana.onepetapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +9,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
-import java.util.UUID
 
 class fragment_agendarCita : Fragment() {
 
@@ -241,7 +240,7 @@ class fragment_agendarCita : Fragment() {
 
 
     //MODIFICADO
-//    private suspend fun getIdUsuarioOne(nombre_usuario: String): Int? = withContext(Dispatchers.IO) {
+/*    private suspend fun getIdUsuarioOne(nombre_usuario: String): Int? = withContext(Dispatchers.IO) {
 //        val query = "SELECT UUID_Usuario FROM tbUsuarios WHERE nombre_usuario = ?"
 //        val objConexion = ClaseConexion().cadenaConexion()
 //
@@ -252,18 +251,18 @@ class fragment_agendarCita : Fragment() {
 //                val resultSet = statement.executeQuery()
 //
 //                if (resultSet.next()) {
-//                    val idUsuarioOne = resultSet.getInt("UUID_Usuario")
-//                    resultSet.close()
-//                    return@withContext idUsuarioOne
-//                }
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            } finally {
-//                it.close()
-//            }
-//        }
-//        null
-//    }
+                   val idUsuarioOne = resultSet.getInt("UUID_Usuario")
+                   resultSet.close()
+                    return@withContext idUsuarioOne
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+           } finally {
+               it.close()
+           }
+        }
+      null
+    }*/
 
     private suspend fun saveEnviarCita(
         fecha_cita: String,

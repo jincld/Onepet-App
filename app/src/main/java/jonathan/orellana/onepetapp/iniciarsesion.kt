@@ -8,21 +8,15 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import jonathan.orellana.onepetapp.ui.home.HomeFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import java.security.MessageDigest
-import java.util.UUID
 
 class iniciarsesion : AppCompatActivity() {
 
@@ -85,25 +79,7 @@ class iniciarsesion : AppCompatActivity() {
 
         }
 
-        //MODIFICADO
-        //ERROR POR invokeSuspend, no se lo que significa pero no me deja iniciar sesion
-        GlobalScope.launch(Dispatchers.IO) {
 
-            val objConexion = ClaseConexion().cadenaConexion()
-            val resulSet = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
-            resulSet.setString(1, txtcorreoiniciar.text.toString())
-
-            val resultado = resulSet.executeQuery()
-
-            if (resultado.next()) {
-
-                idDeUsuario = resultado.getString("UUID_usuario")
-
-                println("este es el uuid traido desde el if $idDeUsuario")
-            }
-            println("este es el uuid traido desde la funcion $idDeUsuario")
-
-        }
 
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, login::class.java)
@@ -111,6 +87,27 @@ class iniciarsesion : AppCompatActivity() {
         }
 
         btninicarsesion.setOnClickListener{
+
+            //MODIFICADO
+            //ERROR POR invokeSuspend, no se lo que significa pero no me deja iniciar sesion
+            GlobalScope.launch(Dispatchers.IO) {
+
+                val objConexion = ClaseConexion().cadenaConexion()
+                val resulSet = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
+                resulSet.setString(1, txtcorreoiniciar.text.toString())
+
+                val resultado = resulSet.executeQuery()
+
+                if (resultado.next()) {
+
+                    idDeUsuario = resultado.getString("UUID_usuario")
+
+                    println("este es el uuid traido desde el if $idDeUsuario")
+                }
+                println("este es el uuid traido desde la funcion $idDeUsuario")
+
+            }
+
             valorRolUsuario = uuidRol.toString()
             correodelUsuarioGlobal = txtcorreoiniciar.text.toString()
 
