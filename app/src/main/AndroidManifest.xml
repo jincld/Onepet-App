@@ -15,10 +15,13 @@
         android:theme="@style/Theme.OnePetApp.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".card_ver_Vet_user"
+            android:exported="false" />
+        <activity
             android:name=".vet_para_asignar_cita"
             android:exported="false" />
         <activity
-            android:name=".ui.ActualizarVetActivity"
+            android:name=".ActualizarVetActivity"
             android:exported="false" />
         <activity
             android:name=".activity_item_card_empleados"

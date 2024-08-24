@@ -1,4 +1,4 @@
-package jonathan.orellana.onepetapp
+/*package jonathan.orellana.onepetapp
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -64,11 +64,8 @@ class actualizar_y_eliminar_vet : Fragment() {
 
 
         txtVerNombreVet.text = agregar_vet.VariablesGlobalesVeterinaria.NombreVet
-        txtVerUbicacionVet.text = agregar_vet.VariablesGlobalesVeterinaria.UbicacionVet
-        txtVerNitVet.text = agregar_vet.VariablesGlobalesVeterinaria.NitVet
-        txtVerContactoVet.text = agregar_vet.VariablesGlobalesVeterinaria.ContactoVet
-        txtVerCorreoVet.text = agregar_vet.VariablesGlobalesVeterinaria.CorreoVet
-        txtVerServiciosVet.text = agregar_vet.VariablesGlobalesVeterinaria.DescripcionVet
+
+
 
 
 
@@ -231,3 +228,4 @@ val nombrevett = agregar_vet.VariablesGlobalesVeterinaria.NombreVet
 
 
 
+*/

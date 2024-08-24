@@ -115,6 +115,10 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        if (intent.getBooleanExtra("ir_a_agregar_Cita", false)){
+            navController.navigate(R.id.asignarcitadv)
+        }
             }
 
 

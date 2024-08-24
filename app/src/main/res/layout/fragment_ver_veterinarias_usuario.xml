@@ -13,7 +13,7 @@
         android:id="@+id/txtTituloVeterinarias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tus veterinarias"
+        android:text="Veterinarias"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

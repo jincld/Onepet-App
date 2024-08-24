@@ -22,12 +22,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import java.security.MessageDigest
+import java.util.Random
 import java.util.UUID
 
 class iniciarsesion : AppCompatActivity() {
     companion object variablesLogin {
         lateinit var valorRolUsuario: String
         var uuidRol: String? = null
+        lateinit  var correo_admin: String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +65,7 @@ class iniciarsesion : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
-            val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
+            val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ?")!!
             resulSet.setString(1, txtcorreoiniciar.text.toString().trim())
 
             val resultado = resulSet.executeQuery()
@@ -78,8 +80,9 @@ class iniciarsesion : AppCompatActivity() {
 
 
             println("este es el uuid traido desde la funcion $uuidRol")
+            }
 
-        }
+
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, login::class.java)
             startActivity(pantallaAnterior)
@@ -95,6 +98,9 @@ class iniciarsesion : AppCompatActivity() {
                     val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                     resulSet.setString(1, txtcorreoiniciar.text.toString())
                     resulSet.setString(2, contraencriptada)
+                    correo_admin = txtcorreoiniciar.text.toString()
+                    println("este es el correo que quiero usar ${correo_admin}")
+
                     val resultado = resulSet.executeQuery()
 
                     if (resultado.next()) {

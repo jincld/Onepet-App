@@ -1,4 +1,4 @@
-package jonathan.orellana.onepetapp.ui
+package jonathan.orellana.onepetapp
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -12,7 +12,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import jonathan.orellana.onepetapp.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

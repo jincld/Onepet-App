@@ -1,10 +1,20 @@
 package jonathan.orellana.onepetapp
 
+import RecyclerViewHelper.AdaptadorVet
+import RecyclerViewHelper.AdaptadorVetUser
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import modelo.ClaseConexion
+import modelo.dataClassVeterinaria
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +44,53 @@ class Ver_veterinarias_usuario : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ver_veterinarias_usuario, container, false)
+        val root = inflater.inflate(R.layout.fragment_ver_veterinarias_usuario, container, false)
+
+
+
+
+        val rcvVeterinarias = root.findViewById<RecyclerView>(R.id.rcvVeterinariasUser)
+        rcvVeterinarias.layoutManager = LinearLayoutManager(context)
+
+        fun obtenerDatos(): List<dataClassVeterinaria>{
+
+            //crear objeto conexion
+
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            //crear statement
+
+            val statement = objConexion?.createStatement()
+            val resulSet = statement?.executeQuery("select * from tbVeterinarias")!!
+            val veterinarias = mutableListOf<dataClassVeterinaria>()
+
+            //recorro todos los registos de la base de datos
+
+            while(resulSet.next()){
+                val UUID_Vet = resulSet.getString("UUID_Veterinaria")
+                val ubicacion = resulSet.getString("Ubicacion_veterinaria")
+                val nit = resulSet.getString("NIT")
+                val contacto = resulSet.getString("contacto_veterinaria")
+                val nombre = resulSet.getString("nombre_veterinaria")
+                val correo = resulSet.getString("correo_veterinaria")
+                val descripcion = resulSet.getString("descripcion_servicio")
+
+
+
+                val ValoresJuntos = dataClassVeterinaria(UUID_Vet,nombre, ubicacion, nit,contacto,correo,descripcion)
+                veterinarias.add(ValoresJuntos)
+            }
+            return veterinarias
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            val veterinaria = obtenerDatos()
+            withContext(Dispatchers.Main){
+                val adapter = AdaptadorVetUser(veterinaria, this@Ver_veterinarias_usuario)
+                rcvVeterinarias.adapter= adapter
+            }
+        }
+
+        return root
     }
 
     companion object {

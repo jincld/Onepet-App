@@ -1,28 +1,27 @@
 package RecyclerViewHelper
 
+import RecyclerViewHelperVetUser.ViewHolderVetUser
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import jonathan.orellana.onepetapp.R
-import jonathan.orellana.onepetapp.fragment_veterinarias
-import jonathan.orellana.onepetapp.ActualizarVetActivity
+import jonathan.orellana.onepetapp.Ver_veterinarias_usuario
+import jonathan.orellana.onepetapp.vet_para_asignar_cita
 import modelo.dataClassVeterinaria
 
 
-class AdaptadorVet(private var Datos: List<dataClassVeterinaria>, private val fragment:fragment_veterinarias) : RecyclerView.Adapter<ViewHolderVet>() {
+class AdaptadorVetUser(private var Datos: List<dataClassVeterinaria>, private val fragment: Ver_veterinarias_usuario) : RecyclerView.Adapter<ViewHolderVetUser>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderVet {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderVetUser {
         val vista =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.activity_item_cardmv, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.activity_card_ver_vet_user, parent, false)
 
-        return ViewHolderVet(vista)
+        return ViewHolderVetUser(vista)
     }
-
     override fun getItemCount() = Datos.size
 
-    override fun onBindViewHolder(holder: ViewHolderVet, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderVetUser, position: Int) {
         val producto = Datos[position]
         holder.txtNombreVet.text = producto.nombre_veterinaria
         holder.txtUbicacionVet.text = producto.ubicacion_veterinaria
@@ -31,7 +30,7 @@ class AdaptadorVet(private var Datos: List<dataClassVeterinaria>, private val fr
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            val pantalla = Intent(context, ActualizarVetActivity::class.java)
+            val pantalla = Intent(context, vet_para_asignar_cita::class.java)
             pantalla.putExtra(
                 "Nombre",
                 producto.nombre_veterinaria
