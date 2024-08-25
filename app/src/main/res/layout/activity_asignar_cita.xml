@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vet_para_asignar_cita">
+
+
+        <ImageView
+            android:id="@+id/imageView36"
+            android:layout_width="437dp"
+            android:layout_height="500dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="336dp"
+            android:src="@drawable/degabceleste"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtTituloMiVet" />
+
+        <ImageView
+            android:id="@+id/imageView31"
+            android:layout_width="265dp"
+            android:layout_height="263dp"
+            android:layout_marginTop="596dp"
+            android:layout_marginEnd="271dp"
+            android:rotation="73"
+            android:src="@drawable/gbuno"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnAsignarCita"
+            android:layout_width="204dp"
+            android:layout_height="51dp"
+            android:layout_marginBottom="192dp"
+            android:background="@drawable/btnazul"
+            android:fontFamily="@font/alata"
+            android:text="Asignar cita"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView33"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="702dp"
+            android:src="@drawable/circulocelesteazul"
+            app:layout_constraintEnd_toStartOf="@+id/imageView32"
+            app:layout_constraintHorizontal_bias="0.893"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView32"
+            android:layout_width="228dp"
+            android:layout_height="239dp"
+            android:layout_marginStart="293dp"
+            android:layout_marginTop="608dp"
+            android:src="@drawable/circulocelesteazul"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTituloMiVet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/alata"
+            android:text="Información de veterinaria"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtVerContactoVetUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/imageView36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVerNitVetUser"
+            app:layout_constraintVertical_bias="0.222" />
+
+        <TextView
+            android:id="@+id/txtVerUbicacionVetUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAsignarCita"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVerNombreVetUser"
+            app:layout_constraintVertical_bias="0.084" />
+
+        <TextView
+            android:id="@+id/txtVerCorreoVetUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/btnAsignarCita"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVerContactoVetUser"
+            app:layout_constraintVertical_bias="0.132" />
+
+        <TextView
+            android:id="@+id/txtVerNitVetUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/imageView36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtVerUbicacionVetUser"
+            app:layout_constraintVertical_bias="0.162" />
+
+        <TextView
+            android:id="@+id/txtVerServiciosVetUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="116dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/btnAsignarCita"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txtVerNombreVetUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/btnAsignarCita"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTituloMiVet"
+            app:layout_constraintVertical_bias="0.171" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

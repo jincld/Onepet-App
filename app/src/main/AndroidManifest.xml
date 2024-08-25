@@ -30,6 +30,18 @@
         android:theme="@style/Theme.OnePetApp.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".card_ver_Vet_user"
+            android:exported="false" />
+        <activity
+            android:name=".vet_para_asignar_cita"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarVetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_item_card_empleados"
+            android:exported="false" />
+        <activity
             android:name=".item_card"
             android:exported="false" />
         <activity android:name=".agregar_vet" />

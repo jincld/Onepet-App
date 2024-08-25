@@ -150,7 +150,7 @@ class registroduenovet : AppCompatActivity() {
                     imageView.tag = null
                     val login = Intent(this@registroduenovet, iniciarsesion::class.java)
                     startActivity(login)
-                    
+
                 }
             }
         }

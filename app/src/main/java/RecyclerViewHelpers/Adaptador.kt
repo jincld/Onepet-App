@@ -54,7 +54,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
                 actualicePantalla(uuid, nuevoNombre, nuevocorreo,  nuevacontra) // Corregido el orden de los parámetros
             }
 
-            }
+        }
 
     }
 
@@ -71,7 +71,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_card, parent, false)
+        val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_card_empleados, parent, false)
         return ViewHolder(vista)
     }
 
@@ -106,34 +106,34 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             val dialog = builder.create()
             dialog.show()
         }
-       /* holder.btneditarcard.setOnClickListener{
-            //Creamos un Alert Dialog
-            val context = holder.itemView.context
+        /* holder.btneditarcard.setOnClickListener{
+             //Creamos un Alert Dialog
+             val context = holder.itemView.context
 
-            val builder = androidx.appcompat.app.AlertDialog.Builder(context)
-            builder.setTitle("Editar Empleado")
-            builder.setMessage("¿Desea editar Empleado?")
+             val builder = androidx.appcompat.app.AlertDialog.Builder(context)
+             builder.setTitle("Editar Empleado")
+             builder.setMessage("¿Desea editar Empleado?")
 
-            //Agregarle un cuadro de texto para
-            //que el usuario escriba el nuevo nombre
-            val cuadroTexto = EditText(context)
-            cuadroTexto.setHint(empleado.nombreEmpleado)
-            cuadroTexto.setHint(empleado.contraEmpleado)
-            cuadroTexto.setHint(empleado.correoEmpleado)
-            builder.setView(cuadroTexto)
+             //Agregarle un cuadro de texto para
+             //que el usuario escriba el nuevo nombre
+             val cuadroTexto = EditText(context)
+             cuadroTexto.setHint(empleado.nombreEmpleado)
+             cuadroTexto.setHint(empleado.contraEmpleado)
+             cuadroTexto.setHint(empleado.correoEmpleado)
+             builder.setView(cuadroTexto)
 
-            //Botones
-            builder.setPositiveButton("Actualizar") { dialog, which ->
-                actualizarDato(cuadroTexto.text.toString(), empleado.empleadoUUID)
-            }
+             //Botones
+             builder.setPositiveButton("Actualizar") { dialog, which ->
+                 actualizarDato(cuadroTexto.text.toString(), empleado.empleadoUUID)
+             }
 
-            builder.setNegativeButton("Cancelar"){dialog, which ->
-                dialog.dismiss()
-            }
+             builder.setNegativeButton("Cancelar"){dialog, which ->
+                 dialog.dismiss()
+             }
 
-            val dialog = builder.create()
-            dialog.show()
-        }*/
+             val dialog = builder.create()
+             dialog.show()
+         }*/
 
         holder.btneditarcard.setOnClickListener{
             //Creamos un Alert Dialog

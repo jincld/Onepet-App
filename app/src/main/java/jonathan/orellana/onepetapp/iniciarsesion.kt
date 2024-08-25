@@ -24,6 +24,7 @@ class iniciarsesion : AppCompatActivity() {
         lateinit var valorRolUsuario: String
         lateinit var valorCorreoUsuario: String
         var uuidRol: String? = null
+        lateinit  var correo_admin: String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +55,9 @@ class iniciarsesion : AppCompatActivity() {
         val btnNoCuenta = findViewById<TextView>(R.id.txtNoCuenta)
 
 
+        valorRolUsuario = txtcorreoiniciar.text.toString()
+
+
 
 
         //   fun obtenerUuidRol(): String? {
@@ -61,8 +65,8 @@ class iniciarsesion : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
-            val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
-            resulSet.setString(1, txtcorreoiniciar.text.toString())
+            val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ?")!!
+            resulSet.setString(1, txtcorreoiniciar.text.toString().trim())
 
             val resultado = resulSet.executeQuery()
 
@@ -76,12 +80,14 @@ class iniciarsesion : AppCompatActivity() {
 
 
             println("este es el uuid traido desde la funcion $uuidRol")
+            }
 
-        }
+
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, login::class.java)
             startActivity(pantallaAnterior)
         }
+
 
         ojolog.setOnClickListener{
             if (txtcontrainiciar.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD){
@@ -96,6 +102,7 @@ class iniciarsesion : AppCompatActivity() {
 
         btninicarsesion.setOnClickListener {
             valorCorreoUsuario = txtcorreoiniciar.text.toString()
+
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
             val contra = txtcontrainiciar.text.toString()
@@ -141,11 +148,15 @@ class iniciarsesion : AppCompatActivity() {
                     val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                     resulSet.setString(1, txtcorreoiniciar.text.toString())
                     resulSet.setString(2, contraencriptada)
+                    correo_admin = txtcorreoiniciar.text.toString()
+                    println("este es el correo que quiero usar ${correo_admin}")
+
                     val resultado = resulSet.executeQuery()
 
                     if (resultado.next()) {
                         valorRolUsuario = resultado.getString("ROL")
                         startActivity(pantallaprincipal)
+
 
                     }else {
                         withContext(Dispatchers.Main) {
