@@ -2,18 +2,58 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"/>
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"
+        tools:ignore="SelectedPhotoAccess"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+       android:maxSdkVersion="32"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_onepet"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_onepet"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OnePetApp"
+        android:theme="@style/Theme.OnePetApp.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".item_card"
+            android:exported="false" />
+        <activity android:name=".agregar_vet" />
+        <activity
+            android:name=".splash_screen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".agregarmascotaas"
+            android:exported="false" />
+        <activity
+            android:name=".nuevacontrasena"
+            android:exported="false" />
+        <activity
+            android:name=".codigoconfimarcion"
+            android:exported="false" />
         <activity
             android:name=".correoderecuperacion"
             android:exported="false" />
@@ -33,28 +73,14 @@
             android:name=".login"
             android:exported="false" />
         <activity
-            android:name=".PruebaMicelular"
-            android:exported="false" />
-        <activity
             android:name=".bienvenido"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".registrarotramascota"
             android:exported="false" />
         <activity
             android:name=".registrarmascotadm"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.OnePetApp.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

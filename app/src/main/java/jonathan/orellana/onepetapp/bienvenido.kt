@@ -1,7 +1,10 @@
 package jonathan.orellana.onepetapp
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class bienvenido : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_bienvenido)
@@ -17,8 +21,11 @@ class bienvenido : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+
         }
         supportActionBar?.hide();
+
+
 
         val btnbienvenido = findViewById<Button>(R.id.btnbienvenido)
 
