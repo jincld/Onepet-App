@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -37,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val txtcorreoiniciar = findViewById<EditText>(R.id.txtcorreoiniciar)
         //val txtNombreMenu = findViewById<TextView>(R.id.txtNombreUserMenu)
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -76,6 +76,10 @@ class MainActivity : AppCompatActivity() {
         val headerView2 = navigationView2.getHeaderView(0)
         val txtNombreMenu: TextView = headerView2.findViewById(R.id.txtNombreUserMenu)
 
+        val txtInfo1: TextView = findViewById(R.id.txtInfo1)
+        val txtCont1: TextView = findViewById(R.id.txtCont1)
+        val btnMiVet: ImageButton = findViewById(R.id.btnMiVet)
+
         suspend fun traerNombreUser(valorCorreoUsuario: String): String? {
             return withContext(Dispatchers.IO) {
                 var nombreUser: String? = null
@@ -106,14 +110,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
         CoroutineScope(Dispatchers.Main).launch {
-            val valorRolUsuario = valorCorreoUsuario// O el valor adecuado
+            val valorRolUsuario = valorCorreoUsuario
             val nombreUsuario = traerNombreUser(valorCorreoUsuario)
-            // Usa el nombreUsuario aquí, por ejemplo, actualizando la UI
-            // textView.text = nombreUsuario
             txtNombreMenu.text = nombreUsuario
             println("ESTE ES EL NOMBRE TRAIDO:" + nombreUsuario)
         }
+
 
       // txtNombreMenu.text = traerNombreUser()
 
@@ -128,6 +133,16 @@ class MainActivity : AppCompatActivity() {
             }
             return uuidRol
         }
+
+       CoroutineScope(Dispatchers.Main).launch {
+           val info1 = "Administrando"
+           txtInfo1.text = info1
+
+           val contenido1 = "Bienvenido a la administración en OnePet!"
+           txtCont1.text = contenido1
+
+        }
+
 
         CoroutineScope(Dispatchers.IO).launch {
             val txtcorreoiniciarval = valorRolUsuario
@@ -147,18 +162,28 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.agregarempleadodv).isVisible = false
                     navView.menu.findItem(R.id.misempleadosdv).isVisible = false
                     navView.menu.findItem(R.id.solicitudescitadv).isVisible = false
-                    navView.menu.findItem(R.id.clientesdv).isVisible = false
+
+                    if (txtcorreoiniciarval == RolUsuarioMainActivity){
+                        val info1 = "Bienvenido"
+                        txtInfo1.text = info1
+
+                        val cont1 = "Te damos la bienvenida a OnePet!"
+                        txtCont1.text = cont1
+
+                        btnMiVet.isVisible = false
+                    }
+
                 } else {
                     navView.menu.findItem(R.id.fragment_asignaciones).isVisible = true
-                    navView.menu.findItem(R.id.resenasdv).isVisible = false
                     navView.menu.findItem(R.id.fragment_agendarCita).isVisible = false
                     navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = false
-                    navView.menu.findItem(R.id.ajustesdv).isVisible = false
                     navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
                     navView.menu.findItem(R.id.agregar_vet).isVisible = true
                     navView.menu.findItem(R.id.agregarempleadodv).isVisible = true
                     navView.menu.findItem(R.id.resenasdv).isVisible = true
                     navView.menu.findItem(R.id.ajustesdv).isVisible = true
+
+
                 }
 
                 println("*******este es el resultado que traigo con el select ROL USUARIO MAIN $RolUsuarioMainActivity")
