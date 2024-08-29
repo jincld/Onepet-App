@@ -138,7 +138,6 @@ class registroduenovet : AppCompatActivity() {
                 println("este es el uuid traido antes del execute  $uuidTraido")
                 crearusuario.executeUpdate()
 
-                Toast.makeText(this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
 
                 withContext(Dispatchers.Main){
                     //mostrar mensaje y limpiar campos

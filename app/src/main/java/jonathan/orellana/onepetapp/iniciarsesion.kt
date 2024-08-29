@@ -23,6 +23,7 @@ class iniciarsesion : AppCompatActivity() {
     companion object variablesLogin {
         lateinit var valorRolUsuario: String
         lateinit var valorCorreoUsuario: String
+        lateinit var uuid_vet_real: String
         var uuidRol: String? = null
         lateinit  var correo_admin: String
     }
@@ -55,32 +56,8 @@ class iniciarsesion : AppCompatActivity() {
         val btnNoCuenta = findViewById<TextView>(R.id.txtNoCuenta)
 
 
-        valorRolUsuario = txtcorreoiniciar.text.toString()
-
-
-
-
         //   fun obtenerUuidRol(): String? {
 
-        GlobalScope.launch(Dispatchers.IO) {
-
-            val objConexion = ClaseConexion().cadenaConexion()
-            val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ?")!!
-            resulSet.setString(1, txtcorreoiniciar.text.toString().trim())
-
-            val resultado = resulSet.executeQuery()
-
-            if (resultado.next()) {
-
-                uuidRol = resultado.getString("rol")
-
-                println("este es el uuid traido desde el if $uuidRol")
-            }
-
-
-
-            println("este es el uuid traido desde la funcion $uuidRol")
-            }
 
 
         btnVolver.setOnClickListener {
@@ -153,8 +130,22 @@ class iniciarsesion : AppCompatActivity() {
 
                     val resultado = resulSet.executeQuery()
 
+                    val UUID_vet = objConexion?.prepareStatement("select vet from tbUsuariosOne where correo_usuario = ?")!!
+                    UUID_vet.setString(1, correo_admin)
+                    UUID_vet.executeQuery()
+                    var uuid_vet_global = UUID_vet.executeQuery();
+
+                    if (uuid_vet_global.next()) {
+                        uuid_vet_real = uuid_vet_global.getString("vet")
+                        println("este es la UUID de vet que quiero usar ${uuid_vet_real}")
+                    }
+                    else {
+
+                    }
+
                     if (resultado.next()) {
                         valorRolUsuario = resultado.getString("ROL")
+                        println("--*--*-*ESTE ES EL ROL ${valorRolUsuario}")
                         startActivity(pantallaprincipal)
 
 

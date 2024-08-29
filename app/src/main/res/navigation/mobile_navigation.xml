@@ -140,6 +140,11 @@
         android:name="jonathan.orellana.onepetapp.Ver_veterinarias_usuario"
         android:label="fragment_ver_veterinarias_usuario"
         tools:layout="@layout/fragment_ver_veterinarias_usuario" />
+    <fragment
+        android:id="@+id/hacerResena"
+        android:name="jonathan.orellana.onepetapp.hacerResena"
+        android:label="fragment_hacer_resena"
+        tools:layout="@layout/fragment_hacer_resena" />
 
 
 </navigation>
