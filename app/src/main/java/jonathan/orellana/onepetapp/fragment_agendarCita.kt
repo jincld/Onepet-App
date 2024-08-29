@@ -19,31 +19,6 @@ import java.util.UUID
 
 class fragment_agendarCita : Fragment() {
 
-    companion object {
-        fun obtenerUUIDUsuario(): String? {
-
-            val correoGlobalEscrito = iniciarsesion.variablesGlobalesLogin.correodelUsuarioGlobal
-
-
-            val objConexion = ClaseConexion().cadenaConexion()
-
-            val traerUUIDUsuario =
-                objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?")!!
-            traerUUIDUsuario.setString(1, correoGlobalEscrito)
-            val resultSet = traerUUIDUsuario.executeQuery()
-
-            var uuidUsuario: String? = null
-
-            if (resultSet?.next() == true) {
-                uuidUsuario = resultSet.getString("UUID_usuario")
-                println("este es el uuid traido desde el if $uuidUsuario")
-            }
-
-            println("este es el uuid traido desde la funcion $uuidUsuario")
-            return uuidUsuario
-        }
-    }
-
     private lateinit var txtFechaCita: EditText
     private lateinit var spVetCita: Spinner
     private lateinit var spMascotaCita: Spinner
@@ -86,9 +61,9 @@ class fragment_agendarCita : Fragment() {
                 val idVetC = getIdVet(vetSeleccionado)
                 val idMascotaC = getIdMascota(mascotaSeleccionada)
                 //MODIFICADO
-                val idUsuarioOne = obtenerUUIDUsuario()
+                val idUsuarioOne = iniciarsesion.variablesGlobalesLogin.idDeUsuario
 
-                println("ESTE ES EL ID QUE SUPUESTA,ENTE ESTA NULO $idUsuarioOne")
+
 
                 if (idVetC != null && idMascotaC != null && idUsuarioOne != null) {
                     val result =
@@ -120,12 +95,10 @@ class fragment_agendarCita : Fragment() {
                         ).show()
                     }
                 } else {
-                    println("NO TE FUNCIONO")
                     Toast.makeText(
                         requireContext(),
                         "Error: No se pudo obtener los IDs",
                         Toast.LENGTH_SHORT
-
                     ).show()
                 }
             }
@@ -268,9 +241,9 @@ class fragment_agendarCita : Fragment() {
 
 
     //MODIFICADO
-//   private suspend fun getIdUsuarioOne(nombre_usuario: String): String? = withContext(Dispatchers.IO) {
-//      val query = "SELECT UUID_Usuario FROM tbUsuarios WHERE nombre_usuario = ?"
-//      val objConexion = ClaseConexion().cadenaConexion()
+//    private suspend fun getIdUsuarioOne(nombre_usuario: String): Int? = withContext(Dispatchers.IO) {
+//        val query = "SELECT UUID_Usuario FROM tbUsuarios WHERE nombre_usuario = ?"
+//        val objConexion = ClaseConexion().cadenaConexion()
 //
 //        objConexion?.let {
 //            try {
@@ -279,7 +252,7 @@ class fragment_agendarCita : Fragment() {
 //                val resultSet = statement.executeQuery()
 //
 //                if (resultSet.next()) {
-//                    val idUsuarioOne = resultSet.getString("UUID_Usuario")
+//                    val idUsuarioOne = resultSet.getInt("UUID_Usuario")
 //                    resultSet.close()
 //                    return@withContext idUsuarioOne
 //                }
@@ -302,7 +275,7 @@ class fragment_agendarCita : Fragment() {
         descripcion_motivo: String
     ): Boolean = withContext(Dispatchers.IO) {
         //MODIFICADO
-        val idUsuarioOne = obtenerUUIDUsuario()
+        val idUsuarioOne = iniciarsesion.variablesGlobalesLogin.idDeUsuario
         if (idUsuarioOne != null) {
             val query =
                 "INSERT INTO tbCitas (fecha_cita, vet, mascota, usuario, motivo_cita, descripcion_motivo) VALUES (?, ?, ?, ?, ?, ?)"
@@ -315,7 +288,6 @@ class fragment_agendarCita : Fragment() {
                     statement.setInt(2, idVetC)
                     statement.setInt(3, idMascotaC)
                     statement.setString(4, idUsuarioOne)
-                    println("este es el uuid traido antes del execute  $idUsuarioOne")
                     statement.setString(5, motivo_cita)
                     statement.setString(6, descripcion_motivo)
                     statement.executeUpdate()

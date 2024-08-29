@@ -33,8 +33,7 @@ class iniciarsesion : AppCompatActivity() {
 
         //MODIFICADO
         //ERROR AQUI PORQUE NO LO INICIALIZO DE ALGUNA FORMA
-        lateinit var valorIdUsuario: String
-        var idDeUsuario: String? = null
+        lateinit var idDeUsuario: String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,7 +111,6 @@ class iniciarsesion : AppCompatActivity() {
         }
 
         btninicarsesion.setOnClickListener{
-            valorIdUsuario = idDeUsuario.toString()
             valorRolUsuario = uuidRol.toString()
             correodelUsuarioGlobal = txtcorreoiniciar.text.toString()
 
