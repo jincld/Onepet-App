@@ -42,6 +42,8 @@ class misempleadosdv : Fragment() {
     }
 
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,7 +63,7 @@ class misempleadosdv : Fragment() {
             //crear statement
 
             val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = '2AFE5C5D754B4AD9B24F5B22DB43D9E6'")!!
+            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = 'CEC5E0B9179646659425962EF283D5EF'")!!
             val empleados = mutableListOf<dataClassEmpleado>()
 
             //recorro todos los registos de la base de datos

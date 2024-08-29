@@ -90,18 +90,34 @@ class iniciarsesion : AppCompatActivity() {
 
         btninicarsesion.setOnClickListener {
             val pantallaprincipal = Intent(this, MainActivity::class.java)
-
                 GlobalScope.launch(Dispatchers.IO) {
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
+
+
+
 
                     val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                     resulSet.setString(1, txtcorreoiniciar.text.toString())
                     resulSet.setString(2, contraencriptada)
                     correo_admin = txtcorreoiniciar.text.toString()
                     println("este es el correo que quiero usar ${correo_admin}")
-
                     val resultado = resulSet.executeQuery()
+
+
+
+                    val UUID_vet = objConexion?.prepareStatement("select vet from tbUsuariosOne where correo_usuario = ?")!!
+                    UUID_vet.setString(1, correo_admin)
+                    UUID_vet.executeQuery()
+                    var uuid_vet_global = UUID_vet.executeQuery();
+
+                    if (uuid_vet_global.next()) {
+                        var uuid_Vet_real = uuid_vet_global.getString("vet")
+                        println("este es la UUID de vet que quiero usar ${uuid_Vet_real}")
+                    }
+                    else {
+
+                    }
 
                     if (resultado.next()) {
                         valorRolUsuario = resultado.getString("ROL")

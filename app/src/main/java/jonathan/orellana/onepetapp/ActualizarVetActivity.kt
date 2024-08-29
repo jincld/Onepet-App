@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import modelo.ClaseConexion
+import modelo.dataClassVeterinaria
 
 class ActualizarVetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,23 +98,23 @@ class ActualizarVetActivity : AppCompatActivity() {
             builder.setMessage("Estas seguro que quieres editar?")
 
             val nombrenuevo = EditText(this)
-            nombrenuevo.setHint("Nombre")
+            nombrenuevo.setText(nombre.toString())
 
             val nuevaubicacion = EditText(this)
-            nuevaubicacion.setHint("Ubicación")
+            nuevaubicacion.setText(ubicacion.toString())
 
             val nuevoNit = EditText(this)
-            nuevoNit.setHint("NIT")
+            nuevoNit.setText(nit.toString())
             nuevoNit.inputType = InputType.TYPE_CLASS_NUMBER //
 
             val nuevoContacto = EditText(this)
-            nuevoContacto.setHint("Contacto")
+            nuevoContacto.setText(contacto.toString())
 
             val correoNuevo = EditText(this)
-            correoNuevo.setHint("Correo")
+            correoNuevo.setText(correo.toString())
 
             val descripcionNueva = EditText(this)
-            descripcionNueva.setHint("Descripción servicios")
+            descripcionNueva.setText(descripcion.toString())
 
             val layout = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL
@@ -175,7 +176,7 @@ class ActualizarVetActivity : AppCompatActivity() {
 
 
                 val commit = objConexion.prepareStatement("commit")!!
-                commit.executeUpdate()
+                commit.executeQuery()
             }
 
         }

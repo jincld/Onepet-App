@@ -117,7 +117,7 @@ class registroduenovet : AppCompatActivity() {
                txtcontraadminvet.error = null
             }
 
-            if (hayerrores){
+            if (hayerrores) {
             } else {
 
                 GlobalScope.launch(Dispatchers.IO){
@@ -133,6 +133,7 @@ class registroduenovet : AppCompatActivity() {
                     crearusuario.setString(5,uuidTraido)
                     println("este es el uuid traido antes del execute  $uuidTraido")
                     crearusuario.executeUpdate()
+
                     withContext(Dispatchers.Main){
                         //mostrar mensaje y limpiar campos
                         Toast.makeText(this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()

@@ -156,11 +156,12 @@ class agregar_vet : Fragment() {
                     NombreVet = txtNombreVet.text.toString()
                     println("este es el nombre de vet que quiero usar ${NombreVet}")
 
-                     val UpdateUser = objConexion?.prepareStatement("Update tbUsuariosOne set vet = ?  where correo_usuario =?")!!
+                     val UpdateUser = objConexion?.prepareStatement("Update tbUsuariosOne set vet = ?  where correo_usuario = ?")!!
                      UpdateUser.setString(1, UUIDvet)
                      println("este es la UUID de vet que quiero usar ${UUIDvet}")
                      UpdateUser.setString(2,iniciarsesion.variablesLogin.correo_admin)
                      println("este es el correo que quiero usar ${iniciarsesion.variablesLogin.correo_admin}")
+                     UpdateUser.executeUpdate()
 
                      withContext(Dispatchers.Main){
                     findNavController().navigate(R.id.action_agregar_vet_to_veterinarias)
