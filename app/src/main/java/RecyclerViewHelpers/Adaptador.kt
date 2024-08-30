@@ -173,7 +173,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
                 }
 
                 if (contra.length <= 8) {
-                    cuadroTextoContra.error = "La contraseña debe tener más de 8 carácteres"
+                    cuadroTextoContra.error = "La contraseña debe de tener más de 8 carácteres"
                     hayerrores = true
                 } else {
                     cuadroTextoContra.error = null
