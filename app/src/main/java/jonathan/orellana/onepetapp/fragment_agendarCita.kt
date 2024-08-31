@@ -61,49 +61,90 @@ class fragment_agendarCita : Fragment() {
                 val idVetC = getIdVet(vetSeleccionado)
                 val idMascotaC = getIdMascota(mascotaSeleccionada)
                 //MODIFICADO
-                val idUsuarioOne = iniciarsesion.variablesGlobalesLogin.idDeUsuario
+                val idUsuarioOne = obtenerIdUsuario()
 
 
+                if (idUsuarioOne != null)
+                    if (idVetC != null && idMascotaC != null) {
+                        val result =
+                            saveEnviarCita(
+                                fechaCita,
+                                idVetC,
+                                idMascotaC,
+                                //MODIFICADO
+                                idUsuarioOne,
+                                motivoCita,
+                                descripcionCita
 
-                if (idVetC != null && idMascotaC != null && idUsuarioOne != null) {
-                    val result =
-                        saveEnviarCita(
-                            fechaCita,
-                            idVetC,
-                            idMascotaC,
-                            //MODIFICADO
-                            idUsuarioOne,
-                            motivoCita,
-                            descripcionCita
+                            )
+                        if (result) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Asignación guardada correctamente",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
-                        )
-                    if (result) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Asignación guardada correctamente",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        txtFechaCita.setText("")
-                        txtMotivoCita.setText("")
-                        txtDescripcionCita.setText("")
+                            txtFechaCita.setText("")
+                            txtMotivoCita.setText("")
+                            txtDescripcionCita.setText("")
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error al guardar la asignación",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Usuario no encontrado",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     } else {
                         Toast.makeText(
                             requireContext(),
-                            "Error al guardar la asignación",
+                            "Error: No se pudo obtener los IDs",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error: No se pudo obtener los IDs",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             }
         }
         return root
+    }
+
+
+    suspend fun getUsuarioIdCorreo(email: String): String? {
+        return withContext(Dispatchers.IO) {
+            var usuarioId: String? = null
+            val objConexion = ClaseConexion().cadenaConexion()
+            val query = "SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?"
+
+            if (objConexion != null) {
+                try {
+                    val statement = objConexion.prepareStatement(query)
+                    statement.setString(1, email)
+                    val resultSet = statement.executeQuery()
+
+                    if (resultSet.next()) {
+                        usuarioId = resultSet.getString("UUID_usuario")
+                    }
+
+                    resultSet.close()
+                    statement.close()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                } finally {
+                    objConexion.close()
+                }
+            }
+            usuarioId
+        }
+    }
+
+    private suspend fun obtenerIdUsuario(): String? {
+        val correoGlobalEscrito = iniciarsesion.variablesGlobalesLogin.correodelUsuarioGlobal
+        println("Este es el correo traido desde el inicio de Sesion $correoGlobalEscrito")
+
+        return getUsuarioIdCorreo(correoGlobalEscrito)
     }
 
     private fun loadVet() {
@@ -188,7 +229,7 @@ class fragment_agendarCita : Fragment() {
         mascotas
     }
 
-    private suspend fun getIdVet(nombreVet: String): Int? =
+    private suspend fun getIdVet(nombreVet: String): String? =
         withContext(Dispatchers.IO) {
             val query =
                 "SELECT UUID_Veterinaria FROM tbVeterinarias WHERE nombre_veterinaria =  ?"
@@ -201,12 +242,15 @@ class fragment_agendarCita : Fragment() {
                     val resultSet = statement.executeQuery()
 
                     if (resultSet.next()) {
-                        val idVetC = resultSet.getInt("UUID_Veterinaria")
+                        val idVetC = resultSet.getString("UUID_Veterinaria")
+                        println("Id veterinaria obtenido: $idVetC")
                         resultSet.close()
                         return@withContext idVetC
+                    } else {
+                        println("No se encontró la veterinaria")
                     }
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    println("Error al obtener el id de la veterinaria: $e")
                 } finally {
                     it.close()
                 }
@@ -214,7 +258,7 @@ class fragment_agendarCita : Fragment() {
             null
         }
 
-    private suspend fun getIdMascota(nombreMascota: String): Int? =
+    private suspend fun getIdMascota(nombreMascota: String): String? =
         withContext(Dispatchers.IO) {
             val query = "SELECT UUID_Mascota FROM tbMascotas WHERE nombre_mascota = ?"
             val objConexion = ClaseConexion().cadenaConexion()
@@ -226,12 +270,15 @@ class fragment_agendarCita : Fragment() {
                     val resultSet = statement.executeQuery()
 
                     if (resultSet.next()) {
-                        val idMascotaC = resultSet.getInt("UUID_Mascota")
+                        val idMascotaC = resultSet.getString("UUID_Mascota")
+                        println("Id mascota obtenido: $idMascotaC")
                         resultSet.close()
                         return@withContext idMascotaC
+                    } else {
+                        println("No se encontró la mascota")
                     }
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    println("Error al obtener el id de la mascota: $e")
                 } finally {
                     it.close()
                 }
@@ -267,15 +314,14 @@ class fragment_agendarCita : Fragment() {
 
     private suspend fun saveEnviarCita(
         fecha_cita: String,
-        idVetC: Int,
-        idMascotaC: Int,
+        idVetC: String,
+        idMascotaC: String,
         //MODIFICADO
         idUsuarioOne: String,
         motivo_cita: String,
         descripcion_motivo: String
     ): Boolean = withContext(Dispatchers.IO) {
         //MODIFICADO
-        val idUsuarioOne = iniciarsesion.variablesGlobalesLogin.idDeUsuario
         if (idUsuarioOne != null) {
             val query =
                 "INSERT INTO tbCitas (fecha_cita, vet, mascota, usuario, motivo_cita, descripcion_motivo) VALUES (?, ?, ?, ?, ?, ?)"
@@ -285,12 +331,20 @@ class fragment_agendarCita : Fragment() {
                 try {
                     val statement = it.prepareStatement(query)
                     statement.setString(1, fecha_cita)
-                    statement.setInt(2, idVetC)
-                    statement.setInt(3, idMascotaC)
+                    statement.setString(2, idVetC)
+                    statement.setString(3, idMascotaC)
                     statement.setString(4, idUsuarioOne)
                     statement.setString(5, motivo_cita)
                     statement.setString(6, descripcion_motivo)
                     statement.executeUpdate()
+
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "Cita Agendada", Toast.LENGTH_SHORT).show()
+                        txtFechaCita.setText("")
+                        txtDescripcionCita.setText("")
+                        txtMotivoCita.setText("")
+                    }
+
                     statement.close()
                     it.close()
                     true
