@@ -24,6 +24,7 @@ class iniciarsesion : AppCompatActivity() {
         lateinit var valorRolUsuario: String
         lateinit var valorCorreoUsuario: String
         lateinit var uuid_vet_real: String
+        lateinit var UUID_Usuario: String
         var uuidRol: String? = null
         lateinit  var correo_admin: String
     }
@@ -135,11 +136,24 @@ class iniciarsesion : AppCompatActivity() {
                     UUID_vet.executeQuery()
                     var uuid_vet_global = UUID_vet.executeQuery();
 
+                    val UUID_usuario_global = objConexion?.prepareStatement("select UUID_USUARIO from tbUsuariosOne where correo_usuario = ?")!!
+                    UUID_usuario_global.setString(1, correo_admin)
+                    UUID_usuario_global.executeQuery()
+                    var UUID_usuario_global_Var = UUID_usuario_global.executeQuery();
+
 
 
                     if (uuid_vet_global.next()) {
                         uuid_vet_real = uuid_vet_global.getString("vet")
                         println("este es la UUID de vet que quiero usar ${uuid_vet_real}")
+                    }
+                    else {
+
+                    }
+
+                    if (UUID_usuario_global_Var.next()) {
+                        UUID_Usuario = UUID_usuario_global_Var.getString("UUID_USUARIO")
+                        println("este es la UUID de USUARIO que quiero usar ${UUID_Usuario}")
                     }
                     else {
 
