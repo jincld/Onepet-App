@@ -1,6 +1,8 @@
 package jonathan.orellana.onepetapp
 
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.InputType
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +47,9 @@ class fragment_agendarCita : Fragment() {
         spMascotaCita = root.findViewById(R.id.spMascotaCita)
         txtMotivoCita = root.findViewById(R.id.txtMotivoCita)
         txtDescripcionCita = root.findViewById(R.id.txtDescripcionCitas)
+        txtDescripcionCita.isSingleLine = false
+        txtDescripcionCita.filters = arrayOf(InputFilter.LengthFilter(150))
+
         btnEnviarCita = root.findViewById(R.id.btnEnviarCita)
 
         loadVet()
