@@ -102,11 +102,7 @@ class iniciarsesion : AppCompatActivity() {
         btninicarsesion.setOnClickListener {
 
             val pantallaprincipal = Intent(this, MainActivity::class.java)
-            GlobalScope.launch(Dispatchers.IO) {
-                val objConexion = ClaseConexion().cadenaConexion()
-                val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
             valorCorreoUsuario = txtcorreoiniciar.text.toString()
-
 
             val contra = txtcontrainiciar.text.toString()
             val correo = txtcorreoiniciar.text.toString()
@@ -118,17 +114,16 @@ class iniciarsesion : AppCompatActivity() {
             } else {
                 txtcorreoiniciar.error = null
             }
+            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))) {
 
-            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
-
-             txtcorreoiniciar.error = "Correo invalido"
+                txtcorreoiniciar.error = "Correo invalido"
                 hayerrores = true
             } else {
                 txtcorreoiniciar.error = null
             }
 
             if (contra.isEmpty()) {
-              txtcontrainiciar.error = "Complete todos lo campos"
+                txtcontrainiciar.error = "Complete todos lo campos"
                 hayerrores = true
             } else {
                 txtcontrainiciar.error = null
@@ -138,81 +133,83 @@ class iniciarsesion : AppCompatActivity() {
                 txtcontrainiciar.error = "Contraseña invalida"
                 hayerrores = true
             } else {
-               txtcontrainiciar.error = null
+                txtcontrainiciar.error = null
             }
 
-            if (hayerrores){
+            if (hayerrores) {
+
             } else {
 
                 GlobalScope.launch(Dispatchers.IO) {
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
-                val resulSet =
-                    objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
-                resulSet.setString(1, txtcorreoiniciar.text.toString())
-                resulSet.setString(2, contraencriptada)
-                correo_admin = txtcorreoiniciar.text.toString()
-                println("este es el correo que quiero usar ${correo_admin}")
-                val resultado = resulSet.executeQuery()
+
+                    val resulSet =
+                        objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
+                    resulSet.setString(1, txtcorreoiniciar.text.toString())
+                    resulSet.setString(2, contraencriptada)
+                    correo_admin = txtcorreoiniciar.text.toString()
+                    println("este es el correo que quiero usar ${correo_admin}")
+                    val resultado = resulSet.executeQuery()
 
 
-                val UUID_vet =
-                    objConexion?.prepareStatement("select vet from tbUsuariosOne where correo_usuario = ?")!!
-                UUID_vet.setString(1, correo_admin)
-                UUID_vet.executeQuery()
-                var uuid_vet_global = UUID_vet.executeQuery();
+                    val UUID_vet =
+                        objConexion?.prepareStatement("select vet from tbUsuariosOne where correo_usuario = ?")!!
+                    UUID_vet.setString(1, correo_admin)
+                    UUID_vet.executeQuery()
+                    var uuid_vet_global = UUID_vet.executeQuery();
 
-                println("EATE ESA EL VALOR ASDFA $uuid_vet_global")
-                if (uuid_vet_global.next()) {
-                    uuid_Vet_real = uuid_vet_global.getString("vet")
+                    println("EATE ESA EL VALOR ASDFA $uuid_vet_global")
+                    if (uuid_vet_global.next()) {
+                        uuid_Vet_real = uuid_vet_global.getString("vet")
 
-                    if (uuid_Vet_real == "1") {
+                        if (uuid_Vet_real == "1") {
 
-                        if (resultado.next()) {
-                            valorRolUsuario = resultado.getString("ROL")
-                            startActivity(pantallaprincipal)
+                            if (resultado.next()) {
+                                valorRolUsuario = resultado.getString("ROL")
+                                startActivity(pantallaprincipal)
 
+
+                            } else {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(
+                                        this@iniciarsesion,
+                                        "Usuario o contraseña inválidos",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
 
                         } else {
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(
-                                    this@iniciarsesion,
-                                    "Usuario o contraseña inválidos",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                            if (resultado.next()) {
+                                valorRolUsuario = resultado.getString("ROL")
+                                startActivity(pantallaprincipal)
+
+
+                            } else {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(
+                                        this@iniciarsesion,
+                                        "Usuario o contraseña inválidos",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                             }
                         }
 
-
-                    } else {
-                        if (resultado.next()) {
-                            valorRolUsuario = resultado.getString("ROL")
-                            startActivity(pantallaprincipal)
-
-
-                        } else {
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(
-                                    this@iniciarsesion,
-                                    "Usuario o contraseña inválidos",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        }
                     }
-
                 }
             }
-
         }
+
 
 
 
 
             /*    startActivity(pantallaprincipal)*/
 
-                }
+
 
 
                 /*    startActivity(pantallaprincipal)*/
@@ -243,7 +240,7 @@ class iniciarsesion : AppCompatActivity() {
                 }
             }*/
                 println("este es el resultado que traigo con el select $txtcorreoiniciar")
-            }
+
             btnrecuperarcontra.setOnClickListener {
                 val recuperar = Intent(this, correoderecuperacion::class.java)
                 startActivity(recuperar)
