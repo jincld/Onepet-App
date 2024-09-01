@@ -126,20 +126,6 @@
             app:layout_constraintVertical_bias="0.281" />
 
         <TextView
-            android:id="@+id/txtMotivoRechazo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Motivo de Cita"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.161"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.242" />
-
-        <TextView
             android:id="@+id/textView25"
             android:layout_width="329dp"
             android:layout_height="42dp"
@@ -192,18 +178,20 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.154"
+            app:layout_constraintHorizontal_bias="0.184"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.583" />
+            app:layout_constraintVertical_bias="0.662" />
 
         <ImageView
             android:id="@+id/imageView133"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="364dp"
             android:src="@drawable/degcelest"
-            tools:layout_editor_absoluteX="134dp"
-            tools:layout_editor_absoluteY="311dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView29"
@@ -233,6 +221,84 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.405" />
+
+        <TextView
+            android:id="@+id/txtUsuarioRechazo"
+            android:layout_width="228dp"
+            android:layout_height="23dp"
+            android:text="Usuario "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.732"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.326" />
+
+        <TextView
+            android:id="@+id/txtFechaRechazo"
+            android:layout_width="178dp"
+            android:layout_height="22dp"
+            android:text="Fecha Cita"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.446"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.362" />
+
+        <TextView
+            android:id="@+id/txtMotivoRechazo2"
+            android:layout_width="258dp"
+            android:layout_height="26dp"
+            android:text="Motivo de la Cita"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.764"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.405" />
+
+        <EditText
+            android:id="@+id/txtRazonRechazo"
+            android:layout_width="326dp"
+            android:layout_height="130dp"
+            android:background="@drawable/margencircular"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.576"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.83" />
+
+        <TextView
+            android:id="@+id/txtDescRechazo"
+            android:layout_width="317dp"
+            android:layout_height="137dp"
+            android:text="Descripcion"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.457"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.542" />
+
+        <TextView
+            android:id="@+id/txtMotivoRechazo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
+            android:text="Motivo de Cita"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.148"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.238" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

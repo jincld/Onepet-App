@@ -140,7 +140,7 @@
             app:layout_constraintVertical_bias="0.212" />
 
         <TextView
-            android:id="@+id/txtMotivoRechazo"
+            android:id="@+id/txtMotivoAsignacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Motivo de Cita"
@@ -192,7 +192,7 @@
             app:layout_constraintHorizontal_bias="0.183"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.717" />
+            app:layout_constraintVertical_bias="0.731" />
 
         <Spinner
             android:id="@+id/spEmpleadoC"
@@ -200,10 +200,10 @@
             android:layout_height="51dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.423"
+            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.781" />
+            app:layout_constraintVertical_bias="0.795" />
 
         <Button
             android:id="@+id/btnAsignarCita"
@@ -217,7 +217,7 @@
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.859" />
+            app:layout_constraintVertical_bias="0.877" />
 
         <TextView
             android:id="@+id/textView32"
@@ -259,6 +259,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.069" />
+
+        <TextView
+            android:id="@+id/txtUsuarioAsignacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuario"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.397"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.401" />
+
+        <TextView
+            android:id="@+id/txtFechaAsignacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha de Cita"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.34"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.438" />
+
+        <TextView
+            android:id="@+id/txtMotivoAsignacion2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Motivo de la Cita"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.484" />
+
+        <TextView
+            android:id="@+id/txtDescAsignacion"
+            android:layout_width="329dp"
+            android:layout_height="140dp"
+            android:text="Descripcion"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.536"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.639" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
