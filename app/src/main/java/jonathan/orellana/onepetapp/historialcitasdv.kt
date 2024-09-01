@@ -1,31 +1,29 @@
 package jonathan.orellana.onepetapp
 
+import RecyclerViewHelpers.AdaptadorHistoCitas
+import RecyclerViewHelpers.AdaptadorSolicitudCitas
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import modelo.ClaseConexion
+import modelo.dataClassHistoCitas
+import modelo.dataClassSoliC
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [historialcitasdv.newInstance] factory method to
- * create an instance of this fragment.
- */
 class historialcitasdv : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
         }
     }
 
@@ -33,27 +31,49 @@ class historialcitasdv : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_historialcitasdv, container, false)
-    }
+        val root = inflater.inflate(R.layout.fragment_historialcitasdv, container, false)
+        val rcvHistorialCita = root.findViewById<RecyclerView>(R.id.rcvHistorialCitas)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment historialcitasdv.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            historialcitasdv().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        //Agregar un layout al RecyclerView
+        rcvHistorialCita.layoutManager = LinearLayoutManager(context)
+
+        //TODO: mostrar datos
+        fun obtenerHistoCitas(): List<dataClassHistoCitas> {
+            //1- Crear un objeto de clase conexion
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            //2- Crear un Statement
+            val statement = objConexion?.createStatement()
+            val resultSet = statement?.executeQuery("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario FROM tbCitas c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota")!!
+
+            val listaHistoCitas = mutableListOf<dataClassHistoCitas>()
+
+            while (resultSet.next()){
+                val UUID_Cita = resultSet.getString("uuid_cita")
+                val fecha_cita = resultSet.getString("fecha_cita")
+                val motivo_cita = resultSet.getString("motivo_cita")
+                val descripcion_cita = resultSet.getString("descripcion_motivo")
+                val mascota = resultSet.getString("nombre_mascota")
+                val vet = resultSet.getString("nombre_veterinaria")
+                val usuario = resultSet.getString("nombre_usuario")
+
+                //SPINNERS
+                val valoresJuntos = dataClassHistoCitas(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, mascota, vet, usuario)
+
+                listaHistoCitas.add(valoresJuntos)
             }
+            return listaHistoCitas
+        }
+
+        //Asignarle el adaptador al RecyclerView
+        CoroutineScope(Dispatchers.IO).launch {
+            val misHistoCitasDB = obtenerHistoCitas()
+            withContext(Dispatchers.Main){
+                val adapter = AdaptadorHistoCitas(misHistoCitasDB)
+                rcvHistorialCita.adapter = adapter
+            }
+        }
+
+        return root
     }
 }
