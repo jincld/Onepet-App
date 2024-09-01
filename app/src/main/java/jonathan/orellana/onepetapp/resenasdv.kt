@@ -50,7 +50,7 @@ class resenasdv : Fragment() {
         btnEnviarResena.setOnClickListener {
             val txtCaliR = txtCaliR.text.toString()
             val txtCaliINT = txtCaliR.toInt()
-            val txtComentR = txtComentR.text.toString()
+            val txtComentRd = txtComentR.text.toString()
 
             var hayerrores = false
 
@@ -65,27 +65,26 @@ class resenasdv : Fragment() {
                 hayerrores = false
             }
 
-           /*  if (txtComentR.length <= 300) {
+           if (txtComentRd.length <= 300) {
                  txtComentR.error = "La contraseña debe tener más de 8 carácteres"
                  hayerrores = true
              } else {
                  txtComentR.error = null
-             }*/
+             }
 
-           /* if (hayerrores){
+          /* if (hayerrores){
             } else{
                 CoroutineScope(Dispatchers.IO).launch {
 
                     val objConexion = ClaseConexion().cadenaConexion()
 
-                    val crearEmpleado = objConexion?.prepareStatement("insert into tbResenas (UUID_resena, calificacion, comentarios, resenador, vet) values (?, ?, ?, ?, ?)")!!
-                    crearEmpleado.setString(1, UUID.randomUUID().toString())
-                    crearEmpleado.setString(2, txtCaliR.text.toString())
-                    crearEmpleado.setString(3, txtComentR.text.toString())
-                    crearEmpleado.setString(4, txtCorreoEmpleado.text.toString())
-                    crearEmpleado.setString(5, uuidTraido)
-                    println("este es el uuid traido antes del execute  $uuidTraido")
-                    crearEmpleado.executeUpdate()
+                    val hacerResena = objConexion?.prepareStatement("insert into tbResenas (UUID_resena, calificacion, comentarios, resenador, vet) values (?, ?, ?, ?, ?)")!!
+                    hacerResena.setString(1, UUID.randomUUID().toString())
+                    hacerResena.setString(2, txtCaliR.toString())
+                    hacerResena.setString(3, txtComentR.text.toString())
+                    hacerResena.setString(4, iniciarsesion.variablesLogin.valorCorreoUsuario)
+                    hacerResena.setString(5, uuidTraido)
+                    hacerResena.executeUpdate()
 
                     withContext(Dispatchers.Main){
                         //mostrar mensaje y limpiar campos

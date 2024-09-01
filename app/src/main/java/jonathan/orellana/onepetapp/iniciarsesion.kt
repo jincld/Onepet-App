@@ -135,6 +135,8 @@ class iniciarsesion : AppCompatActivity() {
                     UUID_vet.executeQuery()
                     var uuid_vet_global = UUID_vet.executeQuery();
 
+
+
                     if (uuid_vet_global.next()) {
                         uuid_vet_real = uuid_vet_global.getString("vet")
                         println("este es la UUID de vet que quiero usar ${uuid_vet_real}")

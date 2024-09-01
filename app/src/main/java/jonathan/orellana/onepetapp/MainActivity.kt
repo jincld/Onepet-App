@@ -9,7 +9,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -75,10 +74,12 @@ class MainActivity : AppCompatActivity() {
         val navigationView2: NavigationView = findViewById(R.id.nav_view)
         val headerView2 = navigationView2.getHeaderView(0)
         val txtNombreMenu: TextView = headerView2.findViewById(R.id.txtNombreUserMenu)
-
         val txtInfo1: TextView = findViewById(R.id.txtInfo1)
         val txtCont1: TextView = findViewById(R.id.txtCont1)
-        val btnMiVet: ImageButton = findViewById(R.id.btnMiVet)
+        val txtInfo2: TextView = findViewById(R.id.txtInfo2)
+        val txtCont2: TextView = findViewById(R.id.txtCont2)
+        val txtInfo3: TextView = findViewById(R.id.txtInfo3)
+        val txtCont3: TextView = findViewById(R.id.txtCont3)
 
         suspend fun traerNombreUser(valorCorreoUsuario: String): String? {
             return withContext(Dispatchers.IO) {
@@ -137,9 +138,18 @@ class MainActivity : AppCompatActivity() {
        CoroutineScope(Dispatchers.Main).launch {
            val info1 = "Administrando"
            txtInfo1.text = info1
-
            val contenido1 = "Bienvenido a la administración en OnePet!"
            txtCont1.text = contenido1
+
+           val info2 = "Veterinaria"
+           txtInfo2.text = info2
+           val contenido2 = "Recuerde  revisar las citas de su veterinaria"
+           txtCont2.text = contenido2
+
+           val info3 = "Empleados"
+           txtInfo3.text = info3
+           val contenido3 = "Recuerde revisar la actividad de sus empleados"
+           txtCont3.text = contenido3
 
         }
 
@@ -166,11 +176,18 @@ class MainActivity : AppCompatActivity() {
                     if (txtcorreoiniciarval == RolUsuarioMainActivity){
                         val info1 = "Bienvenido"
                         txtInfo1.text = info1
-
                         val cont1 = "Te damos la bienvenida a OnePet!"
                         txtCont1.text = cont1
 
-                        btnMiVet.isVisible = false
+                        val info2 = "Citas"
+                        txtInfo2.text = info2
+                        val cont2 = "Recuerde revisar las citas de su mascota"
+                        txtCont1.text = cont2
+
+                        val info3 = "Mascota"
+                        txtInfo3.text = info3
+                        val cont3 = "Recuerde dedicarle tiempo de calidad a su mascota"
+                        txtCont3.text = cont3
                     }
 
                 } else {
@@ -182,8 +199,6 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.agregarempleadodv).isVisible = true
                     navView.menu.findItem(R.id.resenasdv).isVisible = true
                     navView.menu.findItem(R.id.ajustesdv).isVisible = true
-
-
                 }
 
                 println("*******este es el resultado que traigo con el select ROL USUARIO MAIN $RolUsuarioMainActivity")
