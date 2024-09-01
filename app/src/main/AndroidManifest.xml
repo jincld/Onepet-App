@@ -15,6 +15,12 @@
         android:theme="@style/Theme.OnePetApp.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".item_cardSolicitudesC"
+            android:exported="false" />
+        <activity
+            android:name=".item_cardHistorialC"
+            android:exported="false" />
+        <activity
             android:name=".item_cardhistorialcitas"
             android:exported="false" />
         <activity

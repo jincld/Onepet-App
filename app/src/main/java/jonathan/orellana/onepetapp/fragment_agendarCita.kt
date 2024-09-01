@@ -329,18 +329,19 @@ class fragment_agendarCita : Fragment() {
         //MODIFICADO
         if (idUsuarioOne != null) {
             val query =
-                "INSERT INTO tbCitas (fecha_cita, vet, mascota, usuario, motivo_cita, descripcion_motivo) VALUES (?, ?, ?, ?, ?, ?)"
+                "INSERT INTO tbCitas (uuid_cita, fecha_cita, vet, mascota, usuario, motivo_cita, descripcion_motivo) VALUES (?, ?, ?, ?, ?, ?, ?)"
             val objConexion = ClaseConexion().cadenaConexion()
 
             objConexion?.let {
                 try {
                     val statement = it.prepareStatement(query)
-                    statement.setString(1, fecha_cita)
-                    statement.setString(2, idVetC)
-                    statement.setString(3, idMascotaC)
-                    statement.setString(4, idUsuarioOne)
-                    statement.setString(5, motivo_cita)
-                    statement.setString(6, descripcion_motivo)
+                    statement.setString(1, UUID.randomUUID().toString())
+                    statement.setString(2, fecha_cita)
+                    statement.setString(3, idVetC)
+                    statement.setString(4, idMascotaC)
+                    statement.setString(5, idUsuarioOne)
+                    statement.setString(6, motivo_cita)
+                    statement.setString(7, descripcion_motivo)
                     statement.executeUpdate()
 
                     withContext(Dispatchers.Main) {
