@@ -2,13 +2,10 @@ package jonathan.orellana.onepetapp
 
 import RecyclerViewHelpers.Adaptador
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.LinearLayout
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -50,6 +47,7 @@ class misempleadosdv : Fragment() {
     ): View? {
 
 
+
          val root = inflater.inflate(R.layout.fragment_misempleadosdv, container, false)
          val rcvEmpleado = root.findViewById<RecyclerView>(R.id.rcvEmpleados)
 
@@ -62,19 +60,40 @@ class misempleadosdv : Fragment() {
 
             //crear statement
 
-            val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = 'CEC5E0B9179646659425962EF283D5EF'")!!
+            fun obtenerUuidRol(): String? {
+                val objConexion = ClaseConexion().cadenaConexion()
+                val statement = objConexion?.createStatement()
+                val resulSet = statement?.executeQuery("select UUID_Rol from tbRolesUsuarios where nombre_rol = 'Empleado'")!!
+                var uuidRol: String? = null
+
+                if (resulSet.next()) {
+                    uuidRol = resulSet.getString("UUID_rol")
+                    println("este es el uuid traido desde el if emp $uuidRol")
+                }
+
+                println("este es el uuid traido desde la funcion emp $uuidRol")
+                return uuidRol
+            }
+
+
+            val resulSet = objConexion?.prepareStatement("select * from tbUsuariosOne where rol = ? and vet = ?")!!
+            resulSet.setString(1, obtenerUuidRol())
+            resulSet.setString(2, iniciarsesion.variablesLogin.uuid_vet_real)
+            resulSet.executeQuery()
+
+            var prueba = resulSet.executeQuery()
             val empleados = mutableListOf<dataClassEmpleado>()
 
             //recorro todos los registos de la base de datos
 
-            while(resulSet.next()){
-                val UUID = resulSet.getString("UUID_usuario")
-                val Nombre = resulSet.getString("nombre_usuario")
-                val Correo = resulSet.getString("correo_usuario")
-                val Contra = resulSet.getString("contra_usuario")
+            while(prueba.next()){
+                val uuid = prueba.getString("UUID_usuario")
+                val Nombre = prueba.getString("nombre_usuario")
+                val Contra = prueba.getString("contra_usuario")
+                val Correo = prueba.getString("correo_usuario")
 
-                val ValoresJuntos = dataClassEmpleado(UUID, Nombre, Correo, Contra)
+
+                val ValoresJuntos = dataClassEmpleado(uuid, Nombre, Contra, Correo)
                 empleados.add(ValoresJuntos)
             }
             return empleados
@@ -86,6 +105,8 @@ class misempleadosdv : Fragment() {
                 rcvEmpleado.adapter= adapter
             }
         }
+
+
 
         return root
 

@@ -2,32 +2,28 @@ package jonathan.orellana.onepetapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import jonathan.orellana.onepetapp.ui.home.HomeFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import java.security.MessageDigest
-import java.util.Random
-import java.util.UUID
 
 class iniciarsesion : AppCompatActivity() {
     companion object variablesLogin {
         lateinit var valorRolUsuario: String
+        lateinit var valorCorreoUsuario: String
+        lateinit var uuid_vet_real: String
         var uuidRol: String? = null
         lateinit var correo_admin: String
 
@@ -57,9 +53,9 @@ class iniciarsesion : AppCompatActivity() {
         val txtcontrainiciar = findViewById<EditText>(R.id.txtcontrasenainicio)
         val btnrecuperarcontra = findViewById<TextView>(R.id.btnrecuperarcontra)
         val btninicarsesion = findViewById<Button>(R.id.btniniciarsesionhome)
+        val ojolog = findViewById<ImageButton>(R.id.btnojolog)
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
-        valorRolUsuario = txtcorreoiniciar.text.toString()
-
+        val btnNoCuenta = findViewById<TextView>(R.id.txtNoCuenta)
 
         //   fun obtenerUuidRol(): String? {
 
@@ -85,10 +81,23 @@ class iniciarsesion : AppCompatActivity() {
         }
 
 
+
         btnVolver.setOnClickListener {
             val pantallaAnterior = Intent(this, login::class.java)
             startActivity(pantallaAnterior)
         }
+
+
+        ojolog.setOnClickListener{
+            if (txtcontrainiciar.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD){
+                txtcontrainiciar.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+              txtcontrainiciar.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+            }
+
+        }
+
 
         btninicarsesion.setOnClickListener {
 
@@ -96,7 +105,48 @@ class iniciarsesion : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.IO) {
                 val objConexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
+            valorCorreoUsuario = txtcorreoiniciar.text.toString()
 
+
+            val contra = txtcontrainiciar.text.toString()
+            val correo = txtcorreoiniciar.text.toString()
+            var hayerrores = false
+
+            if (correo.isEmpty()) {
+                txtcorreoiniciar.error = "Complete todos lo campos"
+                hayerrores = true
+            } else {
+                txtcorreoiniciar.error = null
+            }
+
+            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
+
+             txtcorreoiniciar.error = "Correo invalido"
+                hayerrores = true
+            } else {
+                txtcorreoiniciar.error = null
+            }
+
+            if (contra.isEmpty()) {
+              txtcontrainiciar.error = "Complete todos lo campos"
+                hayerrores = true
+            } else {
+                txtcontrainiciar.error = null
+            }
+
+            if (contra.length < 7) {
+                txtcontrainiciar.error = "Contraseña invalida"
+                hayerrores = true
+            } else {
+               txtcontrainiciar.error = null
+            }
+
+            if (hayerrores){
+            } else {
+
+                GlobalScope.launch(Dispatchers.IO) {
+                    val objConexion = ClaseConexion().cadenaConexion()
+                    val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
                 val resulSet =
                     objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
@@ -153,6 +203,16 @@ class iniciarsesion : AppCompatActivity() {
                     }
 
                 }
+            }
+
+        }
+
+
+
+
+            /*    startActivity(pantallaprincipal)*/
+
+                }
 
 
                 /*    startActivity(pantallaprincipal)*/
@@ -188,8 +248,20 @@ class iniciarsesion : AppCompatActivity() {
                 val recuperar = Intent(this, correoderecuperacion::class.java)
                 startActivity(recuperar)
             }
+
+        btnrecuperarcontra.setOnClickListener {
+            val recuperar = Intent(this, correoderecuperacion::class.java)
+            startActivity(recuperar)
         }
+
+        btnNoCuenta.setOnClickListener {
+            val noCuenta = Intent(this, registrarse::class.java)
+            startActivity(noCuenta)
+        }
+            println("este es el resultado que traigo con el select $txtcorreoiniciar")
+        }
+
     }
-}
+
 
 

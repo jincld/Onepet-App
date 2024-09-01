@@ -2,30 +2,30 @@ package jonathan.orellana.onepetapp
 
 import android.os.Build
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.view.Window
+import android.view.WindowManager
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import jonathan.orellana.onepetapp.databinding.ActivityMainBinding
-import android.view.Window
-import android.view.WindowManager
-import androidx.core.view.GravityCompat
+import jonathan.orellana.onepetapp.iniciarsesion.variablesLogin.valorCorreoUsuario
 import jonathan.orellana.onepetapp.iniciarsesion.variablesLogin.valorRolUsuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
+import java.sql.SQLException
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val txtcorreoiniciar = findViewById<EditText>(R.id.txtcorreoiniciar)
+        //val txtNombreMenu = findViewById<TextView>(R.id.txtNombreUserMenu)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -61,6 +62,67 @@ class MainActivity : AppCompatActivity() {
             ), drawerLayout
         )
 
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+
+        val headerView = navigationView.getHeaderView(0)
+        val btnCerrarMenu: ImageButton = headerView.findViewById(R.id.btnCerrarDrawer)
+
+        btnCerrarMenu.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        val navigationView2: NavigationView = findViewById(R.id.nav_view)
+        val headerView2 = navigationView2.getHeaderView(0)
+        val txtNombreMenu: TextView = headerView2.findViewById(R.id.txtNombreUserMenu)
+        val txtInfo1: TextView = findViewById(R.id.txtInfo1)
+        val txtCont1: TextView = findViewById(R.id.txtCont1)
+        val txtInfo2: TextView = findViewById(R.id.txtInfo2)
+        val txtCont2: TextView = findViewById(R.id.txtCont2)
+        val txtInfo3: TextView = findViewById(R.id.txtInfo3)
+        val txtCont3: TextView = findViewById(R.id.txtCont3)
+
+        suspend fun traerNombreUser(valorCorreoUsuario: String): String? {
+            return withContext(Dispatchers.IO) {
+                var nombreUser: String? = null
+                val objConexion = ClaseConexion().cadenaConexion()
+                val preparedStatement = objConexion?.prepareStatement("SELECT nombre_usuario FROM tbusuariosOne WHERE correo_usuario = ?")
+                preparedStatement?.setString(1, valorCorreoUsuario)
+                println("..........ESTE ES EL VALOR CORREO: " + valorCorreoUsuario)
+
+                try {
+                    val resultSet = preparedStatement?.executeQuery()
+                    if (resultSet?.next() == true) {
+                        nombreUser = resultSet.getString("nombre_usuario")
+                        println("++++ESTE ES EL NOMBRE DENTRO DE LA FUNCION DE TRAER NOMBRE: " + nombreUser)
+                    }
+                    else    {
+                        println("++++POSIBLE ERROR EN ELSE: " + nombreUser)
+                    }
+                } catch (e: SQLException) {
+                    // Manejar la excepción
+                    e.printStackTrace()
+                } finally {
+                    // Asegúrate de cerrar recursos aquí
+                    preparedStatement?.close()
+                    objConexion?.close()
+                }
+
+                nombreUser
+            }
+        }
+
+
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val valorRolUsuario = valorCorreoUsuario
+            val nombreUsuario = traerNombreUser(valorCorreoUsuario)
+            txtNombreMenu.text = nombreUsuario
+            println("ESTE ES EL NOMBRE TRAIDO:" + nombreUsuario)
+        }
+
+
+      // txtNombreMenu.text = traerNombreUser()
+
         fun traerID(): String? {
             var uuidRol: String? = null
             val objConexion = ClaseConexion().cadenaConexion()
@@ -72,6 +134,25 @@ class MainActivity : AppCompatActivity() {
             }
             return uuidRol
         }
+
+       CoroutineScope(Dispatchers.Main).launch {
+           val info1 = "Administrando"
+           txtInfo1.text = info1
+           val contenido1 = "Bienvenido a la administración en OnePet!"
+           txtCont1.text = contenido1
+
+           val info2 = "Veterinaria"
+           txtInfo2.text = info2
+           val contenido2 = "Recuerde  revisar las citas de su veterinaria"
+           txtCont2.text = contenido2
+
+           val info3 = "Empleados"
+           txtInfo3.text = info3
+           val contenido3 = "Recuerde revisar la actividad de sus empleados"
+           txtCont3.text = contenido3
+
+        }
+
 
         CoroutineScope(Dispatchers.IO).launch {
             val txtcorreoiniciarval = valorRolUsuario
@@ -91,13 +172,28 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.agregarempleadodv).isVisible = false
                     navView.menu.findItem(R.id.misempleadosdv).isVisible = false
                     navView.menu.findItem(R.id.solicitudescitadv).isVisible = false
-                    navView.menu.findItem(R.id.clientesdv).isVisible = false
+
+                    if (txtcorreoiniciarval == RolUsuarioMainActivity){
+                        val info1 = "Bienvenido"
+                        txtInfo1.text = info1
+                        val cont1 = "Te damos la bienvenida a OnePet!"
+                        txtCont1.text = cont1
+
+                        val info2 = "Citas"
+                        txtInfo2.text = info2
+                        val cont2 = "Recuerde revisar las citas de su mascota"
+                        txtCont1.text = cont2
+
+                        val info3 = "Mascota"
+                        txtInfo3.text = info3
+                        val cont3 = "Recuerde dedicarle tiempo de calidad a su mascota"
+                        txtCont3.text = cont3
+                    }
+
                 } else {
                     navView.menu.findItem(R.id.fragment_asignaciones).isVisible = true
-                    navView.menu.findItem(R.id.resenasdv).isVisible = false
                     navView.menu.findItem(R.id.fragment_agendarCita).isVisible = false
                     navView.menu.findItem(R.id.fragment_estadoSolicitud).isVisible = false
-                    navView.menu.findItem(R.id.ajustesdv).isVisible = false
                     navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
                     navView.menu.findItem(R.id.agregar_vet).isVisible = true
                     navView.menu.findItem(R.id.agregarempleadodv).isVisible = true
@@ -107,6 +203,7 @@ class MainActivity : AppCompatActivity() {
 
                 println("*******este es el resultado que traigo con el select ROL USUARIO MAIN $RolUsuarioMainActivity")
                 println("*************este es el resultado que traigo con el select CORREO INICIAR $txtcorreoiniciarval")
+
             }
 
 
