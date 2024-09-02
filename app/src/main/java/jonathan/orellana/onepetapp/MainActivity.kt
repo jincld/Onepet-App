@@ -64,26 +64,9 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_homeDV,
-                R.id.agregarempleadodv,
-                R.id.misempleadosdv,
-                R.id.solicitudescitadv,
-                R.id.historialcitasdv,
-                R.id.clientesdv,
-                R.id.fragment_veterinarias,
-                R.id.chatdv,
-                R.id.resenasdv,
-                R.id.ajustesdv,
-                R.id.fragment_citas,
-                R.id.fragment_agendarCita,
-                R.id.fragment_estadoSolicitud,
-                R.id.agregarempleadodv,
-                R.id.misempleadosdv,
-                R.id.fragment_asignaciones,
-                R.id.fragment_misMascotas,
-                R.id.agregar_vet,
-                R.id.actualizar_y_eliminar_vet2,
-                R.id.agregarempleadodv
+
+                R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.fragment_veterinarias, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_misMascotas, R.id.agregar_vet, R.id.actualizar_y_eliminar_vet2, R.id.agregarempleadodv, R.id.misResenas
+
             ), drawerLayout
         )
 
@@ -169,7 +152,7 @@ class MainActivity : AppCompatActivity() {
             return uuidRol
         }
 
-       CoroutineScope(Dispatchers.Main).launch {
+      /* CoroutineScope(Dispatchers.Main).launch {
            val info1 = "Administrando"
            txtInfo1.text = info1
            val contenido1 = "Bienvenido a la administración en OnePet!"
@@ -185,7 +168,7 @@ class MainActivity : AppCompatActivity() {
            val contenido3 = "Recuerde revisar la actividad de sus empleados"
            txtCont3.text = contenido3
 
-        }
+        }*/
 
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -208,7 +191,7 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.solicitudescitadv).isVisible = false
 
                     if (txtcorreoiniciarval == RolUsuarioMainActivity){
-                        val info1 = "Bienvenido"
+                       /* val info1 = "Bienvenido"
                         txtInfo1.text = info1
                         val cont1 = "Te damos la bienvenida a OnePet!"
                         txtCont1.text = cont1
@@ -221,7 +204,7 @@ class MainActivity : AppCompatActivity() {
                         val info3 = "Mascota"
                         txtInfo3.text = info3
                         val cont3 = "Recuerde dedicarle tiempo de calidad a su mascota"
-                        txtCont3.text = cont3
+                        txtCont3.text = cont3*/
                     }
 
                 } else {
