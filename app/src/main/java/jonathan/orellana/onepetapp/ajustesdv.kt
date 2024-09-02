@@ -1,23 +1,35 @@
 package jonathan.orellana.onepetapp
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import modelo.ClaseConexion
 import org.w3c.dom.Text
+import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
+import java.util.UUID
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,6 +54,16 @@ class ajustesdv : Fragment() {
         }
     }
 
+    val codigo_opcion_galeria = 102
+    val codigo_opcion_tomar_foto = 103
+    val CAMERA_REQUEST_CODE = 0
+    val STORAGE_REQUEST_CODE =1
+
+    lateinit var imageView: ImageView
+    lateinit var miPath: String
+
+    val uuid = UUID.randomUUID().toString()
+
 
 
     override fun onCreateView(
@@ -52,6 +74,9 @@ class ajustesdv : Fragment() {
         val root = inflater.inflate(R.layout.fragment_ajustesdv, container, false)
 
 var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
+        imageView = root.findViewById(R.id.imgftajustes)
+        val  subirfotoAjustes = root.findViewById<Button>(R.id.btnSubirftAjustes)
+        val tomarfotoAjustes = root.findViewById<Button>(R.id.btnTomarftAjustes)
         var txtContraAjustes: TextView =  root.findViewById(R.id.txtContraAjustes)
         var txtCorreoAjustes: TextView =  root.findViewById(R.id.txtCorreoAjustes)
         val btnCerrar = root.findViewById<Button>(R.id.btnCerrarSesion)
@@ -81,7 +106,7 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
                 //2 - Creo una variable que tenga un prepareStatement
                 val updateUser =
                     objConexion?.prepareStatement(
-                        "UPDATE tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ?  where correo_usuario = ?"
+                        "UPDATE tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ? where correo_usuario = ?"
                     )!!
                 updateUser.setString(1, nombreNuevoUser)
                 updateUser.setString(2, contraIncriptada)
@@ -133,7 +158,7 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
                         nombrenuevo.text.toString(),
                         contraIncriptada,
                         correonuevo.text.toString(),
-                    )
+                        )
                     println(" --------- este es el nombre de vet que quiero usar ${nombrenuevo.text.toString()}")
                     println("---------- este es el nombre de vet que quiero usar ${contraIncriptada}")
                     println("---------- este es el nombre de vet que quiero usar ${correonuevo.text}")
@@ -151,6 +176,14 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
             builder.show()
         }
 
+        subirfotoAjustes.setOnClickListener{
+            checkStoragePermission()
+        }
+
+        tomarfotoAjustes.setOnClickListener{
+            checkCameraPermission()
+
+        }
 
         btnCerrar.setOnClickListener {
             val cerrar = Intent(context, login::class.java)
@@ -159,9 +192,125 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
        return root
     }
 
+    private fun subirimagenFirebase (bitmap: Bitmap, onSuccess: (String) -> Unit) {
+        val storageRef = Firebase.storage.reference
+        val imageRef = storageRef.child("images/${uuid}.jpg")
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+        val uploadTask = imageRef.putBytes(data)
+
+        uploadTask.addOnFailureListener{
+            Toast.makeText(requireContext(),"Error al subir la imagen", Toast.LENGTH_SHORT).show()
+        } .addOnSuccessListener { taskSnapshot ->
+            imageRef.downloadUrl.addOnSuccessListener {uri ->
+                onSuccess(uri.toString())
+            }
+
+        }
+    }
+    private fun checkStoragePermission() {
+        if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            pedirpermisocamara()
+        }else {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, codigo_opcion_tomar_foto)
+        }
+    }
+
+    private fun checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
+            pedirpermisoalmacenamiento()
+        else {
+            val intent = Intent (Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, codigo_opcion_galeria)
+        }
+    }
+
+    private fun pedirpermisocamara() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), android.Manifest.permission.CAMERA)
+        ){
+
+        } else {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA), CAMERA_REQUEST_CODE
+            )}
+    }
+
+    private fun pedirpermisoalmacenamiento(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+        } else {
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),STORAGE_REQUEST_CODE)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            CAMERA_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    startActivityForResult(intent, codigo_opcion_tomar_foto)
+                } else {
+                    Toast.makeText(requireContext(), "Permiso de cámara denegado", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+            STORAGE_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty()&& grantResults[0] == PackageManager.PERMISSION_GRANTED)){
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.type = "image/*"
+                    startActivityForResult(intent,codigo_opcion_galeria)
+                } else {
+                    Toast.makeText(requireContext(), "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            else -> {
+
+            }
+
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK){
+            when (requestCode){
+                codigo_opcion_galeria-> {
+                    val imageUri: Uri? = data?.data
+                    imageUri?.let {
+                        val imageBitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, it)
+                        subirimagenFirebase(imageBitmap){ url ->
+                            miPath = url
+                            imageView.setImageURI(it)
+                        }
+                    }
+                }
+
+                codigo_opcion_tomar_foto -> {
+                    val imageBitmap = data?.extras?.get("data")as? Bitmap
+                    imageBitmap?.let {
+                        subirimagenFirebase(it) { url ->
+                            miPath = url
+                            imageView.setImageBitmap(it)
+
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
 
 
-    companion object {
+companion object {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
