@@ -1,5 +1,6 @@
 package jonathan.orellana.onepetapp
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import modelo.ClaseConexion
 import org.w3c.dom.Text
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,11 +53,92 @@ class ajustesdv : Fragment() {
 var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
         var txtContraAjustes: TextView =  root.findViewById(R.id.txtContraAjustes)
         var txtCorreoAjustes: TextView =  root.findViewById(R.id.txtCorreoAjustes)
+        val btnCerrar = root.findViewById<Button>(R.id.btnCerrarSesion)
+        val btnActualizarDatos = root.findViewById<Button>(R.id.btnActualizarUser)
+
+
+
 
         txtCorreoAjustes.text = iniciarsesion.variablesLogin.correo_admin
         txtContraAjustes.text = iniciarsesion.variablesLogin.contra_sinincriptar
  txtNombreAjustes.text =  MainActivity.variablesMainActivity.nombre_user
-        val btnCerrar = root.findViewById<Button>(R.id.btnCerrarSesion)
+
+
+
+
+        fun updateUser(nombreNuevoUser: String, contraNuevaUser: String, CorreoNuevoUser: String) {
+            GlobalScope.launch(Dispatchers.IO) {
+
+                ///1 - creo un objeto de la clase conexion
+                val objConexion = ClaseConexion().cadenaConexion()
+
+                //2 - Creo una variable que tenga un prepareStatement
+                val updateUser =
+                    objConexion?.prepareStatement(
+                        "UPDATE tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ?,  where correo_usuario = ?"
+                    )!!
+                updateUser.setString(1, nombreNuevoUser)
+                updateUser.setString(2, contraNuevaUser)
+                updateUser.setString(3, CorreoNuevoUser)
+                updateUser.setString(4, txtCorreoAjustes.text.toString())
+                updateUser.executeUpdate()
+            }
+        }
+        fun isValid(vararg editTexts: EditText): Boolean {
+            for (editText in editTexts) {
+                if (editText.text.toString().isEmpty()) {
+                    Toast.makeText(context, "Porfavor llene todos los datos", Toast.LENGTH_SHORT).show()
+                    return false
+                }
+            }
+            return true
+        }
+
+
+        btnActualizarDatos.setOnClickListener{
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Editar")
+            builder.setMessage("Estas seguro que quieres editar?")
+
+            val nombrenuevo = EditText(context)
+            nombrenuevo.setText(txtNombreAjustes.toString())
+
+            val contranueva = EditText(context)
+            contranueva.setText(txtContraAjustes.toString())
+
+            val correonuevo = EditText(context)
+            correonuevo.setText(txtCorreoAjustes.toString())
+            val layout = LinearLayout(context).apply {
+                orientation = LinearLayout.VERTICAL
+                addView(nombrenuevo)
+                addView(contranueva)
+                addView(correonuevo)
+            }
+
+            builder.setView(layout)
+
+            builder.setPositiveButton("Si") { dialog, which ->
+                if (isValid(nombrenuevo, contranueva, correonuevo, )) {
+                    updateUser(
+                        nombrenuevo.text.toString(),
+                        contranueva.text.toString(),
+                        correonuevo.text.toString(),
+
+                    )
+                    Toast.makeText(context, "Datos actualizados", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                    txtNombreAjustes.text = nombrenuevo.text.toString()
+                    txtContraAjustes.text = contranueva.text.toString()
+                    txtCorreoAjustes.text = correonuevo.text.toString()
+                }
+            }
+            builder.setNegativeButton("no") { dialog, which ->
+                dialog.dismiss()
+            }
+            builder.show()
+        }
+
+
         btnCerrar.setOnClickListener {
             val cerrar = Intent(context, login::class.java)
             startActivity(cerrar)

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".agregar_veterinaria">
+    tools:context=".fragment_agregar_veterinaria">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="416dp"
