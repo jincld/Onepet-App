@@ -78,7 +78,7 @@ class misempleadosdv : Fragment() {
 
             val resulSet = objConexion?.prepareStatement("select * from tbUsuariosOne where rol = ? and vet = ?")!!
             resulSet.setString(1, obtenerUuidRol())
-            resulSet.setString(2, iniciarsesion.variablesLogin.uuid_vet_real)
+            resulSet.setString(2, iniciarsesion.variablesLogin.uuid_Vet_real)
             resulSet.executeQuery()
 
             var prueba = resulSet.executeQuery()

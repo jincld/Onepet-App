@@ -50,7 +50,7 @@ class misResenas : Fragment() {
 
             val objConexion = ClaseConexion().cadenaConexion()
             val resulSet = objConexion?.prepareStatement("select * from tbResenas where vet = ?")!!
-            resulSet.setString(1, iniciarsesion.variablesLogin.uuid_vet_real)
+            resulSet.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
             resulSet.executeQuery()
 
             var prueba = resulSet.executeQuery()
