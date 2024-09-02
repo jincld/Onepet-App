@@ -24,6 +24,7 @@ class iniciarsesion : AppCompatActivity() {
         lateinit var valorRolUsuario: String
         lateinit var valorCorreoUsuario: String
         lateinit var uuid_vet_real: String
+        lateinit var UUID_Usuario: String
         var uuidRol: String? = null
         lateinit var correo_admin: String
 lateinit var contra_sinincriptar:String
@@ -161,6 +162,7 @@ lateinit var contra_sinincriptar:String
                     UUID_vet.executeQuery()
                     var uuid_vet_global = UUID_vet.executeQuery();
 
+
                     println("EATE ESA EL VALOR ASDFA $uuid_vet_global")
                     if (uuid_vet_global.next()) {
                         uuid_Vet_real = uuid_vet_global.getString("vet")
@@ -197,6 +199,7 @@ lateinit var contra_sinincriptar:String
                                     ).show()
                                 }
                             }
+
                         }
 
                     }

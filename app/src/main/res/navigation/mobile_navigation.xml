@@ -145,6 +145,11 @@
         android:name="jonathan.orellana.onepetapp.hacerResena"
         android:label="fragment_hacer_resena"
         tools:layout="@layout/fragment_hacer_resena" />
+    <fragment
+        android:id="@+id/misResenas"
+        android:name="jonathan.orellana.onepetapp.misResenas"
+        android:label="fragment_mis_resenas"
+        tools:layout="@layout/fragment_mis_resenas" />
 
 
 </navigation>
