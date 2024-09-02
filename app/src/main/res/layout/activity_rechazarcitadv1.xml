@@ -267,6 +267,7 @@
             android:ems="10"
             android:inputType="text"
             android:textSize="14sp"
+            android:scrollHorizontally="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.576"
@@ -276,12 +277,13 @@
 
         <TextView
             android:id="@+id/txtDescRechazo"
-            android:layout_width="317dp"
-            android:layout_height="137dp"
+            android:layout_width="318dp"
+            android:layout_height="136dp"
+            android:scrollHorizontally="false"
             android:text="Descripcion"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.457"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.542" />

@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import jonathan.orellana.onepetapp.databinding.ActivityMainBinding
 import jonathan.orellana.onepetapp.iniciarsesion.variablesGlobalesLogin.valorRolUsuario
 import kotlinx.coroutines.Dispatchers
@@ -48,6 +49,15 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
+        if (intent.getBooleanExtra("ir_a_solicitudes_citas", false)) {
+            navController.navigate(R.id.solicitudescitadv)
+        }
+
+        if (intent.getBooleanExtra("ir_a_solicitudes1_citas", false)) {
+            navController.navigate(R.id.solicitudescitadv)
+}
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.miveterinariadv, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_veterinarias, R.id.fragment_misMascotas

@@ -8,6 +8,7 @@ import jonathan.orellana.onepetapp.R
 import jonathan.orellana.onepetapp.asignarcitadv1
 import jonathan.orellana.onepetapp.rechazarcitadv1
 import modelo.dataClassSoliC
+import javax.mail.FetchProfile.Item
 
 class AdaptadorSolicitudCitas (var Datos: List<dataClassSoliC>): RecyclerView.Adapter<ViewHolderSoliCitas>() {
 
@@ -31,16 +32,28 @@ class AdaptadorSolicitudCitas (var Datos: List<dataClassSoliC>): RecyclerView.Ad
         holder.txtMotivoCitaCC2S.text = controlCard.motivo_cita
         holder.txtDescripcionCS.text = controlCard.descripcion_motivo
 
+        //Cambiar de pantalla a la pantalla de detalle
         holder.btnAceptarCitaS.setOnClickListener {
-            val context = holder.itemView.context
-            val pantalla = Intent(context, asignarcitadv1::class.java)
-            context.startActivity(pantalla)
-            }
+            val context =holder.itemView.context
+
+            val pantallaAsignar = Intent(context, asignarcitadv1::class.java)
+            //enviar a la otra pantalla todos mis valores
+            pantallaAsignar.putExtra("motivo_cita", controlCard.motivo_cita)
+            pantallaAsignar.putExtra("fecha_cita", controlCard.fecha_cita)
+            pantallaAsignar.putExtra("usuario", controlCard.usuario)
+            pantallaAsignar.putExtra("descripcion_motivo", controlCard.descripcion_motivo)
+            context.startActivity(pantallaAsignar)
+
+        }
 
         holder.btnRechazarCitaS.setOnClickListener {
             val context = holder.itemView.context
-            val pantalla = Intent(context, rechazarcitadv1::class.java)
-            context.startActivity(pantalla)
+            val pantallaRechazar = Intent(context, rechazarcitadv1::class.java)
+            pantallaRechazar.putExtra("motivo_cita", controlCard.motivo_cita)
+            pantallaRechazar.putExtra("fecha_cita", controlCard.fecha_cita)
+            pantallaRechazar.putExtra("usuario", controlCard.usuario)
+            pantallaRechazar.putExtra("descripcion_motivo", controlCard.descripcion_motivo)
+            context.startActivity(pantallaRechazar)
         }
     }
 }

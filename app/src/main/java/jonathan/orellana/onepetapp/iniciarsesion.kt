@@ -70,6 +70,7 @@ class iniciarsesion : AppCompatActivity() {
             val objConexion = ClaseConexion().cadenaConexion()
             val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ? ")!!
             resulSet.setString(1, txtcorreoiniciar.text.toString())
+            println("---------------------------este es el uuid traido desde la funcion $uuidRol")
 
             val resultado = resulSet.executeQuery()
 
