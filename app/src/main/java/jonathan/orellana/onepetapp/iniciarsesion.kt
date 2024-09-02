@@ -26,7 +26,7 @@ class iniciarsesion : AppCompatActivity() {
         lateinit var uuid_vet_real: String
         var uuidRol: String? = null
         lateinit var correo_admin: String
-
+lateinit var contra_sinincriptar:String
         lateinit var uuid_Vet_real: String
     }
 
@@ -100,12 +100,14 @@ class iniciarsesion : AppCompatActivity() {
 
 
         btninicarsesion.setOnClickListener {
-
             val pantallaprincipal = Intent(this, MainActivity::class.java)
             valorCorreoUsuario = txtcorreoiniciar.text.toString()
 
             val contra = txtcontrainiciar.text.toString()
             val correo = txtcorreoiniciar.text.toString()
+            contra_sinincriptar = contra.toString()
+
+            println("EATE ESA EL VALOR de la contra sin incriptar $contra_sinincriptar")
             var hayerrores = false
 
             if (correo.isEmpty()) {
@@ -139,7 +141,6 @@ class iniciarsesion : AppCompatActivity() {
             if (hayerrores) {
 
             } else {
-
                 GlobalScope.launch(Dispatchers.IO) {
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())

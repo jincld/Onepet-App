@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import org.w3c.dom.Text
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +43,13 @@ class ajustesdv : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_ajustesdv, container, false)
 
+var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
+        var txtContraAjustes: TextView =  root.findViewById(R.id.txtContraAjustes)
+        var txtCorreoAjustes: TextView =  root.findViewById(R.id.txtCorreoAjustes)
+
+        txtCorreoAjustes.text = iniciarsesion.variablesLogin.correo_admin
+        txtContraAjustes.text = iniciarsesion.variablesLogin.contra_sinincriptar
+ txtNombreAjustes.text =  MainActivity.variablesMainActivity.nombre_user
         val btnCerrar = root.findViewById<Button>(R.id.btnCerrarSesion)
         btnCerrar.setOnClickListener {
             val cerrar = Intent(context, login::class.java)
