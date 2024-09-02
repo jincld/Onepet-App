@@ -75,7 +75,7 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
                 //2 - Creo una variable que tenga un prepareStatement
                 val updateUser =
                     objConexion?.prepareStatement(
-                        "UPDATE tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ?,  where correo_usuario = ?"
+                        "UPDATE tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ?  where correo_usuario = ?"
                     )!!
                 updateUser.setString(1, nombreNuevoUser)
                 updateUser.setString(2, contraNuevaUser)
@@ -101,13 +101,14 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
             builder.setMessage("Estas seguro que quieres editar?")
 
             val nombrenuevo = EditText(context)
-            nombrenuevo.setText(txtNombreAjustes.toString())
-
-            val contranueva = EditText(context)
-            contranueva.setText(txtContraAjustes.toString())
+            nombrenuevo.setText(txtNombreAjustes.text.toString())
 
             val correonuevo = EditText(context)
-            correonuevo.setText(txtCorreoAjustes.toString())
+            correonuevo.setText(txtCorreoAjustes.text.toString())
+
+            val contranueva = EditText(context)
+            contranueva.setText(txtContraAjustes.text.toString())
+
             val layout = LinearLayout(context).apply {
                 orientation = LinearLayout.VERTICAL
                 addView(nombrenuevo)
@@ -123,8 +124,11 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
                         nombrenuevo.text.toString(),
                         contranueva.text.toString(),
                         correonuevo.text.toString(),
-
                     )
+                    println(" --------- este es el nombre de vet que quiero usar ${nombrenuevo.text.toString()}")
+                    println("---------- este es el nombre de vet que quiero usar ${contranueva.text}")
+                    println("---------- este es el nombre de vet que quiero usar ${correonuevo.text}")
+
                     Toast.makeText(context, "Datos actualizados", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                     txtNombreAjustes.text = nombrenuevo.text.toString()

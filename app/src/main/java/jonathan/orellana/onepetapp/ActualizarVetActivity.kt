@@ -139,6 +139,8 @@ class ActualizarVetActivity : AppCompatActivity() {
                         correoNuevo.text.toString(),
                         descripcionNueva.text.toString()
                     )
+                    println("----------este es el nombre de vet que quiero usar ${nombrenuevo.text.toString()}")
+
                     Toast.makeText(this, "Datos actualizados", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                     txtVerNombreVet.text = nombrenuevo.text.toString()
