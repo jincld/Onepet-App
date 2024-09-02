@@ -17,6 +17,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import modelo.ClaseConexion
 import org.w3c.dom.Text
+import java.security.MessageDigest
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,10 +65,15 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
  txtNombreAjustes.text =  MainActivity.variablesMainActivity.nombre_user
 
 
-
+        fun hashSHA256(contraescrita: String): String {
+            val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
+            return bytes.joinToString("") { "%02x".format(it) }
+        }
 
         fun updateUser(nombreNuevoUser: String, contraNuevaUser: String, CorreoNuevoUser: String) {
             GlobalScope.launch(Dispatchers.IO) {
+
+                val contraIncriptada = hashSHA256(contraNuevaUser)
 
                 ///1 - creo un objeto de la clase conexion
                 val objConexion = ClaseConexion().cadenaConexion()
@@ -78,9 +84,11 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
                         "UPDATE tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ?  where correo_usuario = ?"
                     )!!
                 updateUser.setString(1, nombreNuevoUser)
-                updateUser.setString(2, contraNuevaUser)
+                updateUser.setString(2, contraIncriptada)
                 updateUser.setString(3, CorreoNuevoUser)
-                updateUser.setString(4, txtCorreoAjustes.text.toString())
+                updateUser.setString(4, iniciarsesion.variablesLogin.correo_admin)
+                println(" --------- este es el nombre de vet que quiero usar ${iniciarsesion.variablesLogin.correo_admin}")
+
                 updateUser.executeUpdate()
             }
         }
@@ -112,21 +120,22 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
             val layout = LinearLayout(context).apply {
                 orientation = LinearLayout.VERTICAL
                 addView(nombrenuevo)
-                addView(contranueva)
                 addView(correonuevo)
+                addView(contranueva)
             }
 
             builder.setView(layout)
 
             builder.setPositiveButton("Si") { dialog, which ->
-                if (isValid(nombrenuevo, contranueva, correonuevo, )) {
+                if (isValid(nombrenuevo, contranueva, correonuevo )) {
+                    val contraIncriptada = hashSHA256(contranueva.text.toString())
                     updateUser(
                         nombrenuevo.text.toString(),
-                        contranueva.text.toString(),
+                        contraIncriptada,
                         correonuevo.text.toString(),
                     )
                     println(" --------- este es el nombre de vet que quiero usar ${nombrenuevo.text.toString()}")
-                    println("---------- este es el nombre de vet que quiero usar ${contranueva.text}")
+                    println("---------- este es el nombre de vet que quiero usar ${contraIncriptada}")
                     println("---------- este es el nombre de vet que quiero usar ${correonuevo.text}")
 
                     Toast.makeText(context, "Datos actualizados", Toast.LENGTH_SHORT).show()
