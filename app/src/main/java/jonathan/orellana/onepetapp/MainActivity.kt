@@ -2,6 +2,8 @@ package jonathan.orellana.onepetapp
 
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
@@ -29,9 +31,13 @@ import java.sql.SQLException
 
 class MainActivity : AppCompatActivity() {
 
+
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-
+    companion object variablesMainActivity {
+        lateinit var nombre_user: String
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         changeStatusBarColor("#171717")
 
 
-       binding.appBarMain.fab.setOnClickListener { view ->
+        binding.appBarMain.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null)
                 .setAnchorView(R.id.fab).show()
@@ -58,7 +64,9 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
+
                 R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.fragment_veterinarias, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_misMascotas, R.id.agregar_vet, R.id.actualizar_y_eliminar_vet2, R.id.agregarempleadodv, R.id.misResenas
+
             ), drawerLayout
         )
 
@@ -74,6 +82,10 @@ class MainActivity : AppCompatActivity() {
         val navigationView2: NavigationView = findViewById(R.id.nav_view)
         val headerView2 = navigationView2.getHeaderView(0)
         val txtNombreMenu: TextView = headerView2.findViewById(R.id.txtNombreUserMenu)
+
+
+
+
         val txtInfo1: TextView = findViewById(R.id.txtInfo1)
         val txtCont1: TextView = findViewById(R.id.txtCont1)
         val txtInfo2: TextView = findViewById(R.id.txtInfo2)
@@ -85,7 +97,8 @@ class MainActivity : AppCompatActivity() {
             return withContext(Dispatchers.IO) {
                 var nombreUser: String? = null
                 val objConexion = ClaseConexion().cadenaConexion()
-                val preparedStatement = objConexion?.prepareStatement("SELECT nombre_usuario FROM tbusuariosOne WHERE correo_usuario = ?")
+                val preparedStatement =
+                    objConexion?.prepareStatement("SELECT nombre_usuario FROM tbusuariosOne WHERE correo_usuario = ?")
                 preparedStatement?.setString(1, valorCorreoUsuario)
                 println("..........ESTE ES EL VALOR CORREO: " + valorCorreoUsuario)
 
@@ -94,8 +107,7 @@ class MainActivity : AppCompatActivity() {
                     if (resultSet?.next() == true) {
                         nombreUser = resultSet.getString("nombre_usuario")
                         println("++++ESTE ES EL NOMBRE DENTRO DE LA FUNCION DE TRAER NOMBRE: " + nombreUser)
-                    }
-                    else    {
+                    } else {
                         println("++++POSIBLE ERROR EN ELSE: " + nombreUser)
                     }
                 } catch (e: SQLException) {
@@ -113,15 +125,20 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
         CoroutineScope(Dispatchers.Main).launch {
             val valorRolUsuario = valorCorreoUsuario
             val nombreUsuario = traerNombreUser(valorCorreoUsuario)
             txtNombreMenu.text = nombreUsuario
+            nombre_user = nombreUsuario.toString()
             println("ESTE ES EL NOMBRE TRAIDO:" + nombreUsuario)
         }
 
 
-      // txtNombreMenu.text = traerNombreUser()
+
+
+        // txtNombreMenu.text = traerNombreUser()
 
         fun traerID(): String? {
             var uuidRol: String? = null

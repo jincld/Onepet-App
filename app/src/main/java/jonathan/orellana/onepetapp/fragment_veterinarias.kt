@@ -59,22 +59,25 @@ class fragment_veterinarias : Fragment() {
 
             val objConexion = ClaseConexion().cadenaConexion()
 
+            val resulSet = objConexion?.prepareStatement("select * from tbVeterinarias where UUID_veterinaria = ?")!!
+            resulSet.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
+            resulSet.executeQuery()
+
+            val ver_vet = resulSet.executeQuery()
             //crear statement
 
-            val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("select * from tbVeterinarias")!!
             val veterinarias = mutableListOf<dataClassVeterinaria>()
 
             //recorro todos los registos de la base de datos
 
-            while(resulSet.next()){
-                val UUID_Vet = resulSet.getString("UUID_Veterinaria")
-                val ubicacion = resulSet.getString("Ubicacion_veterinaria")
-                val nit = resulSet.getString("NIT")
-                val contacto = resulSet.getString("contacto_veterinaria")
-                val nombre = resulSet.getString("nombre_veterinaria")
-                val correo = resulSet.getString("correo_veterinaria")
-                val descripcion = resulSet.getString("descripcion_servicio")
+            while(ver_vet.next()){
+                val UUID_Vet = ver_vet.getString("UUID_Veterinaria")
+                val ubicacion = ver_vet.getString("Ubicacion_veterinaria")
+                val nit = ver_vet.getString("NIT")
+                val contacto = ver_vet.getString("contacto_veterinaria")
+                val nombre = ver_vet.getString("nombre_veterinaria")
+                val correo = ver_vet.getString("correo_veterinaria")
+                val descripcion = ver_vet.getString("descripcion_servicio")
 
 
 

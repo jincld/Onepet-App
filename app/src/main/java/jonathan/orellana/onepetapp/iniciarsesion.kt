@@ -26,7 +26,9 @@ class iniciarsesion : AppCompatActivity() {
         lateinit var uuid_vet_real: String
         lateinit var UUID_Usuario: String
         var uuidRol: String? = null
-        lateinit  var correo_admin: String
+        lateinit var correo_admin: String
+lateinit var contra_sinincriptar:String
+        lateinit var uuid_Vet_real: String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,8 +58,28 @@ class iniciarsesion : AppCompatActivity() {
         val btnVolver = findViewById<ImageButton>(R.id.btnVolverIS)
         val btnNoCuenta = findViewById<TextView>(R.id.txtNoCuenta)
 
-
         //   fun obtenerUuidRol(): String? {
+
+        GlobalScope.launch(Dispatchers.IO) {
+
+            val objConexion = ClaseConexion().cadenaConexion()
+            val resulSet =
+                objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ?")!!
+            resulSet.setString(1, txtcorreoiniciar.text.toString().trim())
+
+            val resultado = resulSet.executeQuery()
+
+            if (resultado.next()) {
+
+                uuidRol = resultado.getString("rol")
+
+                println("este es el uuid traido desde el if $uuidRol")
+            }
+
+
+
+            println("este es el uuid traido desde la funcion $uuidRol")
+        }
 
 
 
@@ -79,12 +101,14 @@ class iniciarsesion : AppCompatActivity() {
 
 
         btninicarsesion.setOnClickListener {
-            valorCorreoUsuario = txtcorreoiniciar.text.toString()
-
             val pantallaprincipal = Intent(this, MainActivity::class.java)
+            valorCorreoUsuario = txtcorreoiniciar.text.toString()
 
             val contra = txtcontrainiciar.text.toString()
             val correo = txtcorreoiniciar.text.toString()
+            contra_sinincriptar = contra.toString()
+
+            println("EATE ESA EL VALOR de la contra sin incriptar $contra_sinincriptar")
             var hayerrores = false
 
             if (correo.isEmpty()) {
@@ -93,17 +117,16 @@ class iniciarsesion : AppCompatActivity() {
             } else {
                 txtcorreoiniciar.error = null
             }
+            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))) {
 
-            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
-
-             txtcorreoiniciar.error = "Correo invalido"
+                txtcorreoiniciar.error = "Correo invalido"
                 hayerrores = true
             } else {
                 txtcorreoiniciar.error = null
             }
 
             if (contra.isEmpty()) {
-              txtcontrainiciar.error = "Complete todos lo campos"
+                txtcontrainiciar.error = "Complete todos lo campos"
                 hayerrores = true
             } else {
                 txtcontrainiciar.error = null
@@ -113,74 +136,89 @@ class iniciarsesion : AppCompatActivity() {
                 txtcontrainiciar.error = "Contraseña invalida"
                 hayerrores = true
             } else {
-               txtcontrainiciar.error = null
+                txtcontrainiciar.error = null
             }
 
-            if (hayerrores){
-            } else {
+            if (hayerrores) {
 
+            } else {
                 GlobalScope.launch(Dispatchers.IO) {
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
-                    val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
+
+                    val resulSet =
+                        objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                     resulSet.setString(1, txtcorreoiniciar.text.toString())
                     resulSet.setString(2, contraencriptada)
                     correo_admin = txtcorreoiniciar.text.toString()
                     println("este es el correo que quiero usar ${correo_admin}")
-
                     val resultado = resulSet.executeQuery()
 
-                    val UUID_vet = objConexion?.prepareStatement("select vet from tbUsuariosOne where correo_usuario = ?")!!
+
+                    val UUID_vet =
+                        objConexion?.prepareStatement("select vet from tbUsuariosOne where correo_usuario = ?")!!
                     UUID_vet.setString(1, correo_admin)
                     UUID_vet.executeQuery()
                     var uuid_vet_global = UUID_vet.executeQuery();
 
-                    val UUID_usuario_global = objConexion?.prepareStatement("select UUID_USUARIO from tbUsuariosOne where correo_usuario = ?")!!
-                    UUID_usuario_global.setString(1, correo_admin)
-                    UUID_usuario_global.executeQuery()
-                    var UUID_usuario_global_Var = UUID_usuario_global.executeQuery();
 
-
-
+                    println("EATE ESA EL VALOR ASDFA $uuid_vet_global")
                     if (uuid_vet_global.next()) {
-                        uuid_vet_real = uuid_vet_global.getString("vet")
-                        println("este es la UUID de vet que quiero usar ${uuid_vet_real}")
-                    }
-                    else {
+                        uuid_Vet_real = uuid_vet_global.getString("vet")
 
-                    }
+                        if (uuid_Vet_real == "1") {
 
-                    if (UUID_usuario_global_Var.next()) {
-                        UUID_Usuario = UUID_usuario_global_Var.getString("UUID_USUARIO")
-                        println("este es la UUID de USUARIO que quiero usar ${UUID_Usuario}")
-                    }
-                    else {
-
-                    }
-
-                    if (resultado.next()) {
-                        valorRolUsuario = resultado.getString("ROL")
-                        println("--*--*-*ESTE ES EL ROL ${valorRolUsuario}")
-                        startActivity(pantallaprincipal)
+                            if (resultado.next()) {
+                                valorRolUsuario = resultado.getString("ROL")
+                                startActivity(pantallaprincipal)
 
 
-                    }else {
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(this@iniciarsesion, "Usuario o contraseña inválidos", Toast.LENGTH_LONG).show()
+                            } else {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(
+                                        this@iniciarsesion,
+                                        "Usuario o contraseña inválidos",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
+
+                        } else {
+                            if (resultado.next()) {
+                                valorRolUsuario = resultado.getString("ROL")
+                                startActivity(pantallaprincipal)
+
+
+                            } else {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(
+                                        this@iniciarsesion,
+                                        "Usuario o contraseña inválidos",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
+
                         }
+
                     }
                 }
             }
-
         }
+
 
 
 
 
             /*    startActivity(pantallaprincipal)*/
 
-           /* GlobalScope.launch(Dispatchers.IO) {
+
+
+
+                /*    startActivity(pantallaprincipal)*/
+
+                /* GlobalScope.launch(Dispatchers.IO) {
                 val objconexion = ClaseConexion().cadenaConexion()
                 val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
@@ -205,6 +243,12 @@ class iniciarsesion : AppCompatActivity() {
                     }
                 }
             }*/
+                println("este es el resultado que traigo con el select $txtcorreoiniciar")
+
+            btnrecuperarcontra.setOnClickListener {
+                val recuperar = Intent(this, correoderecuperacion::class.java)
+                startActivity(recuperar)
+            }
 
         btnrecuperarcontra.setOnClickListener {
             val recuperar = Intent(this, correoderecuperacion::class.java)

@@ -23,9 +23,9 @@ class AdaptadorVetUser(private var Datos: List<dataClassVeterinaria>, private va
 
     override fun onBindViewHolder(holder: ViewHolderVetUser, position: Int) {
         val producto = Datos[position]
-        holder.txtNombreVet.text = producto.nombre_veterinaria
-        holder.txtUbicacionVet.text = producto.ubicacion_veterinaria
-        holder.txtDescripcionVetCard.text = producto.descripcion_servicios
+        holder.txtNombreVetUser.text = producto.nombre_veterinaria
+        holder.txtUbicacionVetUser.text = producto.ubicacion_veterinaria
+        holder.txtDescripcionVetCardUser.text = producto.descripcion_servicios
 
 
         holder.itemView.setOnClickListener {

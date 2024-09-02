@@ -214,9 +214,35 @@ class registroduenovet : AppCompatActivity() {
                txtcontraadminvet.error = null
             }
 
-            if (hayerrores){
+            if (hayerrores) {
             } else {
 
+                GlobalScope.launch(Dispatchers.IO){
+                    val objConexion = ClaseConexion().cadenaConexion()
+                    val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
+                    val uuidTraido = obtenerUuidRol()
+
+                    val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
+                    crearusuario.setString(1, UUID.randomUUID().toString())
+                    crearusuario.setString(2, txtnombreadminvet.text.toString())
+                    crearusuario.setString(3,contraencriptada)
+                    crearusuario.setString(4, txtcorreoadminvet.text.toString())
+                    crearusuario.setString(5,uuidTraido)
+                    println("este es el uuid traido antes del execute  $uuidTraido")
+                    crearusuario.executeUpdate()
+
+                    withContext(Dispatchers.Main){
+                        //mostrar mensaje y limpiar campos
+                        Toast.makeText(this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
+                        txtnombreadminvet.setText("")
+                        txtcontraadminvet.setText("")
+                        txtcorreoadminvet.setText("")
+
+                        val login = Intent(this@registroduenovet, iniciarsesion::class.java)
+                        startActivity(login)
+                    }
+
+                }
                 guardarUsuarioconft(imageView.toString())
             }
 
