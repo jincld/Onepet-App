@@ -25,8 +25,6 @@ class asignarcitadv1 : AppCompatActivity() {
 
     companion object variablesCitas {
         lateinit var valor_motivo_cita: String
-        lateinit var valor_uuid_cita: String
-        lateinit var valor_uuid_usuario: String
         lateinit var valor_nombre_usuario: String
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +53,6 @@ class asignarcitadv1 : AppCompatActivity() {
         val motivo2Recibido = intent.getStringExtra("motivo_cita")
         val descripcionRecibido = intent.getStringExtra("descripcion_motivo")
 
-valor_nombre_usuario = usuarioRecibido.toString()
         valor_motivo_cita = motivoRecibido.toString()
 
 
@@ -123,11 +120,14 @@ valor_nombre_usuario = usuarioRecibido.toString()
                 spEmpleado.adapter = miAdaptadorr
             }
 
+            val empleado = obtenerEmpleado()
+            valor_nombre_usuario = empleado[spEmpleado.selectedItemPosition].nombre_usuario
+
         }
 
         fun obtenerUUIDUsuarioC(): String? {
 
-            val valoruuidusuario = valor_uuid_usuario
+            val valoruuidusuario = valor_nombre_usuario
 
             val objConexion = ClaseConexion().cadenaConexion()
 
@@ -135,6 +135,7 @@ valor_nombre_usuario = usuarioRecibido.toString()
                 objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE nombre_usuario = ?")!!
             traerUUIDUsuarioC.setString(1, valoruuidusuario)
             val resultSet = traerUUIDUsuarioC.executeQuery()
+            println("------------------------Este es el nombre traido desde el spinner $valor_nombre_usuario")
 
             var uuidUsuarioC: String? = null
 
@@ -171,24 +172,33 @@ valor_nombre_usuario = usuarioRecibido.toString()
 
 
 btnAsignarCita.setOnClickListener {
+    CoroutineScope(Dispatchers.IO).launch {
+        //Obtener el codigo de obtener el UUID Cita
+        val uuidCitaTraida = obtenerUUIDCita()
 
-    //Obtener el codigo de obtener el UUID Cita
-    val uuidCitaTraida = obtenerUUIDCita()
+        //Obtener el codigo de obtener el UUID Usuario
+        val uuidUsuarioTraidoC = obtenerUUIDUsuarioC()
 
-    //Obtener el codigo de obtener el UUID Usuario
-    val uuidUsuarioTraidoC = obtenerUUIDUsuarioC()
+        val objConexion = ClaseConexion().cadenaConexion()
+        println(" --------------Este es el uuid de la cita que quiero usar ${uuidCitaTraida}")
+        println(" --------------Este es el uuid del usuario que quiero usar ${uuidUsuarioTraidoC}")
+        val asignar =
+            objConexion?.prepareStatement("Insert into tbAsignaciones (uuid_asignacion,citas, empleado) values (?,?,?)")!!
+        asignar.setString(1, UUID.randomUUID().toString())
+        asignar.setString(2, uuidCitaTraida)
+        println("----------------------Este es el uuid de cita traido antes del execute  $uuidCitaTraida")
+        asignar.setString(3, uuidUsuarioTraidoC)
+        println("----------------------Este es el uuid de usuario traido antes del execute  $uuidUsuarioTraidoC")
+        asignar.executeUpdate()
 
-    val objConexion = ClaseConexion().cadenaConexion()
-    println(" --------------Este es el uuid de la cita que quiero usar ${valor_uuid_cita}")
-    println(" --------------Este es el uuid del usuario que quiero usar ${valor_uuid_usuario}")
+        println(" --------------este es el nombre de vet que quiero usar ${valor_motivo_cita}")
+        val updateCita = objConexion?.prepareStatement("Update tbCitas set estado ='Aceptada' where motivo_cita = ?")!!
+        updateCita?.setString(1, valor_motivo_cita)
+        updateCita?.executeUpdate()
 
-    val asignar = objConexion?.prepareStatement("Insert into tbAsignaciones (uuid_asignacion,citas, empleado) values (?,?,?)")!!
-    asignar.setString(1, UUID.randomUUID().toString())
-    asignar.setString(2, uuidCitaTraida)
-    println("----------------------Este es el uuid de cita traido antes del execute  $uuidCitaTraida")
-    asignar.setString(3, uuidUsuarioTraidoC)
-    println("----------------------Este es el uuid de usuario traido antes del execute  $uuidUsuarioTraidoC")
-    asignar.executeUpdate()
+    }
+
+
 }
 
 
