@@ -187,6 +187,5 @@ btnAsignarCita.setOnClickListener {
     asignar.executeUpdate()
 }
 
-
     }
 }
