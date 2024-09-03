@@ -77,8 +77,8 @@
                 android:text="Fecha de Cita"
                 android:textColor="#555"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/txtMotivoCitaCC2"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/txtMotivoCitaCC2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -91,8 +91,8 @@
                 android:text="Motivo de Cita"
                 android:textColor="#555"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/txtDescripcionCitaC"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/txtDescripcionCitaC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -102,14 +102,22 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="15dp"
                 android:paddingBottom="8dp"
+                android:scrollHorizontally="false"
                 android:text="Descripcion de Cita"
                 android:textColor="#555"
                 android:textSize="16sp"
-                android:scrollHorizontally="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
+            <TextView
+                android:id="@+id/txtEstadoCC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtMotivoCitaC"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

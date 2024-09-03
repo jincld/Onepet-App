@@ -90,6 +90,7 @@ class AdaptadorCitas (var Datos: List<dataClassCitas>): RecyclerView.Adapter<Vie
         holder.txtMascotaC.text = controlCard.mascota
         holder.txtMotivoCitaCC2.text = controlCard.motivo_cita
         holder.txtDescripcionC.text = controlCard.descripcion_motivo
+        holder.txtEstadoCitaC.text = controlCard.estado
 
         //todo: clic al boton de eliminar
         holder.btnEliminarCitaC.setOnClickListener {

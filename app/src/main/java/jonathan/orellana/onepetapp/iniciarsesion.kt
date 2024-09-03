@@ -98,7 +98,6 @@ class iniciarsesion : AppCompatActivity() {
             valorRolUsuario = uuidRol.toString()
             correodelUsuarioGlobal = txtcorreoiniciar.text.toString()
 
-
             val pantallaprincipal = Intent(this, MainActivity::class.java)
 
                 GlobalScope.launch(Dispatchers.IO) {

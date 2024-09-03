@@ -14,6 +14,7 @@ class ViewHolderCitas(view: View): RecyclerView.ViewHolder(view) {
     val txtFechaCitaC = view.findViewById<TextView>(R.id.txtFechaCitaC)
     val txtMotivoCitaCC2 = view.findViewById<TextView>(R.id.txtMotivoCitaCC2)
     val txtDescripcionC = view.findViewById<TextView>(R.id.txtDescripcionCitaC)
+    val txtEstadoCitaC = view.findViewById<TextView>(R.id.txtEstadoCC)
     val btnEliminarCitaC = view.findViewById<Button>(R.id.btnEliminarCitaC)
     val btnEditarC= view.findViewById<Button>(R.id.btnEditarCitaC)
 }
