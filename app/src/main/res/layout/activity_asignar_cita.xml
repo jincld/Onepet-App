@@ -36,7 +36,7 @@
             android:layout_marginBottom="192dp"
             android:background="@drawable/btnazul"
             android:fontFamily="@font/alata"
-            android:text="Asignar cita"
+            android:text="Agendar cita"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:backgroundTint="@null"
@@ -63,18 +63,6 @@
             android:layout_marginStart="293dp"
             android:layout_marginTop="608dp"
             android:src="@drawable/circulocelesteazul"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtTituloMiVet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/alata"
-            android:text="Información de veterinaria"
-            android:textSize="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -148,6 +136,51 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtTituloMiVet"
             app:layout_constraintVertical_bias="0.171" />
+
+        <ImageView
+            android:id="@+id/imageView180"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="356dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/wavedarkbluelongopac" />
+
+        <ImageView
+            android:id="@+id/imageView182"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="376dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/wavedarkbluelong" />
+
+        <TextView
+            android:id="@+id/txtTituloMiVet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:fontFamily="@font/alata"
+            android:text="Información de veterinaria"
+            android:textColor="#FFFFFF"
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnVolverAG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00FFFFFF"
+            android:tint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.046"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.021"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

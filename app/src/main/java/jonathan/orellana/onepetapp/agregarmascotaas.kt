@@ -1,7 +1,6 @@
 package jonathan.orellana.onepetapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,16 +57,15 @@ class agregarmascotaas : Fragment() {
         val txtProceMAddMascota = root.findViewById<EditText>(R.id.txtProcedimientosMAscota)
         val txtRazaMascota = root.findViewById<EditText>(R.id.txtRazaMascota)
         val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascota)
-        val btnAddFotoMascota = root.findViewById<Button>(R.id.btnAgregarFotoMascota)
         val btnAgregarMascotas = root.findViewById<Button>(R.id.btnAgregarMascotas)
 
         //Obtener UUID de Dueño de Mascota (Usuario)
-        fun obtenerUUIDDueno(): String? {
+       /* fun obtenerUUIDDueno(): String? {
 
-            val correoGlobalEscrito = registroduenovet.VariablesGlobalesRegistroDuenio.txtcorreoadminvetGlobal
+            val correoGlobalEscrito = iniciarsesion.variablesLogin.valorCorreoUsuario
             val objConexion = ClaseConexion().cadenaConexion()
 
-            val tarerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = '?'")!!
+           /* val tarerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = '?'")!!
             tarerUUIDUsuario.setString(1, correoGlobalEscrito)
             val resultSet = tarerUUIDUsuario.executeQuery()
 
@@ -78,8 +77,8 @@ class agregarmascotaas : Fragment() {
             }
 
             println("este es el uuid traido desde la funcion $uuidUsuario")
-            return uuidUsuario
-        }
+            return uuidUsuario*/
+        }*/
 
         //1-Creamos la funcion que haga un select
         fun obtenerEspecie(): List<dataClassEspecie> {
@@ -200,13 +199,7 @@ class agregarmascotaas : Fragment() {
             }
 
             //TODO: 2- Validacion de Numeros
-            if (!pesoMascota.matches(Regex("¨[0-9]+")))  {
-                txtPesoAddMascota.error = "El peso solo debe contener numeros"
-                hayErrores = true
-            }
-            else {
-                txtPesoAddMascota.error = null
-            }
+
 
             //Si hay errores no procede a guardar los datos
             if(hayErrores) {
@@ -222,11 +215,11 @@ class agregarmascotaas : Fragment() {
                     val claseC = ClaseConexion().cadenaConexion()
 
                     //Traer el codigo de UUID Usuario
-                    val uuidUsuarioTraido = obtenerUUIDDueno()
+                    /*val uuidUsuarioTraido = obtenerUUIDDueno()*/
 
                     //2- creo una variable que contenga un PrepareStatement
                     val addMascota =
-                        claseC?.prepareStatement("into tbMascotas(uuid_mascota, nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso,  especie, dueno) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )")!!
+                        claseC?.prepareStatement("insert into tbMascotas(uuid_mascota, nombre_mascota, raza, sexo, procesos_previos, alergias, enfermedades_cronicas, fecha_nacimiento, peso,  especie, dueno) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )")!!
                     addMascota.setString(1, UUID.randomUUID().toString())
                     addMascota.setString(2, txtNomAddMascota.text.toString())
                     addMascota.setString(3, txtRazaMascota.text.toString())
@@ -236,9 +229,9 @@ class agregarmascotaas : Fragment() {
                     addMascota.setString(7, txtEnferCAddMascota.text.toString())
                     addMascota.setString(8, txtAñoAddMascota.text.toString())
                     addMascota.setInt(9, txtPesoAddMascota.text.toString().toInt())
-                    addMascota.setString(10, uuidUsuarioTraido)
-                    println("este es el uuid traido antes del execute  $uuidUsuarioTraido")
-                    addMascota.setString(11, especieID)
+                    addMascota.setString(10, especieID)
+                    addMascota.setString(11, iniciarsesion.variablesLogin.UUID_Usuario)
+
                     addMascota.executeUpdate()
 
                     //Abro una corrutina para mostrar una alerta y limpiar los campos

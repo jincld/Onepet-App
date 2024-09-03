@@ -29,6 +29,18 @@
         android:theme="@style/Theme.OnePetApp.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".rechazarcitadv1"
+            android:exported="false" />
+        <activity
+            android:name=".activity_item_card_solicitudes_c"
+            android:exported="false" />
+        <activity
+            android:name=".asignarcitadv1"
+            android:exported="false" />
+        <activity
+            android:name=".activity_item_cardhistorialcitas"
+            android:exported="false" />
+        <activity
             android:name=".item_resenas"
             android:exported="false" />
         <activity

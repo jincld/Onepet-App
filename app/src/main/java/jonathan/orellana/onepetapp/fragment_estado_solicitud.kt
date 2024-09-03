@@ -16,7 +16,7 @@ import modelo.ClaseConexion
 import modelo.dataClassCitas
 
 
-class fragment_estadoSolicitud : Fragment() {
+class fragment_estado_solicitud : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,4 +77,4 @@ class fragment_estadoSolicitud : Fragment() {
         return root
     }
 
-}
+    }

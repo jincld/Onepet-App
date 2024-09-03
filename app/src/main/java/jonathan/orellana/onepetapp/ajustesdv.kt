@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import modelo.ClaseConexion
+import java.security.MessageDigest
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,7 +64,10 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
  txtNombreAjustes.text =  MainActivity.variablesMainActivity.nombre_user
 
 
-
+        fun hashSHA256(contraescrita: String): String {
+            val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
+            return bytes.joinToString("") { "%02x".format(it)}
+            }
 
         fun updateUser(nombreNuevoUser: String, contraNuevaUser: String, CorreoNuevoUser: String) {
             GlobalScope.launch(Dispatchers.IO) {
@@ -86,7 +90,7 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
         fun isValid(vararg editTexts: EditText): Boolean {
             for (editText in editTexts) {
                 if (editText.text.toString().isEmpty()) {
-                    Toast.makeText(context, "Porfavor llene todos los datos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Por favor llene todos los datos", Toast.LENGTH_SHORT).show()
                     return false
                 }
             }
@@ -111,21 +115,22 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
             val layout = LinearLayout(context).apply {
                 orientation = LinearLayout.VERTICAL
                 addView(nombrenuevo)
-                addView(contranueva)
                 addView(correonuevo)
+                addView(contranueva)
             }
 
             builder.setView(layout)
 
             builder.setPositiveButton("Si") { dialog, which ->
-                if (isValid(nombrenuevo, contranueva, correonuevo, )) {
+                if (isValid(nombrenuevo, contranueva, correonuevo )) {
+                    val contraIncriptada = hashSHA256(contranueva.text.toString())
                     updateUser(
                         nombrenuevo.text.toString(),
-                        contranueva.text.toString(),
+                        contraIncriptada,
                         correonuevo.text.toString(),
                     )
                     println(" --------- este es el nombre de vet que quiero usar ${nombrenuevo.text.toString()}")
-                    println("---------- este es el nombre de vet que quiero usar ${contranueva.text}")
+                    println("---------- este es el nombre de vet que quiero usar ${contraIncriptada}")
                     println("---------- este es el nombre de vet que quiero usar ${correonuevo.text}")
 
                     Toast.makeText(context, "Datos actualizados", Toast.LENGTH_SHORT).show()
