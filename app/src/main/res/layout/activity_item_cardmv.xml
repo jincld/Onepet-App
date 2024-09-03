@@ -8,79 +8,86 @@
     app:cardCornerRadius="16dp"
     app:cardElevation="6dp">
 
+
     <LinearLayout
         android:id="@+id/cardVeterinarias"
         android:layout_width="390dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="16dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="10dp"
-            android:layout_height="87dp"
-            android:layout_weight="1">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/txtNombreVetCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="21dp"
-            tools:layout_editor_absoluteY="16dp">
-
-            <TextView
-                android:id="@+id/txtNombreVetCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingBottom="4dp"
-                android:text="Nombre de la veterinaria"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/txtUbicacionVetCard"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.235" />
-
-            <TextView
-                android:id="@+id/txtUbicacionVetCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingBottom="4dp"
-                android:text="Ubicación veterinaria"
-                android:textColor="#555"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/txtServiciosVetCard"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/txtServiciosVetCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingBottom="8dp"
-                android:text="Servicios Veterinaria"
-                android:textColor="#555"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="40dp"
+            android:background="@drawable/recresenacard"
+            android:fontFamily="@font/alata"
+            android:paddingLeft="15dp"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:text="Nombre de la veterinaria"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:orientation="vertical"></LinearLayout>
+
+        <TextView
+            android:id="@+id/txtUbicacionVetCard"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical" />
+            android:paddingLeft="15dp"
+            android:paddingBottom="4dp"
+            android:text="Ubicación veterinaria"
+            android:textColor="#555"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:orientation="vertical"></LinearLayout>
+
+        <TextView
+            android:id="@+id/txtServiciosVetCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingBottom="8dp"
+            android:text="Servicios Veterinaria"
+            android:textColor="#555"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="313dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView152"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:rotation="180"
+                android:tint="#666666"
+                app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+        </LinearLayout>
 
     </LinearLayout>
+
+
 </androidx.cardview.widget.CardView>

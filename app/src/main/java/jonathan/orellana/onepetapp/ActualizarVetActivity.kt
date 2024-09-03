@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -16,7 +17,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import modelo.ClaseConexion
-import modelo.dataClassVeterinaria
 
 class ActualizarVetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,11 @@ class ActualizarVetActivity : AppCompatActivity() {
         val txtVerServiciosVet = findViewById<TextView>(R.id.txtVerServiciosVet)
         val btnEditarVet = findViewById<Button>(R.id.btnEditarVet)
         val btnEliminarVet = findViewById<Button>(R.id.btnEliminarVet)
+        val btnVolverMV = findViewById<ImageButton>(R.id.btnVolverMV)
 
+        btnVolverMV.setOnClickListener {
+            finish()
+        }
 
         //Asignarle los datos recibidos a mis textos
 //Segundo = primero
@@ -95,7 +99,7 @@ class ActualizarVetActivity : AppCompatActivity() {
         btnEditarVet.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Editar")
-            builder.setMessage("Estas seguro que quieres editar?")
+            builder.setMessage("¿Estás seguro que quieres editar?")
 
             val nombrenuevo = EditText(this)
             nombrenuevo.setText(nombre.toString())
