@@ -57,6 +57,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //Firebase
+    implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
 
     //Material Design
     implementation("com.google.android.material:material:1.2.0-aplha03")

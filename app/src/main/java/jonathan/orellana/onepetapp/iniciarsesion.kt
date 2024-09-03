@@ -32,6 +32,8 @@ class iniciarsesion : AppCompatActivity() {
         var uuidRol: String? = null
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -113,6 +115,7 @@ class iniciarsesion : AppCompatActivity() {
             val recuperar = Intent(this, correoderecuperacion::class.java)
             startActivity(recuperar)
         }
+
     }
 }
 

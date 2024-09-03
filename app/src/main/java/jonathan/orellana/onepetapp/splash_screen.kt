@@ -12,6 +12,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class splash_screen : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,5 +29,6 @@ class splash_screen : AppCompatActivity() {
             val pantallaBienvenido = Intent(this@splash_screen, bienvenido::class.java)
             startActivity(pantallaBienvenido)
         }
+
     }
 }

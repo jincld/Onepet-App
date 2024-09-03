@@ -1,5 +1,6 @@
 package jonathan.orellana.onepetapp
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,6 +21,25 @@ import modelo.dataClassEspecie
 import java.util.Calendar
 import java.util.UUID
 
+//Copiar de aqui
+private val Any.layout: Any
+    get() {
+        TODO("Not yet implemented")
+    }
+private val Any.foundation: Any
+    get() {
+        TODO("Not yet implemented")
+    }
+private val Any.compose: Any
+    get() {
+        TODO("Not yet implemented")
+    }
+private val View.androidx: Any
+    get() {
+        TODO("Not yet implemented")
+    }
+//Hasta aquí
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -34,7 +54,6 @@ class agregarmascotaas : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
     companion object variablesGlobalesMascota{
         lateinit var variableMascotaGlobal: String
     }
@@ -64,7 +83,46 @@ class agregarmascotaas : Fragment() {
         val txtRazaMascota = root.findViewById<EditText>(R.id.txtRazaMascota)
         val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascotas)
         val btnAddFotoMascota = root.findViewById<Button>(R.id.btnAgregarFotoMascota)
-        val btnAgregarMascotas = root.findViewById<Button>(R.id.btnAgregarMascotas)
+        val btnAgregarMascotas = root.findViewById<Button>(R.id.btnAgregarMascota)
+
+
+        //declaración de constante (Agregar foto)
+        class AgregarMascotaFragment<imgAgregarFotoMascota> : Fragment() {
+
+            val codigo_opcion_galeria = 102
+            val codigo_opcion_tomar_foto = 103
+            val CAMERA_REQUEST_CODE = 0
+            val STORAGE_REQUEST_CODE = 1
+
+            var imgAgregarFotoMascota: imgAgregarFotoMascota = TODO()
+            lateinit var miPath: String
+
+        }
+
+        fun findViewById(imgAgregarFotoMascota: Int) {
+
+        }
+
+        //Inilización de variables (Agregar foto)
+        @SuppressLint("MissingInflatedId")
+        fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            val view = inflater.inflate(R.layout.fragment_agregarmascotaas, container, false)
+
+            var imgAgregarFotoMascota = view.androidx.compose.foundation.layout.Column {
+                findViewById(R.id.imgAgregarFotoMascota)
+            }
+
+            return view
+        }
+
+        //Permiso para entrar a la galeria (Agregar foto)
+        btnAddFotoMascota.setOnClickListener{
+            checkStoragePermission()
+        }
+
 
 
         txtAñoAddMascota.setOnClickListener {
@@ -88,7 +146,7 @@ class agregarmascotaas : Fragment() {
         //Obtener UUID de Dueño de Mascota (Usuario)
         fun obtenerUUIDDueno(): String? {
 
-            val correoGlobalEscrito = iniciarsesion.variablesGlobalesLogin.correodelUsuarioGlobal
+            val correoGlobalEscrito = iniciarsesion.correodelUsuarioGlobal
             val objConexion = ClaseConexion().cadenaConexion()
 
             val traerUUIDUsuario = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE correo_usuario = ?")!!
@@ -161,6 +219,7 @@ class agregarmascotaas : Fragment() {
             val procedimientoMA = txtProceMAddMascota.text.toString()
             val razaMascota = txtRazaMascota.text.toString()
             val alergiaMascota = txtAlerAddMascota.text.toString()
+
 
             //Variable para verificar si hay errores la inicializamos en false
             var hayErrores = false
@@ -282,4 +341,4 @@ class agregarmascotaas : Fragment() {
         //retornar root
         return root
     }
-}
+

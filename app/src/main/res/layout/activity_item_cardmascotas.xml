@@ -2,8 +2,10 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/tools"
     android:layout_margin="8dp"
-    card_view:cardCornerRadius="8dp">
+    card_view:cardCornerRadius="8dp"
+    app:ignore="NamespaceTypo">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,6 +104,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/botonactualizarcard"
+                app:backgroundTint="@null"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="Actualizar" />
@@ -113,10 +117,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/botoneliminarcard"
+                app:backgroundTint="@null"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="Eliminar" />
         </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

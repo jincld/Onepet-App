@@ -6,186 +6,326 @@
     android:layout_height="match_parent"
     tools:context=".agregarmascotaas">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageView80"
+            android:layout_width="53dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="290dp"
+            android:layout_marginTop="150dp"
+            android:src="@drawable/circuloempleados"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textAgregarMascota"
-                android:layout_width="250dp"
-                android:layout_height="45dp"
-                android:layout_marginBottom="142dp"
-                android:text="Agregar Mascota"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.521"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.055" />
+        <ImageView
+            android:id="@+id/imageView79"
+            android:layout_width="85dp"
+            android:layout_height="101dp"
+            android:layout_marginStart="372dp"
+            android:src="@drawable/circuloempleados"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.696" />
 
-            <ImageView
-                android:id="@+id/imageView27"
-                android:layout_width="88dp"
-                android:layout_height="83dp"
-                android:layout_marginStart="45dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.417"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.133"
-                tools:src="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/imageView78"
+            android:layout_width="190dp"
+            android:layout_height="142dp"
+            android:layout_marginEnd="308dp"
+            android:rotation="189"
+            android:src="@drawable/blobdos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.737" />
 
-            <EditText
-                android:id="@+id/txtNombreMascota"
-                android:layout_width="242dp"
-                android:layout_height="47dp"
-                android:ems="10"
-                android:inputType="text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.243" />
+        <Button
+            android:id="@+id/btnAgregarFotoMascota"
+            android:layout_width="309dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/buttomagregarmascota"
+            android:text="Agregar foto de Perfil"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
-            <Spinner
-                android:id="@+id/spGenero"
-                android:layout_width="120dp"
-                android:layout_height="57dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.288"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.395" />
+        <Button
+            android:id="@+id/btnAgregarMascota"
+            android:layout_width="228dp"
+            android:layout_height="62dp"
+            android:background="@drawable/bottomempleado"
+            android:text="Agregar"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAgregarFotoMascota"
+            app:layout_constraintVertical_bias="0.162" />
 
-            <EditText
-                android:id="@+id/txtAñoMascota"
-                android:layout_width="241dp"
-                android:layout_height="45dp"
-                android:ems="10"
-                android:hint="Escoge una Opcion"
-                android:inputType="text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.482"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.474" />
+        <ImageView
+            android:id="@+id/imageView77"
+            android:layout_width="416dp"
+            android:layout_height="169dp"
+            android:layout_marginTop="740dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/txtEnfermedadesCM"
-                android:layout_width="242dp"
-                android:layout_height="45dp"
-                android:ems="10"
-                android:inputType="text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.467"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.551" />
+        <ImageView
+            android:id="@+id/imageView76"
+            android:layout_width="439dp"
+            android:layout_height="284dp"
+            android:layout_marginTop="650dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/txtProcedimientosMAscotas"
-                android:layout_width="246dp"
-                android:layout_height="41dp"
-                android:ems="10"
-                android:inputType="text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.478"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.624" />
+        <ImageView
+            android:id="@+id/imageView75"
+            android:layout_width="408dp"
+            android:layout_height="509dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="400dp"
+            android:src="@drawable/degcelest"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/txtAlergiasMascotas"
-                android:layout_width="246dp"
-                android:layout_height="44dp"
-                android:ems="10"
-                android:inputType="text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.767" />
 
-            <Button
-                android:id="@+id/btnAgregarFotoMascota"
-                android:layout_width="243dp"
-                android:layout_height="36dp"
-                android:text="Agregar foto de Perfil"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.446"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.848" />
+        <TextView
+            android:id="@+id/textAgregarMascota"
+            android:layout_width="310dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="60dp"
+            android:text="Agregar Mascota"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/btnAgregarMascotas"
-                android:layout_width="180dp"
-                android:layout_height="53dp"
-                android:text="Agregar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.939" />
+        <ImageView
+            android:id="@+id/imageView73"
+            android:layout_width="428dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="740dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-            <Spinner
-                android:id="@+id/spEspecie"
-                android:layout_width="243dp"
-                android:layout_height="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.317" />
+        <ImageView
+            android:id="@+id/imageView84"
+            android:layout_width="414dp"
+            android:layout_height="268dp"
+            android:layout_marginTop="700dp"
+            android:src="@drawable/ondabaja"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="800dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:layout_editor_absoluteX="321dp" />
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="293dp"
+            android:layout_height="456dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textAgregarMascota">
 
-            <EditText
-                android:id="@+id/txtRazaMascota"
-                android:layout_width="244dp"
-                android:layout_height="47dp"
-                android:ems="10"
-                android:inputType="text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.461"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.695" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/txtPesoMascotas"
-                android:layout_width="103dp"
-                android:layout_height="56dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.72"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.394" />
+                <ImageView
+                    android:id="@+id/imgAgregarFotoMascota"
+                    android:layout_width="99dp"
+                    android:layout_height="101dp"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="30dp"
+                    app:layout_constraintBottom_toTopOf="@+id/txtNombreMascota"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.356"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.516"
+                    tools:src="@tools:sample/avatars" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <EditText
+                    android:id="@+id/txtNombreMascota"
+                    android:layout_width="236dp"
+                    android:layout_height="61dp"
+                    android:layout_marginBottom="30dp"
+                    android:ems="10"
+                    android:drawableRight="@drawable/vectorpet"
+                    android:hint="Nombre"
+                    android:inputType="text"
+                    app:layout_constraintBottom_toTopOf="@+id/spEspecie"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.403"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spEspecie"
+                    android:layout_width="232dp"
+                    android:layout_height="63dp"
+                    android:layout_marginBottom="24dp"
+                    app:layout_constraintBottom_toTopOf="@+id/spGenero"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.442"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spGenero"
+                    android:layout_width="230dp"
+                    android:layout_height="62dp"
+                    android:layout_marginBottom="700dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.412"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/txtAñoMascota"
+                    android:layout_width="233dp"
+                    android:layout_height="53dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="50dp"
+                    android:ems="10"
+                    android:drawableRight="@drawable/vectorpet"
+                    android:hint="Escoge una Opcion"
+                    android:inputType="text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.383"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spGenero"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/txtEnfermedadesCM"
+                    android:layout_width="231dp"
+                    android:layout_height="54dp"
+                    android:ems="10"
+                    android:drawableRight="@drawable/vectorpet"
+                    android:hint="Enfermedades Crónicas"
+                    android:inputType="text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.419"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtAñoMascota"
+                    app:layout_constraintVertical_bias="0.038" />
+
+                <EditText
+                    android:id="@+id/txtProcedimientosMAscotas"
+                    android:layout_width="227dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="348dp"
+                    android:ems="10"
+                    android:drawableRight="@drawable/vectorpet"
+                    android:hint="Procedimientos Medicos"
+                    android:inputType="text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.413"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtEnfermedadesCM"
+                    app:layout_constraintVertical_bias="0.089" />
+
+                <EditText
+                    android:id="@+id/txtAlergiasMascotas"
+                    android:layout_width="224dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginBottom="468dp"
+                    android:ems="10"
+                    android:drawableRight="@drawable/vectorpet"
+                    android:hint="Alergias"
+                    android:inputType="text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.391"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtProcedimientosMAscotas"
+                    app:layout_constraintVertical_bias="0.237" />
+
+                <EditText
+                    android:id="@+id/txtRazaMascota"
+                    android:layout_width="228dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="292dp"
+                    android:ems="10"
+                    android:drawableRight="@drawable/vectorpet"
+                    android:hint="Raza"
+                    android:inputType="text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.446"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtAlergiasMascotas"
+                    app:layout_constraintVertical_bias="0.11" />
+
+                <EditText
+                    android:id="@+id/txtPesoMascotas"
+                    android:layout_width="220dp"
+                    android:layout_height="63dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:drawableRight="@drawable/vectorpet"
+                    android:hint="Peso"
+                    android:inputType="number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.424"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtRazaMascota"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/imageView83"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="264dp"
+            android:layout_marginBottom="704dp"
+            android:src="@drawable/figuranew"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView85"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="350dp"
+            android:layout_marginBottom="720dp"
+            android:src="@drawable/mediocirculomascotas"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>
