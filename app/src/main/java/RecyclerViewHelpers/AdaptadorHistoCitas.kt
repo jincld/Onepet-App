@@ -28,5 +28,6 @@ class AdaptadorHistoCitas (var Datos: List<dataClassHistoCitas>): RecyclerView.A
         holder.txtMascotaCH.text = controlCard.mascota
         holder.txtMotivoCitaCC2H.text = controlCard.motivo_cita
         holder.txtDescripcionCH.text = controlCard.descripcion_motivo
+
     }
 }

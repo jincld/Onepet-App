@@ -7,5 +7,6 @@ data class dataClassHistoCitas(
     var descripcion_motivo: String,
     var mascota: String,
     var vet: String,
+    var estado: String,
     var usuario: String
 )

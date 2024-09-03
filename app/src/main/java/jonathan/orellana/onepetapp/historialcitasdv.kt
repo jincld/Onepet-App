@@ -44,7 +44,7 @@ class historialcitasdv : Fragment() {
 
             //2- Crear un Statement
             val statement = objConexion?.createStatement()
-            val resultSet = statement?.executeQuery("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario FROM tbCitas c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota")!!
+            val resultSet = statement?.executeQuery("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, c.estado, m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario FROM tbCitas c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota")!!
 
             val listaHistoCitas = mutableListOf<dataClassHistoCitas>()
 
@@ -53,12 +53,13 @@ class historialcitasdv : Fragment() {
                 val fecha_cita = resultSet.getString("fecha_cita")
                 val motivo_cita = resultSet.getString("motivo_cita")
                 val descripcion_cita = resultSet.getString("descripcion_motivo")
+                val estado = resultSet.getString("Estado")
                 val mascota = resultSet.getString("nombre_mascota")
                 val vet = resultSet.getString("nombre_veterinaria")
                 val usuario = resultSet.getString("nombre_usuario")
 
                 //SPINNERS
-                val valoresJuntos = dataClassHistoCitas(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, mascota, vet, usuario)
+                val valoresJuntos = dataClassHistoCitas(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, estado, mascota, vet, usuario)
 
                 listaHistoCitas.add(valoresJuntos)
             }
