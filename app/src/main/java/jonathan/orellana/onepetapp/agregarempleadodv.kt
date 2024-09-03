@@ -111,6 +111,7 @@ class agregarempleadodv : Fragment() {
 
             println("este es el uuid traido desde la funcion $uuidRol")
             return uuidRol
+
         }
 
         btnAgregarEmpleado.setOnClickListener {
@@ -120,6 +121,7 @@ class agregarempleadodv : Fragment() {
                 val contraencriptada = hashSHA256(txtContra_empleado.text.toString())
 
                 val uuidTraido = obtenerUuidRol()
+
 
                 val crearEmpleado = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
                 crearEmpleado.setString(1, UUID.randomUUID().toString())
