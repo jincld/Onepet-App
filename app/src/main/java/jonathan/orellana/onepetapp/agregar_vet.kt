@@ -148,7 +148,7 @@ class agregar_vet : Fragment() {
                     addVet.setString(7, txtDescripcionVet.text.toString())
                     addVet.executeUpdate()
 
-               NombreVet = txtNombreVet.text.toString()
+                    NombreVet = txtNombreVet.text.toString()
                 UbicacionVet = txtUbicacionVet.text.toString()
                     NitVet = txtNitVet.text.toString()
                     ContactoVet = txtUbicacionVet.text.toString()

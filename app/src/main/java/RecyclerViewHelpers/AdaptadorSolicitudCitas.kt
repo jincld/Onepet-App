@@ -38,6 +38,7 @@ class AdaptadorSolicitudCitas (var Datos: List<dataClassSoliC>): RecyclerView.Ad
 
             val pantallaAsignar = Intent(context, asignarcitadv1::class.java)
             //enviar a la otra pantalla todos mis valores
+            pantallaAsignar.putExtra("UUID_cita", controlCard.UUID_Cita)
             pantallaAsignar.putExtra("motivo_cita", controlCard.motivo_cita)
             pantallaAsignar.putExtra("fecha_cita", controlCard.fecha_cita)
             pantallaAsignar.putExtra("usuario", controlCard.usuario)
