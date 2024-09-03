@@ -2,14 +2,24 @@ package jonathan.orellana.onepetapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import modelo.ClaseConexion
 
 class rechazarcitadv1 : AppCompatActivity() {
+
+    companion object variablesRechazar {
+        lateinit var valor_motivo_cita_rechazar: String
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,12 +46,15 @@ class rechazarcitadv1 : AppCompatActivity() {
         val motivo2RecibidoR = intent.getStringExtra("motivo_cita")
         val descripcionRecibidoR = intent.getStringExtra("descripcion_motivo")
 
+        valor_motivo_cita_rechazar = motivoRecibidoR.toString()
         //Mando a llamar a todos los elementos de la pantalla
 
         val txtMotivoRechazar = findViewById<TextView>(R.id.txtMotivoRechazo)
         val txtFechaRechazar = findViewById<TextView>(R.id.txtFechaRechazo)
         val txtUsuarioRechazar = findViewById<TextView>(R.id.txtUsuarioRechazo)
         val txtMotivoRechazar2 = findViewById<TextView>(R.id.txtMotivoRechazo2)
+        val txtRazonRechazo = findViewById<EditText>(R.id.txtRazonRechazo)
+        val btnRechazar = findViewById<Button>(R.id.btnRechazarCita)
         val txtDescripcionRechazar = findViewById<TextView>(R.id.txtDescRechazo)
 
         //Asigarle los datos recibidos a mis TextView
@@ -50,5 +63,20 @@ class rechazarcitadv1 : AppCompatActivity() {
         txtUsuarioRechazar.text = usuarioRecibidoR
         txtMotivoRechazar2.text = motivo2RecibidoR
         txtDescripcionRechazar.text = descripcionRecibidoR
+
+
+        btnRechazar.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val objConexion = ClaseConexion().cadenaConexion()
+                println(" --------------este es el motivo de cita que quiero usar ${valor_motivo_cita_rechazar}")
+                val rechazarCita =
+                    objConexion?.prepareStatement("Update tbCitas set estado ='Rechazada',  descripcion_motivo = ? where motivo_cita = ?")!!
+                rechazarCita?.setString(1, txtRazonRechazo.text.toString())
+                println(" --------------este es el rechazo que quiero ${txtRazonRechazo.text.toString()}")
+                rechazarCita?.setString(2, valor_motivo_cita_rechazar)
+                rechazarCita?.executeUpdate()
+
+            }
+        }
     }
 }

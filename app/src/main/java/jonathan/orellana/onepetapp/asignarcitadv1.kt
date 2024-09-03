@@ -140,8 +140,7 @@ class asignarcitadv1 : AppCompatActivity() {
                 spEmpleado.adapter = miAdaptadorr
             }
 
-            val empleado = obtenerEmpleado()
-            valor_nombre_usuario = empleado[spEmpleado.selectedItemPosition].nombre_usuario
+
 
         }
 
@@ -193,6 +192,10 @@ class asignarcitadv1 : AppCompatActivity() {
 
 btnAsignarCita.setOnClickListener {
     CoroutineScope(Dispatchers.IO).launch {
+
+        val empleado = obtenerEmpleado()
+        valor_nombre_usuario = empleado[spEmpleado.selectedItemPosition].nombre_usuario
+
         //Obtener el codigo de obtener el UUID Cita
         val uuidCitaTraida = obtenerUUIDCita()
 
