@@ -125,27 +125,70 @@ valor_nombre_usuario = usuarioRecibido.toString()
 
         }
 
+        fun obtenerUUIDUsuarioC(): String? {
+
+            val valoruuidusuario = valor_uuid_usuario
+
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            val traerUUIDUsuarioC =
+                objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE nombre_usuario = ?")!!
+            traerUUIDUsuarioC.setString(1, valoruuidusuario)
+            val resultSet = traerUUIDUsuarioC.executeQuery()
+
+            var uuidUsuarioC: String? = null
+
+            if (resultSet?.next() == true) {
+                uuidUsuarioC = resultSet.getString("UUID_usuario")
+                println("------------------------Este es el uuid traido desde el if $uuidUsuarioC")
+            }
+
+            println("------------------------Este es el uuid traido desde la funcion $uuidUsuarioC")
+            return uuidUsuarioC
+        }
+
+        fun obtenerUUIDCita(): String? {
+
+            val valoruuidcita = valor_motivo_cita
+
+            val objConexion = ClaseConexion().cadenaConexion()
+
+            val traerUUIDCita =
+                objConexion?.prepareStatement("SELECT UUID_Cita FROM tbCitas WHERE motivo_cita = ?")!!
+            traerUUIDCita.setString(1, valoruuidcita)
+            val resultSet = traerUUIDCita.executeQuery()
+
+            var uuidCita: String? = null
+
+            if (resultSet?.next() == true) {
+                uuidCita = resultSet.getString("UUID_Cita")
+                println("------------------------Este es el uuid traido desde el if $uuidCita")
+            }
+
+            println("------------------------Este es el uuid traido desde la funcion $uuidCita")
+            return uuidCita
+        }
+
 
 btnAsignarCita.setOnClickListener {
 
+    //Obtener el codigo de obtener el UUID Cita
+    val uuidCitaTraida = obtenerUUIDCita()
+
+    //Obtener el codigo de obtener el UUID Usuario
+    val uuidUsuarioTraidoC = obtenerUUIDUsuarioC()
+
     val objConexion = ClaseConexion().cadenaConexion()
-    println(" --------------este es el uuid de la cita que quiero usar ${valor_uuid_cita}")
-    println(" --------------este es el uuid del usuario que quiero usar ${valor_uuid_usuario}")
+    println(" --------------Este es el uuid de la cita que quiero usar ${valor_uuid_cita}")
+    println(" --------------Este es el uuid del usuario que quiero usar ${valor_uuid_usuario}")
 
     val asignar = objConexion?.prepareStatement("Insert into tbAsignaciones (uuid_asignacion,citas, empleado) values (?,?,?)")!!
     asignar.setString(1, UUID.randomUUID().toString())
-    asignar.setString(2, valor_uuid_cita)
-    asignar.setString( 3, valor_uuid_usuario)
+    asignar.setString(2, uuidCitaTraida)
+    println("----------------------Este es el uuid de cita traido antes del execute  $uuidCitaTraida")
+    asignar.setString(3, uuidUsuarioTraidoC)
+    println("----------------------Este es el uuid de usuario traido antes del execute  $uuidUsuarioTraidoC")
     asignar.executeUpdate()
-
-
-
-
-    /*println(" --------------este es el nombre de vet que quiero usar ${valor_motivo_cita}")
-    val objConexion = ClaseConexion().cadenaConexion()
-    val updateCita = objConexion?.prepareStatement("Update tbCitas set estado ='Aceptada' where motivo_cita = ?")!!
-    updateCita?.setString(1, valor_motivo_cita)
-    updateCita?.executeUpdate()*/
 }
 
 
