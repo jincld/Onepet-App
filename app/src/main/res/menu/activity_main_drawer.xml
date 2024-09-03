@@ -54,7 +54,7 @@
         <item
             android:id="@+id/fragment_veterinarias"
             android:icon="@drawable/iconmiveterinaria"
-            android:title="Mis veterinaria                           >" />
+            android:title="Mis veterinarias                         >" />
         <item
             android:id="@+id/ver_veterinarias_usuario"
             android:icon="@drawable/iconmiveterinaria"
