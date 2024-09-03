@@ -25,26 +25,28 @@ class AdaptadorCitas (var Datos: List<dataClassCitas>): RecyclerView.Adapter<Vie
 
     /////////////////// TODO: Eliminar Card Citas
     fun eliminarCardCitas(MotivoCita: String, posicion: Int){
-        GlobalScope.launch(Dispatchers.IO){
+        val listaDatos = Datos.toMutableList()
+        listaDatos.removeAt(posicion)
+        GlobalScope.launch(Dispatchers.IO) {
             //1- Creamos un objeto de la clase conexion
             val objConexion = ClaseConexion().cadenaConexion()
 
             //2- Crear una variable que contenga un PrepareStatement
-            val deleteMascota = objConexion?.prepareStatement("delete from tbCitas where motivo_cita = ?")!!
+            val deleteMascota =
+                objConexion?.prepareStatement("delete from tbCitas where motivo_cita = ?")!!
             deleteMascota.setString(1, MotivoCita)
             deleteMascota.executeUpdate()
 
             val commit = objConexion.prepareStatement("commit")!!
             commit.executeUpdate()
+        }
 
-            withContext(Dispatchers.Main){
-                val listaDatosC = Datos.toMutableList()
-                listaDatosC.removeAt(posicion)
+            Datos = listaDatos.toList()
                 notifyItemRemoved(posicion)
                 notifyDataSetChanged()
+
             }
-        }
-    }
+
 
     fun actualicePantallaC(UUID_Cita: String, nuevaFecha: String, nuevoMotivo: String, nuevaDescripcion: String){
         val index = Datos.indexOfFirst { it.UUID_Cita == UUID_Cita }
