@@ -47,6 +47,7 @@
 
 
     <group android:id="@+id/group3">
+
         <item
             android:id="@+id/chatdv"
             android:icon="@drawable/iconchat"
@@ -79,9 +80,9 @@
 
     <group android:id="@+id/group6">
         <item
-            android:id="@+id/fragment_misMascotas"
+            android:id="@+id/agregarmascotaas"
             android:icon="@drawable/iconmascotas"
-            android:title="Mis mascotas                            >" />
+            android:title="Agregar mascotas                    >" />
         <item
             android:id="@+id/ajustesdv"
             android:icon="@drawable/iconajustes"
