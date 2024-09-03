@@ -224,6 +224,5 @@ btnAsignarCita.setOnClickListener {
 
 }
 
-
     }
 }
