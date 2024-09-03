@@ -164,9 +164,6 @@ class agregar_vet : Fragment() {
                      iniciarsesion.variablesLogin.uuid_Vet_real = UUIDvet
                      UpdateUser.executeUpdate()
 
-
-                     UpdateUser.executeUpdate()
-
                      withContext(Dispatchers.Main){
                     findNavController().navigate(R.id.action_agregar_vet_to_veterinarias)
                     }
