@@ -24,7 +24,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageView28"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/fondologin"
+            app:srcCompat="@drawable/fondosplash"
             tools:layout_editor_absoluteX="-21dp" />
 
         <ImageView
@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.147"
-            app:srcCompat="@drawable/circulocelesteis" />
+            app:srcCompat="@drawable/circuloop3" />
 
         <ImageView
             android:id="@+id/imageView72"
@@ -139,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#00FFFFFF"
-            android:tint="#34313F"
+            android:tint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/imageView28"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.044"
@@ -147,6 +147,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.019"
             app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+        <ImageView
+            android:id="@+id/imageView111"
+            android:layout_width="216dp"
+            android:layout_height="228dp"
+            android:layout_marginEnd="240dp"
+            android:rotation="-70"
+            android:rotationY="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.99"
+            app:srcCompat="@drawable/blobdos" />
 
         <ImageView
             android:id="@+id/imageView60"
@@ -180,7 +193,7 @@
             android:rotation="23"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/circulocelesteis" />
+            app:srcCompat="@drawable/circuloop2" />
 
         <ImageView
             android:id="@+id/imageView69"
@@ -193,7 +206,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.127"
-            app:srcCompat="@drawable/circulocelesteis" />
+            app:srcCompat="@drawable/circuloop2" />
 
         <ImageView
             android:id="@+id/imageView71"
@@ -224,26 +237,14 @@
             android:id="@+id/imageView54"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:rotation="45"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.314"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.944"
-            app:srcCompat="@drawable/circulocelesteqqh" />
-
-        <ImageView
-            android:id="@+id/imageView111"
-            android:layout_width="216dp"
-            android:layout_height="228dp"
-            android:layout_marginEnd="240dp"
-            android:rotation="-70"
-            android:rotationY="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.99"
-            app:srcCompat="@drawable/blobdos" />
+            app:srcCompat="@drawable/circulocelesteazul" />
 
         <ImageView
             android:id="@+id/imageView110"
