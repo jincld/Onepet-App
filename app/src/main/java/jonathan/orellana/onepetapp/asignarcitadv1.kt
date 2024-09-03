@@ -27,6 +27,7 @@ class asignarcitadv1 : AppCompatActivity() {
         lateinit var valor_motivo_cita: String
         lateinit var valor_uuid_cita: String
         lateinit var valor_uuid_usuario: String
+        lateinit var valor_nombre_usuario: String
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +54,9 @@ class asignarcitadv1 : AppCompatActivity() {
         val usuarioRecibido = intent.getStringExtra("usuario")
         val motivo2Recibido = intent.getStringExtra("motivo_cita")
         val descripcionRecibido = intent.getStringExtra("descripcion_motivo")
+
+valor_nombre_usuario = usuarioRecibido.toString()
+        valor_motivo_cita = motivoRecibido.toString()
 
 
 
