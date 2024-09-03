@@ -68,49 +68,78 @@ class fragment_agendarCita : Fragment() {
                 //MODIFICADO
                 val idUsuarioOne = obtenerIdUsuario()
 
+                var hayErrores = false
 
-                if (idUsuarioOne != null)
-                    if (idVetC != null && idMascotaC != null) {
-                        val result =
-                            saveEnviarCita(
-                                fechaCita,
-                                idVetC,
-                                idMascotaC,
-                                //MODIFICADO
-                                idUsuarioOne,
-                                motivoCita,
-                                descripcionCita
+                //TODO: 1- Validar que los campos no esten vacios
+                //fechaCita
+                if (fechaCita.isEmpty()) {
+                    txtFechaCita.error = "Escribir una Fecha (DD/MM/AAAA) es neccesario"
+                    hayErrores = true
+                } else {
+                    txtFechaCita.error = null
+                }
+                //Motivo Cita
+                if (motivoCita.isEmpty()) {
+                    txtMotivoCita.error = "El Motivo de la Cita es Obligatorio"
+                    hayErrores = true
+                } else {
+                    txtMotivoCita.error = null
+                }
+                //Descripcion Cita
+                if (descripcionCita.isEmpty()) {
+                    txtDescripcionCita.error = "La descripcion debe ser obligatoria"
+                    hayErrores = true
+                } else {
+                    txtDescripcionCita.error = null
+                }
 
-                            )
-                        if (result) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Asignación guardada correctamente",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                if(hayErrores) {
+                    //Hacer algo si hay errores
+                }
+                else {
+                    if (idUsuarioOne != null)
+                        if (idVetC != null && idMascotaC != null) {
+                            val result =
+                                saveEnviarCita(
+                                    fechaCita,
+                                    idVetC,
+                                    idMascotaC,
+                                    //MODIFICADO
+                                    idUsuarioOne,
+                                    motivoCita,
+                                    descripcionCita
 
-                            txtFechaCita.setText("")
-                            txtMotivoCita.setText("")
-                            txtDescripcionCita.setText("")
+                                )
+                            if (result) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Asignación guardada correctamente",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                txtFechaCita.setText("")
+                                txtMotivoCita.setText("")
+                                txtDescripcionCita.setText("")
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Error al guardar la asignación",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Usuario no encontrado",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         } else {
                             Toast.makeText(
                                 requireContext(),
-                                "Error al guardar la asignación",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            Toast.makeText(
-                                requireContext(),
-                                "Usuario no encontrado",
+                                "Error: No se pudo obtener los IDs",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error: No se pudo obtener los IDs",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                }
             }
         }
         return root
