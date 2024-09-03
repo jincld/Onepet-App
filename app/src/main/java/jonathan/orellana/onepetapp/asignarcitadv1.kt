@@ -46,7 +46,6 @@ class asignarcitadv1 : AppCompatActivity() {
         }
 
         //Recibir los valores
-        val UUID_recibido = intent.getStringExtra("UUID_cita")
         val motivoRecibido = intent.getStringExtra("motivo_cita")
         val fechaRecibido = intent.getStringExtra("fecha_cita")
         val usuarioRecibido = intent.getStringExtra("usuario")
@@ -76,24 +75,45 @@ class asignarcitadv1 : AppCompatActivity() {
 
 
 
+        fun obtenerUuidRol(): String? {
+            val objConexion = ClaseConexion().cadenaConexion()
+            val statement = objConexion?.createStatement()
+            val resulSet = statement?.executeQuery("SELECT UUID_rol FROM tbRolesUsuarios WHERE nombre_rol = 'Empleado'")!!
+            var uuidRol: String? = null
+
+            if (resulSet.next()) {
+                uuidRol = resulSet.getString("UUID_rol")
+                println("este es el uuid traido desde el if $uuidRol")
+            }
+
+            println("este es el uuid traido desde la funcion $uuidRol")
+            return uuidRol
+
+        }
+
         fun obtenerEmpleado(): List<dataClassUsuarios> {
 
             val objConexion = ClaseConexion().cadenaConexion()
 
-            //Creo un statement que me ejecute el select
-            val statement = objConexion?.createStatement()
+            val uuidEmpleado = obtenerUuidRol()
 
-            val resultSet = statement?.executeQuery("select * from tbUsuariosOne")!!
+            val resulSet = objConexion?.prepareStatement("select * from tbUsuariosOne where rol = ?")!!
+            resulSet.setString(1, uuidEmpleado)
+            resulSet.executeQuery()
+
+            val ver_vet = resulSet.executeQuery()
+
+
 
             val listaEmpleado = mutableListOf<dataClassUsuarios>()
 
-            while (resultSet.next()) {
-                val uuid = resultSet.getString("UUID_usuario")
-                val nombre = resultSet.getString("nombre_usuario")
-                val contra = resultSet.getString("contra_usuario")
-                val correo = resultSet.getString("correo_usuario")
-                val rol = resultSet.getString("rol")
-                val vet = resultSet.getString("vet")
+            while (ver_vet.next()) {
+                val uuid = ver_vet.getString("UUID_usuario")
+                val nombre = ver_vet.getString("nombre_usuario")
+                val contra = ver_vet.getString("contra_usuario")
+                val correo = ver_vet.getString("correo_usuario")
+                val rol = ver_vet.getString("rol")
+                val vet = ver_vet.getString("vet")
 
                 val unEmpleadoCompleto =
                     dataClassUsuarios(uuid, nombre, contra, correo,  rol, vet)
