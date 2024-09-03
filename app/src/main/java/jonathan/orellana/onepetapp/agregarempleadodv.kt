@@ -83,6 +83,7 @@ class agregarempleadodv : Fragment() {
 
             println("este es el uuid traido desde la funcion $uuidRol")
             return uuidRol
+
         }
 
         btnAgregarEmpleado.setOnClickListener {
