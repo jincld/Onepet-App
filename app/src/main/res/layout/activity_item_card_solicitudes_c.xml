@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:id="@+id/cardSolicitudesCitas"
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
@@ -96,8 +96,8 @@
                 android:text="Fecha de Cita"
                 android:textColor="#555"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/txtMotivoCitaCC2S"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/txtMotivoCitaCC2S"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -110,8 +110,8 @@
                 android:text="Motivo de Cita"
                 android:textColor="#555"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/txtDescripcionCitaCS"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/txtDescripcionCitaCS"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -121,14 +121,13 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
                 android:paddingBottom="8dp"
+                android:scrollHorizontally="false"
                 android:text="Descripcion de Cita"
                 android:textColor="#555"
                 android:textSize="16sp"
-                android:scrollHorizontally="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
