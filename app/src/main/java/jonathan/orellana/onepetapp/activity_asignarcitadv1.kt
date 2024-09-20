@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
@@ -62,20 +61,21 @@ class asignarcitadv1 : AppCompatActivity() {
         val txtMotivoAsignar = findViewById<TextView>(R.id.txtMotivoAsignacion)
         val txtFechaAsignar = findViewById<TextView>(R.id.txtFechaAsignacion)
         val txtUsuarioAsignar = findViewById<TextView>(R.id.txtUsuarioAsignacion)
-        val txtMotivoAsignar2 = findViewById<TextView>(R.id.txtMotivoAsignacion2)
         val btnAsignarCita = findViewById<Button>(R.id.btnAsignarCita)
         val spEmpleado = findViewById<Spinner>(R.id.spEmpleadoC )
         val txtDescripcionAsignar = findViewById<TextView>(R.id.txtDescAsignacion)
+        val btnCerrar = findViewById<ImageView>(R.id.btnVolverAS)
 
 
         //Asigarle los datos recibidos a mis TextView
         txtMotivoAsignar.text = motivoRecibido
         txtFechaAsignar.text = fechaRecibido
         txtUsuarioAsignar.text = usuarioRecibido
-        txtMotivoAsignar2.text = motivo2Recibido
         txtDescripcionAsignar.text = descripcionRecibido
 
-
+        btnCerrar.setOnClickListener {
+            finish()
+        }
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()

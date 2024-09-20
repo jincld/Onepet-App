@@ -26,7 +26,7 @@ class vet_para_asignar_cita : AppCompatActivity() {
         val txtVerContactoVetUser = findViewById<TextView>(R.id.txtVerContactoVetUser)
         val txtVerCorreoVetUser = findViewById<TextView>(R.id.txtVerCorreoVetUser)
         val txtVerServiciosVetUser = findViewById<TextView>(R.id.txtVerServiciosVetUser)
-
+        val btnCerrar = findViewById<Button>(R.id.btnAsignarCita)
 
         //Asignarle los datos recibidos a mis textos
 //Segundo = primero
@@ -45,14 +45,10 @@ class vet_para_asignar_cita : AppCompatActivity() {
         txtVerCorreoVetUser.text = correo
         txtVerServiciosVetUser.text = descripcion
 
-
-        val btnCerrar = findViewById<Button>(R.id.btnAsignarCita)
         btnCerrar.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("ir_a_agregar_Cita", true)
             startActivity(intent)
-
-
         }
     }
 }
