@@ -3,6 +3,7 @@ package jonathan.orellana.onepetapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,11 @@ class vet_para_asignar_cita : AppCompatActivity() {
         val txtVerCorreoVetUser = findViewById<TextView>(R.id.txtVerCorreoVetUser)
         val txtVerServiciosVetUser = findViewById<TextView>(R.id.txtVerServiciosVetUser)
         val btnCerrar = findViewById<Button>(R.id.btnAsignarCita)
+        val btnVolverVet = findViewById<ImageButton>(R.id.btnVolverAGIF)
+
+        btnVolverVet.setOnClickListener {
+            finish()
+        }
 
         //Asignarle los datos recibidos a mis textos
 //Segundo = primero

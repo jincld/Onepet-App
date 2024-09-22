@@ -1,12 +1,11 @@
 package jonathan.orellana.onepetapp
 
-import RecyclerViewHelper.AdaptadorVet
 import RecyclerViewHelper.AdaptadorVetUser
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -46,11 +45,9 @@ class Ver_veterinarias_usuario : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_ver_veterinarias_usuario, container, false)
 
-
-
-
         val rcvVeterinarias = root.findViewById<RecyclerView>(R.id.rcvVeterinariasUser)
         rcvVeterinarias.layoutManager = LinearLayoutManager(context)
+
 
         fun obtenerDatos(): List<dataClassVeterinaria>{
 
@@ -92,6 +89,7 @@ class Ver_veterinarias_usuario : Fragment() {
 
         return root
     }
+
 
     companion object {
         /**

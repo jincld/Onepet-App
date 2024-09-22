@@ -3,7 +3,6 @@ package jonathan.orellana.onepetapp
 import android.app.AlertDialog
 import android.os.Bundle
 import android.text.InputType
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
@@ -35,8 +34,8 @@ class ActualizarVetActivity : AppCompatActivity() {
         val txtVerContactoVet = findViewById<TextView>(R.id.txtVerContactoVet)
         val txtVerCorreoVet =findViewById<TextView>(R.id.txtVerCorreoVet)
         val txtVerServiciosVet = findViewById<TextView>(R.id.txtVerServiciosVet)
-        val btnEditarVet = findViewById<Button>(R.id.btnEditarVet)
-        val btnEliminarVet = findViewById<Button>(R.id.btnEliminarVet)
+        val btnEditarVet = findViewById<ImageButton>(R.id.btnEditarVet)
+        val btnEliminarVet = findViewById<ImageButton>(R.id.btnEliminarVet)
         val btnVolverMV = findViewById<ImageButton>(R.id.btnVolverMV)
 
         btnVolverMV.setOnClickListener {
