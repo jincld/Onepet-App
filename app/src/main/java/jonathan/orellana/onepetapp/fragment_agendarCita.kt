@@ -66,31 +66,44 @@ class fragment_agendarCita : Fragment() {
                 val idMascotaC = getIdMascota(mascotaSeleccionada)
                 //MODIFICADO
                 val idUsuarioOne = obtenerIdUsuario()
-
+                val regex = Regex("""\d{2}/\d{2}/\d{4}""")
                 var hayErrores = false
 
                 //TODO: 1- Validar que los campos no esten vacios
                 //fechaCita
                 if (fechaCita.isEmpty()) {
-                    txtFechaCita.error = "Escribir una Fecha (DD/MM/AAAA) es neccesario"
+                    txtFechaCita.error = "Debe de escribir una fecha en formado dd/MM/aaaa"
+                    hayErrores = true
+                } else if (!regex.matches(fechaCita)) {
+                    txtFechaCita.error = "Formato de fecha inválido. Use dd/MM/aaaa"
                     hayErrores = true
                 } else {
                     txtFechaCita.error = null
                 }
+
                 //Motivo Cita
                 if (motivoCita.isEmpty()) {
-                    txtMotivoCita.error = "El Motivo de la Cita es Obligatorio"
+                    txtMotivoCita.error = "Se debe de escribir un motivo"
                     hayErrores = true
-                } else {
+                }else if (motivoCita.length > 50) {
+                    txtMotivoCita.error = "El límite de carácteres es 50"
+                    hayErrores = true
+                }else {
                     txtMotivoCita.error = null
                 }
+
+
                 //Descripcion Cita
                 if (descripcionCita.isEmpty()) {
-                    txtDescripcionCita.error = "La descripcion debe ser obligatoria"
+                    txtDescripcionCita.error = "Se debe de describir con detalle el motivo"
                     hayErrores = true
-                } else {
+                } else if (descripcionCita.length > 250) {
+                    txtDescripcionCita.error = "El límite de carácteres es 250"
+                    hayErrores = true
+                }else {
                     txtDescripcionCita.error = null
                 }
+
 
                 if(hayErrores) {
                     //Hacer algo si hay errores
