@@ -105,6 +105,13 @@ class agregarempleadodv : Fragment() {
                 txtContra_empleado.error = null
             }
 
+            if (nombre.isEmpty()) {
+                txtNombre_empleado.error = "Complete este campo"
+                hayerrores = true
+            } else {
+                txtNombre_empleado.error = null
+            }
+
             if (hayerrores){
             } else{
             CoroutineScope(Dispatchers.IO).launch {

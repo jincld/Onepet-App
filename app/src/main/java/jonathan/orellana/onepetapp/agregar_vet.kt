@@ -103,6 +103,13 @@ class agregar_vet : Fragment() {
                 txtContactoVet.error = null;
             }
 
+            if (descripcion.isEmpty()) {
+                txtDescripcionVet.error = "Completar este campo es obligatorio"
+                hayerrores = true
+            } else {
+                txtDescripcionVet.error = null;
+            }
+
 
             if (Correo.isEmpty()) {
                 txtCorreoVet.error = "El correo es obligatorio"
@@ -119,7 +126,7 @@ class agregar_vet : Fragment() {
             }
 
             if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))) {
-                txtCorreoVet.error = "El correo no tiene el formato válido"
+                txtCorreoVet.error = "El correo no tiene un formato válido"
                 hayerrores = true
 
             } else {

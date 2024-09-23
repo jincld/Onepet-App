@@ -236,6 +236,7 @@ class registroduenovet : AppCompatActivity() {
                         Toast.makeText(this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
                         txtnombreadminvet.setText("")
                         txtcontraadminvet.setText("")
+                        contraconfirm.setText("")
                         txtcorreoadminvet.setText("")
 
                         val login = Intent(this@registroduenovet, iniciarsesion::class.java)

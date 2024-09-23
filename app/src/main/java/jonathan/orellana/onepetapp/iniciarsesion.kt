@@ -119,7 +119,7 @@ lateinit var contra_sinincriptar:String
             }
             if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))) {
 
-                txtcorreoiniciar.error = "Correo invalido"
+                txtcorreoiniciar.error = "Correo inválido"
                 hayerrores = true
             } else {
                 txtcorreoiniciar.error = null
@@ -133,7 +133,7 @@ lateinit var contra_sinincriptar:String
             }
 
             if (contra.length < 7) {
-                txtcontrainiciar.error = "Contraseña invalida"
+                txtcontrainiciar.error = "Contraseña inválida"
                 hayerrores = true
             } else {
                 txtcontrainiciar.error = null

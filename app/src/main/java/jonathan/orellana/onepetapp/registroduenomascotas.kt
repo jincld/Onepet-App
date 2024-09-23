@@ -135,6 +135,7 @@ class  registroduenomascotas : AppCompatActivity() {
                     Toast.makeText(this@registroduenomascotas, "Usuario registrado", Toast.LENGTH_SHORT).show()
                     txtnombreduenomas.setText("")
                     txtcontraduenomas.setText("")
+                    contraconfirm.setText("")
                     txtcorreoduenomas.setText("")
                     imageView.setImageResource(0)
                     imageView.tag = null
