@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:id="@+id/cardHistorialCitas"
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
@@ -32,7 +32,7 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="Motivo de Cita"
-                android:textColor="@color/white"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txtVeterinariaCC"
@@ -46,6 +46,8 @@
                 android:id="@+id/txtVeterinariaCC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
                 android:paddingLeft="15dp"
                 android:paddingBottom="4dp"
                 android:text="Veterinaria"
@@ -54,12 +56,14 @@
                 app:layout_constraintBottom_toTopOf="@+id/txtMascotaC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtMotivoCitaC" />
 
             <TextView
                 android:id="@+id/txtMascotaC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:paddingLeft="15dp"
                 android:paddingBottom="4dp"
                 android:text="Mascota"
@@ -74,6 +78,7 @@
                 android:id="@+id/txtFechaCitaC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:paddingLeft="15dp"
                 android:paddingBottom="8dp"
                 android:text="Fecha de Cita"
@@ -88,6 +93,7 @@
                 android:id="@+id/txtMotivoCitaCC2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:paddingLeft="15dp"
                 android:paddingBottom="8dp"
                 android:text="Motivo de Cita"
@@ -102,6 +108,7 @@
                 android:id="@+id/txtDescripcionCitaC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
                 android:paddingLeft="15dp"
                 android:paddingBottom="8dp"
                 android:scrollHorizontally="false"
@@ -126,44 +133,57 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <!-- Botón de Edición -->
-            <Button
-                android:id="@+id/btnEditarCitaC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/botonturquesauno"
-                app:backgroundTint="@null"
-                android:text="Editar"
-                android:textAllCaps="false" />
+
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnEditarCitaC"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/botonturquesauno"
+                    android:text="Editar"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnEliminarCitaC"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/btnred"
+                    android:text="Eliminar"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
 
             <!-- Botón de Eliminación -->
-            <Button
-                android:id="@+id/btnEliminarCitaC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/btnred"
-                app:backgroundTint="@null"
-                android:text="Eliminar"
-                android:textAllCaps="false" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
