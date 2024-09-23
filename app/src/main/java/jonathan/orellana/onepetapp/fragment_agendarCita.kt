@@ -54,6 +54,7 @@ class fragment_agendarCita : Fragment() {
         loadVet()
         loadMascotas()
 
+        //programacion de envio de cita
         btnEnviarCita.setOnClickListener {
             val fechaCita = txtFechaCita.text.toString()
             val vetSeleccionado = spVetCita.selectedItem.toString()
@@ -157,7 +158,7 @@ class fragment_agendarCita : Fragment() {
         return root
     }
 
-
+//select para obtener el correo del usuario
     suspend fun getUsuarioIdCorreo(email: String): String? {
         return withContext(Dispatchers.IO) {
             var usuarioId: String? = null
@@ -193,6 +194,7 @@ class fragment_agendarCita : Fragment() {
         return getUsuarioIdCorreo(correoGlobalEscrito)
     }
 
+    //se cargan las veterinarias en el spinner
     private fun loadVet() {
         CoroutineScope(Dispatchers.IO).launch {
             val vetc = fetchVetDB()
@@ -208,6 +210,7 @@ class fragment_agendarCita : Fragment() {
         }
     }
 
+    //se cargan las mascotas en el spinner
     private fun loadMascotas() {
         CoroutineScope(Dispatchers.IO).launch {
             val mascotac = fetchMascotaDB()
@@ -223,6 +226,7 @@ class fragment_agendarCita : Fragment() {
         }
     }
 
+    //select en la veterinariaa
     private suspend fun fetchVetDB(): List<String> = withContext(Dispatchers.IO) {
         val veterinaria = mutableListOf<String>()
         val query = "SELECT nombre_veterinaria FROM tbVeterinarias"
@@ -249,6 +253,7 @@ class fragment_agendarCita : Fragment() {
         veterinaria
     }
 
+    //select en las mascotas
     private suspend fun fetchMascotaDB(): List<String> = withContext(Dispatchers.IO) {
         val mascotas = mutableListOf<String>()
         val query = "SELECT nombre_mascota FROM tbMascotas"
@@ -275,6 +280,7 @@ class fragment_agendarCita : Fragment() {
         mascotas
     }
 
+    //se obtiene el uuid de las veterinarias
     private suspend fun getIdVet(nombreVet: String): String? =
         withContext(Dispatchers.IO) {
             val query =
@@ -304,6 +310,7 @@ class fragment_agendarCita : Fragment() {
             null
         }
 
+    //se obtiene el uuid de las veterinarias
     private suspend fun getIdMascota(nombreMascota: String): String? =
         withContext(Dispatchers.IO) {
             val query = "SELECT UUID_Mascota FROM tbMascotas WHERE nombre_mascota = ?"
@@ -358,6 +365,8 @@ class fragment_agendarCita : Fragment() {
 //        null
 //    }
 
+
+    // se envia la cita
     private suspend fun saveEnviarCita(
         fecha_cita: String,
         idVetC: String,

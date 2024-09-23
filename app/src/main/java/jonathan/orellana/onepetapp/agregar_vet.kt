@@ -63,7 +63,7 @@ class agregar_vet : Fragment() {
 
 
 
-
+//programamos el boton de registrar veterinaria
         btnRegistrarVet.setOnClickListener {
             val nombre = txtNombreVet.text.toString()
             val ubicacion = txtUbicacionVet.text.toString()
@@ -74,6 +74,7 @@ class agregar_vet : Fragment() {
 
             var hayerrores = false;
 
+            //validaciones
             if (nombre.isEmpty()) {
                 txtNombreVet.error = "El nombre es obligatorio"
                 hayerrores = true
@@ -138,6 +139,7 @@ class agregar_vet : Fragment() {
                 //
             } else {
 
+                //corrutinas para inserts en veterinaria y auditoria
                  CoroutineScope(Dispatchers.IO).launch {
 
                     val objConexion = ClaseConexion().cadenaConexion()

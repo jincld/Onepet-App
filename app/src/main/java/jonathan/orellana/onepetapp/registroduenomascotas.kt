@@ -98,6 +98,8 @@ class  registroduenomascotas : AppCompatActivity() {
 
            }
 
+        //obtenemos el uuid
+
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
@@ -113,6 +115,8 @@ class  registroduenomascotas : AppCompatActivity() {
             return uuidRol
         }
 
+
+        //fumciom para guardar usuarios
         fun guardarUsuarioconft(imageUri: String){
             GlobalScope.launch(Dispatchers.IO){
 
@@ -153,6 +157,7 @@ class  registroduenomascotas : AppCompatActivity() {
             val confirmcontra = contraconfirm.text.toString()
             var hayerrores = false
 
+            //validaciones
             if (nombre.isEmpty()) {
                 txtnombreduenomas.error = "Complete todos lo campos"
                 hayerrores = true
@@ -214,7 +219,7 @@ class  registroduenomascotas : AppCompatActivity() {
         }
 
     }
-
+//subimos la imagen con firebase
     private fun subirimagenFirebase (bitmap: Bitmap, onSuccess: (String) -> Unit) {
         val storageRef = Firebase.storage.reference
         val imageRef = storageRef.child("images/${uuid}.jpg")
@@ -232,6 +237,8 @@ class  registroduenomascotas : AppCompatActivity() {
 
         }
     }
+
+    //funciones de permisos
     private fun checkStoragePermission() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
             pedirpermisocamara()
@@ -274,6 +281,8 @@ class  registroduenomascotas : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
+
+            //validaciones
             CAMERA_REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)

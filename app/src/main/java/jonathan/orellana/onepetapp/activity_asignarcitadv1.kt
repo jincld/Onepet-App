@@ -23,6 +23,8 @@ import java.util.UUID
 class asignarcitadv1 : AppCompatActivity() {
 
 
+
+    //creamos las variables globales
     companion object variablesCitas {
         lateinit var valor_motivo_cita: String
         lateinit var valor_nombre_usuario: String
@@ -77,6 +79,7 @@ class asignarcitadv1 : AppCompatActivity() {
             finish()
         }
 
+        //funcion para obtener el uuid del rol
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
@@ -93,6 +96,7 @@ class asignarcitadv1 : AppCompatActivity() {
 
         }
 
+        //funcion para verificar el rol
         fun obtenerEmpleado(): List<dataClassUsuarios> {
 
             val objConexion = ClaseConexion().cadenaConexion()
@@ -107,7 +111,7 @@ class asignarcitadv1 : AppCompatActivity() {
             val ver_vet = resulSet.executeQuery()
 
 
-
+// creamos lista y asignamos valores
             val listaEmpleado = mutableListOf<dataClassUsuarios>()
 
             while (ver_vet.next()) {
@@ -149,10 +153,11 @@ class asignarcitadv1 : AppCompatActivity() {
 
         fun obtenerUUIDUsuarioC(): String? {
 
+
             val valoruuidusuario = valor_nombre_usuario
 
             val objConexion = ClaseConexion().cadenaConexion()
-
+// select para verificar el usuraio
             val traerUUIDUsuarioC =
                 objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE nombre_usuario = ?")!!
             traerUUIDUsuarioC.setString(1, valoruuidusuario)
@@ -169,7 +174,7 @@ class asignarcitadv1 : AppCompatActivity() {
             println("------------------------Este es el uuid traido desde la funcion $uuidUsuarioC")
             return uuidUsuarioC
         }
-
+//select para obtener el motivo de la cita
         fun obtenerUUIDCita(): String? {
 
             val valoruuidcita = valor_motivo_cita
@@ -194,6 +199,8 @@ class asignarcitadv1 : AppCompatActivity() {
 
 
         btnAsignarCita.setOnClickListener {
+
+            //corrutina para asignar la cita
             CoroutineScope(Dispatchers.IO).launch {
 
                 val empleado = obtenerEmpleado()

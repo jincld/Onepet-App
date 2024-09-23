@@ -18,6 +18,7 @@ import modelo.ClaseConexion
 
 class rechazarcitadv1 : AppCompatActivity() {
 
+    //creamos variables globales
     companion object variablesRechazar {
         lateinit var valor_motivo_cita_rechazar: String
     }
@@ -62,6 +63,7 @@ class rechazarcitadv1 : AppCompatActivity() {
             finish()
         }
 
+//programamos del boton para rechazar cita
 
         btnRechazar.setOnClickListener {
 

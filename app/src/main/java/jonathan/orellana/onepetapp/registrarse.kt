@@ -27,6 +27,7 @@ class registrarse : AppCompatActivity() {
         val btnduenomas = findViewById<Button>(R.id.btnduenomascota)
         val btnVolverComo = findViewById<ImageButton>(R.id.btnVolverComo)
 
+        //definimos a que pantalla nnos lleva cada boton
         btnVolverComo.setOnClickListener {
             val pantallaAnterior = Intent(this, login::class.java)
             startActivity(pantallaAnterior)

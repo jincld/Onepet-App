@@ -39,6 +39,7 @@ class agregarempleadodv : Fragment() {
         }
     }
 
+    //creamos variables globales
     companion object VariablesGlobalesEmpleado{
         lateinit var NombreEmpVG: String
         lateinit var CorreoEmVG: String
@@ -64,6 +65,8 @@ class agregarempleadodv : Fragment() {
         val txtCorreoEmpleado = root.findViewById<TextView>(R.id.txtCorreo_empleado)
         val btnAgregarEmpleado = root.findViewById<Button>(R.id.btnAgregarEmpleado)
 
+
+//funcion de encriptacion
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
             return bytes.joinToString("") {"%02x".format(it)}
@@ -90,7 +93,7 @@ class agregarempleadodv : Fragment() {
             val contra = txtContra_empleado.text.toString()
             val nombre = txtNombre_empleado.text.toString()
             var hayerrores = false
-
+//validaciones
             if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
                 txtCorreoEmpleado.error = "Ingrese un correo válido"
                 hayerrores = true
@@ -114,6 +117,8 @@ class agregarempleadodv : Fragment() {
 
             if (hayerrores){
             } else{
+
+                //corrutina para insertar usuario
             CoroutineScope(Dispatchers.IO).launch {
 
                 val objConexion = ClaseConexion().cadenaConexion()
