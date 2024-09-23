@@ -50,6 +50,7 @@ lateinit var contra_sinincriptar:String
             return bytes.joinToString("") { "%02x".format(it) }
         }
 
+        // se mandan a llamar los elementos
         val txtcorreoiniciar = findViewById<EditText>(R.id.txtcorreoiniciar)
         val txtcontrainiciar = findViewById<EditText>(R.id.txtcontrasenainicio)
         val btnrecuperarcontra = findViewById<TextView>(R.id.btnrecuperarcontra)
@@ -88,7 +89,7 @@ lateinit var contra_sinincriptar:String
             startActivity(pantallaAnterior)
         }
 
-
+//ojos para ver la contraseña
         ojolog.setOnClickListener{
             if (txtcontrainiciar.inputType == InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD){
                 txtcontrainiciar.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
@@ -111,6 +112,7 @@ lateinit var contra_sinincriptar:String
             println("EATE ESA EL VALOR de la contra sin incriptar $contra_sinincriptar")
             var hayerrores = false
 
+            //validaciones
             if (correo.isEmpty()) {
                 txtcorreoiniciar.error = "Complete todos lo campos"
                 hayerrores = true
@@ -146,7 +148,7 @@ lateinit var contra_sinincriptar:String
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
-
+//comprobacion de inicio de sesion
                     val resulSet =
                         objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                     resulSet.setString(1, txtcorreoiniciar.text.toString())

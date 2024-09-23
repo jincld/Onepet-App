@@ -49,7 +49,7 @@ class ajustesdv : Fragment() {
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_ajustesdv, container, false)
-
+//mandamos a llamar los botones
 var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
         var txtContraAjustes: TextView =  root.findViewById(R.id.txtContraAjustes)
         var txtCorreoAjustes: TextView =  root.findViewById(R.id.txtCorreoAjustes)
@@ -69,6 +69,7 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
             return bytes.joinToString("") { "%02x".format(it)}
             }
 
+        //funcion para actualizar usuario en configuracion
         fun updateUser(nombreNuevoUser: String, contraNuevaUser: String, CorreoNuevoUser: String) {
             GlobalScope.launch(Dispatchers.IO) {
 
@@ -97,7 +98,7 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
             return true
         }
 
-
+//cuadro de texto y el editar
         btnActualizarDatos.setOnClickListener{
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Editar")

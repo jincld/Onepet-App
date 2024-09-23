@@ -44,12 +44,13 @@ class correoderecuperacion : AppCompatActivity() {
             startActivity(pantallaAnterior)
         }
 
+        //programamos el boton de recuperacion de contraseña
        btnrecupercion.setOnClickListener {
 
            correo = correorecuperacion.text.toString()
            var hayerrores = false
 
-
+//validacion para que no se presione mas de 3 veces
                if (buttonClickCount < 3) {
                    buttonClickCount++
                } else {
@@ -61,7 +62,7 @@ class correoderecuperacion : AppCompatActivity() {
                        buttonClickCount = 0
                    }, 600000)
                }
-
+//validacion de correo
            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
 
                correorecuperacion.error = "Ingrese un correo válido"

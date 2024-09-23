@@ -47,10 +47,13 @@ class codigoconfimarcion : AppCompatActivity() {
       btncodigoconfirmacion.setOnClickListener{
           val numerobtenido = txtcodigoconfimacion.text.toString().toIntOrNull()
 
+          //valiaciones
          if (numerobtenido==null){
               Toast.makeText(this, "Ingrese un numero valido", Toast.LENGTH_SHORT).show()
               return@setOnClickListener
        }
+
+          //se comprueba el codigo obtenido
          if (numerobtenido.toString() == numeroTraido){
              Toast.makeText(this, "Codigo de confimacion correcto", Toast.LENGTH_SHORT).show()
              val recuperar = Intent(this, nuevacontrasena::class.java)
@@ -62,8 +65,10 @@ class codigoconfimarcion : AppCompatActivity() {
 
        }
 
+
         txtEnviarDeNuevo.setOnClickListener {
 
+            //validacion pra que no se presione el boton mas de 3 veces
             if (buttonClickCount < 3) {
                 buttonClickCount++
             } else {
@@ -77,7 +82,7 @@ class codigoconfimarcion : AppCompatActivity() {
             }
                 try {
 
-
+//se envia de nuevo
                     CoroutineScope(Dispatchers.Main).launch {
                         correoderecuperacion.globalvariables.numeroaleatorio = (1000..10000).random().toString()
                         enviarCorreo("${correoderecuperacion.correo}", "Código de recuperación cuenta OnePet!", "Este es su código de recuperación, ingréselo en la aplicación: ${correoderecuperacion.numeroaleatorio}")

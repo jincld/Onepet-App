@@ -60,6 +60,8 @@ class registroduenovet : AppCompatActivity() {
 
         supportActionBar?.hide();
 
+        //encriptacion de contraseña
+
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
             return bytes.joinToString("") {"%02x".format(it)}
@@ -102,6 +104,7 @@ class registroduenovet : AppCompatActivity() {
 
         }
 
+        //onbtenemos el uuid
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
@@ -118,7 +121,7 @@ class registroduenovet : AppCompatActivity() {
             return uuidRol
         }
 
-
+//guardamoslos usuarios
         fun guardarUsuarioconft(imageUri: String){
             GlobalScope.launch(Dispatchers.IO){
 
@@ -163,7 +166,7 @@ class registroduenovet : AppCompatActivity() {
             val contraconfrimada = contraconfirm.text.toString()
             var hayerrores = false
 
-
+//validaciones
             if (nombre.isEmpty()) {
                txtnombreadminvet.error = "Complete todos lo campos"
                 hayerrores = true
@@ -216,7 +219,7 @@ class registroduenovet : AppCompatActivity() {
 
             if (hayerrores) {
             } else {
-
+//se insertan
                 GlobalScope.launch(Dispatchers.IO){
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
@@ -256,6 +259,7 @@ class registroduenovet : AppCompatActivity() {
             checkCameraPermission()
         }
     }
+    //subimos la imagen
     private fun subirimagenFirebase (bitmap: Bitmap, onSuccess: (String) -> Unit) {
         val storageRef = Firebase.storage.reference
         val imageRef = storageRef.child("images/${uuid}.jpg")
@@ -273,6 +277,8 @@ class registroduenovet : AppCompatActivity() {
 
         }
     }
+
+    //funciones de permisos
     private fun checkStoragePermission() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
             pedirpermisocamara()
@@ -316,6 +322,8 @@ class registroduenovet : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             CAMERA_REQUEST_CODE -> {
+
+                //validaciones
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                     startActivityForResult(intent, codigo_opcion_tomar_foto)

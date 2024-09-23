@@ -54,6 +54,8 @@ class solicitudescitadv : Fragment() {
 //        }
 
         //TODO: mostrar datos
+
+        //obtenemos las solicitud de cita
         fun obtenerSoliCitas(): List<dataClassSoliC> {
             //1- Crear un objeto de clase conexion
           /*  val objConexion = ClaseConexion().cadenaConexion()

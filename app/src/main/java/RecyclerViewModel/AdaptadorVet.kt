@@ -28,7 +28,7 @@ class AdaptadorVet(private var Datos: List<dataClassVeterinaria>, private val fr
         holder.txtUbicacionVet.text = producto.ubicacion_veterinaria
         holder.txtDescripcionVetCard.text = producto.descripcion_servicios
 
-
+//mostrar datos
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val pantalla = Intent(context, ActualizarVetActivity::class.java)

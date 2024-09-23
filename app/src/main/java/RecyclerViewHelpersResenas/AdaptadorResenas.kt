@@ -47,6 +47,8 @@ class AdaptadorResenas(var DatosR: List<dataClassResenas>): RecyclerView.Adapter
         }
     }
 
+    //funcion para eliminar datos
+
     fun eliminarDatos(comentarios: String, position: Int) {
 
         val listaDatos = DatosR.toMutableList()

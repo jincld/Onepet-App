@@ -26,7 +26,7 @@ class AdaptadorVetUser(private var Datos: List<dataClassVeterinaria>, private va
         holder.txtNombreVetUser.text = producto.nombre_veterinaria
         holder.txtUbicacionVetUser.text = producto.ubicacion_veterinaria
         holder.txtDescripcionVetCardUser.text = producto.descripcion_servicios
-
+//datos del view holder
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context

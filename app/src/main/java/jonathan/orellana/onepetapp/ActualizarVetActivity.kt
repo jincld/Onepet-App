@@ -27,7 +27,7 @@ class ActualizarVetActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+//mandamos a llamar los botones
         val txtVerNombreVet =findViewById<TextView>(R.id.txtVerNombreVet)
         val txtVerUbicacionVet =findViewById<TextView>(R.id.txtVerUbicacionVet)
         val txtVerNitVet = findViewById<TextView>(R.id.txtVerNitVet)
@@ -59,7 +59,7 @@ class ActualizarVetActivity : AppCompatActivity() {
         txtVerCorreoVet.text = correo
         txtVerServiciosVet.text =  descripcion
 
-
+//funcion para actualizar las veterinarias
         fun uodate(nombreNuevo: String, ubicacionNueva: String, NITNuevo: String, ContactoNuevo: String, CorreoNuevo: String, descripcion: String) {
             GlobalScope.launch(Dispatchers.IO) {
                 val correoGLobalTraido = correo
@@ -84,6 +84,8 @@ class ActualizarVetActivity : AppCompatActivity() {
                 updateVet.executeUpdate()
             }
         }
+
+        //validaciones
         fun isValid(vararg editTexts: EditText): Boolean {
             for (editText in editTexts) {
                 if (editText.text.toString().isEmpty()) {
@@ -94,7 +96,7 @@ class ActualizarVetActivity : AppCompatActivity() {
             return true
         }
 
-
+//boton de editar veterinaria
         btnEditarVet.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Editar")

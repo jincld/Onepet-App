@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         val txtNombreMenu: TextView = headerView2.findViewById(R.id.txtNombreUserMenu)
 
 
-
+//traemos el nombre con un select
         suspend fun traerNombreUser(valorCorreoUsuario: String): String? {
             return withContext(Dispatchers.IO) {
                 var nombreUser: String? = null
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
+//traemos los id de los diferentes roles
         fun traerID_Dueno_Mascota(): String? {
             var uuidRol: String? = null
             val objConexion = ClaseConexion().cadenaConexion()
@@ -176,6 +176,8 @@ class MainActivity : AppCompatActivity() {
             return uuidRol
         }
 
+
+        //menu segun los roles
         CoroutineScope(Dispatchers.IO).launch {
             val txtcorreoiniciarval = valorRolUsuario
             val rolDuenoMascotaMainActivity = traerID_Dueno_Mascota()

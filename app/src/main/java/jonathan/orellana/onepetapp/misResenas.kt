@@ -48,6 +48,7 @@ class misResenas : Fragment() {
         rcvResenas.layoutManager = LinearLayoutManager(context)
         fun obtenerDatosResena(): List<dataClassResenas>{
 
+            //obtenemos los datps
             val objConexion = ClaseConexion().cadenaConexion()
             val resulSet = objConexion?.prepareStatement("select * from tbResenas where vet = ?")!!
             resulSet.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
@@ -57,6 +58,7 @@ class misResenas : Fragment() {
             val listaResenas = mutableListOf<dataClassResenas>()
 
             while(prueba.next()){
+                //asignamos valores
                 val UUID_resena = prueba.getString("UUID_resena")
                 val calificacion = prueba.getInt("calificacion")
                 val comentarios = prueba.getString("comentarios")
