@@ -56,22 +56,34 @@ class solicitudescitadv : Fragment() {
         //TODO: mostrar datos
         fun obtenerSoliCitas(): List<dataClassSoliC> {
             //1- Crear un objeto de clase conexion
-            val objConexion = ClaseConexion().cadenaConexion()
+          /*  val objConexion = ClaseConexion().cadenaConexion()
 
             //2- Crear un Statement
             val statement = objConexion?.createStatement()
-            val resultSet = statement?.executeQuery("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario FROM tbCitas c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota")!!
+            val resultSet = statement?.executeQuery("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario FROM tbCitas c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota")!!*/
 
+            val objConexion = ClaseConexion().cadenaConexion()
+            val resulSet = objConexion?.prepareStatement(        "SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, " +
+                    "m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario " +
+                    "FROM tbCitas c " +
+                    "RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria " +
+                    "LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario " +
+                    "INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota " +
+                    "WHERE v.uuid_veterinaria = ?")!!
+            resulSet.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
+            //resulSet.executeQuery()
+
+            var misSolicitudes = resulSet.executeQuery()
             val listaSoliCitas = mutableListOf<dataClassSoliC>()
 
-            while (resultSet.next()){
-                val UUID_Cita = resultSet.getString("uuid_cita")
-                val fecha_cita = resultSet.getString("fecha_cita")
-                val motivo_cita = resultSet.getString("motivo_cita")
-                val descripcion_cita = resultSet.getString("descripcion_motivo")
-                val mascota = resultSet.getString("nombre_mascota")
-                val vet = resultSet.getString("nombre_veterinaria")
-                val usuario = resultSet.getString("nombre_usuario")
+            while (misSolicitudes.next()){
+                val UUID_Cita = misSolicitudes.getString("uuid_cita")
+                val fecha_cita = misSolicitudes.getString("fecha_cita")
+                val motivo_cita = misSolicitudes.getString("motivo_cita")
+                val descripcion_cita = misSolicitudes.getString("descripcion_motivo")
+                val mascota = misSolicitudes.getString("nombre_mascota")
+                val vet = misSolicitudes.getString("nombre_veterinaria")
+                val usuario = misSolicitudes.getString("nombre_usuario")
 
                 //SPINNERS
                 val valoresJuntos = dataClassSoliC(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, mascota, vet, usuario)

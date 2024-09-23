@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import modelo.dataClassCitas
-import java.util.UUID
 
 class AdaptadorCitas (var Datos: List<dataClassCitas>): RecyclerView.Adapter<ViewHolderCitas>() {
 
@@ -102,7 +101,7 @@ class AdaptadorCitas (var Datos: List<dataClassCitas>): RecyclerView.Adapter<Vie
 
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Eliminar")
-            builder.setMessage("¿Desea eliminar la Cita?")
+            builder.setMessage("¿Desea cancelar la cita?")
 
             //Botones
             builder.setPositiveButton("Si") { dialog, which ->
