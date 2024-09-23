@@ -103,8 +103,9 @@ class asignarcitadv1 : AppCompatActivity() {
 
             val uuidEmpleado = obtenerUuidRol()
 
-            val resulSet = objConexion?.prepareStatement("select * from tbUsuariosOne where rol = ?")!!
+            val resulSet = objConexion?.prepareStatement("select * from tbUsuariosOne where rol = ? and vet = ?")!!
             resulSet.setString(1, uuidEmpleado)
+            resulSet.setString(2, iniciarsesion.variablesLogin.uuid_Vet_real)
             resulSet.executeQuery()
 
             val ver_vet = resulSet.executeQuery()

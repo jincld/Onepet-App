@@ -97,31 +97,24 @@ class resenasdv : Fragment() {
 
         btnEnviarResena.setOnClickListener {
             val txtCaliRd = txtCaliR.text.toString()
-            val txtCaliINT = txtCaliRd.toInt()
+            //val txtCaliINT = txtCaliRd.toInt()
             val txtComentRd = txtComentR.text.toString()
 
             var hayerrores = false
 
-           /* if (txtCaliINT !in 1..5) {
-                val alertDialog = AlertDialog.Builder(requireContext())
-                alertDialog.setTitle("Error")
-                alertDialog.setMessage("La calificación debe de ser un número entero entre 1 y 5")
-                alertDialog.setPositiveButton("Aceptar") { _, _ -> }
-                alertDialog.show()
+
+
+            if (txtComentRd.isEmpty()) {
+                txtComentR.error = "Se debe de copletar este campo"
                 hayerrores = true
-            }else {
-                hayerrores = false
-            }*/
+            }else if (txtComentRd.length >= 300) {
+                txtComentR.error = "El comentario tiene un límite de 300 carácteres"
+                hayerrores = true
+            } else {
+                txtComentR.error = null
+            }
 
-
-           if (txtComentRd.length >= 300) {
-                 txtComentR.error = "El comentario tiene un límite de 300 carácteres"
-                 hayerrores = true
-             } else {
-                 txtComentR.error = null
-             }
-
-            if (txtCaliRd.matches(Regex("^[1-5]*$"))) {
+            if (txtCaliRd.toString().matches(Regex("^[1-5]$"))) {
                 txtCaliR.error = null
             } else {
                 txtCaliR.error = "La calificación debe de ser un número entero entre 1 y 5"
@@ -137,7 +130,7 @@ class resenasdv : Fragment() {
                     val vetSelected = veterinarias[spVetR.selectedItemPosition].UUID_veterinaria
                     val hacerResena = objConexion?.prepareStatement("insert into tbResenas (UUID_resena, calificacion, comentarios, resenador, vet) values (?, ?, ?, ?, ?)")!!
                     hacerResena.setString(1, UUID.randomUUID().toString())
-                    hacerResena.setString(2, txtCaliINT.toString())
+                    hacerResena.setString(2, txtCaliRd.toString())
                     hacerResena.setString(3, txtComentR.text.toString())
                     hacerResena.setString(4, iniciarsesion.variablesLogin.UUID_Usuario)
                     hacerResena.setString(5, vetSelected)

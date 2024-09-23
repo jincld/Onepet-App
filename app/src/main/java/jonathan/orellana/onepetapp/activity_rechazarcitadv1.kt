@@ -1,6 +1,5 @@
 package jonathan.orellana.onepetapp
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -33,14 +32,6 @@ class rechazarcitadv1 : AppCompatActivity() {
             insets
         }
 
-        val btnVolverS = findViewById<ImageView>(R.id.btnVolverS)
-
-        btnVolverS.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("ir_a_solicitudes1_citas", true)
-            startActivity(intent)
-        }
-
         //Recibir los valores
 
         val motivoRecibidoR = intent.getStringExtra("motivo_cita")
@@ -59,6 +50,7 @@ class rechazarcitadv1 : AppCompatActivity() {
         val txtRazonRechazo = findViewById<EditText>(R.id.txtRazonRechazo)
         val btnRechazar = findViewById<Button>(R.id.btnRechazarCita)
         val txtDescripcionRechazar = findViewById<TextView>(R.id.txtDescRechazo)
+        val btnCerrar = findViewById<ImageView>(R.id.btnVolverRC)
 
         //Asigarle los datos recibidos a mis TextView
         txtMotivoRechazar.text = motivoRecibidoR
@@ -67,8 +59,31 @@ class rechazarcitadv1 : AppCompatActivity() {
         txtMotivoRechazar2.text = motivo2RecibidoR
         txtDescripcionRechazar.text = descripcionRecibidoR
 
+        btnCerrar.setOnClickListener {
+            finish()
+        }
+
 //programamos del boton para rechazar cita
+
         btnRechazar.setOnClickListener {
+
+          /*  var hayErrores = false
+
+            //Rechazo Cita
+            if (descripcionRecibidoR!!.isEmpty()) {
+                txtRazonRechazo.error = "Se debe de describir con detalle el motivo"
+                hayErrores = true
+            } else if (descripcionRecibidoR.length > 1) {
+                txtRazonRechazo.error = "El límite de carácteres es 250"
+                hayErrores = true
+            }else {
+                txtRazonRechazo.error = null
+            }
+
+            if(hayErrores) {
+                //Hacer algo si hay errores
+            }
+            else {*/
             CoroutineScope(Dispatchers.IO).launch {
                 val objConexion = ClaseConexion().cadenaConexion()
                 println(" --------------este es el motivo de cita que quiero usar ${valor_motivo_cita_rechazar}")
@@ -79,12 +94,13 @@ class rechazarcitadv1 : AppCompatActivity() {
                 rechazarCita?.setString(2, valor_motivo_cita_rechazar)
                 rechazarCita?.executeUpdate()
 
-                withContext(Dispatchers.Main){
-                    //mostrar mensaje y limpiar campos
+                withContext(Dispatchers.Main) {
+                    // Mostrar mensaje y limpiar campos
                     Toast.makeText(this@rechazarcitadv1, "Cita rechazada correctamente", Toast.LENGTH_SHORT).show()
                 }
 
             }
+          //  }
             }
         }
 }

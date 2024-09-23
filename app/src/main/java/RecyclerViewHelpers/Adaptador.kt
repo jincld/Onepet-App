@@ -39,9 +39,6 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             val contraencriptada = hashSHA256(nuevacontra.toString())
 
 
-
-
-
             //2- creo una variable que contenga un PrepareStatement
             val updateMascota = objConexion?.prepareStatement("update tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ? where UUID_usuario = ?")!!
             updateMascota.setString(1, nuevoNombre)
