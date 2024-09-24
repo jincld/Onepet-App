@@ -20,9 +20,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
     fun hashSHA256(contraescrita: String): String {
         val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
         return bytes.joinToString("") {"%02x".format(it)}
-
     }
-
     fun actualicePantalla(uuid: String, nuevoNombre: String, nuevacontra: String, nuevocorreo: String) {
         val index = Datos.indexOfFirst { it.empleadoUUID == uuid }
         if (index != -1) {
@@ -35,7 +33,6 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             println("No se encontró el empleado con UUID: $uuid")
         }
     }
-
     fun actualizarDato(nuevoNombre: String, nuevacontra: String, nuevocorreo: String, uuid: String) {
         GlobalScope.launch(Dispatchers.IO) {
             val objConexion = ClaseConexion().cadenaConexion()
@@ -52,32 +49,20 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             updateempleado.executeUpdate()
 
             withContext(Dispatchers.Main) {
-                actualicePantalla(uuid, nuevoNombre, contraencriptada, nuevocorreo)
+                actualicePantalla(uuid, nuevoNombre, nuevacontra, nuevocorreo)
             }
         }
     }
-
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_card_empleados, parent, false)
         return ViewHolder(vista)
     }
-
     override fun getItemCount() = Datos.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val empleado = Datos[position]
-       /* holder.txtNombreEmp.text = empleado.nombreEmpleado
-        holder.txtCorreoEmp.text = empleado.contraEmpleado
-        holder.txtContraEmp.text = empleado.correoEmpleado*/
-
         holder.txtNombreEmp.text = empleado.nombreEmpleado
         holder.txtCorreoEmp.text = empleado.contraEmpleado
         holder.txtContraEmp.text = empleado.correoEmpleado
-
-
-
         holder.btnBorrarCard.setOnClickListener() {
 
             val context = holder.itemView.context
@@ -135,7 +120,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
                 var hayerrores = false
 
                 println("Nombre capturado: $nombre")
-                println("Contraseña capturada: $contra")
+                println("Contraseña capturada SIN ENCRIPTAR: $contra")
                 println("Correo capturado: $correo")
 
                 if (nombre.isEmpty()) {
@@ -155,9 +140,6 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
 
         }
     }
-
-
-
     fun eliminarDatos(NombreEmp: String, position: Int) {
 
         val listaDatos = Datos.toMutableList()

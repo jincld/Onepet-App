@@ -91,6 +91,7 @@ class misempleadosdv : Fragment() {
                 val Nombre = prueba.getString("nombre_usuario")
                 val Contra = prueba.getString("contra_usuario")
                 val Correo = prueba.getString("correo_usuario")
+                val ContraSinEncriptar = prueba.getString("contra_usuario")
 
 
                 val ValoresJuntos = dataClassEmpleado(uuid, Nombre, Contra, Correo)
