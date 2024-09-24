@@ -145,26 +145,44 @@ class agregarmascotaas : Fragment() {
             if (generoMascota.isEmpty()) {
                 txtGenAddMascota.error = "El Genero de la Mascota es obligatorio"
                 hayErrores = true
+            }else if (generoMascota != "H" && generoMascota != "M") {
+                txtGenAddMascota.error = "El Género de la mascota se debe de colocar en el formato 'H' (Hembra) o 'M' (Macho) en mayúsculas"
+                hayErrores = true
             }
             else {
                 txtGenAddMascota.error = null
             }
-            //Peso Mascota
-            if (pesoMascota.isEmpty()) {
-                txtPesoAddMascota.error = "El Peso de la Mascota es obligatorio"
+
+            //AAREGLAR ++++++++++++++++++++++
+
+
+            //Peso mascota
+            val pesoEntero = pesoMascota.toIntOrNull()
+            if (pesoEntero == null) {
+                txtPesoAddMascota.error = "El peso de la mascota debe ser un número entero válido"
                 hayErrores = true
-            }
-            else {
+            } else if (pesoEntero !in 1..250) {
+                txtPesoAddMascota.error = "El peso de la mascota debe estar entre 1 y 250 lbs."
+                hayErrores = true
+            }else {
                 txtPesoAddMascota.error = null
             }
+
+
             //Año de Nacimiento mascota
+            val yearEntero = añoMascota.toIntOrNull()
             if (añoMascota.isEmpty()) {
                 txtAñoAddMascota.error = "El Año de Nacimiento de la Mascota es obligatorio"
+                hayErrores = true
+            }else if (yearEntero !in 1950..2024) {
+                txtAñoAddMascota.error = "Inserte un año de nacimiento válido"
                 hayErrores = true
             }
             else {
                 txtAñoAddMascota.error = null
             }
+
+
             //Enfermedades Cronicas Mascota
             if (enfermedadesCronicas.isEmpty()) {
                 txtEnferCAddMascota.error = "El apartado es obligatorio llenarse"
@@ -173,6 +191,8 @@ class agregarmascotaas : Fragment() {
             else {
                 txtEnferCAddMascota.error = null
             }
+
+
             //Procedimientos Medicos Mascota Antes
             if (procedimientoMA.isEmpty()) {
                 txtProceMAddMascota.error = "El apartado es obligatorio llenarse"
@@ -181,6 +201,7 @@ class agregarmascotaas : Fragment() {
             else {
                 txtProceMAddMascota.error = null
             }
+
             //Raza Mascota
             if (razaMascota.isEmpty()) {
                 txtRazaMascota.error = "El apartado es obligatorio llenarse"
@@ -189,6 +210,7 @@ class agregarmascotaas : Fragment() {
             else {
                 txtProceMAddMascota.error = null
             }
+
             //Alergias Mascota
             if (alergiaMascota.isEmpty()) {
                 txtAlerAddMascota.error = "El apartado es obligatorio llenarse"
@@ -199,7 +221,6 @@ class agregarmascotaas : Fragment() {
             }
 
             //TODO: 2- Validacion de Numeros
-
 
             //Si hay errores no procede a guardar los datos
             if(hayErrores) {
