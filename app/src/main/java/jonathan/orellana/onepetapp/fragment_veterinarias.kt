@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
@@ -39,14 +40,12 @@ class fragment_veterinarias : Fragment() {
         }
     }
 
-    override fun onCreateView(
+   /* override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
        val root = inflater.inflate(R.layout.fragment_veterinarias, container, false)
-
-
        val rcvVeterinarias = root.findViewById<RecyclerView>(R.id.rcvVeterinarias)
         rcvVeterinarias.layoutManager = LinearLayoutManager(context)
 
@@ -92,11 +91,95 @@ class fragment_veterinarias : Fragment() {
         }
 
         return root
+    }*/
+
+
+    class AdaptadorVet(private val veterinarias: List<dataClassVeterinaria>, private val fragment: Fragment) : RecyclerView.Adapter<AdaptadorVet.VeterinariaViewHolder>() {
+
+        class VeterinariaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val cardView: LinearLayout = itemView.findViewById(R.id.cardVeterinarias)
+            val nombreTextView: TextView = itemView.findViewById(R.id.txtNombreVetCard)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VeterinariaViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_cardmv, parent, false)
+            return VeterinariaViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: VeterinariaViewHolder, position: Int) {
+            val veterinaria = veterinarias[position]
+            holder.nombreTextView.text = veterinaria.nombre_veterinaria
+
+            // Ocultar la CardView si el nombre es "Prueba vet"
+            if (veterinaria.nombre_veterinaria == "Prueba vet") {
+                holder.cardView.visibility = View.GONE
+            } else {
+                holder.cardView.visibility = View.VISIBLE
+            }
+
+            // Configurar el OnClickListener para la CardView
+           /* holder.cardView.setOnClickListener {
+                (fragment as fragment_veterinarias).navigateToEliminar()
+            }*/
+        }
+
+        override fun getItemCount(): Int {
+            return veterinarias.size
+        }
     }
 
-    fun navigateToEliminar(){
-        findNavController().navigate(R.id.action_veterinarias_to_actualizar_y_eliminar_vet2)
-    }
+
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            // Inflar el diseño para este fragmento
+            val root = inflater.inflate(R.layout.fragment_veterinarias, container, false)
+            val rcvVeterinarias = root.findViewById<RecyclerView>(R.id.rcvVeterinarias)
+            rcvVeterinarias.layoutManager = LinearLayoutManager(context)
+
+            fun obtenerDatos(): List<dataClassVeterinaria> {
+                // Crear objeto conexión
+                val objConexion = ClaseConexion().cadenaConexion()
+
+                val resulSet = objConexion?.prepareStatement("select * from tbVeterinarias where UUID_veterinaria = ?")!!
+                resulSet.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
+                resulSet.executeQuery()
+
+                val ver_vet = resulSet.executeQuery()
+                val veterinarias = mutableListOf<dataClassVeterinaria>()
+
+                // Recorrer todos los registros de la base de datos
+                while (ver_vet.next()) {
+                    val UUID_Vet = ver_vet.getString("UUID_Veterinaria")
+                    val ubicacion = ver_vet.getString("Ubicacion_veterinaria")
+                    val nit = ver_vet.getString("NIT")
+                    val contacto = ver_vet.getString("contacto_veterinaria")
+                    val nombre = ver_vet.getString("nombre_veterinaria")
+                    val correo = ver_vet.getString("correo_veterinaria")
+                    val descripcion = ver_vet.getString("descripcion_servicio")
+
+                    val ValoresJuntos = dataClassVeterinaria(UUID_Vet, nombre, ubicacion, nit, contacto, correo, descripcion)
+                    veterinarias.add(ValoresJuntos)
+                }
+                return veterinarias
+            }
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val veterinarias = obtenerDatos()
+                withContext(Dispatchers.Main) {
+                    val adapter = AdaptadorVet(veterinarias, this@fragment_veterinarias)
+                    rcvVeterinarias.adapter = adapter
+                }
+            }
+
+            return root
+        }
+
+   /* fun navigateToEliminar() {
+        val intent = Intent(activity, ActualizarvetActivity::class.java)
+        startActivity(intent)
+    }*/
     companion object {
         /**
          * Use this factory method to create a new instance of
