@@ -61,7 +61,7 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
 
         txtCorreoAjustes.text = iniciarsesion.variablesLogin.correo_admin
         txtContraAjustes.text = iniciarsesion.variablesLogin.contra_sinincriptar
- txtNombreAjustes.text =  MainActivity.variablesMainActivity.nombre_user
+        txtNombreAjustes.text =  MainActivity.variablesMainActivity.nombre_user
 
 
         fun hashSHA256(contraescrita: String): String {
