@@ -23,49 +23,41 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
 
     }
 
-    fun actualizarLista(nuevaLista: List<dataClassEmpleado>) {
-        Datos = nuevaLista
-        notifyDataSetChanged() // Notificar al adaptador sobre los cambios
-    }
-
-
-
-
-    fun actualizarDato( nuevoNombre: String, nuevacontra: String, nuevocorreo:String, uuid: String){
-        GlobalScope.launch(Dispatchers.IO){
-
-            //1- Creo un objeto de la clase de conexion
-            val objConexion = ClaseConexion().cadenaConexion()
-            val contraencriptada = hashSHA256(nuevacontra.toString())
-
-
-            //2- creo una variable que contenga un PrepareStatement
-            val updateMascota = objConexion?.prepareStatement("update tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ? where UUID_usuario = ?")!!
-            updateMascota.setString(1, nuevoNombre)
-            updateMascota.setString(2, contraencriptada)
-            updateMascota.setString(3, nuevocorreo)
-            updateMascota.setString(4, uuid)
-            updateMascota.executeUpdate()
-
-            withContext(Dispatchers.Main){
-                actualicePantalla(uuid, nuevoNombre, nuevocorreo,  nuevacontra) // Corregido el orden de los parámetros
-            }
-
-        }
-
-    }
-
-    fun actualicePantalla( uuid: String, nuevoNombre: String, nuevacontra: String, nuevocorreo:String ){
+    fun actualicePantalla(uuid: String, nuevoNombre: String, nuevacontra: String, nuevocorreo: String) {
         val index = Datos.indexOfFirst { it.empleadoUUID == uuid }
-        Datos[index].nombreEmpleado = nuevoNombre
-        Datos[index].contraEmpleado = nuevacontra
-        Datos[index].correoEmpleado = nuevocorreo
-
-
-
-
-        notifyDataSetChanged()
+        if (index != -1) {
+            Datos[index].nombreEmpleado = nuevoNombre
+            Datos[index].contraEmpleado = nuevocorreo
+            Datos[index].correoEmpleado = nuevacontra
+            println("Actualizando pantalla para UUID: $uuid, Nombre: $nuevoNombre, Contraseña: $nuevacontra, Correo: $nuevocorreo")
+            notifyDataSetChanged()
+        } else {
+            println("No se encontró el empleado con UUID: $uuid")
+        }
     }
+
+    fun actualizarDato(nuevoNombre: String, nuevacontra: String, nuevocorreo: String, uuid: String) {
+        GlobalScope.launch(Dispatchers.IO) {
+            val objConexion = ClaseConexion().cadenaConexion()
+            val contraencriptada = hashSHA256(nuevacontra)
+            println("Contraseña encriptada: $contraencriptada")
+            println("Correo sin encriptar: $nuevocorreo")
+
+            val updateempleado = objConexion?.prepareStatement("update tbUsuariosOne set nombre_usuario = ?, contra_usuario = ?, correo_usuario = ? where UUID_usuario = ?")!!
+            updateempleado.setString(1, nuevoNombre)
+            updateempleado.setString(2, contraencriptada)
+            updateempleado.setString(3, nuevocorreo)
+            updateempleado.setString(4, uuid)
+            println("Actualizando usuario con UUID: $uuid, Nombre: $nuevoNombre, Contraseña: $contraencriptada, Correo: $nuevocorreo")
+            updateempleado.executeUpdate()
+
+            withContext(Dispatchers.Main) {
+                actualicePantalla(uuid, nuevoNombre, contraencriptada, nuevocorreo)
+            }
+        }
+    }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_item_card_empleados, parent, false)
@@ -76,6 +68,10 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val empleado = Datos[position]
+       /* holder.txtNombreEmp.text = empleado.nombreEmpleado
+        holder.txtCorreoEmp.text = empleado.contraEmpleado
+        holder.txtContraEmp.text = empleado.correoEmpleado*/
+
         holder.txtNombreEmp.text = empleado.nombreEmpleado
         holder.txtCorreoEmp.text = empleado.contraEmpleado
         holder.txtContraEmp.text = empleado.correoEmpleado
@@ -103,34 +99,6 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             val dialog = builder.create()
             dialog.show()
         }
-        /* holder.btneditarcard.setOnClickListener{
-             //Creamos un Alert Dialog
-             val context = holder.itemView.context
-
-             val builder = androidx.appcompat.app.AlertDialog.Builder(context)
-             builder.setTitle("Editar Empleado")
-             builder.setMessage("¿Desea editar Empleado?")
-
-             //Agregarle un cuadro de texto para
-             //que el usuario escriba el nuevo nombre
-             val cuadroTexto = EditText(context)
-             cuadroTexto.setHint(empleado.nombreEmpleado)
-             cuadroTexto.setHint(empleado.contraEmpleado)
-             cuadroTexto.setHint(empleado.correoEmpleado)
-             builder.setView(cuadroTexto)
-
-             //Botones
-             builder.setPositiveButton("Actualizar") { dialog, which ->
-                 actualizarDato(cuadroTexto.text.toString(), empleado.empleadoUUID)
-             }
-
-             builder.setNegativeButton("Cancelar"){dialog, which ->
-                 dialog.dismiss()
-             }
-
-             val dialog = builder.create()
-             dialog.show()
-         }*/
 
         holder.btneditarcard.setOnClickListener{
             //Creamos un Alert Dialog
@@ -142,51 +110,49 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
 
             //Agregarle un cuadro de texto para
             //que el usuario escriba el nuevo nombre
-            val cuadroTextoNombre = EditText(context)
-            cuadroTextoNombre.setText(empleado.nombreEmpleado)
-            val cuadroTextoContra = EditText(context)
-            cuadroTextoContra.setText(empleado.contraEmpleado)
-            val cuadroTextoCorreo = EditText(context)
-            cuadroTextoCorreo.setText(empleado.correoEmpleado)
-            val layout = LinearLayout(context)
-            layout.orientation = LinearLayout.VERTICAL
-            layout.addView(cuadroTextoNombre)
-            layout.addView(cuadroTextoCorreo)
-            layout.addView(cuadroTextoContra)
+            val cuadroTextoNombre = EditText(context).apply { setText(empleado.nombreEmpleado) }
+            val cuadroTextoContra = EditText(context).apply { setText(empleado.contraEmpleado) }
+            val cuadroTextoCorreo = EditText(context).apply { setText(empleado.correoEmpleado) }
+
+
+            val layout = LinearLayout(context).apply {
+                orientation = LinearLayout.VERTICAL
+                addView(cuadroTextoNombre)
+                addView(cuadroTextoContra)
+                addView(cuadroTextoCorreo)
+            }
+
             builder.setView(layout)
 
-            //Botones
             builder.setPositiveButton("Actualizar") { dialog, which ->
-
+                /*val nombre = cuadroTextoNombre.text.toString()
                 val correo = cuadroTextoCorreo.text.toString()
-                val contra = cuadroTextoContra.text.toString()
+                val contra = cuadroTextoContra.text.toString()*/
+
+                val nombre = cuadroTextoNombre.text.toString()
+                val correo = cuadroTextoContra.text.toString()
+                val contra = cuadroTextoCorreo.text.toString()
                 var hayerrores = false
 
-                if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
-                    cuadroTextoCorreo.error = "Ingrese un correo válido"
+                println("Nombre capturado: $nombre")
+                println("Contraseña capturada: $contra")
+                println("Correo capturado: $correo")
+
+                if (nombre.isEmpty()) {
+                    cuadroTextoNombre.error = "Debe de completar este campo"
                     hayerrores = true
                 } else {
-                    cuadroTextoCorreo.error = null
+                    cuadroTextoNombre.error = null
                 }
 
-                if (contra.length <= 8) {
-                    cuadroTextoContra.error = "La contraseña debe de tener más de 8 carácteres"
-                    hayerrores = true
-                } else {
-                    cuadroTextoContra.error = null
-                }
-
-                if (hayerrores){
-                } else {
-                    actualizarDato(cuadroTextoNombre.text.toString(), cuadroTextoCorreo.text.toString(), cuadroTextoContra.text.toString(), empleado.empleadoUUID)
+                if (!hayerrores) {
+                    actualizarDato(nombre, contra, correo, empleado.empleadoUUID)
                 }
             }
 
-            builder.setNegativeButton("Cancelar"){dialog, which ->
-                dialog.dismiss()
-            }
-            val dialog = builder.create()
-            dialog.show()
+            builder.setNegativeButton("Cancelar", null)
+            builder.show()
+
         }
     }
 

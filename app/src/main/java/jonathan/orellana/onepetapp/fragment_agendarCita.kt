@@ -255,14 +255,25 @@ class fragment_agendarCita : Fragment() {
 
     //select en las mascotas
     private suspend fun fetchMascotaDB(): List<String> = withContext(Dispatchers.IO) {
-        val mascotas = mutableListOf<String>()
-        val query = "SELECT nombre_mascota FROM tbMascotas"
+       // val mascotas = mutableListOf<String>()
+        //val query = "SELECT nombre_mascota FROM tbMascotas where dueno = ?"
+       // val objConexion = ClaseConexion().cadenaConexion()
+
+
         val objConexion = ClaseConexion().cadenaConexion()
+        val query = objConexion?.prepareStatement("SELECT nombre_mascota FROM tbMascotas where dueno = ?")!!
+        query.setString(1, iniciarsesion.variablesLogin.UUID_Usuario)
+        //resulSet.executeQuery()
+
+        //var miEstadoSolicitud = resulSet.executeQuery()
+        val mascotas = mutableListOf<String>()
 
         objConexion?.let {
             try {
-                val statement = it.createStatement()
-                val resultSet = statement.executeQuery(query)
+               // val statement = it.createStatement()
+                //val resultSet = statement.executeQuery(query.toString())
+
+                val resultSet = query.executeQuery()
 
                 while (resultSet.next()) {
                     val nombre_mascota = resultSet.getString("nombre_mascota")
@@ -270,7 +281,7 @@ class fragment_agendarCita : Fragment() {
                 }
 
                 resultSet.close()
-                statement.close()
+              //  resultSet.close()
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {
