@@ -39,6 +39,8 @@ class misempleadosdv : Fragment() {
     }
 
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,19 +60,41 @@ class misempleadosdv : Fragment() {
 
             //crear statement
 
-            val statement = objConexion?.createStatement()
-            val resulSet = statement?.executeQuery("select * from tbUsuariosOne where rol = '37B86277FA994DD7BE53ED78FF54AE2D'")!!
+            fun obtenerUuidRol(): String? {
+                val objConexion = ClaseConexion().cadenaConexion()
+                val statement = objConexion?.createStatement()
+                val resulSet = statement?.executeQuery("select UUID_Rol from tbRolesUsuarios where nombre_rol = 'Empleado'")!!
+                var uuidRol: String? = null
+
+                if (resulSet.next()) {
+                    uuidRol = resulSet.getString("UUID_rol")
+                    println("este es el uuid traido desde el if emp $uuidRol")
+                }
+
+                println("este es el uuid traido desde la funcion emp $uuidRol")
+                return uuidRol
+            }
+
+
+            val resulSet = objConexion?.prepareStatement("select * from tbUsuariosOne where rol = ? and vet = ?")!!
+            resulSet.setString(1, obtenerUuidRol())
+            resulSet.setString(2, iniciarsesion.variablesLogin.uuid_Vet_real)
+            resulSet.executeQuery()
+
+            var prueba = resulSet.executeQuery()
             val empleados = mutableListOf<dataClassEmpleado>()
 
             //recorro todos los registos de la base de datos
 
-            while(resulSet.next()){
-                val uuid = resulSet.getString("UUID_usuario")
-                val Nombre = resulSet.getString("nombre_usuario")
-                val Correo = resulSet.getString("correo_usuario")
-                val Contra = resulSet.getString("contra_usuario")
+            while(prueba.next()){
+                val uuid = prueba.getString("UUID_usuario")
+                val Nombre = prueba.getString("nombre_usuario")
+                val Contra = prueba.getString("contra_usuario")
+                val Correo = prueba.getString("correo_usuario")
+                val ContraSinEncriptar = prueba.getString("contra_usuario")
 
-                val ValoresJuntos = dataClassEmpleado(uuid, Nombre, Correo, Contra)
+
+                val ValoresJuntos = dataClassEmpleado(uuid, Nombre, Contra, Correo)
                 empleados.add(ValoresJuntos)
             }
             return empleados

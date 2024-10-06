@@ -22,6 +22,8 @@ class login : AppCompatActivity() {
         }
         supportActionBar?.hide();
 
+
+        //botones para iniciar sesion o registrarse
         val btnregistrarse = findViewById<Button>(R.id.btnregistrarse)
 
         btnregistrarse.setOnClickListener {

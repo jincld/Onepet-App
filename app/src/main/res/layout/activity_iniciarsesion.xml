@@ -24,7 +24,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageView28"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/fondologin"
+            app:srcCompat="@drawable/fondosplash"
             tools:layout_editor_absoluteX="-21dp" />
 
         <ImageView
@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.147"
-            app:srcCompat="@drawable/circulocelesteis" />
+            app:srcCompat="@drawable/circuloop3" />
 
         <ImageView
             android:id="@+id/imageView72"
@@ -93,7 +93,7 @@
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.667" />
+            app:layout_constraintVertical_bias="0.651" />
 
         <EditText
             android:id="@+id/txtcorreoiniciar"
@@ -139,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#00FFFFFF"
-            android:tint="#34313F"
+            android:tint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/imageView28"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.044"
@@ -147,6 +147,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.019"
             app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+        <ImageView
+            android:id="@+id/imageView111"
+            android:layout_width="216dp"
+            android:layout_height="228dp"
+            android:layout_marginEnd="240dp"
+            android:rotation="-70"
+            android:rotationY="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.99"
+            app:srcCompat="@drawable/blobdos" />
 
         <ImageView
             android:id="@+id/imageView60"
@@ -158,30 +171,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/degcelesteinf" />
-
-        <ImageView
-            android:id="@+id/imageView65"
-            android:layout_width="225dp"
-            android:layout_height="262dp"
-            android:layout_marginEnd="208dp"
-            android:rotation="109"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.945"
-            app:srcCompat="@drawable/bgdos" />
-
-        <ImageView
-            android:id="@+id/imageView64"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/imagenconejo1" />
 
         <ImageView
             android:id="@+id/imageView67"
@@ -204,7 +193,7 @@
             android:rotation="23"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/circulocelesteis" />
+            app:srcCompat="@drawable/circuloop2" />
 
         <ImageView
             android:id="@+id/imageView69"
@@ -217,17 +206,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.127"
-            app:srcCompat="@drawable/circulocelesteis" />
+            app:srcCompat="@drawable/circuloop2" />
 
         <ImageView
             android:id="@+id/imageView71"
-            android:layout_width="141dp"
-            android:layout_height="184dp"
+            android:layout_width="122dp"
+            android:layout_height="141dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView28"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01"
+            app:layout_constraintVertical_bias="0.038"
             app:srcCompat="@drawable/logowhite" />
 
         <ImageButton
@@ -243,6 +233,55 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.514"
             app:srcCompat="@drawable/eyeantifragile" />
+
+        <ImageView
+            android:id="@+id/imageView54"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:rotation="45"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.314"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.944"
+            app:srcCompat="@drawable/circulocelesteazul" />
+
+        <ImageView
+            android:id="@+id/imageView110"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:rotation="19"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.632"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.82"
+            app:srcCompat="@drawable/circulocelesteazul" />
+
+        <ImageView
+            android:id="@+id/imageView64"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="684dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.992"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/imagenconejo1" />
+
+        <TextView
+            android:id="@+id/txtNoCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Aún no tienes una cuenta?"
+            android:textColor="#3C87D1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.717" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

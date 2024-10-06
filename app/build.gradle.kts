@@ -46,6 +46,8 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation("com.oracle.database.jdbc:ojdbc6:11.2.0.4")
+    implementation("com.airbnb.android:lottie:6.5.0")
+    implementation ("com.github.bumptech.glide:glide:4.11.0")
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)

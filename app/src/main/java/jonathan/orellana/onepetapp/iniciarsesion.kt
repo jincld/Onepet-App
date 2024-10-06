@@ -108,7 +108,7 @@ class iniciarsesion : AppCompatActivity() {
                 txtcorreoiniciar.error = null
             }
 
-            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
+            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
 
              txtcorreoiniciar.error = "Correo invalido"
                 hayerrores = true

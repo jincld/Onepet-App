@@ -7,7 +7,7 @@
         <item
             android:id="@+id/nav_homeDV"
             android:icon="@drawable/homeicon"
-            android:title="Inicio  >                                         >" />
+            android:title="Inicio                                            >" />
 
     </group>
     <group android:id="@+id/group2">
@@ -47,25 +47,30 @@
 
 
     <group android:id="@+id/group3">
+
         <item
             android:id="@+id/chatdv"
             android:icon="@drawable/iconchat"
             android:title="Chat                                             >" />
         <item
-            android:id="@+id/miveterinariadv"
+            android:id="@+id/fragment_veterinarias"
+            android:icon="@drawable/iconmiveterinaria"
+            android:title="Mi veterinaria                         >" />
+        <item
+            android:id="@+id/ver_veterinarias_usuario"
             android:icon="@drawable/iconmiveterinaria"
             android:title="Veterinarias                                >" />
         <item
-            android:id="@+id/clientesdv"
-            android:icon="@drawable/iconclientes"
-            android:title="Clientes                                       " />
-        <item
             android:id="@+id/agregar_vet"
-            android:icon="@drawable/iconmiveterinaria"
-            android:title="Mi veterinaria                             >" />
+            android:icon="@drawable/iconagregarvetnuevo"
+            android:title="Agregar veterinaria                   >" />
     </group>
 
     <group android:id="@+id/group5">
+        <item
+            android:id="@+id/misResenas"
+            android:icon="@drawable/iconresenas"
+            android:title="Mis reseñas                               >" />
         <item
             android:id="@+id/resenasdv"
             android:icon="@drawable/iconresenas"
@@ -73,17 +78,11 @@
     </group>
 
 
-    <group android:id="@+id/group5">
-        <item
-            android:title=""/>
-        <item
-            android:title=""/>
-    </group>
     <group android:id="@+id/group6">
         <item
-            android:id="@+id/fragment_misMascotas"
+            android:id="@+id/agregarmascotaas"
             android:icon="@drawable/iconmascotas"
-            android:title="Mis mascotas                            >" />
+            android:title="Agregar mascotas                    >" />
         <item
             android:id="@+id/ajustesdv"
             android:icon="@drawable/iconajustes"

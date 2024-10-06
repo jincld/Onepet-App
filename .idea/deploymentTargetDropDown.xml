@@ -10,12 +10,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\jonat\.android\avd\Emulador_20230009_Jonathan.avd" />
+                  <value value="C:\Users\jonat\.android\avd\Copy_of_Emulador_20230009_Jonathan.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-08-15T00:10:33.973220600Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-10-05T16:26:15.534935500Z" />
         </State>
       </entry>
     </value>

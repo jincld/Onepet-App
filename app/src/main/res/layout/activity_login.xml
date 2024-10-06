@@ -17,13 +17,14 @@
 
         <ImageView
             android:id="@+id/imageView27"
-            android:layout_width="400dp"
-            android:layout_height="497dp"
+            android:layout_width="549dp"
+            android:layout_height="599dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/degradadogris" />
+            app:layout_constraintVertical_bias="0.293"
+            app:srcCompat="@drawable/gradientgraynew" />
 
         <ImageView
             android:id="@+id/imageView33"
@@ -75,10 +76,10 @@
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageView27"
-            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintHorizontal_bias="0.336"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.346" />
+            app:layout_constraintVertical_bias="0.348" />
 
         <TextView
             android:id="@+id/textView2"

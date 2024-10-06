@@ -61,7 +61,7 @@ class  registroduenomascotas : AppCompatActivity() {
             return bytes.joinToString("") {"%02x".format(it)}
 
         }
-        imageView = findViewById(R.id.ftperfilduenomas)
+        imageView = findViewById(R.id.imgftperfilduenomas)
         val  txtnombreduenomas = findViewById<EditText>(R.id.txtnombreduenomas)
         val  txtcorreoduenomas = findViewById<EditText>(R.id.txtcorreoduenomas)
         val  txtcontraduenomas = findViewById<EditText>(R.id.txtcontraduenomas)
@@ -98,6 +98,8 @@ class  registroduenomascotas : AppCompatActivity() {
 
            }
 
+        //obtenemos el uuid
+
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()
@@ -113,6 +115,8 @@ class  registroduenomascotas : AppCompatActivity() {
             return uuidRol
         }
 
+
+        //fumciom para guardar usuarios
         fun guardarUsuarioconft(imageUri: String){
             GlobalScope.launch(Dispatchers.IO){
 
@@ -135,6 +139,7 @@ class  registroduenomascotas : AppCompatActivity() {
                     Toast.makeText(this@registroduenomascotas, "Usuario registrado", Toast.LENGTH_SHORT).show()
                     txtnombreduenomas.setText("")
                     txtcontraduenomas.setText("")
+                    contraconfirm.setText("")
                     txtcorreoduenomas.setText("")
                     imageView.setImageResource(0)
                     imageView.tag = null
@@ -152,6 +157,7 @@ class  registroduenomascotas : AppCompatActivity() {
             val confirmcontra = contraconfirm.text.toString()
             var hayerrores = false
 
+            //validaciones
             if (nombre.isEmpty()) {
                 txtnombreduenomas.error = "Complete todos lo campos"
                 hayerrores = true
@@ -213,7 +219,7 @@ class  registroduenomascotas : AppCompatActivity() {
         }
 
     }
-
+//subimos la imagen con firebase
     private fun subirimagenFirebase (bitmap: Bitmap, onSuccess: (String) -> Unit) {
         val storageRef = Firebase.storage.reference
         val imageRef = storageRef.child("images/${uuid}.jpg")
@@ -231,6 +237,8 @@ class  registroduenomascotas : AppCompatActivity() {
 
         }
     }
+
+    //funciones de permisos
     private fun checkStoragePermission() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
             pedirpermisocamara()
@@ -273,6 +281,8 @@ class  registroduenomascotas : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
+
+            //validaciones
             CAMERA_REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)

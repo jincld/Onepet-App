@@ -1,22 +1,20 @@
 package jonathan.orellana.onepetapp
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import jonathan.orellana.onepetapp.ui.detalle_veterinaria
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
-import modelo.dataClassVeterinaria
+import java.time.LocalDate
 import java.util.UUID
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,12 +41,7 @@ class agregar_vet : Fragment() {
     }
     companion object VariablesGlobalesVeterinaria{
         lateinit var NombreVet: String
-        lateinit var UbicacionVet: String
-        lateinit var NitVet: String
-        lateinit var ContactoVet: String
-        lateinit var CorreoVet: String
-        lateinit var DescripcionVet: String
-
+        var UUIDvet: String = UUID.randomUUID().toString()
     }
 
     override fun onCreateView(
@@ -67,6 +60,11 @@ class agregar_vet : Fragment() {
 
 
 
+
+
+
+
+//programamos el boton de registrar veterinaria
         btnRegistrarVet.setOnClickListener {
             val nombre = txtNombreVet.text.toString()
             val ubicacion = txtUbicacionVet.text.toString()
@@ -77,6 +75,7 @@ class agregar_vet : Fragment() {
 
             var hayerrores = false;
 
+            //validaciones
             if (nombre.isEmpty()) {
                 txtNombreVet.error = "El nombre es obligatorio"
                 hayerrores = true
@@ -106,6 +105,13 @@ class agregar_vet : Fragment() {
                 txtContactoVet.error = null;
             }
 
+            if (descripcion.isEmpty()) {
+                txtDescripcionVet.error = "Completar este campo es obligatorio"
+                hayerrores = true
+            } else {
+                txtDescripcionVet.error = null;
+            }
+
 
             if (Correo.isEmpty()) {
                 txtCorreoVet.error = "El correo es obligatorio"
@@ -122,24 +128,36 @@ class agregar_vet : Fragment() {
             }
 
             if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))) {
-                txtCorreoVet.error = "El correo no tiene el formato válido"
+                txtCorreoVet.error = "El correo no tiene un formato válido"
                 hayerrores = true
 
             } else {
                 txtCorreoVet.error = null
 
-
             }
+
+            if (!iniciarsesion.variablesLogin.uuid_Vet_real.matches(Regex("1"))) {
+                CoroutineScope(Dispatchers.IO).launch {
+                withContext(Dispatchers.Main){
+                    //mostrar mensaje
+                    Toast.makeText(context, "Solo se puede registrar a una veterinaria", Toast.LENGTH_LONG).show()
+                }
+                }
+                hayerrores = true
+            } else {
+                btnRegistrarVet.error = null
+            }
+
             if (hayerrores) {
                 //
             } else {
 
-                CoroutineScope(Dispatchers.IO).launch {
+                //corrutinas para inserts en veterinaria y auditoria
+                 CoroutineScope(Dispatchers.IO).launch {
 
                     val objConexion = ClaseConexion().cadenaConexion()
-                    val addVet =
-                        objConexion?.prepareStatement("Insert into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio) values (?,?,?,?,?,?,?)")!!
-                    addVet.setString(1, UUID.randomUUID().toString())
+                    val addVet = objConexion?.prepareStatement("Insert into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio) values (?,?,?,?,?,?,?)")!!
+                    addVet.setString(1, UUIDvet)
                     addVet.setString(2, txtNombreVet.text.toString())
                     addVet.setString( 3, txtUbicacionVet.text.toString())
                     addVet.setString(4, txtNitVet.text.toString())
@@ -148,14 +166,34 @@ class agregar_vet : Fragment() {
                     addVet.setString(7, txtDescripcionVet.text.toString())
                     addVet.executeUpdate()
 
-               NombreVet = txtNombreVet.text.toString()
-                UbicacionVet = txtUbicacionVet.text.toString()
-                    NitVet = txtNitVet.text.toString()
-                    ContactoVet = txtUbicacionVet.text.toString()
-                    CorreoVet = txtCorreoVet.text.toString()
-                    DescripcionVet = txtDescripcionVet.text.toString()
-                    withContext(Dispatchers.Main){
-                    findNavController().navigate(R.id.action_agregar_vet_to_actualizar_y_eliminar_vet2)
+
+                    val fecha = LocalDate.now().toString()
+                    val IngresoAuditoria = objConexion?.prepareStatement("insert into tbAuditoria (UUID_auditoria, usuario, accion, fecha) values (?, ?, ?, ?)")!!
+                    IngresoAuditoria.setString(1, UUID.randomUUID().toString())
+                    IngresoAuditoria.setString(2,iniciarsesion.variablesLogin.correo_admin)
+                    IngresoAuditoria.setString(3, "El usuario ha registrado una veterinaria")
+                    IngresoAuditoria.setString(4,fecha )
+                    IngresoAuditoria.executeUpdate()
+
+                    NombreVet = txtNombreVet.text.toString()
+                    println("este es el nombre de vet que quiero usar ${NombreVet}")
+
+                     val UpdateUser = objConexion?.prepareStatement("Update tbUsuariosOne set vet = ?  where correo_usuario = ?")!!
+                     UpdateUser.setString(1, UUIDvet)
+                     println("este es la UUID de vet que quiero usar ${UUIDvet}")
+                     UpdateUser.setString(2,iniciarsesion.variablesLogin.correo_admin)
+                     println("este es el correo que quiero usar ${iniciarsesion.variablesLogin.correo_admin}")
+                     iniciarsesion.variablesLogin.uuid_Vet_real = UUIDvet
+                     UpdateUser.executeUpdate()
+                     UpdateUser.executeUpdate()
+
+                     //Mostrar mensaje
+                     withContext(Dispatchers.Main) {
+                         Toast.makeText(context, "Veterinaria registrada", Toast.LENGTH_SHORT).show()
+                     }
+
+                     withContext(Dispatchers.Main){
+                    findNavController().navigate(R.id.action_agregar_vet_to_veterinarias)
                     }
 
 
@@ -164,9 +202,34 @@ class agregar_vet : Fragment() {
             }
 
         }
+/*
+           fun obtenerUuidVet(): String? {
 
+               GlobalScope.launch(Dispatchers.IO) {
 
+                   val objConexion = ClaseConexion().cadenaConexion()
+                   val resulSet =
+                       objConexion?.prepareStatement("SELECT UUID_Veterinaria FROM tbVeterinarias WHERE nombre_veterinaria = ? ")!!
+                   resulSet.setString(1, NombreVet)
 
+                   val resultado = resulSet.executeQuery()
+
+                   if (resultado.next()) {
+
+                       UUID_Vet = resultado.getString("UUID_vet")
+
+                       println("este es el uuid traido desde el if $UUID_Vet")
+                   }
+
+               }
+
+return UUID_Vet
+           }
+
+        btnPrueba.setOnClickListener {
+            obtenerUuidVet()
+        }
+*/
         return root
 
     }

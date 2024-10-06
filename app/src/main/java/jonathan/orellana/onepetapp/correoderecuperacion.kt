@@ -62,7 +62,7 @@ class correoderecuperacion : AppCompatActivity() {
                    }, 600000)
                }
 
-           if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
+           if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
 
                correorecuperacion.error = "Ingrese un correo válido"
                hayerrores = true

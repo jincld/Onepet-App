@@ -1,25 +1,20 @@
 package jonathan.orellana.onepetapp
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
-import modelo.dataClassEmpleado
-import modelo.dataClassEtiqueta
 import java.security.MessageDigest
 import java.util.UUID
-import kotlin.coroutines.coroutineContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,11 +39,13 @@ class agregarempleadodv : Fragment() {
         }
     }
 
+    //creamos variables globales
     companion object VariablesGlobalesEmpleado{
         lateinit var NombreEmpVG: String
         lateinit var CorreoEmVG: String
         lateinit var ContraEmpVG: String
         lateinit var RolEmpVG: String
+        lateinit var correo_emp: String
     }
 
 
@@ -68,35 +65,13 @@ class agregarempleadodv : Fragment() {
         val txtCorreoEmpleado = root.findViewById<TextView>(R.id.txtCorreo_empleado)
         val btnAgregarEmpleado = root.findViewById<Button>(R.id.btnAgregarEmpleado)
 
+
+//funcion de encriptacion
         fun hashSHA256(contraescrita: String): String {
             val bytes = MessageDigest.getInstance("SHA-256").digest(contraescrita.toByteArray())
             return bytes.joinToString("") {"%02x".format(it)}
 
         }
-
-        /*fun obtenerEtiquetas(): List<dataClassEtiqueta> {
-
-
-            val conexion = ClaseConexion().cadenaConexion()
-
-            //Creo un statement que me ejecute el select
-            val statement = conexion?.createStatement()
-
-            val resultSet = statement?.executeQuery("select * from tbEtiquetas")!!
-
-            val listaEtiqueta = mutableListOf<dataClassEtiqueta>()
-
-            while (resultSet.next()) {
-                val uuidEtiqueta = resultSet.getString("UUID_etiqueta")
-                val nombreEtiqueta = resultSet.getString("nombre_etiqueta")
-
-                val unaEtiquetaCompleta =
-                    dataClassEtiqueta(uuidEtiqueta, nombreEtiqueta, )
-                listaEtiqueta.add(unaEtiquetaCompleta)
-
-            }
-            return listaEtiqueta
-        }*/
 
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
@@ -114,6 +89,49 @@ class agregarempleadodv : Fragment() {
         }
 
         btnAgregarEmpleado.setOnClickListener {
+            val correo = txtCorreoEmpleado.text.toString()
+            val contra = txtContra_empleado.text.toString()
+            val nombre = txtNombre_empleado.text.toString()
+            var hayerrores = false
+
+            //validaciones
+            if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
+                txtCorreoEmpleado.error = "Ingrese un correo válido"
+                hayerrores = true
+            } else {
+                txtCorreoEmpleado.error = null
+            }
+
+            if (contra.length <= 8) {
+                txtContra_empleado.error = "La contraseña debe tener más de 8 carácteres"
+                hayerrores = true
+            } else {
+                txtContra_empleado.error = null
+            }
+
+            if (nombre.isEmpty()) {
+                txtNombre_empleado.error = "Complete este campo"
+                hayerrores = true
+            } else {
+                txtNombre_empleado.error = null
+            }
+
+            if (iniciarsesion.variablesLogin.uuid_Vet_real.matches(Regex("1"))) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    withContext(Dispatchers.Main){
+                        //mostrar mensaje
+                        Toast.makeText(context, "Debe de registrar a su veterinaria antes de agregar empleados", Toast.LENGTH_LONG).show()
+                    }
+                }
+                hayerrores = true
+            } else {
+
+            }
+
+            if (hayerrores){
+            } else{
+
+                //corrutina para insertar usuario
             CoroutineScope(Dispatchers.IO).launch {
 
                 val objConexion = ClaseConexion().cadenaConexion()
@@ -121,13 +139,17 @@ class agregarempleadodv : Fragment() {
 
                 val uuidTraido = obtenerUuidRol()
 
-                val crearEmpleado = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
+                val crearEmpleado = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol, vet) values (?, ?, ?, ?, ?, ?)")!!
                 crearEmpleado.setString(1, UUID.randomUUID().toString())
                 crearEmpleado.setString(2, txtNombre_empleado.text.toString())
                 crearEmpleado.setString(3, contraencriptada)
                 crearEmpleado.setString(4, txtCorreoEmpleado.text.toString())
                 crearEmpleado.setString(5, uuidTraido)
+                crearEmpleado.setString(6, iniciarsesion.variablesLogin.uuid_Vet_real)
+                println("este es la UUID de vet que quiero usar ${iniciarsesion.variablesLogin.uuid_Vet_real}")
                 println("este es el uuid traido antes del execute  $uuidTraido")
+                correo_emp = txtCorreoEmpleado.text.toString()
+                println("este es el correo del empleado traido antes del execute  $correo_emp")
                 crearEmpleado.executeUpdate()
 
                 withContext(Dispatchers.Main){
@@ -143,28 +165,11 @@ class agregarempleadodv : Fragment() {
 
 
         }
+        }
 
         return root
 
     }
 
-    /*companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment agregarempleadodv.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            agregarempleadodv().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }*/
+
 }

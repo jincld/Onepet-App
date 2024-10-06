@@ -68,11 +68,15 @@ btnojo1.setOnClickListener{
 
     }
 
+
+
         btnnuevacontra.setOnClickListener {
             val contra = txtnuevacontra.text.toString()
             val nuevacontraconfimr =txtcontraconfirm.text.toString()
             var hayerrores = false
 
+
+            //validaciones
             if (contra.length <= 8) {
                 txtnuevacontra.error = "La contraseña debe tener más de 8 caracteres"
                 hayerrores = true
@@ -105,6 +109,8 @@ btnojo1.setOnClickListener{
 
             if (hayerrores){
             } else {
+
+                //corrutina para actualizar la contraseña
                 CoroutineScope(Dispatchers.IO).launch {
                     val contranueva = hashSHA256(txtnuevacontra.text.toString())
                     val objConexion = ClaseConexion().cadenaConexion()

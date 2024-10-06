@@ -1,31 +1,28 @@
 package jonathan.orellana.onepetapp
 
+import RecyclerViewHelpers.AdaptadorSolicitudCitas
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import modelo.ClaseConexion
+import modelo.dataClassSoliC
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [solicitudescitadv.newInstance] factory method to
- * create an instance of this fragment.
- */
 class solicitudescitadv : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
+
         }
     }
 
@@ -33,27 +30,80 @@ class solicitudescitadv : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_solicitudescitadv, container, false)
-    }
+        val root = inflater.inflate(R.layout.fragment_solicitudescitadv, container, false)
+        val rcvSolicitudesCita = root.findViewById<RecyclerView>(R.id.rcvSolicitudesCitaV)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment solicitudescitadv.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            solicitudescitadv().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        //Agregar un layout al RecyclerView
+        rcvSolicitudesCita.layoutManager = LinearLayoutManager(context)
+
+//        val btnRechazarCitaS = root.findViewById<Button>(R.id.btnRechazarCitaCS)
+//        val btnAceptarCitaS = root.findViewById<Button>(R.id.btnAceptarCS)
+//
+//        //todo: clic al boton de Rechazar Cita
+//
+//        btnRechazarCitaS.setOnClickListener {
+//            val pantallaRechazar = Intent(requireContext(), rechazarcitadv::class.java)
+//            startActivity(pantallaRechazar)
+//        }
+//
+//        //Todo: boton de Aceptar y Asignar
+//
+//        btnAceptarCitaS.setOnClickListener{
+//            val pantallaRechazar = Intent(requireContext(), asignarcitadv::class.java)
+//            startActivity(pantallaRechazar)
+//        }
+
+        //TODO: mostrar datos
+
+        //obtenemos las solicitud de cita
+        fun obtenerSoliCitas(): List<dataClassSoliC> {
+            //1- Crear un objeto de clase conexion
+          /*  val objConexion = ClaseConexion().cadenaConexion()
+
+            //2- Crear un Statement
+            val statement = objConexion?.createStatement()
+            val resultSet = statement?.executeQuery("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario FROM tbCitas c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota")!!*/
+
+            val objConexion = ClaseConexion().cadenaConexion()
+            val resulSet = objConexion?.prepareStatement(        "SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, " +
+                    "m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario " +
+                    "FROM tbCitas c " +
+                    "RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria " +
+                    "LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario " +
+                    "INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota " +
+                    "WHERE v.uuid_veterinaria = ?")!!
+            resulSet.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
+            //resulSet.executeQuery()
+
+            var misSolicitudes = resulSet.executeQuery()
+            val listaSoliCitas = mutableListOf<dataClassSoliC>()
+
+            while (misSolicitudes.next()){
+                val UUID_Cita = misSolicitudes.getString("uuid_cita")
+                val fecha_cita = misSolicitudes.getString("fecha_cita")
+                val motivo_cita = misSolicitudes.getString("motivo_cita")
+                val descripcion_cita = misSolicitudes.getString("descripcion_motivo")
+                val mascota = misSolicitudes.getString("nombre_mascota")
+                val vet = misSolicitudes.getString("nombre_veterinaria")
+                val usuario = misSolicitudes.getString("nombre_usuario")
+
+                //SPINNERS
+                val valoresJuntos = dataClassSoliC(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, mascota, vet, usuario)
+
+                listaSoliCitas.add(valoresJuntos)
             }
-    }
+            return listaSoliCitas
+        }
+
+        //Asignarle el adaptador al RecyclerView
+        CoroutineScope(Dispatchers.IO).launch {
+            val misSoliCitasDB = obtenerSoliCitas()
+            withContext(Dispatchers.Main){
+                val adapter = AdaptadorSolicitudCitas(misSoliCitasDB)
+                rcvSolicitudesCita.adapter = adapter
+            }
+        }
+
+        return root
+        }
 }
