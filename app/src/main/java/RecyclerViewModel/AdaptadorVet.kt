@@ -4,9 +4,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import jonathan.orellana.onepetapp.ActualizarVetActivity
 import jonathan.orellana.onepetapp.R
 import jonathan.orellana.onepetapp.fragment_veterinarias
-import jonathan.orellana.onepetapp.ActualizarVetActivity
 import modelo.dataClassVeterinaria
 
 
@@ -59,7 +59,8 @@ class AdaptadorVet(private var Datos: List<dataClassVeterinaria>, private val fr
 
             context.startActivity(pantalla)
 
-        }
+
+            }
 
 
     }

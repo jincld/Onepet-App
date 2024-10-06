@@ -93,7 +93,8 @@ class agregarempleadodv : Fragment() {
             val contra = txtContra_empleado.text.toString()
             val nombre = txtNombre_empleado.text.toString()
             var hayerrores = false
-//validaciones
+
+            //validaciones
             if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
                 txtCorreoEmpleado.error = "Ingrese un correo válido"
                 hayerrores = true
@@ -113,6 +114,18 @@ class agregarempleadodv : Fragment() {
                 hayerrores = true
             } else {
                 txtNombre_empleado.error = null
+            }
+
+            if (iniciarsesion.variablesLogin.uuid_Vet_real.matches(Regex("1"))) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    withContext(Dispatchers.Main){
+                        //mostrar mensaje
+                        Toast.makeText(context, "Debe de registrar a su veterinaria antes de agregar empleados", Toast.LENGTH_LONG).show()
+                    }
+                }
+                hayerrores = true
+            } else {
+
             }
 
             if (hayerrores){

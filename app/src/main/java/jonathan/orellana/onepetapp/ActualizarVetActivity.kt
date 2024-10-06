@@ -1,6 +1,7 @@
 package jonathan.orellana.onepetapp
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.widget.EditText
@@ -89,7 +90,7 @@ class ActualizarVetActivity : AppCompatActivity() {
         fun isValid(vararg editTexts: EditText): Boolean {
             for (editText in editTexts) {
                 if (editText.text.toString().isEmpty()) {
-                    Toast.makeText(this, "Porfavor llene todos los datos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Por favor llene todos los datos", Toast.LENGTH_SHORT).show()
                     return false
                 }
             }
@@ -170,17 +171,38 @@ class ActualizarVetActivity : AppCompatActivity() {
                 val objConexion = ClaseConexion().cadenaConexion()
                 println("estamos dentro de una corrutina")
 
-
-
                 val nombrevett = nombre
-                println("este es el nombre de la vet que quiero eliminar ${nombrevett}")
+                println("Este es el nombre de la vet que quiero eliminar ${nombrevett}")
 
+                //Traer id empleado
+                val statement = objConexion?.createStatement()
+                val UUID_empleado = statement?.executeQuery("select UUID_ROL from tbRolesUsuarios where Nombre_Rol = 'Empleado'")!!
 
-                // 2- Crear una variable que contenga un preparestatement (donde se mete el código de sqlserver
-                val deleteVeterinaria = objConexion?.prepareStatement("delete from tbVeterinarias where nombre_veterinaria = ?")!!
-                deleteVeterinaria.setString(1, nombrevett)
+                //Regresar id de veterinaria al default
+                val updateUser = objConexion?.prepareStatement("UPDATE tbUsuariosOne set vet = '1' where correo_usuario = ?")!!
+                updateUser.setString(1, iniciarsesion.variablesLogin.valorCorreoUsuario)
+                updateUser.executeUpdate()
+
+                //Eliminar empleados
+                val deleteEmpleados = objConexion?.prepareStatement("delete from tbUsuariosOne where vet = ? AND rol = ?")!!
+                deleteEmpleados.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
+                deleteEmpleados.setString(2, UUID_empleado.toString())
+                deleteEmpleados.executeUpdate()
+
+                //Eliminar citas
+                val deleteCitas = objConexion?.prepareStatement("delete from tbCitas where vet = ?")!!
+                deleteCitas.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
+                deleteCitas.executeUpdate()
+
+                //Eliminar reseñas
+                val deleteResenas = objConexion?.prepareStatement("delete from tbresenas where vet = ?")!!
+                deleteResenas.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
+                deleteResenas.executeUpdate()
+
+                //Eliminar veterinaria
+                val deleteVeterinaria = objConexion?.prepareStatement("delete from tbVeterinarias where UUID_veterinaria = ?")!!
+                deleteVeterinaria.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
                 deleteVeterinaria.executeUpdate()
-
 
                 val commit = objConexion.prepareStatement("commit")!!
                 commit.executeQuery()
@@ -190,13 +212,13 @@ class ActualizarVetActivity : AppCompatActivity() {
         btnEliminarVet.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Eliminar")
-            builder.setMessage("Estas seguro que quieres eliminar tu veterinaria?")
+            builder.setMessage("¿Está seguro que quiere eliminar su veterinaria? Esto eliminará a sus empleados y datos de citas. Se cerrará sesión también.")
 
             builder.setPositiveButton("Si") { dialog, which ->
                 eliminarVet()
-                Toast.makeText(this, "Datos eliminados", Toast.LENGTH_SHORT).show()
-
-
+                Toast.makeText(this, "Veterinaria eliminada", Toast.LENGTH_SHORT).show()
+                val cerrar = Intent(this, iniciarsesion::class.java)
+                startActivity(cerrar)
             }
             builder.setNegativeButton("no") { dialog, which ->
                 dialog.dismiss()

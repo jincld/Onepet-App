@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.CoroutineScope
@@ -133,8 +134,20 @@ class agregar_vet : Fragment() {
             } else {
                 txtCorreoVet.error = null
 
-
             }
+
+            if (!iniciarsesion.variablesLogin.uuid_Vet_real.matches(Regex("1"))) {
+                CoroutineScope(Dispatchers.IO).launch {
+                withContext(Dispatchers.Main){
+                    //mostrar mensaje
+                    Toast.makeText(context, "Solo se puede registrar a una veterinaria", Toast.LENGTH_LONG).show()
+                }
+                }
+                hayerrores = true
+            } else {
+                btnRegistrarVet.error = null
+            }
+
             if (hayerrores) {
                 //
             } else {
@@ -172,9 +185,12 @@ class agregar_vet : Fragment() {
                      println("este es el correo que quiero usar ${iniciarsesion.variablesLogin.correo_admin}")
                      iniciarsesion.variablesLogin.uuid_Vet_real = UUIDvet
                      UpdateUser.executeUpdate()
-
-
                      UpdateUser.executeUpdate()
+
+                     //Mostrar mensaje
+                     withContext(Dispatchers.Main) {
+                         Toast.makeText(context, "Veterinaria registrada", Toast.LENGTH_SHORT).show()
+                     }
 
                      withContext(Dispatchers.Main){
                     findNavController().navigate(R.id.action_agregar_vet_to_veterinarias)

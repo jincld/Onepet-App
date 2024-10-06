@@ -1,6 +1,7 @@
 package jonathan.orellana.onepetapp
 
 import RecyclerViewHelper.AdaptadorVet
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -117,16 +118,19 @@ class fragment_veterinarias : Fragment() {
                 holder.cardView.visibility = View.VISIBLE
             }
 
-            // Configurar el OnClickListener para la CardView
-           /* holder.cardView.setOnClickListener {
+           // Configurar el OnClickListener para la CardView
+           holder.cardView.setOnClickListener {
                 (fragment as fragment_veterinarias).navigateToEliminar()
-            }*/
+            }
+
+
         }
 
         override fun getItemCount(): Int {
             return veterinarias.size
         }
     }
+
 
 
     override fun onCreateView(
@@ -176,10 +180,13 @@ class fragment_veterinarias : Fragment() {
             return root
         }
 
-   /* fun navigateToEliminar() {
-        val intent = Intent(activity, ActualizarvetActivity::class.java)
+   fun navigateToEliminar() {
+        val intent = Intent(activity, ActualizarVetActivity::class.java)
         startActivity(intent)
-    }*/
+    }
+
+
+
     companion object {
         /**
          * Use this factory method to create a new instance of
