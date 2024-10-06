@@ -199,7 +199,24 @@ class asignarcitadv1 : AppCompatActivity() {
 
 
         btnAsignarCita.setOnClickListener {
+            val spinnerEmp = spEmpleado
+            var hayerrores = false
 
+            if (spinnerEmp.selectedItem == null) {
+                CoroutineScope(Dispatchers.IO).launch {
+                withContext(Dispatchers.Main){
+                    //mostrar mensaje
+                    Toast.makeText(this@asignarcitadv1, "Debe de escoger a un empleado que este registrado", Toast.LENGTH_SHORT).show()
+                }
+                }
+                hayerrores = true
+            } else {
+
+            }
+
+            if (hayerrores){
+
+            } else{
             //corrutina para asignar la cita
             CoroutineScope(Dispatchers.IO).launch {
 
@@ -235,7 +252,7 @@ class asignarcitadv1 : AppCompatActivity() {
                 }
 
                 }
-
+            }
 
         }
 

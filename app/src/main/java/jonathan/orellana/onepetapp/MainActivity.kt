@@ -6,6 +6,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -15,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import jonathan.orellana.onepetapp.databinding.ActivityMainBinding
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     companion object variablesMainActivity {
         lateinit var nombre_user: String
+        lateinit var fotoUserV: String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         val navigationView2: NavigationView = findViewById(R.id.nav_view)
         val headerView2 = navigationView2.getHeaderView(0)
         val txtNombreMenu: TextView = headerView2.findViewById(R.id.txtNombreUserMenu)
+        val imgMenu: ImageView = headerView2.findViewById(R.id.imgMenu)
 
 
 //traemos el nombre con un select
@@ -115,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+//Asignar el nombre al texto del menú
 
         CoroutineScope(Dispatchers.Main).launch {
             val valorRolUsuario = valorCorreoUsuario
@@ -124,6 +128,56 @@ class MainActivity : AppCompatActivity() {
             nombre_user = nombreUsuario.toString()
             println("ESTE ES EL NOMBRE TRAIDO:" + nombreUsuario)
         }
+
+
+        //traemos la  foto con un select
+        suspend fun traerFotoUser(valorCorreoUsuario: String): String? {
+            return withContext(Dispatchers.IO) {
+                var fotoUser: String? = null
+                val objConexion = ClaseConexion().cadenaConexion()
+                val preparedStatement = objConexion?.prepareStatement("SELECT foto_usuario FROM tbusuariosOne WHERE correo_usuario = ?")
+                preparedStatement?.setString(1, valorCorreoUsuario)
+                println("..........ESTE ES EL VALOR DE LA FOTO: " + valorCorreoUsuario)
+
+                try {
+                    val resultSet = preparedStatement?.executeQuery()
+                    if (resultSet?.next() == true) {
+                        fotoUser = resultSet.getString("foto_usuario")
+                        println("++++ESTE ES LA FOTO DENTRO DE LA FUNCION DE TRAER FOTO: " + fotoUser)
+                    } else {
+                        println("++++POSIBLE ERROR EN ELSE FOTO USER: " + fotoUser)
+                    }
+                } catch (e: SQLException) {
+                    // Manejar la excepción
+                    e.printStackTrace()
+                } finally {
+                    // Asegúrate de cerrar recursos aquí
+                    preparedStatement?.close()
+                    objConexion?.close()
+                }
+                println("++++---------- FOTO USER: " + fotoUser)
+                fotoUser
+            }
+        }
+
+        //Asignar la foto al menú
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val fotoUsuario = traerFotoUser(valorCorreoUsuario)
+            if (fotoUsuario != null) {
+                fotoUserV = fotoUsuario
+                println("ESTE ES EL VALOR DE FOTO TRAIDO: $fotoUsuario")
+                val imgejemplo = "https://i.pinimg.com/564x/04/0b/48/040b48d97b59a0e93648d330aef497ab.jpg"
+                Glide.with(this@MainActivity)
+                    .load(fotoUsuario)
+                    .placeholder(R.drawable.usericonosocuro) // Imagen de carga
+                    .error(R.drawable.usericonosocuro) // Imagen de error
+                    .into(imgMenu)
+            } else {
+                println("Error: No se pudo cargar la foto del usuario.")
+            }
+        }
+
 
 
 //traemos los id de los diferentes roles
@@ -294,3 +348,4 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
+
