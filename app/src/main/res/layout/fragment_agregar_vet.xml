@@ -1,77 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".fragment_agregar_veterinaria">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="416dp"
-        android:layout_height="857dp"
-        android:layout_marginTop="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imageView241"
+            android:layout_width="141dp"
+            android:layout_height="136dp"
+            android:rotation="-19"
+            android:src="@drawable/blobdos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.825"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.024" />
 
         <ImageView
             android:id="@+id/imageView46"
-            android:layout_width="668dp"
-            android:layout_height="952dp"
-            android:rotation="-236"
-            android:rotationY="-171"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="436dp"
+            android:rotation="0"
+            android:src="@drawable/wavecomplete2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView245"
+            android:layout_width="126dp"
+            android:layout_height="174dp"
+            android:layout_marginTop="628dp"
+            android:rotation="168"
+            android:src="@drawable/bgtres"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView250"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="392dp"
             android:src="@drawable/degcelest"
-            tools:layout_editor_absoluteX="-27dp"
-            tools:layout_editor_absoluteY="-25dp" />
-
-        <EditText
-            android:id="@+id/txtDescripcionServicios"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="555dp"
-            android:layout_marginEnd="95dp"
-            android:layout_marginBottom="190dp"
-            android:ems="10"
-            android:hint="Descripción servicios"
-            android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/txtUbicacionVet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="94dp"
-            android:layout_marginTop="269dp"
-            android:layout_marginEnd="94dp"
-            android:layout_marginBottom="476dp"
-            android:ems="10"
-            android:hint="Dirección"
-            android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/txtNombreVet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="93dp"
-            android:layout_marginTop="205dp"
-            android:layout_marginEnd="94dp"
-            android:layout_marginBottom="540dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Nombre"
-            android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,183 +59,292 @@
             android:id="@+id/txtTituloVet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="111dp"
-            android:layout_marginTop="61dp"
-            android:layout_marginEnd="118dp"
-            android:layout_marginBottom="665dp"
             android:fontFamily="@font/alata"
-            android:text="Agregar "
+            android:text="Registrar veterinaria"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="42dp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.021" />
+
+        <EditText
+            android:id="@+id/txtDescripcionServicios"
+            android:layout_width="270dp"
+            android:layout_height="120dp"
+            android:background="@drawable/bordecajasg"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:padding="7dp"
+            android:textAlignment="textStart"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.463"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.781" />
+
+        <EditText
+            android:id="@+id/txtUbicacionVet"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.316" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView62"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
-            android:layout_marginTop="121dp"
-            android:layout_marginEnd="85dp"
-            android:layout_marginBottom="605dp"
-            android:fontFamily="@font/alata"
-            android:text="Veterinaria"
-            android:textColor="@color/black"
-            android:textSize="42dp"
+            android:text="Dirección"
+            android:textColor="#34313F"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.204"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.283" />
+
+        <EditText
+            android:id="@+id/txtNombreVet"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:inputType="text"
+            android:padding="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.224" />
 
         <EditText
             android:id="@+id/txtNitVet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="93dp"
-            android:layout_marginTop="342dp"
-            android:layout_marginEnd="94dp"
-            android:layout_marginBottom="403dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Número de identificación tributaria"
             android:inputType="number"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.41" />
 
         <EditText
             android:id="@+id/txtConctactoVet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="411dp"
-            android:layout_marginEnd="95dp"
-            android:layout_marginBottom="334dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Número Teléfono Clínica"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.504" />
 
         <EditText
             android:id="@+id/txtCorreoVet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="488dp"
-            android:layout_marginEnd="95dp"
-            android:layout_marginBottom="257dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Correo de veterinaria"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.601" />
 
         <Button
             android:id="@+id/btnRegistrarVet"
             android:layout_width="234dp"
             android:layout_height="51dp"
-            android:layout_marginStart="87dp"
-            android:layout_marginTop="606dp"
-            android:layout_marginEnd="76dp"
-            android:layout_marginBottom="133dp"
             android:background="@drawable/btnazul"
             android:fontFamily="@font/alata"
-            android:text="Agregar"
+            android:text="Registrar"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.925" />
 
-        <ImageView
-            android:id="@+id/imageView38"
+        <TextView
+            android:id="@+id/textView63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="72dp"
-            android:layout_marginBottom="412dp"
-            android:src="@drawable/vetagregar"
+            android:text="NIT ( Número de identificacíón tributario)"
+            android:textColor="#34313F"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.374" />
+
+        <TextView
+            android:id="@+id/textView64"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teléfono"
+            android:textColor="#34313F"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.201"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466" />
+
+        <TextView
+            android:id="@+id/textView65"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correo eléctronico"
+            android:textColor="#34313F"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.247"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.56" />
+
+        <TextView
+            android:id="@+id/textView66"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Servicios"
+            android:textColor="#34313F"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.203"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.654" />
+
+        <TextView
+            android:id="@+id/textView60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textColor="#34313F"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.198"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.193" />
+
+        <ImageView
+            android:id="@+id/imageView242"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/circuloazuloscuro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.877"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.156" />
+
+        <ImageView
+            android:id="@+id/imageView243"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="352dp"
+            android:rotation="45"
+            android:src="@drawable/circuloazuloscuro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.89" />
+
+        <ImageView
+            android:id="@+id/imageView244"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="360dp"
+            android:src="@drawable/circuloazuloscuro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.693" />
+
+        <ImageView
+            android:id="@+id/imageView246"
+            android:layout_width="103dp"
+            android:layout_height="137dp"
+            android:layout_marginEnd="336dp"
+            android:rotation="-45"
+            android:src="@drawable/blobw2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.123" />
+
+        <ImageView
+            android:id="@+id/imageView247"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/circuloop1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.187"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.105" />
+
+        <ImageView
+            android:id="@+id/imageView248"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="352dp"
+            android:layout_marginBottom="744dp"
+            android:src="@drawable/circuloop1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView34"
-            android:layout_width="255dp"
-            android:layout_height="216dp"
-            android:layout_marginTop="652dp"
-            android:layout_marginEnd="208dp"
-            android:src="@drawable/blobuno"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/imageView249"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="360dp"
+            android:src="@drawable/circuloop2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.005" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/imageView32"
-        android:layout_width="228dp"
-        android:layout_height="239dp"
-        android:layout_marginStart="266dp"
-        android:layout_marginTop="699dp"
-        android:src="@drawable/circulocelesteazul"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView33"
-        android:layout_width="76dp"
-        android:layout_height="76dp"
-        android:layout_marginStart="186dp"
-        android:layout_marginTop="715dp"
-        android:layout_marginEnd="131dp"
-        android:src="@drawable/circulocelesteazul"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView35"
-        android:layout_width="281dp"
-        android:layout_height="194dp"
-        android:layout_marginStart="255dp"
-        android:layout_marginBottom="683dp"
-        android:rotationX="3"
-        android:src="@drawable/bgdos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView39"
-        android:layout_width="186dp"
-        android:layout_height="266dp"
-        android:layout_marginEnd="294dp"
-        android:layout_marginBottom="595dp"
-        android:src="@drawable/blobdos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView37"
-        android:layout_width="76dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="114dp"
-        android:layout_marginEnd="352dp"
-        android:layout_marginBottom="595dp"
-        android:src="@drawable/btnsi"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>

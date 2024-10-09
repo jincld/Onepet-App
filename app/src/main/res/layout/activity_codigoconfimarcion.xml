@@ -45,7 +45,7 @@
             android:layout_width="210dp"
             android:layout_height="46dp"
             android:text="Ingrese el código enviado a su correo electrónico"
-            android:textColor="#34313F"
+            android:textColor="#8C8686"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,21 +65,23 @@
             app:layout_constraintHorizontal_bias="0.426"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
+            app:layout_constraintVertical_bias="0.494" />
 
         <EditText
             android:id="@+id/txtcodigorecuperacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="208dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Ingrese el código"
+            android:hint="Código"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.519"
+            app:layout_constraintHorizontal_bias="0.517"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.448" />
+            app:layout_constraintVertical_bias="0.444" />
 
         <ImageView
             android:id="@+id/imageView90"

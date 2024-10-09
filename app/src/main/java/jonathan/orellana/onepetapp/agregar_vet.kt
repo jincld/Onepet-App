@@ -79,12 +79,18 @@ class agregar_vet : Fragment() {
             if (nombre.isEmpty()) {
                 txtNombreVet.error = "El nombre es obligatorio"
                 hayerrores = true
+            }else if (nombre.length > 50) {
+                txtNombreVet.error = "El límite es 50 carácteres"
+                hayerrores = true
             } else {
                 txtNombreVet.error = null;
             }
 
             if (ubicacion.isEmpty()) {
                 txtUbicacionVet.error = "La ubicación es obligatoria"
+                hayerrores = true
+            }else if (ubicacion.length > 250) {
+                txtUbicacionVet.error = "El límite es 250 carácteres"
                 hayerrores = true
             } else {
                 txtUbicacionVet.error = null;
@@ -94,12 +100,18 @@ class agregar_vet : Fragment() {
             if (NIT.isEmpty()) {
                 txtNitVet.error = "El NIT es obligatorio"
                 hayerrores = true
-            } else {
+            } else if (NIT.length > 25) {
+                txtNitVet.error = "El límite es 25 carácteres"
+                hayerrores = true
+            }else {
                 txtNitVet.error = null;
             }
 
             if (Contacto.isEmpty()) {
                 txtContactoVet.error = "El contacto es obligatorio"
+                hayerrores = true
+            }else if (Contacto.length > 100) {
+                txtContactoVet.error = "El límite es 100 carácteres"
                 hayerrores = true
             } else {
                 txtContactoVet.error = null;
@@ -108,7 +120,10 @@ class agregar_vet : Fragment() {
             if (descripcion.isEmpty()) {
                 txtDescripcionVet.error = "Completar este campo es obligatorio"
                 hayerrores = true
-            } else {
+            } else if (descripcion.length > 150) {
+                txtDescripcionVet.error = "El límite es 150 carácteres"
+                hayerrores = true
+            } else{
                 txtDescripcionVet.error = null;
             }
 
@@ -116,16 +131,13 @@ class agregar_vet : Fragment() {
             if (Correo.isEmpty()) {
                 txtCorreoVet.error = "El correo es obligatorio"
                 hayerrores = true
+            }else if (Correo.length > 50) {
+                txtCorreoVet.error = "El límite es 50 carácteres"
+                hayerrores = true
             } else {
                 txtCorreoVet.error = null;
             }
 
-            if (descripcion.isEmpty()) {
-                txtCorreoVet.error = "la descripción de servicios es obligatorio"
-                hayerrores = true
-            } else {
-                txtDescripcionVet.error = null;
-            }
 
             if (!Correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))) {
                 txtCorreoVet.error = "El correo no tiene un formato válido"
