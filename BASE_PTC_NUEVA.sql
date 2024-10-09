@@ -14,7 +14,7 @@ ubicacion_veterinaria varchar2(250) not null,
 NIT char (25) not null,
 contacto_veterinaria varchar2(100) not null,
 correo_veterinaria varchar2(50) not null,
-descripcion_servicio varchar2(50) not null
+descripcion_servicio varchar2(150) not null
 );
 
 //Creación de tablas dependientes/(foreign keys)
@@ -51,15 +51,6 @@ references tbVeterinarias (UUID_veterinaria) on delete cascade
 );
 
 
-Create table tbAdmins (
-UUID_admin varchar2(50) primary key,
-nombre_admin varchar2(50) not null,
-contra_admin varchar2(50) not null,
-rol_gestionado  varchar2(50) not null ,
-constraint fk_gestion 
-foreign key (rol_gestionado)
-references tbRolesUsuarios (UUID_rol)
-);
 
 Create table tbResenas (
 UUID_resena varchar2(50) primary key,
@@ -116,6 +107,26 @@ foreign key (usuario)
 references tbUsuariosOne(UUID_usuario)
 );
 
+Create table tbCitasEmp(
+UUID_cita varchar2(50) primary key,
+fecha_cita varchar2(50) not null,
+motivo_cita varchar2(50) not null,
+descripcion_motivo varchar2(250) not null,
+mascota varchar2(50) not null,
+vet varchar2(50) not null, 
+usuario varchar2(50) not null,
+estado varchar2(50) Default 'Pendiente',
+constraint fk_mascotaEMP
+foreign key (mascota)
+references tbMascotas(UUID_mascota),
+constraint fk_vetCitaEMP
+foreign key (vet)
+references tbVeterinarias(UUID_veterinaria) on delete cascade,
+constraint fk_EMP
+foreign key (usuario)
+references tbUsuariosOne(UUID_usuario)
+);
+
 
 Create table tbServicios (
 UUID_servicio varchar2(50) primary key,
@@ -142,6 +153,7 @@ foreign key (empleado)
 references tbUsuariosOne (UUID_usuario) on delete cascade
 );
 
+
 Create table tbAuditoria (
 UUID_auditoria varchar2(50) primary key,
 usuario varchar2(50) not null,
@@ -156,7 +168,6 @@ increment by 1;
 //Prueba de secuencias
 Insert into tbveterinarias (uuid_veterinaria,nombre_veterinaria, ubicacion_veterinaria, nit, contacto_veterinaria, correo_veterinaria, descripcion_servicio ) values (seq_veterinarias.nextval , 'Prueba vet', 'Sonsonate', '12345678912345', '+503 1234-5678', 'vet1@gmail.com', 'Especializada en corte de pelo');
 
-
 //Trigger para copia usuarios
 Create or replace trigger copia_usuarios
 After insert on tbUsuariosOne
@@ -167,6 +178,14 @@ Insert into tbUsuariosOneCopia values (:NEW.UUID_usuario, :NEW.nombre_usuario, :
 END;
 
 
+//Trigger para copia de tabla citas/empleado
+Create or replace trigger copia_citasemp
+After insert on tbCitas
+Referencing new as new
+for each row
+begin
+Insert into tbCitasEMP values (:NEW.UUID_cita, :NEW.Fecha_cita ,:NEW.motivo_cita, :NEW.descripcion_motivo , :NEW.mascota, :NEW.vet,  :NEW.usuario, :NEW.estado);
+END;
 
 //Inserción de datos utilizando "Insert all"
 Insert ALL
@@ -174,6 +193,7 @@ into tbRolesUsuarios (uuid_rol, nombre_rol) values (SYS_GUID(), 'Dueno Mascota')
 into tbRolesUsuarios (uuid_rol, nombre_rol) values (SYS_GUID(), 'Secretario')
 into tbRolesUsuarios (uuid_rol, nombre_rol) values (SYS_GUID(), 'Admin Vet')
 into tbRolesUsuarios (uuid_rol, nombre_rol) values (SYS_GUID(), 'Empleado')
+into tbRolesUsuarios (uuid_rol, nombre_rol) values (SYS_GUID(), 'Admin')
 Select  * from DUAL;
 
 Insert ALL
@@ -205,13 +225,16 @@ into tbUsuariosOne (uuid_usuario, nombre_usuario, contra_usuario, correo_usuario
 into tbUsuariosOne (uuid_usuario, nombre_usuario, contra_usuario, correo_usuario,rol) values (SYS_GUID(), 'Jonathan  Ezequiel', 'Jonathan12345', 'Jonathan@gmail.com', (Select uuid_rol from tbrolesusuarios where nombre_rol = 'Empleado'))
 select * from Dual;
 
+//Inserción de administradores
 Insert ALL
-into tbAdmins (uuid_admin, nombre_admin, contra_admin, rol_gestionado) values (SYS_GUID(), 'Jonathan Ezequiel', 'Jonathan12345' ,(Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Dueno Mascota') )
-into tbAdmins (uuid_admin, nombre_admin, contra_admin, rol_gestionado) values (SYS_GUID(), 'Fernanda Mizel', 'Fernanda12345' , (Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Dueno Mascota') )
-into tbAdmins (uuid_admin, nombre_admin, contra_admin, rol_gestionado) values (SYS_GUID(), 'Fernando Morales', 'Fernando12345' , (Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Admin Vet') )
-into tbAdmins (uuid_admin, nombre_admin, contra_admin, rol_gestionado) values (SYS_GUID(), 'Paola Rivera', 'Paol12345' , (Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Secretario'))
-into tbAdmins (uuid_admin, nombre_admin, contra_admin, rol_gestionado) values (SYS_GUID(), 'Aarón García', 'Aarón12345' , (Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Empleado') )
-Select * from dual;
+into tbUsuariosOne (uuid_usuario, nombre_usuario, contra_usuario, correo_usuario,rol) values (SYS_GUID(), 'Jonathan Ezequiel', 'Jonathan12345' ,'Jonathan@gmail.com',(Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Admin') )
+into tbUsuariosOne (uuid_usuario, nombre_usuario, contra_usuario, correo_usuario,rol) values (SYS_GUID(), 'Fernanda Mizel', 'Fernanda12345', 'Fernanda@gmail.com' , (Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Admin ') )
+into tbUsuariosOne (uuid_usuario, nombre_usuario, contra_usuario, correo_usuario,rol) values (SYS_GUID(), 'Fernando Morales', 'Fernando12345' ,'Fernando@gmail.com', (Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Admin ') )
+into tbUsuariosOne (uuid_usuario, nombre_usuario, contra_usuario, correo_usuario,rol) values (SYS_GUID(), 'Paola Rivera', 'Paol12345' ,'Paola@gmail.com', (Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Admin'))
+into tbUsuariosOne (uuid_usuario, nombre_usuario, contra_usuario, correo_usuario,rol) values (SYS_GUID(), 'Aaron García', 'Aaron12345' ,'Aaron@gmail.com', (Select uuid_rol from tbRolesUsuarios where nombre_rol = 'Admin') )
+select * from Dual;
+
+
 
 Insert ALL
 into tbResenas(uuid_resena, calificacion, comentarios, resenador, vet) values (SYS_GUID(), 3.5, 'Excelente atencion presencial pero tienen que trabajar en su atencion online',(Select uuid_usuario from tbUsuariosOne where nombre_usuario = 'Ariana Colato'), (Select uuid_veterinaria from tbVeterinarias where nombre_veterinaria = 'Peluditos'))
@@ -334,7 +357,10 @@ Begin
 actualizar_veterinaria('AF66F6462B3D4FC789C8AFD48BADC926', 'vet_prueba', 'ubicacion_prueba', '1234-5678', 'contato_prueba', 'correo_prueba', 'descripcion_prueba');
 END;
 
+
+
 //Selección completa de datos 
+select * from tbRolesUsuarios;
 select * from tbRolesUsuarios;
 select * from tbEspecies;
 select * from tbUsuariosOne;
@@ -343,16 +369,11 @@ select * from tbAdmins;
 select * from tbresenas;
 select * from tbMascotas;
 select * from tbCitas;
+select * from tbCitasEMP;
 select * from tbVeterinarias;
 select * from tbServicios;
 select * from tbAsignaciones;
 select * from tbAuditoria;
-
-
-
-
-
-
 
 
 drop sequence seq_veterinarias;
@@ -361,15 +382,12 @@ drop table  tbEspecies;
 drop table tbVeterinarias;
 drop table tbUsuariosOne;
 drop table tbUsuariosOneCOPIA;
-drop table tbAdmins;
 drop table  tbresenas;
 drop table  tbMascotas;
 drop table tbCitas;
+drop table tbCitasEMP;
 drop table tbServicios;
 drop table tbAsignaciones;
 drop table tbAuditoria;
- 
-
-
 
 
