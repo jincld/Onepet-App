@@ -29,7 +29,7 @@
             android:layout_width="313dp"
             android:layout_height="90dp"
             android:fontFamily="@font/alata"
-            android:text="Administrador de la veterinaria"
+            android:text="Dueño de veterinaria"
             android:textAlignment="center"
             android:textColor="#34313F"
             android:textSize="34sp"
@@ -38,12 +38,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.097" />
+            app:layout_constraintVertical_bias="0.082" />
 
         <EditText
             android:id="@+id/txtnombreadminvet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="208dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
+            android:padding="7dp"
             android:ems="10"
             android:hint="Nombre"
             android:inputType="text"
@@ -55,8 +57,10 @@
 
         <EditText
             android:id="@+id/txtcorreodminvet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="208dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
+            android:padding="7dp"
             android:ems="10"
             android:hint="Correo Electronico"
             android:inputType="text"
@@ -69,8 +73,10 @@
 
         <EditText
             android:id="@+id/txtcontraadminvet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="208dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
+            android:padding="7dp"
             android:ems="10"
             android:hint="Contraseña"
             android:inputType="textPassword"
@@ -227,8 +233,10 @@
 
         <EditText
             android:id="@+id/txtcontraconfirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="208dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
+            android:padding="7dp"
             android:ems="10"
             android:hint="Confirmar contraseña"
             android:inputType="textPassword"

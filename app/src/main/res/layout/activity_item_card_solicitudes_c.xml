@@ -23,111 +23,142 @@
             tools:layout_editor_absoluteX="21dp"
             tools:layout_editor_absoluteY="16dp">
 
-            <TextView
-                android:id="@+id/txtMotivoCitaCS"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/recresenacard"
-                android:paddingLeft="15dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="Motivo de Cita"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:backgroundTint="@null"
-                app:layout_constraintBottom_toTopOf="@+id/txtLineaNormal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.235" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtLineaNormal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingBottom="4dp"
-                android:text=""
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/txtVeterinariaCCS"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.235" />
+                <TextView
+                    android:id="@+id/txtMotivoCitaCS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/recresenacard"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Motivo de Cita"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
 
-            <TextView
-                android:id="@+id/txtVeterinariaCCS"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingBottom="4dp"
-                android:text="Veterinaria"
-                android:textColor="#555"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/txtMascotaCS"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/txtLineaNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="0dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtMascotaCS"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingBottom="4dp"
-                android:text="Mascota"
-                android:textColor="#555"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/txtFechaCitaCS"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/textView50"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="2dp"
+                    android:text="Veterinaria"
+                    android:textColor="#34313F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtFechaCitaCS"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingBottom="8dp"
-                android:text="Fecha de Cita"
-                android:textColor="#555"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/txtMotivoCitaCC2S"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/txtVeterinariaCCS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="4dp"
+                    android:text="Veterinaria"
+                    android:textColor="#555"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/txtMotivoCitaCC2S"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingBottom="8dp"
-                android:text="Motivo de Cita"
-                android:textColor="#555"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/txtDescripcionCitaCS"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/textView51"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="2dp"
+                    android:text="Mascota"
+                    android:textColor="#34313F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtDescripcionCitaCS"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingBottom="8dp"
-                android:scrollHorizontally="false"
-                android:text="Descripcion de Cita"
-                android:textColor="#555"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/txtMascotaCS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="4dp"
+                    android:text="Mascota"
+                    android:textColor="#555"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView53"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="2dp"
+                    android:text="Fecha de cita"
+                    android:textColor="#34313F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtFechaCitaCS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="8dp"
+                    android:text="Fecha de Cita"
+                    android:textColor="#555"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView54"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="2dp"
+                    android:text="Motivo"
+                    android:textColor="#34313F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtMotivoCitaCC2S"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="8dp"
+                    android:text="Motivo de Cita"
+                    android:textColor="#555"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView55"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="2dp"
+                    android:text="Descripción"
+                    android:textColor="#34313F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDescripcionCitaCS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingBottom="8dp"
+                    android:scrollHorizontally="false"
+                    android:text="Descripcion de Cita"
+                    android:textColor="#555"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
