@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import modelo.dataClassUsuarios
+import java.sql.SQLException
 import java.util.UUID
 
 class asignarcitadv1 : AppCompatActivity() {
@@ -158,8 +159,7 @@ class asignarcitadv1 : AppCompatActivity() {
 
             val objConexion = ClaseConexion().cadenaConexion()
 // select para verificar el usuraio
-            val traerUUIDUsuarioC =
-                objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE nombre_usuario = ?")!!
+            val traerUUIDUsuarioC = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE nombre_usuario = ?")!!
             traerUUIDUsuarioC.setString(1, valoruuidusuario)
             val resultSet = traerUUIDUsuarioC.executeQuery()
             println("------------------------Este es el nombre traido desde el spinner $valor_nombre_usuario")
@@ -198,6 +198,30 @@ class asignarcitadv1 : AppCompatActivity() {
         }
 
 
+        //Traer id usuario seleccionado
+        fun obtenerUUIDUsuarioSel(): String? {
+
+
+            val valoruuidusuario = valor_nombre_usuario
+
+            val objConexion = ClaseConexion().cadenaConexion()
+            // select para verificar el usuraio
+            val traerUUIDUsuarioC = objConexion?.prepareStatement("SELECT UUID_usuario FROM tbUsuariosOne WHERE nombre_usuario = ?")!!
+            traerUUIDUsuarioC.setString(1, valoruuidusuario)
+            val resultSet = traerUUIDUsuarioC.executeQuery()
+            println("------------------------Este es el nombre traido desde el spinner $valor_nombre_usuario")
+
+            var uuidUsuarioC: String? = null
+
+            if (resultSet?.next() == true) {
+                uuidUsuarioC = resultSet.getString("UUID_usuario")
+                println("------------------------Este es el uuid traido desde el if $uuidUsuarioC")
+            }
+
+            println("------------------------Este es el uuid traido desde la funcion $uuidUsuarioC")
+            return uuidUsuarioC
+        }
+
         btnAsignarCita.setOnClickListener {
             val spinnerEmp = spEmpleado
             var hayerrores = false
@@ -223,6 +247,10 @@ class asignarcitadv1 : AppCompatActivity() {
                 val empleado = obtenerEmpleado()
                 valor_nombre_usuario = empleado[spEmpleado.selectedItemPosition].nombre_usuario
 
+             /*   /////////
+                val userUpdated = obtenerUUIDUsuarioSel()
+                valorNuevoUserUpdate = userUpdated[spEmpleado.selectedItemPosition].uui*/
+
                 //Obtener el codigo de obtener el UUID Cita
                 val uuidCitaTraida = obtenerUUIDCita()
 
@@ -232,8 +260,7 @@ class asignarcitadv1 : AppCompatActivity() {
                 val objConexion = ClaseConexion().cadenaConexion()
                 println(" --------------Este es el uuid de la cita que quiero usar ${uuidCitaTraida}")
                 println(" --------------Este es el uuid del usuario que quiero usar ${uuidUsuarioTraidoC}")
-                val asignar =
-                    objConexion?.prepareStatement("Insert into tbAsignaciones (uuid_asignacion,citas, empleado) values (?,?,?)")!!
+                val asignar = objConexion?.prepareStatement("Insert into tbAsignaciones (uuid_asignacion,citas, empleado) values (?,?,?)")!!
                 asignar.setString(1, UUID.randomUUID().toString())
                 asignar.setString(2, uuidCitaTraida)
                 println("----------------------Este es el uuid de cita traido antes del execute  $uuidCitaTraida")
@@ -241,13 +268,42 @@ class asignarcitadv1 : AppCompatActivity() {
                 println("----------------------Este es el uuid de usuario traido antes del execute  $uuidUsuarioTraidoC")
                 asignar.executeUpdate()
 
+               //actualizar tbcitas
+
                 println(" --------------este es el nombre de vet que quiero usar ${valor_motivo_cita}")
                 val updateCita = objConexion?.prepareStatement("Update tbCitas set estado ='Aceptada' where motivo_cita = ?")!!
                 updateCita?.setString(1, valor_motivo_cita)
                 updateCita?.executeUpdate()
 
+                //actualizar tbcitasemp
+
+                val updateCitaEmp = objConexion?.prepareStatement("Update tbCitasEmp set estado ='Aceptada' where motivo_cita = ?")!!
+                updateCitaEmp?.setString(1, valor_motivo_cita)
+                updateCitaEmp?.executeUpdate()
+
+                //actualizar usuaria a que sea el empleado seleccionado en tbcitasemp
+
+                try {
+                    val updateCitaEmpUser = objConexion?.prepareStatement("Update tbCitasEmp set usuario = ? where motivo_cita = ?")!!
+                    updateCitaEmpUser.setString(1, obtenerUUIDUsuarioSel())
+                    updateCitaEmpUser.setString(2, valor_motivo_cita)
+                    updateCitaEmpUser.executeUpdate()
+
+                   /* CoroutineScope(Dispatchers.Main).launch {
+                        Toast.makeText(this@asignarcitadv1, "Actualización exitosa", Toast.LENGTH_LONG).show()
+                    }*/
+                } catch (e: SQLException) {
+                    e.printStackTrace()
+                    CoroutineScope(Dispatchers.Main).launch {
+                        /*Toast.makeText(this@asignarcitadv1, "Error en la actualización: " + e.message, Toast.LENGTH_LONG).show()*/
+                        println(" --------------ERROR EN CAMBIAR USER ASIGNAR TBCITASEMP ${e.message}")
+                    }
+                }
+
+
+
                 withContext(Dispatchers.Main){
-                    //mostrar mensaje y limpiar campos
+                    //mostrar mensaje
                     Toast.makeText(this@asignarcitadv1, "Cita asignada correctamente", Toast.LENGTH_SHORT).show()
                 }
 
