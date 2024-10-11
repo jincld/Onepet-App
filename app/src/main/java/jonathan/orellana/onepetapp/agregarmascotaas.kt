@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -50,7 +51,6 @@ class agregarmascotaas : Fragment() {
         //Mando a llamar el boton usando la variable root
         val txtNomAddMascota = root.findViewById<EditText>(R.id.txtNombreMascota)
         val spSelectEspecie = root.findViewById<Spinner>(R.id.spEspecie)
-        val txtGenAddMascota = root.findViewById<EditText>(R.id.txtGeneroMascota)
         val txtPesoAddMascota = root.findViewById<EditText>(R.id.txtPesoMascota)
         val txtAñoAddMascota = root.findViewById<EditText>(R.id.txtAñoMascota)
         val txtEnferCAddMascota = root.findViewById<EditText>(R.id.txtEnfermedadesCMascota)
@@ -58,6 +58,17 @@ class agregarmascotaas : Fragment() {
         val txtRazaMascota = root.findViewById<EditText>(R.id.txtRazaMascota)
         val txtAlerAddMascota = root.findViewById<EditText>(R.id.txtAlergiasMascota)
         val btnAgregarMascotas = root.findViewById<Button>(R.id.btnAgregarMascotas)
+        val spgenero = root.findViewById<Spinner>(R.id.spgenero)
+
+        val generos = arrayOf("Macho", "Hembra")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, generos)
+
+        // Asignar el adaptador al Spinner
+        spgenero.adapter = adapter
+
+
+
+
 
         //Obtener UUID de Dueño de Mascota (Usuario)
        /* fun obtenerUUIDDueno(): String? {
@@ -121,17 +132,27 @@ class agregarmascotaas : Fragment() {
         btnAgregarMascotas.setOnClickListener{
             //Guardar en una variable los valores que escribio el  usuario
             val nombreMascota = txtNomAddMascota.text.toString()
-            val generoMascota = txtGenAddMascota.text.toString()
             val pesoMascota = txtPesoAddMascota.text.toString()
             val añoMascota = txtAñoAddMascota.text.toString()
             val enfermedadesCronicas = txtEnferCAddMascota.text.toString()
             val procedimientoMA = txtProceMAddMascota.text.toString()
             val razaMascota = txtRazaMascota.text.toString()
             val alergiaMascota = txtAlerAddMascota.text.toString()
-
+            val spinnergen = spgenero
             //Variable para verificar si hay errores la inicializamos en false
             var hayErrores = false
 
+            if (spinnergen.selectedItem == null) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    withContext(Dispatchers.Main){
+                        //mostrar mensaje
+                        Toast.makeText(context, "Debe de escoger a un empleado que este registrado", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                hayErrores = true
+            } else {
+
+            }
             //TODO: 1- Validar que los campos no esten vacios
             //Nombre Mascota
             if (nombreMascota.isEmpty()) {
@@ -141,17 +162,7 @@ class agregarmascotaas : Fragment() {
             else {
                 txtNomAddMascota.error = null
             }
-            //Genero de Mascota
-            if (generoMascota.isEmpty()) {
-                txtGenAddMascota.error = "El Genero de la Mascota es obligatorio"
-                hayErrores = true
-            }else if (generoMascota != "H" && generoMascota != "M") {
-                txtGenAddMascota.error = "El Género de la mascota se debe de colocar en el formato 'H' (Hembra) o 'M' (Macho) en mayúsculas"
-                hayErrores = true
-            }
-            else {
-                txtGenAddMascota.error = null
-            }
+
 
             //AAREGLAR ++++++++++++++++++++++
 
@@ -230,6 +241,7 @@ class agregarmascotaas : Fragment() {
                 //Si todas las validaciones son correcta, procede a guardar los daots
                 CoroutineScope(Dispatchers.IO).launch {
                     val especiee = obtenerEspecie()
+
                     val especieID = especiee[spSelectEspecie.selectedItemPosition].UUID_especie
                     //Guardar datos
                     //1- Creo un objeto de la clase conexion
@@ -244,14 +256,14 @@ class agregarmascotaas : Fragment() {
                     addMascota.setString(1, UUID.randomUUID().toString())
                     addMascota.setString(2, txtNomAddMascota.text.toString())
                     addMascota.setString(3, txtRazaMascota.text.toString())
-                    addMascota.setString(4, txtGenAddMascota.text.toString())
+                    addMascota.setString(4, spgenero.selectedItem.toString())
                     addMascota.setString(5, txtProceMAddMascota.text.toString())
                     addMascota.setString(6, txtAlerAddMascota.text.toString())
                     addMascota.setString(7, txtEnferCAddMascota.text.toString())
                     addMascota.setString(8, txtAñoAddMascota.text.toString())
                     addMascota.setInt(9, txtPesoAddMascota.text.toString().toInt())
                     addMascota.setString(10, especieID)
-                    addMascota.setString(11, iniciarsesion.variablesLogin.UUID_Usuario)
+                    addMascota.setString(11, iniciarsesion.UUID_Usuario)
 
                     addMascota.executeUpdate()
 
@@ -260,8 +272,6 @@ class agregarmascotaas : Fragment() {
                         Toast.makeText(context, "Datos guardados", Toast.LENGTH_SHORT).show()
                         txtNomAddMascota.setText("")
                         txtRazaMascota.setText("")
-                        txtGenAddMascota.setText("")
-                        txtGenAddMascota.setText("")
                         txtProceMAddMascota.setText("")
                         txtAlerAddMascota.setText("")
                         txtEnferCAddMascota.setText("")
@@ -295,4 +305,5 @@ class agregarmascotaas : Fragment() {
                 }
             }
     }
+
 }

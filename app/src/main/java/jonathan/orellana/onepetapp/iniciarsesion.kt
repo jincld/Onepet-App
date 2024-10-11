@@ -12,6 +12,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import jonathan.orellana.onepetapp.correoderecuperacion.globalvariables
+import jonathan.orellana.onepetapp.correoderecuperacion.globalvariables.numeroaleatorio
+import jonathan.orellana.onepetapp.ui.enviarcorreolog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -154,6 +157,8 @@ class iniciarsesion : AppCompatActivity() {
                     resulSet.setString(1, txtcorreoiniciar.text.toString())
                     resulSet.setString(2, contraencriptada)
                     correo_admin = txtcorreoiniciar.text.toString()
+                    enviarcorreolog("${correo_admin}", "Alerta de seguridad OnePet!", "Se ha iniciado sesion en un cuenta de OnePet!")
+
                     println("este es el correo que quiero usar ${correo_admin}")
                     val resultado = resulSet.executeQuery()
 
