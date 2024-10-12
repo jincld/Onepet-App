@@ -85,14 +85,23 @@ class rechazarcitadv1 : AppCompatActivity() {
             }
             else {*/
             CoroutineScope(Dispatchers.IO).launch {
+
+                //rechazar cita tbcita
                 val objConexion = ClaseConexion().cadenaConexion()
                 println(" --------------este es el motivo de cita que quiero usar ${valor_motivo_cita_rechazar}")
-                val rechazarCita =
-                    objConexion?.prepareStatement("Update tbCitas set estado ='Rechazada',  descripcion_motivo = ? where motivo_cita = ?")!!
+                val rechazarCita = objConexion?.prepareStatement("Update tbCitas set estado ='Rechazada',  descripcion_motivo = ? where motivo_cita = ?")!!
                 rechazarCita?.setString(1, txtRazonRechazo.text.toString())
                 println(" --------------este es el rechazo que quiero ${txtRazonRechazo.text.toString()}")
                 rechazarCita?.setString(2, valor_motivo_cita_rechazar)
                 rechazarCita?.executeUpdate()
+
+                //rechazar cita tbcitaemp
+                println(" --------------este es el motivo de cita que quiero usar ${valor_motivo_cita_rechazar}")
+                val rechazarCitaEmp = objConexion?.prepareStatement("Update tbCitasEmp set estado ='Rechazada',  descripcion_motivo = ? where motivo_cita = ?")!!
+                rechazarCitaEmp?.setString(1, txtRazonRechazo.text.toString())
+                println(" --------------este es el rechazo que quiero ${txtRazonRechazo.text.toString()}")
+                rechazarCitaEmp?.setString(2, valor_motivo_cita_rechazar)
+                rechazarCitaEmp?.executeUpdate()
 
                 withContext(Dispatchers.Main) {
                     // Mostrar mensaje y limpiar campos

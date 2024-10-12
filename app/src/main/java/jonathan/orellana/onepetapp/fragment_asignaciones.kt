@@ -30,6 +30,7 @@ class fragment_asignaciones : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,6 +42,7 @@ class fragment_asignaciones : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         val root = inflater.inflate(R.layout.fragment_asignaciones, container, false)
         val rcvMisAsignaciones = root.findViewById<RecyclerView>(R.id.rcvMisAsignaciones)
@@ -48,13 +50,14 @@ class fragment_asignaciones : Fragment() {
         //Agregar un layout al RecyclerView
         rcvMisAsignaciones.layoutManager = LinearLayoutManager(context)
 
-        //TODO: mostrar datos
+
+                //TODO: mostrar datos
         fun obtenerAsignaciones(): List<dataClassMisAsignaciones> {
             //1- Crear un objeto de clase conexion
             val objConexion = ClaseConexion().cadenaConexion()
 
             //2- Crear un Statement
-            val resulSet = objConexion?.prepareStatement("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, c.estado,  m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario FROM tbCitasEmp c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota WHERE uuid_usuario = ?")!!
+            val resulSet = objConexion?.prepareStatement("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, c.estado,  m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario FROM tbCitasEmp c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota WHERE uuid_usuario = ? AND estado = 'Aceptada'")!!
             resulSet.setString(1, iniciarsesion.variablesLogin.UUID_Usuario)
 
             var misAsignacionesMostrar = resulSet.executeQuery()
@@ -89,6 +92,7 @@ class fragment_asignaciones : Fragment() {
 
         return root
     }
+
 
     companion object {
         /**
