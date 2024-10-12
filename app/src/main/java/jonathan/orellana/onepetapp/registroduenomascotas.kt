@@ -203,7 +203,7 @@ class  registroduenomascotas : AppCompatActivity() {
 
             if (hayerrores){
             } else {
-                guardarUsuarioconft(imageView.toString())
+                guardarUsuarioconft(miPath)
             }
 
         }

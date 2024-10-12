@@ -49,6 +49,9 @@ class registroduenovet : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        miPath = "https://cdn-icons-png.flaticon.com/512/3364/3364044.png"
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_registroduenovet)
@@ -217,9 +220,9 @@ class registroduenovet : AppCompatActivity() {
                txtcontraadminvet.error = null
             }
 
-            if (hayerrores) {
-            } else {
-//se insertan
+
+            if (hayerrores && miPath == "1") {
+
                 GlobalScope.launch(Dispatchers.IO){
                     val objConexion = ClaseConexion().cadenaConexion()
                     val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
@@ -247,7 +250,37 @@ class registroduenovet : AppCompatActivity() {
                     }
 
                 }
-                guardarUsuarioconft(imageView.toString())
+            } else {
+
+                guardarUsuarioconft(miPath)
+
+               /* GlobalScope.launch(Dispatchers.IO){
+                    val objConexion = ClaseConexion().cadenaConexion()
+                    val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
+                    val uuidTraido = obtenerUuidRol()
+
+                    val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
+                    crearusuario.setString(1, UUID.randomUUID().toString())
+                    crearusuario.setString(2, txtnombreadminvet.text.toString())
+                    crearusuario.setString(3,contraencriptada)
+                    crearusuario.setString(4, txtcorreoadminvet.text.toString())
+                    crearusuario.setString(5,uuidTraido)
+                    println("este es el uuid traido antes del execute  $uuidTraido")
+                    crearusuario.executeUpdate()
+
+                    withContext(Dispatchers.Main){
+                        //mostrar mensaje y limpiar campos
+                        Toast.makeText(this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
+                        txtnombreadminvet.setText("")
+                        txtcontraadminvet.setText("")
+                        contraconfirm.setText("")
+                        txtcorreoadminvet.setText("")
+
+                        val login = Intent(this@registroduenovet, iniciarsesion::class.java)
+                        startActivity(login)
+                    }
+
+                }*/
             }
 
 
@@ -341,7 +374,7 @@ class registroduenovet : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT).show()
                 }
-
+                miPath = "1"
             }
             else -> {
 
@@ -350,6 +383,8 @@ class registroduenovet : AppCompatActivity() {
         }
     }
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -357,29 +392,36 @@ class registroduenovet : AppCompatActivity() {
             when (requestCode){
                 codigo_opcion_galeria-> {
                     val imageUri: Uri? = data?.data
-                    imageUri?.let {
-                        val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, it)
+                    if (imageUri != null) {
+                        val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
                         subirimagenFirebase(imageBitmap){ url ->
                             miPath = url
-                            imageView.setImageURI(it)
+                            imageView.setImageURI(imageUri)
                         }
+                    } else {
+                        // Set default image
+                        imageView.setImageResource(R.drawable.usericonosocuro)
+                        miPath = "https://cdn-icons-png.flaticon.com/512/3364/3364044.png"
                     }
                 }
 
                 codigo_opcion_tomar_foto -> {
                     val imageBitmap = data?.extras?.get("data")as? Bitmap
-                    imageBitmap?.let {
-                        subirimagenFirebase(it) { url ->
+                    if (imageBitmap != null) {
+                        subirimagenFirebase(imageBitmap) { url ->
                             miPath = url
-                            imageView.setImageBitmap(it)
-
+                            imageView.setImageBitmap(imageBitmap)
                         }
+                    } else {
+                        // Set default image
+                        imageView.setImageResource(R.drawable.usericonosocuro)
+                        miPath = "https://cdn-icons-png.flaticon.com/512/3364/3364044.png"
                     }
                 }
 
-            }
+                    }
 
-        }
+            }
     }
 }
 
