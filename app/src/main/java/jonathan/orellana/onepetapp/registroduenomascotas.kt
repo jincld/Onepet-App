@@ -46,6 +46,9 @@ class  registroduenomascotas : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        miPath = "https://i.pinimg.com/736x/1b/f1/e3/1bf1e3ee658f2b7b6d513056280c0305.jpg"
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_registroduenomascotas)
@@ -186,28 +189,29 @@ class  registroduenomascotas : AppCompatActivity() {
                 txtcorreoduenomas.error = null
             }
 
-            if ( confirmcontra == txtcontraduenomas.text.toString()){
+            if (confirmcontra == txtcontraduenomas.text.toString()) {
+
                 contraconfirm.error = null
             } else {
 
-            contraconfirm.error = "Las contraseñas no coinciden"
-            hayerrores = true
-        }
+                contraconfirm.error = "Las contraseñas no coinciden"
+                hayerrores = true
+            }
 
             if (contra.length <= 8) {
-                txtcontraduenomas.error = "La contraseña debe tener más de 8 caracteres"
+                txtcontraduenomas.error = "La contraseña debe de tener más de 8 caracteres"
                 hayerrores = true
             } else {
                 txtcontraduenomas.error = null
             }
 
-            if (hayerrores){
+            if (hayerrores) {
+
             } else {
                 guardarUsuarioconft(miPath)
             }
 
         }
-
 
 
         subirft.setOnClickListener{
@@ -316,31 +320,36 @@ class  registroduenomascotas : AppCompatActivity() {
             when (requestCode){
                 codigo_opcion_galeria-> {
                     val imageUri: Uri? = data?.data
-                    imageUri?.let {
-                        val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, it)
+                    if (imageUri != null) {
+                        val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
                         subirimagenFirebase(imageBitmap){ url ->
                             miPath = url
-                            imageView.setImageURI(it)
+                            imageView.setImageURI(imageUri)
                         }
+                    } else {
+                        // Set default image
+                        imageView.setImageResource(R.drawable.usericonosocuro)
+                        miPath = "https://i.pinimg.com/736x/1b/f1/e3/1bf1e3ee658f2b7b6d513056280c0305.jpg"
                     }
                 }
 
                 codigo_opcion_tomar_foto -> {
                     val imageBitmap = data?.extras?.get("data")as? Bitmap
-                    imageBitmap?.let {
-                        subirimagenFirebase(it) { url ->
+                    if (imageBitmap != null) {
+                        subirimagenFirebase(imageBitmap) { url ->
                             miPath = url
-                            imageView.setImageBitmap(it)
-
+                            imageView.setImageBitmap(imageBitmap)
                         }
+                    } else {
+                        // Set default image
+                        imageView.setImageResource(R.drawable.usericonosocuro)
+                        miPath = "https://i.pinimg.com/736x/1b/f1/e3/1bf1e3ee658f2b7b6d513056280c0305.jpg"
                     }
                 }
+
             }
 
-
-           }
-
-
         }
+    }
 
 }
