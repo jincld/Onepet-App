@@ -57,7 +57,7 @@
             app:layout_constraintHorizontal_bias="0.587"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.154" />
+            app:layout_constraintVertical_bias="0.139" />
 
         <ImageView
             android:id="@+id/imageView49"
@@ -164,10 +164,10 @@
             android:src="@drawable/iconcorreoae"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.159"
+            app:layout_constraintHorizontal_bias="0.16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.392" />
+            app:layout_constraintVertical_bias="0.385" />
 
         <ImageView
             android:id="@+id/imageView69"
@@ -181,13 +181,23 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.499" />
 
+        <ImageView
+            android:id="@+id/imageView252"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="512dp"
+            android:rotation="0"
+            android:src="@drawable/wavecomplete2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <EditText
             android:id="@+id/txtNombre_empleado"
             android:layout_width="240dp"
             android:layout_height="40dp"
             android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Nombre"
             android:inputType="text"
             android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -203,7 +213,6 @@
             android:layout_height="40dp"
             android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Contraseña"
             android:inputType="text"
             android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -219,7 +228,6 @@
             android:layout_height="40dp"
             android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Correo"
             android:inputType="text"
             android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -227,18 +235,43 @@
             app:layout_constraintHorizontal_bias="0.653"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.394" />
+            app:layout_constraintVertical_bias="0.383" />
 
-        <ImageView
-            android:id="@+id/imageView252"
+        <TextView
+            android:id="@+id/textView70"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="512dp"
-            android:rotation="0"
-            android:src="@drawable/wavecomplete2"
+            android:text="Correo electrónico"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.393"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.347" />
+
+        <TextView
+            android:id="@+id/textView69"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.318"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.241" />
+
+        <TextView
+            android:id="@+id/textView71"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contarseña"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.34"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.46" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

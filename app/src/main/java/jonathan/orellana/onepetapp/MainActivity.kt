@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
     companion object variablesMainActivity {
         lateinit var nombre_user: String
         lateinit var fotoUserV: String
@@ -75,9 +76,14 @@ class MainActivity : AppCompatActivity() {
 
         val headerView = navigationView.getHeaderView(0)
         val btnCerrarMenu: ImageButton = headerView.findViewById(R.id.btnCerrarDrawer)
+        val btnOtrosMenu: ImageButton = headerView.findViewById(R.id.btnOtrosMenu)
 
         btnCerrarMenu.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        btnOtrosMenu.setOnClickListener {
+
         }
 
         val navigationView2: NavigationView = findViewById(R.id.nav_view)
@@ -257,7 +263,7 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.fragment_veterinarias).isVisible = false
                     navView.menu.findItem(R.id.agregar_vet).isVisible = false
                     navView.menu.findItem(R.id.chatdv).isVisible = false
-
+                    navView.menu.findItem(R.id.fragment_misMascotas).isVisible = true
                 }
                 if (txtcorreoiniciarval == rolEmpleadoMainActivity) {
                     //Empleado
@@ -276,7 +282,7 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.fragment_veterinarias).isVisible = false
                     navView.menu.findItem(R.id.agregar_vet).isVisible = false
                     navView.menu.findItem(R.id.chatdv).isVisible = false
-
+                    navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
                 }
                 if (txtcorreoiniciarval == rolDuenoVetMainActivity) {
                     //Dueño veterinaria
@@ -295,7 +301,7 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.fragment_veterinarias).isVisible = true
                     navView.menu.findItem(R.id.agregar_vet).isVisible = true
                     navView.menu.findItem(R.id.chatdv).isVisible = false
-
+                    navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
                 }
                 if (txtcorreoiniciarval == rolSecretarioMainActivity) {
                     //Secretario
@@ -314,6 +320,7 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.fragment_veterinarias).isVisible = false
                     navView.menu.findItem(R.id.agregar_vet).isVisible = false
                     navView.menu.findItem(R.id.chatdv).isVisible = false
+                    navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
                 }
 
                 println("*******este es el resultado que traigo con el select ROL USUARIO MASCOTA $rolDuenoMascotaMainActivity")
