@@ -81,8 +81,12 @@
     <group android:id="@+id/group6">
         <item
             android:id="@+id/agregarmascotaas"
-            android:icon="@drawable/iconmascotas"
+            android:icon="@drawable/iconagregarmascotanuevo"
             android:title="Agregar mascotas                    >" />
+        <item
+            android:id="@+id/fragment_misMascotas"
+            android:icon="@drawable/iconmascotas"
+            android:title="Mis mascotas                            >" />
         <item
             android:id="@+id/ajustesdv"
             android:icon="@drawable/iconajustes"

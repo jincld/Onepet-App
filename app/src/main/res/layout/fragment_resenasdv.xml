@@ -31,16 +31,6 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView218"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="412dp"
-            android:rotation="138"
-            android:src="@drawable/wavedarkbluelongopac"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="40dp" />
-
-        <ImageView
             android:id="@+id/imageView139"
             android:layout_width="181dp"
             android:layout_height="164dp"
@@ -64,10 +54,10 @@
 
         <ImageView
             android:id="@+id/imageView138"
-            android:layout_width="162dp"
-            android:layout_height="219dp"
-            android:layout_marginTop="532dp"
-            android:layout_marginEnd="288dp"
+            android:layout_width="145dp"
+            android:layout_height="206dp"
+            android:layout_marginTop="516dp"
+            android:layout_marginEnd="316dp"
             android:rotation="-23"
             android:src="@drawable/bgdos"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,8 +69,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="428dp"
-            android:rotation="138"
-            android:src="@drawable/wavedarkbluelong"
+            android:rotation="151"
+            android:src="@drawable/wavecomplete1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -160,7 +150,19 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.303" />
+            app:layout_constraintVertical_bias="0.287" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Veterinaria"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.243"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.246" />
 
         <EditText
             android:id="@+id/txtCaliR"
@@ -176,12 +178,24 @@
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.413" />
+            app:layout_constraintVertical_bias="0.388" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calificación"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.246"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.355" />
 
         <EditText
             android:id="@+id/txtComentR"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="240dp"
             android:background="@drawable/bordecajasg"
             android:ems="10"
             android:gravity="start|top"
@@ -196,18 +210,6 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView31"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calificación"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.246"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.379" />
-
-        <TextView
             android:id="@+id/textView37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -217,19 +219,7 @@
             app:layout_constraintHorizontal_bias="0.253"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.497" />
-
-        <TextView
-            android:id="@+id/textView38"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Veterinaria"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.243"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.263" />
+            app:layout_constraintVertical_bias="0.472" />
 
         <ImageView
             android:id="@+id/imageView219"
@@ -245,38 +235,26 @@
             android:id="@+id/imageView224"
             android:layout_width="152dp"
             android:layout_height="227dp"
-            android:layout_marginEnd="288dp"
+            android:layout_marginEnd="312dp"
             android:rotation="-49"
             android:src="@drawable/blobw2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.068" />
+            app:layout_constraintVertical_bias="0.048" />
 
         <ImageView
             android:id="@+id/imageView225"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:rotation="32"
             android:src="@drawable/circuloazuloscuro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.079"
+            app:layout_constraintHorizontal_bias="0.044"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.977" />
-
-        <ImageView
-            android:id="@+id/imageView226"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/circuloazuloscuro"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.336"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.888" />
+            app:layout_constraintVertical_bias="0.915" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

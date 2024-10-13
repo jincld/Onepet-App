@@ -151,6 +151,7 @@ var txtNombreAjustes: TextView =  root.findViewById(R.id.txtNombreAjustes)
         btnCerrar.setOnClickListener {
             val cerrar = Intent(context, iniciarsesion::class.java)
             startActivity(cerrar)
+            Toast.makeText(context, "Sesión cerrada", Toast.LENGTH_SHORT).show()
         }
        return root
     }
