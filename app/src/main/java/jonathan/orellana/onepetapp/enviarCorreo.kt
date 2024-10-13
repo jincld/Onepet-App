@@ -47,7 +47,9 @@ suspend fun enviarCorreo (receptor: String, sujeto: String, mensaje: String) = w
             setText(mensaje)
 
         }
-        val mensaje = """
+
+       val mensaje = """
+
 <html>
 <head>
     <style>
