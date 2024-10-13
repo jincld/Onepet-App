@@ -54,13 +54,17 @@ class fragment_agendarCita : Fragment() {
         loadVet()
         loadMascotas()
 
+
+
         //programacion de envio de cita
         btnEnviarCita.setOnClickListener {
             val fechaCita = txtFechaCita.text.toString()
             val vetSeleccionado = spVetCita.selectedItem.toString()
+            val spVets = spVetCita
             val mascotaSeleccionada = spMascotaCita.selectedItem.toString()
             val motivoCita = txtMotivoCita.text.toString()
             val descripcionCita = txtDescripcionCita.text.toString()
+
 
             CoroutineScope(Dispatchers.Main).launch {
                 val idVetC = getIdVet(vetSeleccionado)
@@ -91,6 +95,31 @@ class fragment_agendarCita : Fragment() {
                     hayErrores = true
                 }else {
                     txtMotivoCita.error = null
+                }
+
+                //Spinner mascotas
+                if (spMascotaCita.selectedItem?.toString().isNullOrBlank()) {
+                    hayErrores = true
+                    CoroutineScope(Dispatchers.Main).launch {
+                        Toast.makeText(context, "Debe de escoger a una mascota registrada", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // lógica si no está nulo
+                }
+
+
+
+                //Spinner veterinarias
+                if (spVets.selectedItem == null) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        withContext(Dispatchers.Main){
+                            //mostrar mensaje
+                            Toast.makeText(context, "Debe de escoger a una veterinaria registrada", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    hayErrores = true
+                } else {
+
                 }
 
 
@@ -386,7 +415,10 @@ class fragment_agendarCita : Fragment() {
         idUsuarioOne: String,
         motivo_cita: String,
         descripcion_motivo: String
+
+
     ): Boolean = withContext(Dispatchers.IO) {
+
         //MODIFICADO
         if (idUsuarioOne != null) {
             val query =

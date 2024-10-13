@@ -49,6 +49,9 @@ class registroduenovet : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        miPath = "https://i.pinimg.com/736x/1b/f1/e3/1bf1e3ee658f2b7b6d513056280c0305.jpg"
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_registroduenovet)
@@ -146,8 +149,9 @@ class registroduenovet : AppCompatActivity() {
                     //mostrar mensaje y limpiar campos
                     Toast.makeText( this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
                     txtnombreadminvet.setText("")
-                  txtcontraadminvet.setText("")
-                   txtcorreoadminvet.setText("")
+                    txtcorreoadminvet.setText("")
+                    txtcontraadminvet.setText("")
+                    contraconfirm.setText("")
                     imageView.setImageResource(0)
                     imageView.tag = null
                     val login = Intent(this@registroduenovet, iniciarsesion::class.java)
@@ -211,43 +215,17 @@ class registroduenovet : AppCompatActivity() {
             }
 
             if (contra.length <= 8) {
-                txtcontraadminvet.error = "La contraseña debe tener más de 8 caracteres"
+                txtcontraadminvet.error = "La contraseña debe de tener más de 8 caracteres"
                 hayerrores = true
             } else {
                txtcontraadminvet.error = null
             }
 
+
             if (hayerrores) {
+
             } else {
-//se insertan
-                GlobalScope.launch(Dispatchers.IO){
-                    val objConexion = ClaseConexion().cadenaConexion()
-                    val contraencriptada = hashSHA256(txtcontraadminvet.text.toString())
-                    val uuidTraido = obtenerUuidRol()
-
-                    val crearusuario = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol) values (?, ?, ?, ?, ?)")!!
-                    crearusuario.setString(1, UUID.randomUUID().toString())
-                    crearusuario.setString(2, txtnombreadminvet.text.toString())
-                    crearusuario.setString(3,contraencriptada)
-                    crearusuario.setString(4, txtcorreoadminvet.text.toString())
-                    crearusuario.setString(5,uuidTraido)
-                    println("este es el uuid traido antes del execute  $uuidTraido")
-                    crearusuario.executeUpdate()
-
-                    withContext(Dispatchers.Main){
-                        //mostrar mensaje y limpiar campos
-                        Toast.makeText(this@registroduenovet, "Usuario registrado", Toast.LENGTH_SHORT).show()
-                        txtnombreadminvet.setText("")
-                        txtcontraadminvet.setText("")
-                        contraconfirm.setText("")
-                        txtcorreoadminvet.setText("")
-
-                        val login = Intent(this@registroduenovet, iniciarsesion::class.java)
-                        startActivity(login)
-                    }
-
-                }
-                guardarUsuarioconft(imageView.toString())
+                guardarUsuarioconft(miPath)
             }
 
 
@@ -341,7 +319,7 @@ class registroduenovet : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT).show()
                 }
-
+                miPath = "1"
             }
             else -> {
 
@@ -350,6 +328,8 @@ class registroduenovet : AppCompatActivity() {
         }
     }
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -357,29 +337,36 @@ class registroduenovet : AppCompatActivity() {
             when (requestCode){
                 codigo_opcion_galeria-> {
                     val imageUri: Uri? = data?.data
-                    imageUri?.let {
-                        val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, it)
+                    if (imageUri != null) {
+                        val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
                         subirimagenFirebase(imageBitmap){ url ->
                             miPath = url
-                            imageView.setImageURI(it)
+                            imageView.setImageURI(imageUri)
                         }
+                    } else {
+                        // Set default image
+                        imageView.setImageResource(R.drawable.usericonosocuro)
+                        miPath = "https://i.pinimg.com/736x/1b/f1/e3/1bf1e3ee658f2b7b6d513056280c0305.jpg"
                     }
                 }
 
                 codigo_opcion_tomar_foto -> {
                     val imageBitmap = data?.extras?.get("data")as? Bitmap
-                    imageBitmap?.let {
-                        subirimagenFirebase(it) { url ->
+                    if (imageBitmap != null) {
+                        subirimagenFirebase(imageBitmap) { url ->
                             miPath = url
-                            imageView.setImageBitmap(it)
-
+                            imageView.setImageBitmap(imageBitmap)
                         }
+                    } else {
+                        // Set default image
+                        imageView.setImageResource(R.drawable.usericonosocuro)
+                        miPath = "https://i.pinimg.com/736x/1b/f1/e3/1bf1e3ee658f2b7b6d513056280c0305.jpg"
                     }
                 }
 
-            }
+                    }
 
-        }
+            }
     }
 }
 

@@ -34,33 +34,63 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:orientation="vertical"></LinearLayout>
-
-        <TextView
-            android:id="@+id/txtUbicacionVetCard"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingBottom="4dp"
-            android:text="Ubicación veterinaria"
-            android:textColor="#555"
-            android:textSize="16sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView49"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingBottom="2dp"
+                android:layout_marginTop="15dp"
+                android:text="Ubicación"
+                android:textColor="#34313F"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtUbicacionVetCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingBottom="4dp"
+                android:text="Ubicación veterinaria"
+                android:textColor="#555"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:orientation="vertical"></LinearLayout>
 
-        <TextView
-            android:id="@+id/txtServiciosVetCard"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingBottom="8dp"
-            android:text="Servicios Veterinaria"
-            android:textColor="#555"
-            android:textSize="16sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView52"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingBottom="2dp"
+                android:text="Servicios"
+                android:textColor="#34313F"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtServiciosVetCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingBottom="8dp"
+                android:text="Servicios Veterinaria"
+                android:textColor="#555"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

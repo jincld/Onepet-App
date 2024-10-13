@@ -11,20 +11,11 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView168"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="376dp"
-            android:src="@drawable/wavedarkbluelongopac"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
             android:id="@+id/imageView169"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="388dp"
-            android:src="@drawable/wavedarkbluelong"
+            android:layout_marginBottom="452dp"
+            android:src="@drawable/wavecomplete2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -41,13 +32,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.051" />
+            app:layout_constraintVertical_bias="0.009" />
 
         <ImageView
             android:id="@+id/imageView181"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="332dp"
+            android:layout_marginTop="352dp"
             android:src="@drawable/degcelest"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,12 +47,12 @@
             android:id="@+id/imageView170"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:layout_marginEnd="356dp"
+            android:layout_marginEnd="360dp"
             android:src="@drawable/circuloop1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.036" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/imageView171"
@@ -73,7 +64,7 @@
             app:layout_constraintHorizontal_bias="0.139"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.108" />
+            app:layout_constraintVertical_bias="0.088" />
 
         <ImageView
             android:id="@+id/imageView172"
@@ -93,94 +84,201 @@
             android:src="@drawable/circuloop2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.872"
+            app:layout_constraintHorizontal_bias="0.899"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.086" />
+            app:layout_constraintVertical_bias="0.053" />
 
         <EditText
             android:id="@+id/txtNombreMascota"
-            android:layout_width="242dp"
-            android:layout_height="47dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Nombre de mascota"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.243" />
+            app:layout_constraintVertical_bias="0.202" />
+
+        <TextView
+            android:id="@+id/textView72"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textColor="#747474"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.201"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.172" />
+
+        <EditText
+            android:id="@+id/txtGeneroMascota"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.254"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.383" />
+
+        <TextView
+            android:id="@+id/textView75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Género"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.204"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.348" />
 
         <EditText
             android:id="@+id/txtPesoMascota"
-            android:layout_width="113dp"
-            android:layout_height="58dp"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Peso(Lbs.)"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.704"
+            app:layout_constraintHorizontal_bias="0.763"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.392" />
+            app:layout_constraintVertical_bias="0.383" />
+
+        <TextView
+            android:id="@+id/textView76"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Peso (Lbs.)"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.638"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.348" />
 
         <EditText
             android:id="@+id/txtAñoMascota"
-            android:layout_width="241dp"
-            android:layout_height="45dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Año de nacimiento"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.474" />
+            app:layout_constraintVertical_bias="0.481" />
+
+        <TextView
+            android:id="@+id/textView77"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Año de nacimiento"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.443" />
 
         <EditText
             android:id="@+id/txtEnfermedadesCMascota"
-            android:layout_width="242dp"
-            android:layout_height="45dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Enfermedades crónicas"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.467"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.551" />
+            app:layout_constraintVertical_bias="0.575" />
+
+        <TextView
+            android:id="@+id/textView78"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enfermedades crónicas"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.29"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.533" />
 
         <EditText
             android:id="@+id/txtProcedimientosMAscota"
-            android:layout_width="246dp"
-            android:layout_height="41dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Procesos médicos anteriores"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.624" />
+            app:layout_constraintVertical_bias="0.673" />
+
+        <TextView
+            android:id="@+id/textView79"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Procesos médicos anteriores"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.33"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.63" />
 
         <EditText
             android:id="@+id/txtAlergiasMascota"
-            android:layout_width="246dp"
-            android:layout_height="44dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Alergias"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.767" />
+            app:layout_constraintVertical_bias="0.86" />
+
+        <TextView
+            android:id="@+id/textView82"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alergias"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.207"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.81" />
 
         <Button
             android:id="@+id/btnAgregarMascotas"
@@ -197,17 +295,32 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.907" />
+            app:layout_constraintVertical_bias="0.938" />
 
         <Spinner
             android:id="@+id/spEspecie"
-            android:layout_width="243dp"
+            android:layout_width="270dp"
             android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.317" />
+            app:layout_constraintVertical_bias="0.295" />
+
+        <TextView
+            android:id="@+id/textView74"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Especie"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.206"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.261" />
 
         <TextView
             android:id="@+id/textView5"
@@ -219,17 +332,30 @@
 
         <EditText
             android:id="@+id/txtRazaMascota"
-            android:layout_width="244dp"
-            android:layout_height="47dp"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
             android:ems="10"
-            android:hint="Raza"
             android:inputType="text"
+            android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.461"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.695" />
+            app:layout_constraintVertical_bias="0.767" />
+
+        <TextView
+            android:id="@+id/textView81"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Raza"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.72" />
 
         <Spinner
             android:id="@+id/spgenero"

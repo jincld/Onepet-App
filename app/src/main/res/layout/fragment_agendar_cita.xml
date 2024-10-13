@@ -22,8 +22,8 @@
 
         <ImageView
             android:id="@+id/imageView216"
-            android:layout_width="207dp"
-            android:layout_height="206dp"
+            android:layout_width="187dp"
+            android:layout_height="184dp"
             android:rotation="36"
             android:src="@drawable/blobcuatro"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -87,12 +87,12 @@
         <EditText
             android:id="@+id/txtFechaCita"
             android:layout_width="330dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/bordecajasg"
             android:ems="10"
             android:hint="dd/MM/aaaa"
             android:inputType="date"
-            android:padding="5dp"
+            android:padding="7dp"
             app:backgroundTint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -133,8 +133,8 @@
 
         <ImageView
             android:id="@+id/imageView217"
-            android:layout_width="183dp"
-            android:layout_height="236dp"
+            android:layout_width="157dp"
+            android:layout_height="207dp"
             android:layout_marginStart="256dp"
             android:rotation="62"
             android:src="@drawable/bgdos"
@@ -146,7 +146,7 @@
         <Spinner
             android:id="@+id/spVetCita"
             android:layout_width="330dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/bordecajasg"
             android:padding="5dp"
             app:backgroundTint="@null"
@@ -175,7 +175,7 @@
         <Spinner
             android:id="@+id/spMascotaCita"
             android:layout_width="330dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/bordecajasg"
             android:padding="5dp"
             app:backgroundTint="@null"
@@ -184,7 +184,7 @@
             app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.44" />
+            app:layout_constraintVertical_bias="0.45" />
 
         <TextView
             android:id="@+id/textView21"

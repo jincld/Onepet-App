@@ -7,7 +7,6 @@ import kotlinx.coroutines.withContext
 import java.security.Security
 import java.util.Properties
 import javax.mail.Message
-import javax.mail.MessagingException
 import javax.mail.PasswordAuthentication
 import javax.mail.Session
 import javax.mail.Transport
@@ -48,7 +47,9 @@ suspend fun enviarCorreo (receptor: String, sujeto: String, mensaje: String) = w
             setText(mensaje)
 
         }
+
        val mensaje = """
+
 <html>
 <head>
     <style>
@@ -96,6 +97,6 @@ suspend fun enviarCorreo (receptor: String, sujeto: String, mensaje: String) = w
         println("Correo enviado satisfactoriamente")
     } catch (e: Exception) {
         e.printStackTrace()
-        println("CORREO NO ENVIADO EXE $e")
-    }
+        println("CORREO NO ENVIADO EXE $e")
+        }
 }
