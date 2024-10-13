@@ -12,8 +12,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import jonathan.orellana.onepetapp.correoderecuperacion.globalvariables
-import jonathan.orellana.onepetapp.correoderecuperacion.globalvariables.numeroaleatorio
 import jonathan.orellana.onepetapp.ui.enviarcorreolog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -67,8 +65,7 @@ class iniciarsesion : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
 
             val objConexion = ClaseConexion().cadenaConexion()
-            val resulSet =
-                objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ?")!!
+            val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne WHERE correo_usuario = ?")!!
             resulSet.setString(1, txtcorreoiniciar.text.toString().trim())
 
             val resultado = resulSet.executeQuery()
@@ -112,7 +109,7 @@ class iniciarsesion : AppCompatActivity() {
             val correo = txtcorreoiniciar.text.toString()
             contra_sinincriptar = contra.toString()
 
-            println("EATE ESA EL VALOR de la contra sin incriptar $contra_sinincriptar")
+            println("ESTE ESA EL VALOR de la contra sin incriptar $contra_sinincriptar")
             var hayerrores = false
 
             //validaciones
@@ -152,12 +149,10 @@ class iniciarsesion : AppCompatActivity() {
                     val contraencriptada = hashSHA256(txtcontrainiciar.text.toString())
 
 //comprobacion de inicio de sesion
-                    val resulSet =
-                        objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
+                    val resulSet = objConexion?.prepareStatement("SELECT rol FROM tbUsuariosOne where correo_usuario = ? and contra_usuario = ?")!!
                     resulSet.setString(1, txtcorreoiniciar.text.toString())
                     resulSet.setString(2, contraencriptada)
                     correo_admin = txtcorreoiniciar.text.toString()
-                    enviarcorreolog("${correo_admin}", "Alerta de seguridad OnePet!", "Se ha iniciado sesion en un cuenta de OnePet!")
 
                     println("este es el correo que quiero usar ${correo_admin}")
                     val resultado = resulSet.executeQuery()
@@ -173,6 +168,7 @@ class iniciarsesion : AppCompatActivity() {
                     UUID_usuario_global.setString(1, correo_admin)
                     UUID_usuario_global.executeQuery()
                     var UUID_usuario_global_Var = UUID_usuario_global.executeQuery();
+
 
                     if (UUID_usuario_global_Var.next()) {
                         UUID_Usuario = UUID_usuario_global_Var.getString("UUID_USUARIO")
@@ -192,6 +188,7 @@ class iniciarsesion : AppCompatActivity() {
                             if (resultado.next()) {
                                 valorRolUsuario = resultado.getString("ROL")
                                 startActivity(pantallaprincipal)
+                                enviarcorreolog("${correo_admin}", "Alerta de seguridad OnePet!", "Se ha iniciado sesión en un tu cuenta de OnePet!")
 
 
                             } else {
@@ -209,7 +206,6 @@ class iniciarsesion : AppCompatActivity() {
                                 valorRolUsuario = resultado.getString("ROL")
                                 startActivity(pantallaprincipal)
 
-
                             } else {
                                 withContext(Dispatchers.Main) {
                                     Toast.makeText(
@@ -221,7 +217,6 @@ class iniciarsesion : AppCompatActivity() {
                             }
 
                         }
-
                     }
                 }
             }
