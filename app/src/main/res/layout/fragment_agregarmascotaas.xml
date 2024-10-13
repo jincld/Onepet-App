@@ -10,6 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <EditText
+            android:id="@+id/txtGeneroMascota"
+            android:layout_width="3dp"
+            android:layout_height="18dp"
+            android:background="@drawable/bordecajasg"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.041" />
+
         <ImageView
             android:id="@+id/imageView169"
             android:layout_width="wrap_content"
@@ -116,21 +131,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.172" />
-
-        <EditText
-            android:id="@+id/txtGeneroMascota"
-            android:layout_width="130dp"
-            android:layout_height="40dp"
-            android:background="@drawable/bordecajasg"
-            android:ems="10"
-            android:inputType="text"
-            android:padding="7dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.254"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.383" />
 
         <TextView
             android:id="@+id/textView75"
@@ -356,6 +356,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.72" />
+
+        <Spinner
+            android:id="@+id/spgenero"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bordecajasg"
+            android:padding="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.382" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
