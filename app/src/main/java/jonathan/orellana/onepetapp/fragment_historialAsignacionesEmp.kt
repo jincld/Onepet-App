@@ -50,7 +50,7 @@ class fragment_historialAsignacionesEmp : Fragment() {
 
             //obtenemos los datps
             val objConexion = ClaseConexion().cadenaConexion()
-            val resulSet = objConexion?.prepareStatement("SELECT  tbCITASEMP.UUID_Cita, tbCITASEMP.Fecha_cita, tbCITASEMP.motivo_cita, tbCITASEMP.descripcion_motivo, tbMascotas.nombre_mascota, tbCITASEMP.estado, tbCITASEMP.vet, tbCITASEMP.usuario FROM tbCitasEMP INNER JOIN tbMascotas ON tbCitasEMP.mascota = tbMascotas.uuid_mascota WHERE estado = 'Finalizada' OR estado = 'Rechazada' AND usuario = ?")!!
+            val resulSet = objConexion?.prepareStatement("SELECT tbCITASEMP.UUID_Cita, tbCITASEMP.Fecha_cita, tbCITASEMP.motivo_cita, tbCITASEMP.descripcion_motivo, tbMascotas.nombre_mascota, tbCITASEMP.estado, tbCITASEMP.vet, tbCITASEMP.usuario FROM tbCitasEMP INNER JOIN tbMascotas ON tbCitasEMP.mascota = tbMascotas.uuid_mascota WHERE tbCITASEMP.usuario = ? AND (tbCitasEmp.estado NOT LIKE 'Pendiente' AND tbCitasEmp.estado NOT LIKE 'Aceptada')")!!
             resulSet.setString(1, iniciarsesion.variablesLogin.UUID_Usuario)
             resulSet.executeQuery()
 

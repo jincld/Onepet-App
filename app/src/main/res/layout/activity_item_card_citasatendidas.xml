@@ -9,7 +9,7 @@
     app:cardElevation="6dp">
 
     <LinearLayout
-        android:id="@+id/cardMisMascotas"
+        android:id="@+id/cardSolicitudesCitas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -29,24 +29,24 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtNombreMascotaMM"
+                    android:id="@+id/txtMotivoCitaHC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/recresenacard"
                     android:paddingLeft="15dp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
-                    android:text="Nombre de mascota"
+                    android:text="Motivo de Cita"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:backgroundTint="@null" />
 
                 <TextView
-                    android:id="@+id/txtLineaNormal2"
+                    android:id="@+id/txtLineaNormal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
+                    android:paddingLeft="12dp"
                     android:paddingBottom="0dp"
                     android:text=""
                     android:textColor="@color/black"
@@ -54,220 +54,134 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView400"
+                    android:id="@+id/textView68"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingBottom="2dp"
-                    android:text="Año de nacimiento"
+                    android:text="Estado"
                     android:textColor="#34313F"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtYearMM"
+                    android:id="@+id/txtEstadoHc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingBottom="4dp"
-                    android:text="Año de nacimiento"
+                    android:text="Estado"
                     android:textColor="#555"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView401"
+                    android:id="@+id/textView50"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingBottom="2dp"
-                    android:text="Especie"
+                    android:text="Solicitante"
                     android:textColor="#34313F"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtEspecieMM"
+                    android:id="@+id/txtUsuarioHC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingBottom="4dp"
-                    android:text="Especie"
+                    android:text="Solicitante"
                     android:textColor="#555"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView402"
+                    android:id="@+id/textView51"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingBottom="2dp"
-                    android:text="Raza"
+                    android:text="Mascota"
                     android:textColor="#34313F"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtRazaMM"
+                    android:id="@+id/txtMascotaHC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="4dp"
+                    android:text="Mascota"
+                    android:textColor="#555"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView53"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="2dp"
+                    android:text="Fecha de cita"
+                    android:textColor="#34313F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtFechaCitaHC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingBottom="8dp"
-                    android:text="Raza"
+                    android:text="Fecha de Cita"
                     android:textColor="#555"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView503"
+                    android:id="@+id/textView54"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingBottom="2dp"
-                    android:text="Género"
+                    android:text="Motivo"
                     android:textColor="#34313F"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtGeneroMM"
+                    android:id="@+id/txtMotivoCitaHC2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingBottom="8dp"
-                    android:text="Género"
+                    android:text="Motivo de Cita"
                     android:textColor="#555"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView504"
+                    android:id="@+id/textView55"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingBottom="2dp"
-                    android:text="Peso (Lbs.)"
+                    android:text="Descripción"
                     android:textColor="#34313F"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtPesoMM"
+                    android:id="@+id/txtDescripcionCitaHC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="16dp"
                     android:paddingBottom="8dp"
                     android:scrollHorizontally="false"
-                    android:text="Peso"
+                    android:text="Descripcion de Cita"
                     android:textColor="#555"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView505"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingBottom="2dp"
-                    android:text="Enfermedades crónicas"
-                    android:textColor="#34313F"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtEnfermedadesMM"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingBottom="8dp"
-                    android:scrollHorizontally="false"
-                    android:text="Enfermedades crónicas"
-                    android:textColor="#555"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView506"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingBottom="2dp"
-                    android:text="Alergias"
-                    android:textColor="#34313F"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtAlergiasMM"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingBottom="8dp"
-                    android:scrollHorizontally="false"
-                    android:text="Alergias"
-                    android:textColor="#555"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView507"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    android:paddingBottom="2dp"
-                    android:text="Procesos médicos previos"
-                    android:textColor="#34313F"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtProcesosMM"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingBottom="8dp"
-                    android:scrollHorizontally="false"
-                    android:text="Procesos médicos previos"
-                    android:textColor="#555"
-                    android:textSize="16sp" />
-
             </LinearLayout>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/btnEditarMascotaMM"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/botonturquesauno"
-                app:tint="#FFFFFF"
-                app:srcCompat="@drawable/iconeditar" />
-
-            <ImageButton
-                android:id="@+id/btnBorrarMascotaMM"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/btnred"
-                app:tint="#FFFFFF"
-                app:srcCompat="@drawable/icondelete" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
 
-                R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdv, R.id.clientesdv, R.id.fragment_veterinarias, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_misMascotas, R.id.agregar_vet, R.id.actualizar_y_eliminar_vet2, R.id.agregarempleadodv, R.id.misResenas, R.id.ver_veterinarias_usuario, R.id.agregarmascotaas, R.id.asignarcitadv, R.id.fragment_historialresenas, R.id.fragment_historialAsignacionesEmp
+                R.id.nav_homeDV, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.solicitudescitadv, R.id.historialcitasdvvv, R.id.clientesdv, R.id.fragment_veterinarias, R.id.chatdv, R.id.resenasdv, R.id.ajustesdv, R.id.fragment_citas, R.id.fragment_agendarCita, R.id.fragment_estadoSolicitud, R.id.agregarempleadodv, R.id.misempleadosdv, R.id.fragment_asignaciones, R.id.fragment_misMascotas, R.id.agregar_vet, R.id.actualizar_y_eliminar_vet2, R.id.agregarempleadodv, R.id.misResenas, R.id.ver_veterinarias_usuario, R.id.agregarmascotaas, R.id.asignarcitadv, R.id.fragment_historialresenas, R.id.fragment_historialAsignacionesEmp, R.id.fragment_citasAsignadas, R.id.fragment_citasatendidas
 
             ), drawerLayout
         )
@@ -254,7 +254,7 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.ver_veterinarias_usuario).isVisible = true
                     navView.menu.findItem(R.id.resenasdv).isVisible = true
                     navView.menu.findItem(R.id.agregarmascotaas).isVisible = true
-                    navView.menu.findItem(R.id.historialcitasdv).isVisible = false
+                    navView.menu.findItem(R.id.historialcitasdvvv).isVisible = false
                     navView.menu.findItem(R.id.fragment_asignaciones).isVisible = false
                     navView.menu.findItem(R.id.misResenas).isVisible = false
                     navView.menu.findItem(R.id.misempleadosdv).isVisible = false
@@ -266,6 +266,8 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.fragment_misMascotas).isVisible = true
                     navView.menu.findItem(R.id.fragment_historialresenas).isVisible = true
                     navView.menu.findItem(R.id.fragment_historialAsignacionesEmp).isVisible = false
+                    navView.menu.findItem(R.id.fragment_citasAsignadas).isVisible = false
+                    navView.menu.findItem(R.id.fragment_citasatendidas).isVisible = false
                 }
                 if (txtcorreoiniciarval == rolEmpleadoMainActivity) {
                     //Empleado
@@ -275,7 +277,7 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.ver_veterinarias_usuario).isVisible = false
                     navView.menu.findItem(R.id.resenasdv).isVisible = false
                     navView.menu.findItem(R.id.agregarmascotaas).isVisible = false
-                    navView.menu.findItem(R.id.historialcitasdv).isVisible = false
+                    navView.menu.findItem(R.id.historialcitasdvvv).isVisible = false
                     navView.menu.findItem(R.id.fragment_asignaciones).isVisible = true
                     navView.menu.findItem(R.id.misResenas).isVisible = true
                     navView.menu.findItem(R.id.misempleadosdv).isVisible = false
@@ -287,7 +289,8 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
                     navView.menu.findItem(R.id.fragment_historialresenas).isVisible = false
                     navView.menu.findItem(R.id.fragment_historialAsignacionesEmp).isVisible = true
-
+                    navView.menu.findItem(R.id.fragment_citasAsignadas).isVisible = false
+                    navView.menu.findItem(R.id.fragment_citasatendidas).isVisible = false
                 }
                 if (txtcorreoiniciarval == rolDuenoVetMainActivity) {
                     //Dueño veterinaria
@@ -297,7 +300,7 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.ver_veterinarias_usuario).isVisible = false
                     navView.menu.findItem(R.id.resenasdv).isVisible = false
                     navView.menu.findItem(R.id.agregarmascotaas).isVisible = false
-                    navView.menu.findItem(R.id.historialcitasdv).isVisible = false
+                    navView.menu.findItem(R.id.historialcitasdvvv).isVisible = false
                     navView.menu.findItem(R.id.fragment_asignaciones).isVisible = false
                     navView.menu.findItem(R.id.misResenas).isVisible = true
                     navView.menu.findItem(R.id.misempleadosdv).isVisible = true
@@ -309,6 +312,8 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
                     navView.menu.findItem(R.id.fragment_historialresenas).isVisible = false
                     navView.menu.findItem(R.id.fragment_historialAsignacionesEmp).isVisible = false
+                    navView.menu.findItem(R.id.fragment_citasAsignadas).isVisible = true
+                    navView.menu.findItem(R.id.fragment_citasatendidas).isVisible = true
                 }
                 if (txtcorreoiniciarval == rolSecretarioMainActivity) {
                     //Secretario
@@ -318,7 +323,7 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.ver_veterinarias_usuario).isVisible = false
                     navView.menu.findItem(R.id.resenasdv).isVisible = false
                     navView.menu.findItem(R.id.agregarmascotaas).isVisible = false
-                    navView.menu.findItem(R.id.historialcitasdv).isVisible = false
+                    navView.menu.findItem(R.id.historialcitasdvvv).isVisible = false
                     navView.menu.findItem(R.id.fragment_asignaciones).isVisible = false
                     navView.menu.findItem(R.id.misResenas).isVisible = true
                     navView.menu.findItem(R.id.misempleadosdv).isVisible = true
@@ -330,6 +335,8 @@ class MainActivity : AppCompatActivity() {
                     navView.menu.findItem(R.id.fragment_misMascotas).isVisible = false
                     navView.menu.findItem(R.id.fragment_historialresenas).isVisible = false
                     navView.menu.findItem(R.id.fragment_historialAsignacionesEmp).isVisible = false
+                    navView.menu.findItem(R.id.fragment_citasAsignadas).isVisible = true
+                    navView.menu.findItem(R.id.fragment_citasatendidas).isVisible = true
                 }
 
                 println("*******este es el resultado que traigo con el select ROL USUARIO MASCOTA $rolDuenoMascotaMainActivity")

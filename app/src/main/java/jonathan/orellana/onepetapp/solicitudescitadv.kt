@@ -71,7 +71,7 @@ class solicitudescitadv : Fragment() {
                     "RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria " +
                     "LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario " +
                     "INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota " +
-                    "WHERE v.uuid_veterinaria = ?")!!
+                    "WHERE v.uuid_veterinaria = ? AND c.Estado = 'Pendiente'")!!
             resulSet.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
             //resulSet.executeQuery()
 
