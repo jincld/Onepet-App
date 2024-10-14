@@ -14,5 +14,5 @@ class ViewHolder(view:View): RecyclerView.ViewHolder(view) {
     var txtCorreoEmp = view.findViewById<TextView>(R.id.txtCorreoEmp)
     val btnBorrarCard = view.findViewById<ImageButton>(R.id.btnBorrarCard)
     val btneditarcard = view.findViewById<ImageView>(R.id.btneditarcard)
-
+    val btnEditarContraCard = view.findViewById<ImageButton>(R.id.btnEditarContraCard)
 }
