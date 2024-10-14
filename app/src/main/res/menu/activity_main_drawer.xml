@@ -36,9 +36,17 @@
             android:icon="@drawable/iconsolicitudes"
             android:title="Solicitudes de cita                    >" />
         <item
-            android:id="@+id/historialcitasdv"
-            android:icon="@drawable/iconestado"
+            android:id="@+id/fragment_citasAsignadas"
+            android:icon="@drawable/iconcitasasignadas"
+            android:title="Citas aceptadas                        >" />
+        <item
+            android:id="@+id/fragment_citasatendidas"
+            android:icon="@drawable/iconhistorialcitasdv"
             android:title="Historial de citas                       >" />
+        <item
+            android:id="@+id/historialcitasdvvv"
+            android:icon="@drawable/iconestado"
+            android:title="Historial de citas                     >" />
         <item
             android:id="@+id/fragment_asignaciones"
             android:icon="@drawable/iconsolicitudes"

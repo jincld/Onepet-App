@@ -215,8 +215,6 @@
                     android:textAllCaps="false"
                     app:backgroundTint="@null" />
             </LinearLayout>
-
-            <!-- Botón de Eliminación -->
         </LinearLayout>
 
     </LinearLayout>

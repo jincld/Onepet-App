@@ -41,7 +41,7 @@
         android:label="Rechazar cita"
         tools:layout="@layout/fragment_rechazarcitadv" />
     <fragment
-        android:id="@+id/historialcitasdv"
+        android:id="@+id/historialcitasdvvv"
         android:name="jonathan.orellana.onepetapp.historialcitasdv"
         android:label="Historial de citas"
         tools:layout="@layout/fragment_historialcitasdv" />
@@ -160,6 +160,16 @@
         android:name="jonathan.orellana.onepetapp.fragment_historialAsignacionesEmp"
         android:label="fragment_historial_asignaciones_emp"
         tools:layout="@layout/fragment_historial_asignaciones_emp" />
+    <fragment
+        android:id="@+id/fragment_citasAsignadas"
+        android:name="jonathan.orellana.onepetapp.fragment_citasAsignadas"
+        android:label="fragment_citas_asignadas"
+        tools:layout="@layout/fragment_citas_asignadas" />
+    <fragment
+        android:id="@+id/fragment_citasatendidas"
+        android:name="jonathan.orellana.onepetapp.fragment_citasatendidas"
+        android:label="fragment_citasatendidas"
+        tools:layout="@layout/fragment_citasatendidas" />
 
 
 </navigation>

@@ -1,6 +1,6 @@
 package modelo
 
-data class dataClassCitas(
+data class dataClassCitasAtendidas(
     //datos para citas
     var UUID_Cita: String,
     var fecha_cita: String,
