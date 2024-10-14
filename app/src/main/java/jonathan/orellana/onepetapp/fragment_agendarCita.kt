@@ -72,9 +72,24 @@ class fragment_agendarCita : Fragment() {
                 //MODIFICADO
                 val idUsuarioOne = obtenerIdUsuario()
                 val regex = Regex("""\d{2}/\d{2}/\d{4}""")
+                val spinnerMascota = spMascotaCita
                 var hayErrores = false
 
                 //TODO: 1- Validar que los campos no esten vacios
+
+                //Spinner de mascota
+                if (spinnerMascota.selectedItem == null) {
+                    hayErrores = true
+                    CoroutineScope(Dispatchers.IO).launch {
+                        withContext(Dispatchers.Main){
+                            //mostrar mensaje
+                            Toast.makeText(context, "Debe de escoger a una mascota que este registrada", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+
+                }
+
                 //fechaCita
                 if (fechaCita.isEmpty()) {
                     txtFechaCita.error = "Debe de escribir una fecha en formado dd/MM/aaaa"
@@ -96,17 +111,6 @@ class fragment_agendarCita : Fragment() {
                 }else {
                     txtMotivoCita.error = null
                 }
-
-                //Spinner mascotas
-                if (spMascotaCita.selectedItem?.toString().isNullOrBlank()) {
-                    hayErrores = true
-                    CoroutineScope(Dispatchers.Main).launch {
-                        Toast.makeText(context, "Debe de escoger a una mascota registrada", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    // lógica si no está nulo
-                }
-
 
 
                 //Spinner veterinarias
@@ -135,10 +139,7 @@ class fragment_agendarCita : Fragment() {
                 }
 
 
-                if(hayErrores) {
-                    //Hacer algo si hay errores
-                }
-                else {
+                if(!hayErrores) {
                     if (idUsuarioOne != null)
                         if (idVetC != null && idMascotaC != null) {
                             val result =
@@ -155,7 +156,7 @@ class fragment_agendarCita : Fragment() {
                             if (result) {
                                 Toast.makeText(
                                     requireContext(),
-                                    "Asignación guardada correctamente",
+                                    "Cita agendada",
                                     Toast.LENGTH_SHORT
                                 ).show()
 
@@ -181,6 +182,9 @@ class fragment_agendarCita : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+                }
+                else {
+                    println("/*/*/**/*/*//*/*/*//*/*/*/Error en validacion agendar cita")
                 }
             }
         }
@@ -438,7 +442,7 @@ class fragment_agendarCita : Fragment() {
                     statement.executeUpdate()
 
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(context, "Cita Agendada", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(context, "Cita Agendada", Toast.LENGTH_SHORT).show()
                         txtFechaCita.setText("")
                         txtDescripcionCita.setText("")
                         txtMotivoCita.setText("")

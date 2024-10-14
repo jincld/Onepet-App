@@ -1,6 +1,6 @@
 package modelo
 
-data class dataClassMisAsignaciones(
+data class dataClassHistorialAsignaciones(
     //datos
     var UUID_Cita: String,
     var fecha_cita: String,

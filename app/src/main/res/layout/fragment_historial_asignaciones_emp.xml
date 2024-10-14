@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_veterinarias" >
+    tools:context=".fragment_historialAsignacionesEmp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:id="@+id/imageView166"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="340dp"
+            android:layout_marginBottom="380dp"
             android:src="@drawable/wavevoltunoopac"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -24,26 +24,10 @@
             android:id="@+id/imageView167"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="352dp"
+            android:layout_marginBottom="379dp"
             android:src="@drawable/wavevoltuno"
-            app:layout_constraintBottom_toBottomOf="@+id/rcvMiVeterinariaDV"
+            app:layout_constraintBottom_toBottomOf="@+id/rcvHistorialAsignacionesHAE"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView36"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alata"
-            android:text="Mi veterinaria"
-            android:textColor="#FFFFFF"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.072" />
 
         <ImageView
             android:id="@+id/imageView175"
@@ -59,44 +43,44 @@
 
         <ImageView
             android:id="@+id/imageView176"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="72dp"
+            android:layout_height="68dp"
             android:layout_marginEnd="352dp"
             android:src="@drawable/circuloop3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.087" />
+            app:layout_constraintVertical_bias="0.047" />
 
         <ImageView
             android:id="@+id/imageView177"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/circuloop3"
-            app:layout_constraintBottom_toBottomOf="@+id/rcvMiVeterinariaDV"
+            app:layout_constraintBottom_toBottomOf="@+id/rcvHistorialAsignacionesHAE"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.143"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.041" />
+            app:layout_constraintVertical_bias="0.006" />
 
         <ImageView
             android:id="@+id/imageView178"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/circuloop1"
-            app:layout_constraintBottom_toBottomOf="@+id/rcvMiVeterinariaDV"
+            app:layout_constraintBottom_toBottomOf="@+id/rcvHistorialAsignacionesHAE"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.991"
+            app:layout_constraintHorizontal_bias="0.906"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.107" />
+            app:layout_constraintVertical_bias="0.07" />
 
         <ImageView
             android:id="@+id/imageView179"
             android:layout_width="155dp"
             android:layout_height="155dp"
-            android:layout_marginBottom="664dp"
+            android:layout_marginBottom="700dp"
             android:rotation="-4"
             android:src="@drawable/blobw4"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -104,16 +88,32 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
+            android:text="Historial de asignaciones"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.561"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.047" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvMiVeterinariaDV"
+            android:id="@+id/rcvHistorialAsignacionesHAE"
             android:layout_width="380dp"
-            android:layout_height="584dp"
+            android:layout_height="610dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98" />
+            app:layout_constraintVertical_bias="0.903" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

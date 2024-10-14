@@ -150,6 +150,16 @@
         android:name="jonathan.orellana.onepetapp.misResenas"
         android:label="fragment_mis_resenas"
         tools:layout="@layout/fragment_mis_resenas" />
+    <fragment
+        android:id="@+id/fragment_historialresenas"
+        android:name="jonathan.orellana.onepetapp.fragment_historialresenas"
+        android:label="fragment_historialresenas"
+        tools:layout="@layout/fragment_historialresenas" />
+    <fragment
+        android:id="@+id/fragment_historialAsignacionesEmp"
+        android:name="jonathan.orellana.onepetapp.fragment_historialAsignacionesEmp"
+        android:label="fragment_historial_asignaciones_emp"
+        tools:layout="@layout/fragment_historial_asignaciones_emp" />
 
 
 </navigation>

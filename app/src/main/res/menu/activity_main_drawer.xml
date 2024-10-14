@@ -43,6 +43,10 @@
             android:id="@+id/fragment_asignaciones"
             android:icon="@drawable/iconsolicitudes"
             android:title="Asignaciones                             >" />
+        <item
+            android:id="@+id/fragment_historialAsignacionesEmp"
+            android:icon="@drawable/iconestado"
+            android:title="Historial de asignaciones        >" />
     </group>
 
 
@@ -55,7 +59,7 @@
         <item
             android:id="@+id/fragment_veterinarias"
             android:icon="@drawable/iconmiveterinaria"
-            android:title="Mi veterinaria                         >" />
+            android:title="Mi veterinaria                             >" />
         <item
             android:id="@+id/ver_veterinarias_usuario"
             android:icon="@drawable/iconmiveterinaria"
@@ -75,6 +79,10 @@
             android:id="@+id/resenasdv"
             android:icon="@drawable/iconresenas"
             android:title="Reseñas                                      >" />
+        <item
+            android:id="@+id/fragment_historialresenas"
+            android:icon="@drawable/iconhistorialresenas"
+            android:title="Historial de reseñas                 >" />
     </group>
 
 

@@ -139,7 +139,7 @@ class fragment_veterinarias : Fragment() {
         ): View? {
             // Inflar el diseño para este fragmento
             val root = inflater.inflate(R.layout.fragment_veterinarias, container, false)
-            val rcvVeterinarias = root.findViewById<RecyclerView>(R.id.rcvVeterinarias)
+            val rcvVeterinarias = root.findViewById<RecyclerView>(R.id.rcvMiVeterinariaDV)
             rcvVeterinarias.layoutManager = LinearLayoutManager(context)
 
             fun obtenerDatos(): List<dataClassVeterinaria> {
