@@ -1,18 +1,30 @@
 package jonathan.orellana.onepetapp
 
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
+import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
 import java.util.UUID
 
@@ -41,6 +53,13 @@ agregarempleadodv : Fragment() {
     }
 
     //creamos variables globales
+
+
+
+
+    val uuid = UUID.randomUUID().toString()
+
+
     companion object VariablesGlobalesEmpleado{
         lateinit var NombreEmpVG: String
         lateinit var CorreoEmVG: String
@@ -48,6 +67,14 @@ agregarempleadodv : Fragment() {
         lateinit var RolEmpVG: String
         lateinit var correo_emp: String
     }
+
+    val codigo_opcion_galeria = 102
+    val codigo_opcion_tomar_foto = 103
+    val CAMERA_REQUEST_CODE = 0
+    val STORAGE_REQUEST_CODE =1
+
+    lateinit var imageView: ImageView
+    lateinit var miPath: String
 
 
     override fun onCreateView(
@@ -57,7 +84,7 @@ agregarempleadodv : Fragment() {
         // Inflate the layout for this fragment
 
         val root = inflater.inflate(R.layout.fragment_agregarempleadodv, container, false)
-
+        miPath = "https://i.pinimg.com/736x/1b/f1/e3/1bf1e3ee658f2b7b6d513056280c0305.jpg"
 
      // val uuid_admin = 'Codigo para que mande a llamar el uuid del admin de veterinaria'
 
@@ -65,6 +92,9 @@ agregarempleadodv : Fragment() {
         val txtContra_empleado = root.findViewById<TextView>(R.id.txtContra_empleado)
         val txtCorreoEmpleado = root.findViewById<TextView>(R.id.txtCorreo_empleado)
         val btnAgregarEmpleado = root.findViewById<Button>(R.id.btnAgregarEmpleado)
+        imageView = root.findViewById(R.id.ftempleado)
+        val  subirft =root.findViewById<Button>(R.id.subirftemp)
+        val tomarft = root.findViewById<Button>(R.id.tomarftemp)
 
 
 //funcion de encriptacion
@@ -127,12 +157,15 @@ agregarempleadodv : Fragment() {
                 hayerrores = true
             } else {
 
+
             }
 
             if (hayerrores){
             } else{
 
+
                 //corrutina para insertar usuario
+                fun guardarUsuarioconft(imageUri: String){
             CoroutineScope(Dispatchers.IO).launch {
 
                 val objConexion = ClaseConexion().cadenaConexion()
@@ -165,12 +198,166 @@ agregarempleadodv : Fragment() {
             }
 
 
+                }
+                guardarUsuarioconft(miPath)
         }
+
+
         }
+
+
+
+
+
+        subirft.setOnClickListener{
+            checkStoragePermission()
+        }
+
+        tomarft.setOnClickListener{
+            checkCameraPermission()
+        }
+
+
+
 
         return root
 
     }
 
+
+    private fun subirimagenFirebase (bitmap: Bitmap, onSuccess: (String) -> Unit) {
+        val storageRef = Firebase.storage.reference
+        val imageRef = storageRef.child("images/${uuid}.jpg")
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+        val uploadTask = imageRef.putBytes(data)
+
+        uploadTask.addOnFailureListener{
+            Toast.makeText(context,"Error la subir la imagen", Toast.LENGTH_SHORT).show()
+        } .addOnSuccessListener { taskSnapshot ->
+            imageRef.downloadUrl.addOnSuccessListener {uri ->
+                onSuccess(uri.toString())
+            }
+
+        }
+    }
+
+    //funciones de permisos
+    private fun checkStoragePermission() {
+        if (ContextCompat.checkSelfPermission(context as Activity, android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+            pedirpermisocamara()
+        }else {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, codigo_opcion_tomar_foto)
+        }
+    }
+
+    private fun checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(context as Activity, android.Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
+            pedirpermisoalmacenamiento()
+        else {
+            val intent = Intent (Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, codigo_opcion_galeria)
+        }
+    }
+
+    private fun pedirpermisocamara() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(context as Activity, android.Manifest.permission.CAMERA)
+        ){
+
+        } else {
+            ActivityCompat.requestPermissions(context as Activity, arrayOf(android.Manifest.permission.CAMERA), CAMERA_REQUEST_CODE
+            )}
+    }
+
+    private fun pedirpermisoalmacenamiento(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(context as Activity, android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+        } else {
+            ActivityCompat.requestPermissions(context as Activity, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),STORAGE_REQUEST_CODE)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+
+            //validaciones
+            CAMERA_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    startActivityForResult(intent, codigo_opcion_tomar_foto)
+                } else {
+                    Toast.makeText(context, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+            STORAGE_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty()&& grantResults[0] == PackageManager.PERMISSION_GRANTED)){
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.type = "image/*"
+                    startActivityForResult(intent,codigo_opcion_galeria)
+                } else {
+                    Toast.makeText(context, "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            else -> {
+
+            }
+
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK){
+            when (requestCode){
+                codigo_opcion_galeria-> {
+                    val imageUri: Uri? = data?.data
+                    if (imageUri != null) {
+                        val contentResolver = requireActivity().contentResolver // Inicializa contentResolver
+                        if (contentResolver != null) {
+                            val imageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
+                            subirimagenFirebase(imageBitmap){ url ->
+                                miPath = url
+                                imageView.setImageURI(imageUri)
+                            }
+                        } else {
+                            // Maneja error: contentResolver es nulo
+                        }
+                    } else {
+                        // Establece imagen predeterminada
+                        imageView.setImageResource(R.drawable.usericonosocuro)
+                        miPath = "https://i.pinimg.com/736x/1b/f1/e3/1bf1e3ee658f2b7b6d513056280c0305.jpg"
+                    }
+                }
+
+
+
+                codigo_opcion_tomar_foto -> {
+                    val imageBitmap = data?.extras?.get("data")as? Bitmap
+                    if (imageBitmap != null) {
+                        subirimagenFirebase(imageBitmap) { url ->
+                            miPath = url
+                            imageView.setImageBitmap(imageBitmap)
+                        }
+                    } else {
+                        // Set default image
+                        imageView.setImageResource(R.drawable.usericonosocuro)
+                        miPath = "https://i.pinimg.com/736x/1b/f1/e3/1bf1e3ee658f2b7b6d513056280c0305.jpg"
+                    }
+                }
+
+            }
+
+        }
+    }
 
 }
