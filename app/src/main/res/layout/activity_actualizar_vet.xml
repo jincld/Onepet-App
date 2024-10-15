@@ -244,7 +244,7 @@
             app:layout_constraintHorizontal_bias="0.402"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.217" />
+            app:layout_constraintVertical_bias="0.226" />
 
         <TextView
             android:id="@+id/textView23"
@@ -280,7 +280,7 @@
             android:id="@+id/txtVerCorreoVet"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="15dp"
             android:text="TextView"
             android:textAlignment="textStart"
             android:textColor="#34313F"
@@ -296,7 +296,7 @@
             android:id="@+id/txtVerNitVet"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="25dp"
             android:text="TextView"
             android:textAlignment="textStart"
             android:textColor="#34313F"
@@ -306,7 +306,7 @@
             app:layout_constraintHorizontal_bias="0.417"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.383" />
+            app:layout_constraintVertical_bias="0.382" />
 
         <TextView
             android:id="@+id/textView25"
@@ -334,7 +334,7 @@
             app:layout_constraintHorizontal_bias="0.417"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.293" />
+            app:layout_constraintVertical_bias="0.302" />
 
         <TextView
             android:id="@+id/textView24"
@@ -352,7 +352,7 @@
             android:id="@+id/txtVerContactoVet"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="10dp"
             android:text="TextView"
             android:textAlignment="textStart"
             android:textColor="#34313F"
