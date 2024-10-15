@@ -93,8 +93,8 @@ agregarempleadodv : Fragment() {
         val txtCorreoEmpleado = root.findViewById<TextView>(R.id.txtCorreo_empleado)
         val btnAgregarEmpleado = root.findViewById<Button>(R.id.btnAgregarEmpleado)
         imageView = root.findViewById(R.id.ftempleado)
-        val  subirft =root.findViewById<Button>(R.id.subirftemp)
-        val tomarft = root.findViewById<Button>(R.id.tomarftemp)
+        val  tomarft =root.findViewById<Button>(R.id.subirftemp)
+        val subirft = root.findViewById<Button>(R.id.tomarftemp)
 
 
 //funcion de encriptacion
@@ -173,13 +173,14 @@ agregarempleadodv : Fragment() {
 
                 val uuidTraido = obtenerUuidRol()
 
-                val crearEmpleado = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, rol, vet) values (?, ?, ?, ?, ?, ?)")!!
+                val crearEmpleado = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, foto_usuario, rol, vet) values (?, ?, ?, ?, ?, ?)")!!
                 crearEmpleado.setString(1, UUID.randomUUID().toString())
                 crearEmpleado.setString(2, txtNombre_empleado.text.toString())
                 crearEmpleado.setString(3, contraencriptada)
                 crearEmpleado.setString(4, txtCorreoEmpleado.text.toString())
                 crearEmpleado.setString(5, uuidTraido)
-                crearEmpleado.setString(6, iniciarsesion.variablesLogin.uuid_Vet_real)
+                crearEmpleado.setString(6, imageUri)
+                crearEmpleado.setString(7, iniciarsesion.variablesLogin.uuid_Vet_real)
                 println("este es la UUID de vet que quiero usar ${iniciarsesion.variablesLogin.uuid_Vet_real}")
                 println("este es el uuid traido antes del execute  $uuidTraido")
                 correo_emp = txtCorreoEmpleado.text.toString()
