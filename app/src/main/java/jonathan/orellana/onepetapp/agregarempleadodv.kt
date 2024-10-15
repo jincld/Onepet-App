@@ -173,13 +173,13 @@ agregarempleadodv : Fragment() {
 
                 val uuidTraido = obtenerUuidRol()
 
-                val crearEmpleado = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, foto_usuario, rol, vet) values (?, ?, ?, ?, ?, ?)")!!
+                val crearEmpleado = objConexion?.prepareStatement("insert into tbUsuariosOne (UUID_usuario, nombre_usuario, contra_usuario, correo_usuario, foto_usuario, rol, vet) values (?, ?, ?, ?, ?, ?, ?)")!!
                 crearEmpleado.setString(1, UUID.randomUUID().toString())
                 crearEmpleado.setString(2, txtNombre_empleado.text.toString())
                 crearEmpleado.setString(3, contraencriptada)
                 crearEmpleado.setString(4, txtCorreoEmpleado.text.toString())
-                crearEmpleado.setString(5, uuidTraido)
-                crearEmpleado.setString(6, imageUri)
+                crearEmpleado.setString(5, imageUri)
+                crearEmpleado.setString(6, uuidTraido)
                 crearEmpleado.setString(7, iniciarsesion.variablesLogin.uuid_Vet_real)
                 println("este es la UUID de vet que quiero usar ${iniciarsesion.variablesLogin.uuid_Vet_real}")
                 println("este es el uuid traido antes del execute  $uuidTraido")
