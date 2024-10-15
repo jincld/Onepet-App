@@ -70,7 +70,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             val updateempleado = objConexion?.prepareStatement("update tbUsuariosOne set contra_usuario = ? where UUID_usuario = ?")!!
             updateempleado.setString(1, contraencriptada)
             updateempleado.setString(2, uuid)
-           // println("Actualizando usuario con UUID: $uuid, Nombre: $nuevoNombre, Contraseña: $contraencriptada, Correo: $nuevocorreo")
+            // println("Actualizando usuario con UUID: $uuid, Nombre: $nuevoNombre, Contraseña: $contraencriptada, Correo: $nuevocorreo")
             updateempleado.executeUpdate()
 
             withContext(Dispatchers.Main) {
@@ -146,7 +146,7 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
                 var hayerrores = false
 
                 println("Nombre capturado: $nombre")
-               // println("Contraseña capturada SIN ENCRIPTAR: $contra")
+                // println("Contraseña capturada SIN ENCRIPTAR: $contra")
                 println("Correo capturado: $correo")
 
                 if (nombre.isEmpty()) {
