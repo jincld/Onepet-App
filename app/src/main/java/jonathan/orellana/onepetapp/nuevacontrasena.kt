@@ -6,7 +6,6 @@ import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +13,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
@@ -77,15 +75,21 @@ btnojo1.setOnClickListener{
 
 
             //validaciones
-            if (contra.length <= 8) {
-                txtnuevacontra.error = "La contraseña debe tener más de 8 caracteres"
+           /* if (contra.length <= 8) {
+                txtnuevacontra.error = "La contraseña debe tener más de 8 carácteres"
                 hayerrores = true
             } else {
                 txtnuevacontra.error = null
-            }
+            }*/
 
             if (contra.isEmpty()) {
                 txtnuevacontra.error = "Complete todos los campos"
+                hayerrores = true
+            }else if (contra.length > 100) {
+                txtnuevacontra.error = "El límite de carácteres es 100"
+                hayerrores = true
+            }else if (contra.length <= 8) {
+                txtnuevacontra.error = "La contraseña debe tener más de 8 carácteres"
                 hayerrores = true
             } else {
                 txtnuevacontra.error = null

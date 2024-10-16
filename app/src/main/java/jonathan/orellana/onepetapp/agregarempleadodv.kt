@@ -129,12 +129,18 @@ agregarempleadodv : Fragment() {
             if (!correo.matches(Regex("[a-zA-Z0-9._-]+@[a-z]+[.][a-z]+"))){
                 txtCorreoEmpleado.error = "Ingrese un correo válido"
                 hayerrores = true
+            }else if (correo.length > 100) {
+                txtCorreoEmpleado.error = "El límite de carácteres es 100"
+                hayerrores = true
             } else {
                 txtCorreoEmpleado.error = null
             }
 
             if (contra.length <= 8) {
                 txtContra_empleado.error = "La contraseña debe tener más de 8 carácteres"
+                hayerrores = true
+            }else if (contra.length > 100) {
+                txtContra_empleado.error = "El límite de carácteres es 100"
                 hayerrores = true
             } else {
                 txtContra_empleado.error = null
@@ -143,7 +149,10 @@ agregarempleadodv : Fragment() {
             if (nombre.isEmpty()) {
                 txtNombre_empleado.error = "Complete este campo"
                 hayerrores = true
-            } else {
+            } else if (nombre.length > 50) {
+                txtNombre_empleado.error = "El límite de carácteres es 50"
+                hayerrores = true
+            }else {
                 txtNombre_empleado.error = null
             }
 

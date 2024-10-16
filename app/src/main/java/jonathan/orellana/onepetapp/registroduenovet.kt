@@ -170,57 +170,49 @@ class registroduenovet : AppCompatActivity() {
             val contraconfrimada = contraconfirm.text.toString()
             var hayerrores = false
 
-//validaciones
+            //validaciones
             if (nombre.isEmpty()) {
-               txtnombreadminvet.error = "Complete todos lo campos"
+                txtnombreadminvet.error = "Complete todos lo campos"
                 hayerrores = true
-            } else {
+            } else if (nombre.length > 100) {
+                txtnombreadminvet.error = "El límite de carácteres es 100"
+                hayerrores = true
+            }else {
                 txtnombreadminvet.error = null
             }
 
             if (correo.isEmpty()) {
                 txtcorreoadminvet.error = "Complete todos lo campos"
                 hayerrores = true
-            } else {
-                txtcorreoadminvet.error = null
-            }
-
-            if (contraconfrimada.isEmpty()) {
-                contraconfirm.error = "Complete todos lo campos"
+            } else if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
+                txtcorreoadminvet.error = "Ingrese un correo valido"
                 hayerrores = true
-            } else {
-                contraconfirm.error = null
+            }else if (correo.length > 100) {
+                txtcorreoadminvet.error = "El límite de carácteres es 100"
+                hayerrores = true
+            }else {
+                txtcorreoadminvet.error = null
             }
 
             if (contra.isEmpty()) {
                 txtcontraadminvet.error = "Complete todos lo campos"
                 hayerrores = true
-            } else {
-                txtcontraadminvet.error = null
-            }
-            if (contraconfrimada == txtcontraadminvet.text.toString()) {
-
-                contraconfirm.error = null
-            } else {
-
-               contraconfirm.error = "Las contraseñas no coinciden"
+            } else if (contra.length > 100) {
+                txtcontraadminvet.error = "El límite de carácteres es 100"
                 hayerrores = true
-            }
-            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
-
-                txtcorreoadminvet.error = "Ingrese un correo valido"
-                hayerrores = true
-            } else {
-                txtcorreoadminvet.error = null
-            }
-
-            if (contra.length <= 8) {
+            } else if (contra.length <= 8) {
                 txtcontraadminvet.error = "La contraseña debe de tener más de 8 caracteres"
                 hayerrores = true
-            } else {
-               txtcontraadminvet.error = null
+            }else {
+                txtcontraadminvet.error = null
             }
 
+            if (contraconfrimada == txtcontraadminvet.text.toString()) {
+                contraconfirm.error = null
+            } else {
+                contraconfirm.error = "Las contraseñas no coinciden"
+                hayerrores = true
+            }
 
             if (hayerrores) {
 

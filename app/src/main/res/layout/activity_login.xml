@@ -40,14 +40,15 @@
 
         <ImageView
             android:id="@+id/imageView31"
-            android:layout_width="265dp"
-            android:layout_height="265dp"
-            android:layout_marginStart="208dp"
+            android:layout_width="225dp"
+            android:layout_height="225dp"
+            android:layout_marginStart="92dp"
+            android:rotation="19"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.93"
-            app:srcCompat="@drawable/circulocelesteuno" />
+            app:layout_constraintVertical_bias="0.781"
+            app:srcCompat="@drawable/circulocelesteazul" />
 
         <Button
             android:id="@+id/btniniciarsesion"
@@ -120,6 +121,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.179"
             app:srcCompat="@drawable/bgdos" />
+
+        <ImageView
+            android:id="@+id/imageView268"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:rotation="19"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.847"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.579"
+            app:srcCompat="@drawable/circulocelesteazul" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

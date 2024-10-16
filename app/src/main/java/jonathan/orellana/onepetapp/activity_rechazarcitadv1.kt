@@ -66,7 +66,6 @@ class rechazarcitadv1 : AppCompatActivity() {
 //programamos del boton para rechazar cita
 
         btnRechazar.setOnClickListener {
-
           var hayErrores = false
 
             //Rechazo Cita

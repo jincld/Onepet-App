@@ -69,30 +69,21 @@ class fragment_agendarCita : Fragment() {
             CoroutineScope(Dispatchers.Main).launch {
                 val idVetC = getIdVet(vetSeleccionado)
                 val idMascotaC = getIdMascota(mascotaSeleccionada)
-                //MODIFICADO
                 val idUsuarioOne = obtenerIdUsuario()
                 val regex = Regex("""\d{2}/\d{2}/\d{4}""")
                 val spinnerMascota = spMascotaCita
                 var hayErrores = false
 
-                //TODO: 1- Validar que los campos no esten vacios
-
-                //Spinner de mascota
-                if (spinnerMascota.selectedItem == null) {
+                // Validar que los campos no estén vacíos
+                if (spinnerMascota.selectedItem == null || spinnerMascota.selectedItem.toString().isEmpty()) {
                     hayErrores = true
-                    CoroutineScope(Dispatchers.IO).launch {
-                        withContext(Dispatchers.Main){
-                            //mostrar mensaje
-                            Toast.makeText(context, "Debe de escoger a una mascota que este registrada", Toast.LENGTH_SHORT).show()
-                        }
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "Debe de escoger a una mascota que esté registrada", Toast.LENGTH_SHORT).show()
                     }
-                } else {
-
                 }
 
-                //fechaCita
                 if (fechaCita.isEmpty()) {
-                    txtFechaCita.error = "Debe de escribir una fecha en formado dd/MM/aaaa"
+                    txtFechaCita.error = "Debe de escribir una fecha en formato dd/MM/aaaa"
                     hayErrores = true
                 } else if (!regex.matches(fechaCita)) {
                     txtFechaCita.error = "Formato de fecha inválido. Use dd/MM/aaaa"
@@ -101,92 +92,57 @@ class fragment_agendarCita : Fragment() {
                     txtFechaCita.error = null
                 }
 
-                //Motivo Cita
                 if (motivoCita.isEmpty()) {
                     txtMotivoCita.error = "Se debe de escribir un motivo"
                     hayErrores = true
-                }else if (motivoCita.length > 50) {
-                    txtMotivoCita.error = "El límite de carácteres es 50"
+                } else if (motivoCita.length > 50) {
+                    txtMotivoCita.error = "El límite de caracteres es 50"
                     hayErrores = true
-                }else {
+                } else {
                     txtMotivoCita.error = null
                 }
 
-
-                //Spinner veterinarias
-                if (spVets.selectedItem == null) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        withContext(Dispatchers.Main){
-                            //mostrar mensaje
-                            Toast.makeText(context, "Debe de escoger a una veterinaria registrada", Toast.LENGTH_SHORT).show()
-                        }
+                if (spVets.selectedItem == null || spVets.selectedItem.toString().isEmpty()) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "Debe de escoger a una veterinaria registrada", Toast.LENGTH_SHORT).show()
                     }
                     hayErrores = true
-                } else {
-
                 }
 
-
-                //Descripcion Cita
                 if (descripcionCita.isEmpty()) {
                     txtDescripcionCita.error = "Se debe de describir con detalle el motivo"
                     hayErrores = true
                 } else if (descripcionCita.length > 250) {
-                    txtDescripcionCita.error = "El límite de carácteres es 250"
+                    txtDescripcionCita.error = "El límite de caracteres es 250"
                     hayErrores = true
-                }else {
+                } else {
                     txtDescripcionCita.error = null
                 }
 
-
-                if(!hayErrores) {
-                    if (idUsuarioOne != null)
-                        if (idVetC != null && idMascotaC != null) {
-                            val result =
-                                saveEnviarCita(
-                                    fechaCita,
-                                    idVetC,
-                                    idMascotaC,
-                                    //MODIFICADO
-                                    idUsuarioOne,
-                                    motivoCita,
-                                    descripcionCita
-
-                                )
+                if (!hayErrores) {
+                    if (idUsuarioOne != null && idVetC != null && idMascotaC != null) {
+                        val result = saveEnviarCita(fechaCita, idVetC, idMascotaC, idUsuarioOne, motivoCita, descripcionCita)
+                        withContext(Dispatchers.Main) {
                             if (result) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Cita agendada",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-
+                                Toast.makeText(requireContext(), "Cita agendada", Toast.LENGTH_SHORT).show()
                                 txtFechaCita.setText("")
                                 txtMotivoCita.setText("")
                                 txtDescripcionCita.setText("")
                             } else {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Error al guardar la asignación",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Usuario no encontrado",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(requireContext(), "Error al guardar la asignación", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), "Usuario no encontrado", Toast.LENGTH_SHORT).show()
                             }
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "Error: No se pudo obtener los IDs",
-                                Toast.LENGTH_SHORT
-                            ).show()
                         }
-                }
-                else {
-                    println("/*/*/**/*/*//*/*/*//*/*/*/Error en validacion agendar cita")
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(requireContext(), "Error: No se pudo obtener los IDs", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    println("/*/*/**/*/*//*/*/*//*/*/*/Error en validación de agendar cita")
                 }
             }
+
         }
         return root
     }

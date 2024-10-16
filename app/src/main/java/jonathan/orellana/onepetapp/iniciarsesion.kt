@@ -109,12 +109,12 @@ class iniciarsesion : AppCompatActivity() {
             val correo = txtcorreoiniciar.text.toString()
             contra_sinincriptar = contra.toString()
 
-            println("ESTE ESA EL VALOR de la contra sin incriptar $contra_sinincriptar")
+            println("ESTE ES EL VALOR de la contra sin encriptar $contra_sinincriptar")
             var hayerrores = false
 
             //validaciones
             if (correo.isEmpty()) {
-                txtcorreoiniciar.error = "Complete todos lo campos"
+                txtcorreoiniciar.error = "Complete todos los campos"
                 hayerrores = true
             } else {
                 txtcorreoiniciar.error = null
@@ -128,7 +128,7 @@ class iniciarsesion : AppCompatActivity() {
             }
 
             if (contra.isEmpty()) {
-                txtcontrainiciar.error = "Complete todos lo campos"
+                txtcontrainiciar.error = "Complete todos los campos"
                 hayerrores = true
             } else {
                 txtcontrainiciar.error = null
@@ -142,7 +142,15 @@ class iniciarsesion : AppCompatActivity() {
             }
 
             if (hayerrores) {
-
+                /*GlobalScope.launch(Dispatchers.IO) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@iniciarsesion,
+                        "Usuario o contraseña inválidos",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                }*/
             } else {
                 GlobalScope.launch(Dispatchers.IO) {
                     val objConexion = ClaseConexion().cadenaConexion()
@@ -175,7 +183,13 @@ class iniciarsesion : AppCompatActivity() {
                         println("este es la UUID de USUARIO que quiero usar ${UUID_Usuario}")
                     }
                     else {
-
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(
+                                this@iniciarsesion,
+                                "Usuario o contraseña inválidos",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
 
 
