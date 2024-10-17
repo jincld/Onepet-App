@@ -51,7 +51,7 @@ class codigoconfimarcion : AppCompatActivity() {
          if (numerobtenido==null){
               Toast.makeText(this, "Ingrese un numero valido", Toast.LENGTH_SHORT).show()
               return@setOnClickListener
-       }
+         }
 
           //se comprueba el codigo obtenido
          if (numerobtenido.toString() == numeroTraido){

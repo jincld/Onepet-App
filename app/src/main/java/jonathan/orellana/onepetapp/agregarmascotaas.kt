@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -146,7 +145,7 @@ class agregarmascotaas : Fragment() {
                 CoroutineScope(Dispatchers.IO).launch {
                     withContext(Dispatchers.Main){
                         //mostrar mensaje
-                        Toast.makeText(context, "Debe de escoger a un empleado que este registrado", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Debe de escoger a una opción", Toast.LENGTH_SHORT).show()
                     }
                 }
                 hayErrores = true
@@ -158,8 +157,10 @@ class agregarmascotaas : Fragment() {
             if (nombreMascota.isEmpty()) {
                 txtNomAddMascota.error = "El nombre de la Mascota es obligatorio"
                 hayErrores = true
-            }
-            else {
+            }else if (nombreMascota.length > 50) {
+                txtNomAddMascota.error = "El límite de carácteres es 50"
+                hayErrores = true
+            } else {
                 txtNomAddMascota.error = null
             }
 
@@ -196,7 +197,10 @@ class agregarmascotaas : Fragment() {
 
             //Enfermedades Cronicas Mascota
             if (enfermedadesCronicas.isEmpty()) {
-                txtEnferCAddMascota.error = "El apartado es obligatorio llenarse"
+                txtEnferCAddMascota.error = "Complete este campo"
+                hayErrores = true
+            }else if (enfermedadesCronicas.length > 300) {
+                txtEnferCAddMascota.error = "El límite de carácteres es 300"
                 hayErrores = true
             }
             else {
@@ -206,10 +210,12 @@ class agregarmascotaas : Fragment() {
 
             //Procedimientos Medicos Mascota Antes
             if (procedimientoMA.isEmpty()) {
-                txtProceMAddMascota.error = "El apartado es obligatorio llenarse"
+                txtProceMAddMascota.error = "Complete este campo"
                 hayErrores = true
-            }
-            else {
+            }else if (procedimientoMA.length > 300) {
+                txtProceMAddMascota.error = "El límite de carácteres es 300"
+                hayErrores = true
+            } else {
                 txtProceMAddMascota.error = null
             }
 
@@ -217,8 +223,10 @@ class agregarmascotaas : Fragment() {
             if (razaMascota.isEmpty()) {
                 txtRazaMascota.error = "El apartado es obligatorio llenarse"
                 hayErrores = true
-            }
-            else {
+            }else if (razaMascota.length > 50) {
+                txtRazaMascota.error = "El límite de carácteres es 50"
+                hayErrores = true
+            } else {
                 txtProceMAddMascota.error = null
             }
 
@@ -226,8 +234,10 @@ class agregarmascotaas : Fragment() {
             if (alergiaMascota.isEmpty()) {
                 txtAlerAddMascota.error = "El apartado es obligatorio llenarse"
                 hayErrores = true
-            }
-            else {
+            }else if (alergiaMascota.length > 100) {
+                txtAlerAddMascota.error = "El límite de carácteres es 100"
+                hayErrores = true
+            } else {
                 txtAlerAddMascota.error = null
             }
 

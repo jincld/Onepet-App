@@ -164,45 +164,44 @@ class  registroduenomascotas : AppCompatActivity() {
             if (nombre.isEmpty()) {
                 txtnombreduenomas.error = "Complete todos lo campos"
                 hayerrores = true
-            } else {
+            } else if (nombre.length > 100) {
+                txtnombreduenomas.error = "El límite de carácteres es 100"
+                hayerrores = true
+            }else {
                 txtnombreduenomas.error = null
             }
 
             if (correo.isEmpty()) {
                 txtcorreoduenomas.error = "Complete todos lo campos"
                 hayerrores = true
-            } else {
+            } else if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
+                txtcorreoduenomas.error = "Ingrese un correo valido"
+                hayerrores = true
+            }else if (correo.length > 100) {
+                txtcorreoduenomas.error = "El límite de carácteres es 100"
+                hayerrores = true
+            }else {
                 txtcorreoduenomas.error = null
             }
 
             if (contra.isEmpty()) {
                 txtcontraduenomas.error = "Complete todos lo campos"
                 hayerrores = true
-            } else {
-                txtcontraduenomas.error = null
-            }
-
-            if (!correo.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))){
-                txtcorreoduenomas.error = "Ingrese un correo valido"
+            } else if (contra.length > 100) {
+                txtcontraduenomas.error = "El límite de carácteres es 100"
                 hayerrores = true
-            } else {
-                txtcorreoduenomas.error = null
+            } else if (contra.length <= 8) {
+                txtcontraduenomas.error = "La contraseña debe de tener más de 8 caracteres"
+                hayerrores = true
+            }else {
+                txtcontraduenomas.error = null
             }
 
             if (confirmcontra == txtcontraduenomas.text.toString()) {
-
                 contraconfirm.error = null
             } else {
-
                 contraconfirm.error = "Las contraseñas no coinciden"
                 hayerrores = true
-            }
-
-            if (contra.length <= 8) {
-                txtcontraduenomas.error = "La contraseña debe de tener más de 8 caracteres"
-                hayerrores = true
-            } else {
-                txtcontraduenomas.error = null
             }
 
             if (hayerrores) {

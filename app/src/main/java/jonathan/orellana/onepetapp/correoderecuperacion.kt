@@ -49,7 +49,6 @@ class correoderecuperacion : AppCompatActivity() {
 
            correo = correorecuperacion.text.toString()
            var hayerrores = false
-
 //validacion para que no se presione mas de 3 veces
                if (buttonClickCount < 3) {
                    buttonClickCount++

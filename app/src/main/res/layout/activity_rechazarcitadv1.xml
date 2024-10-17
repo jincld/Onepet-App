@@ -12,6 +12,21 @@
         android:layout_height="match_parent">
 
 
+        <TextView
+            android:id="@+id/txtMotivoAsignacion"
+            android:layout_width="315dp"
+            android:layout_height="36dp"
+            android:text="Motivo de Cita"
+            android:textAlignment="textStart"
+            android:textColor="#34313F"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.269" />
+
         <ImageView
             android:id="@+id/imageView228"
             android:layout_width="wrap_content"
@@ -153,21 +168,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.175" />
-
-        <TextView
-            android:id="@+id/txtMotivoAsignacion"
-            android:layout_width="315dp"
-            android:layout_height="36dp"
-            android:text="Motivo de Cita"
-            android:textAlignment="textStart"
-            android:textColor="#34313F"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.269" />
 
         <TextView
             android:id="@+id/textView28"
