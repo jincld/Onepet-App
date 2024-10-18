@@ -66,7 +66,7 @@ class solicitudescitadv : Fragment() {
 
             val objConexion = ClaseConexion().cadenaConexion()
             val resulSet = objConexion?.prepareStatement(        "SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, " +
-                    "m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario " +
+                    "m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario, c.detalle_cita " +
                     "FROM tbCitas c " +
                     "RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria " +
                     "LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario " +
@@ -86,9 +86,10 @@ class solicitudescitadv : Fragment() {
                 val mascota = misSolicitudes.getString("nombre_mascota")
                 val vet = misSolicitudes.getString("nombre_veterinaria")
                 val usuario = misSolicitudes.getString("nombre_usuario")
+                val detalle_cita = misSolicitudes.getString("detalle_cita")
 
                 //SPINNERS
-                val valoresJuntos = dataClassSoliC(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, mascota, vet, usuario)
+                val valoresJuntos = dataClassSoliC(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, mascota, vet, usuario, detalle_cita)
 
                 listaSoliCitas.add(valoresJuntos)
             }

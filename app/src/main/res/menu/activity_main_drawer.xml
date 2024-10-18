@@ -65,8 +65,20 @@
             android:title="Agendar cita                              >" />
         <item
             android:id="@+id/fragment_estadoSolicitud"
-            android:icon="@drawable/iconestado"
-            android:title="Estado de solicitudes               >" />
+            android:icon="@drawable/iconcitaspendientestres"
+            android:title="Citas pendientes                       >" />
+        <item
+            android:id="@+id/fragment_citasaceptadas"
+            android:icon="@drawable/iconcitasaceptadas"
+            android:title="Citas aceptadas                        >" />
+        <item
+            android:id="@+id/fragment_citasrechazadasdm"
+            android:icon="@drawable/iconcitasrechazadas"
+            android:title="Citas rechazadas                      >" />
+        <item
+            android:id="@+id/fragment_citasfinalizadas"
+            android:icon="@drawable/iconcitasfinalizadas"
+            android:title="Citas finalizadas                        >" />
         <item
             android:id="@+id/chatdv"
             android:icon="@drawable/iconchat"

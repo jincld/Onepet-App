@@ -194,20 +194,31 @@ class AdaptadorMisMascotas (var Datos: List<dataClassMisMascotas>): RecyclerView
 
         }
     }
+
+
     fun eliminarDatos(NombreMascota: String, position: Int) {
 
         val listaDatos = Datos.toMutableList()
         listaDatos.removeAt(position)
 
+
         GlobalScope.launch(Dispatchers.IO) {
             val objConexion = ClaseConexion().cadenaConexion()
+
+            val borrarCitasMascota = objConexion?.prepareStatement("DELETE FROM tbCitas WHERE mascota IN (SELECT uuid_mascota FROM tbMascotas WHERE nombre_mascota = ?)")!!
+            borrarCitasMascota.setString(1, NombreMascota)
+            borrarCitasMascota.executeUpdate()
+
+            val commit = objConexion?.prepareStatement("commit")!!
+            commit.executeUpdate()
 
             val borrarMascota = objConexion?.prepareStatement("delete from tbMascotas where nombre_mascota = ?")!!
             borrarMascota.setString(1, NombreMascota)
             borrarMascota.executeUpdate()
 
-            val commit = objConexion?.prepareStatement("commit")!!
-            commit.executeUpdate()
+            val commit1 = objConexion?.prepareStatement("commit")!!
+            commit1.executeUpdate()
+
         }
 
         Datos = listaDatos.toList()
@@ -215,5 +226,7 @@ class AdaptadorMisMascotas (var Datos: List<dataClassMisMascotas>): RecyclerView
         notifyDataSetChanged()
 
     }
+
+
 
 }

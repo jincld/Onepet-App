@@ -16,7 +16,7 @@
             android:id="@+id/txtMotivoAsignacion"
             android:layout_width="315dp"
             android:layout_height="36dp"
-            android:text="Motivo de Cita"
+            android:text="Cita"
             android:textAlignment="textStart"
             android:textColor="#34313F"
             android:textSize="22sp"
@@ -311,11 +311,12 @@
             android:id="@+id/txtUsuarioRechazo"
             android:layout_width="200dp"
             android:layout_height="23dp"
+            android:layout_marginTop="1dp"
             android:text="Usuario "
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.255"
+            app:layout_constraintHorizontal_bias="0.606"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.323" />
@@ -411,6 +412,35 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.95"
             app:srcCompat="@drawable/circuloazuloscuro" />
+
+        <TextView
+            android:id="@+id/txtCitaa"
+            android:layout_width="315dp"
+            android:layout_height="36dp"
+            android:text="Información de la cita"
+            android:textAlignment="textStart"
+            android:textColor="#34313F"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.269" />
+
+        <TextView
+            android:id="@+id/textView83"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuario:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView231"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.154"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView228"
+            app:layout_constraintVertical_bias="0.348" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -107,7 +107,7 @@ class registroduenovet : AppCompatActivity() {
 
         }
 
-        //onbtenemos el uuid
+        //obtenemos el uuid
         fun obtenerUuidRol(): String? {
             val objConexion = ClaseConexion().cadenaConexion()
             val statement = objConexion?.createStatement()

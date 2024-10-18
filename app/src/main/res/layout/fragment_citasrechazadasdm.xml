@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment_estadoSolicitud">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".fragment_citasrechazadasdm">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -47,11 +47,12 @@
             android:id="@+id/imageView193"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="328dp"
+            android:layout_marginEnd="340dp"
             android:layout_marginBottom="724dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/circuloop2" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/circuloop1" />
+
 
         <ImageView
             android:id="@+id/imageView194"
@@ -59,12 +60,11 @@
             android:layout_height="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.842"
+            app:layout_constraintHorizontal_bias="0.168"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.081"
-            app:srcCompat="@drawable/circuloop2" />
-
+            app:layout_constraintVertical_bias="0.096"
+            app:srcCompat="@drawable/circuloop1" />
 
         <ImageView
             android:id="@+id/imageView220"
@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alata"
-            android:text="Citas pendientes"
+            android:text="Citas rechazadas"
             android:textColor="#FFFFFF"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -104,8 +104,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageView195"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.86"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:srcCompat="@drawable/circuloop2" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvEstadoCitas"
+            android:id="@+id/rcvCitasRechazadasDM"
             android:layout_width="370dp"
             android:layout_height="622dp"
             android:layout_marginTop="152dp"
@@ -117,23 +129,11 @@
             android:id="@+id/imageView222"
             android:layout_width="129dp"
             android:layout_height="142dp"
-            android:layout_marginEnd="296dp"
-            android:layout_marginBottom="676dp"
-            android:rotation="-83"
+            android:layout_marginStart="300dp"
+            android:layout_marginBottom="672dp"
+            android:rotation="45"
             android:src="@drawable/blobw4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView195"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.021"
-            app:srcCompat="@drawable/circuloop1" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout></FrameLayout>

@@ -22,10 +22,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [fragment_citasatendidas.newInstance] factory method to
+ * Use the [fragment_citasfinalizadas.newInstance] factory method to
  * create an instance of this fragment.
  */
-class fragment_citasatendidas : Fragment() {
+class fragment_citasfinalizadas : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -42,8 +42,8 @@ class fragment_citasatendidas : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_citasatendidas, container, false)
-        val rcvCitasAtendidas = root.findViewById<RecyclerView>(R.id.rcvCitasAtendidas)
+        val root = inflater.inflate(R.layout.fragment_citasfinalizadas, container, false)
+        val rcvCitasAtendidas = root.findViewById<RecyclerView>(R.id.rcvCitasFinalizadas)
 
         //Agregar un layout al RecyclerView
         rcvCitasAtendidas.layoutManager = LinearLayoutManager(context)
@@ -55,8 +55,8 @@ class fragment_citasatendidas : Fragment() {
             val objConexion = ClaseConexion().cadenaConexion()
 
             //2- Crear un Statement
-            val resulSet = objConexion?.prepareStatement("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, c.estado, c.vet,  m.nombre_mascota, u.nombre_usuario, c.detalle_cita FROM tbCitas c RIGHT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota WHERE c.vet = ? AND c.estado NOT LIKE 'Pendiente'")!!
-            resulSet.setString(1, iniciarsesion.variablesLogin.uuid_Vet_real)
+            val resulSet = objConexion?.prepareStatement("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, c.estado, m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario, c.detalle_cita FROM tbCitas c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota WHERE c.usuario = ? AND c.estado = 'Finalizada'")!!
+            resulSet.setString(1, iniciarsesion.variablesLogin.UUID_Usuario)
 
             var citasAsignadasMostrar = resulSet.executeQuery()
             val listaCitasAsignadas = mutableListOf<dataClassCitasAtendidas>()
@@ -68,7 +68,7 @@ class fragment_citasatendidas : Fragment() {
                 val descripcion_cita = citasAsignadasMostrar.getString("descripcion_motivo")
                 val estado = citasAsignadasMostrar.getString("Estado")
                 val mascota = citasAsignadasMostrar.getString("nombre_mascota")
-                val vet = citasAsignadasMostrar.getString("vet")
+                val vet = citasAsignadasMostrar.getString("nombre_veterinaria")
                 val usuario = citasAsignadasMostrar.getString("nombre_usuario")
                 val detalle_cita = citasAsignadasMostrar.getString("detalle_cita")
 
@@ -99,12 +99,12 @@ class fragment_citasatendidas : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment fragment_citasatendidas.
+         * @return A new instance of fragment fragment_citasfinalizadas.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            fragment_citasatendidas().apply {
+            fragment_citasfinalizadas().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

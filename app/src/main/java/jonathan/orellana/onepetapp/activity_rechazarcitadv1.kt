@@ -63,33 +63,30 @@ class rechazarcitadv1 : AppCompatActivity() {
         btnCerrar.setOnClickListener {
             val pantallaprincipal = Intent(this, MainActivity::class.java)
             startActivity(pantallaprincipal)
-            finish() // Opcional: cierra la actividad actual si no necesitas volver a ella
+            finish()
         }
 
 
 //programamos del boton para rechazar cita
-
         btnRechazar.setOnClickListener {
           var hayErrores = false
-
             //Rechazo Cita
             if (txtRazonRechazo.text.isEmpty()) {
                 txtRazonRechazo.error = "Se debe justificar la razón de rechazo"
                 hayErrores = true
-            } else if (txtRazonRechazo.text.length > 250) {
-                txtRazonRechazo.error = "El límite de carácteres es 250"
+            } else if (txtRazonRechazo.text.length > 150) {
+                txtRazonRechazo.error = "El límite de carácteres es 150"
                 hayErrores = true
             }else {
                 txtRazonRechazo.error = null
             }
-
             if(!hayErrores) {
                 CoroutineScope(Dispatchers.IO).launch {
 
                     //rechazar cita tbcita
                     val objConexion = ClaseConexion().cadenaConexion()
                     println(" --------------este es el motivo de cita que quiero usar ${valor_motivo_cita_rechazar}")
-                    val rechazarCita = objConexion?.prepareStatement("Update tbCitas set estado ='Rechazada',  descripcion_motivo = ? where motivo_cita = ?")!!
+                    val rechazarCita = objConexion?.prepareStatement("Update tbCitas set estado ='Rechazada',  detalle_cita = ? where motivo_cita = ?")!!
                     rechazarCita?.setString(1, txtRazonRechazo.text.toString())
                     println(" --------------este es el rechazo que quiero ${txtRazonRechazo.text.toString()}")
                     rechazarCita?.setString(2, valor_motivo_cita_rechazar)
@@ -97,7 +94,7 @@ class rechazarcitadv1 : AppCompatActivity() {
 
                     //rechazar cita tbcitaemp
                     println(" --------------este es el motivo de cita que quiero usar ${valor_motivo_cita_rechazar}")
-                    val rechazarCitaEmp = objConexion?.prepareStatement("Update tbCitasEmp set estado ='Rechazada',  descripcion_motivo = ? where motivo_cita = ?")!!
+                    val rechazarCitaEmp = objConexion?.prepareStatement("Update tbCitasEmp set estado ='Rechazada',  detalle_cita = ? where motivo_cita = ?")!!
                     rechazarCitaEmp?.setString(1, txtRazonRechazo.text.toString())
                     println(" --------------este es el rechazo que quiero ${txtRazonRechazo.text.toString()}")
                     rechazarCitaEmp?.setString(2, valor_motivo_cita_rechazar)

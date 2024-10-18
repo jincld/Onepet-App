@@ -166,8 +166,7 @@ class iniciarsesion : AppCompatActivity() {
                     val resultado = resulSet.executeQuery()
 
 
-                    val UUID_vet =
-                        objConexion?.prepareStatement("select vet from tbUsuariosOne where correo_usuario = ?")!!
+                    val UUID_vet = objConexion?.prepareStatement("select vet from tbUsuariosOne where correo_usuario = ?")!!
                     UUID_vet.setString(1, correo_admin)
                     UUID_vet.executeQuery()
                     var uuid_vet_global = UUID_vet.executeQuery();

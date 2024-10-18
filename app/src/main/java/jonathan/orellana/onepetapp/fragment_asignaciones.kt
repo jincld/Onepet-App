@@ -57,7 +57,7 @@ class fragment_asignaciones : Fragment() {
             val objConexion = ClaseConexion().cadenaConexion()
 
             //2- Crear un Statement
-            val resulSet = objConexion?.prepareStatement("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, c.estado,  m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario FROM tbCitasEmp c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota WHERE uuid_usuario = ? AND estado = 'Aceptada'")!!
+            val resulSet = objConexion?.prepareStatement("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, c.estado,  m.nombre_mascota, v.nombre_veterinaria, u.nombre_usuario, c.detalle_cita FROM tbCitasEmp c RIGHT JOIN tbVeterinarias v ON c.vet = v.uuid_veterinaria LEFT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota WHERE uuid_usuario = ? AND estado = 'Aceptada'")!!
             resulSet.setString(1, iniciarsesion.variablesLogin.UUID_Usuario)
 
             var misAsignacionesMostrar = resulSet.executeQuery()
@@ -72,9 +72,10 @@ class fragment_asignaciones : Fragment() {
                 val mascota = misAsignacionesMostrar.getString("nombre_mascota")
                 val vet = misAsignacionesMostrar.getString("nombre_veterinaria")
                 val usuario = misAsignacionesMostrar.getString("nombre_usuario")
+                val detalle_cita = misAsignacionesMostrar.getString("detalle_cita")
 
                 //SPINNERS
-                val valoresJuntos = dataClassMisAsignaciones(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, estado, mascota, vet, usuario)
+                val valoresJuntos = dataClassMisAsignaciones(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, estado, mascota, vet, usuario, detalle_cita)
 
                 listaMisCitas.add(valoresJuntos)
             }

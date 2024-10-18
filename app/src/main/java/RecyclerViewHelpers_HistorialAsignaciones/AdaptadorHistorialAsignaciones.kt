@@ -22,5 +22,6 @@ class AdaptadorHistorialAsignaciones(var Datos: List<dataClassHistorialAsignacio
         holder.txtMascotaHAE.text = controlCard.mascota
         holder.txtFechaCitaHAE.text = controlCard.fecha_cita
         holder.txtDescripcionCitaHAE.text = controlCard.descripcion_motivo
+        holder.txtDetalleHA.text = controlCard.detalle_cita
     }
 }

@@ -1,7 +1,6 @@
 package modelo
 
 data class dataClassSoliC (
-
     //datos para solicitud de cita
     var UUID_Cita: String,
     var fecha_cita: String,
@@ -9,5 +8,6 @@ data class dataClassSoliC (
     var descripcion_motivo: String,
     var mascota: String,
     var vet: String,
-    var usuario: String
+    var usuario: String,
+    var detalle_cita: String
 )

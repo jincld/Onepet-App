@@ -29,6 +29,9 @@
         android:theme="@style/Theme.OnePetApp.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".activity_finalizarcita"
+            android:exported="false" />
+        <activity
             android:name=".activity_item_card_resenasvistaemp"
             android:exported="false" />
         <activity

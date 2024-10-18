@@ -23,6 +23,6 @@ class AdaptadorCitasAtendidas(var Datos: List<dataClassCitasAtendidas>) : Recycl
         holder.txtFechaCitaHC.text = controlCard.fecha_cita
         holder.txtMotivoCitaHC2.text = controlCard.motivo_cita
         holder.txtDescripcionCitaHC.text = controlCard.descripcion_motivo
-
+        holder.txtDetalleCitaHC.text = controlCard.detalle_cita
     }
 }

@@ -14,4 +14,5 @@ class ViewHolderCitasAtendidas(view:View): RecyclerView.ViewHolder(view) {
     var txtFechaCitaHC = view.findViewById<TextView>(R.id.txtFechaCitaHC)
     var txtMotivoCitaHC2 = view.findViewById<TextView>(R.id.txtMotivoCitaHC2)
     var txtDescripcionCitaHC = view.findViewById<TextView>(R.id.txtDescripcionCitaHC)
+    var txtDetalleCitaHC = view.findViewById<TextView>(R.id.txtDetalleCitaHC)
 }

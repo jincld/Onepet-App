@@ -56,9 +56,10 @@ class fragment_estado_solicitud : Fragment() {
                 val mascota = resultSet.getString("nombre_mascota")
                 val vet = resultSet.getString("nombre_veterinaria")
                 val usuario = resultSet.getString("nombre_usuario")
+                val detalle_cita = resultSet.getString("detalle_cita")
 
                 //SPINNERS
-                val valoresJuntos = dataClassCitas(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, estado, mascota, vet, usuario)
+                val valoresJuntos = dataClassCitas(UUID_Cita, fecha_cita, motivo_cita, descripcion_cita, estado, mascota, vet, usuario, detalle_cita)
 
                 listaMisCitas.add(valoresJuntos)
             }

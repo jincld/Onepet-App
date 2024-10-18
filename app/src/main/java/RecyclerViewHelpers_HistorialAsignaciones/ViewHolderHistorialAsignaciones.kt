@@ -12,4 +12,5 @@ class ViewHolderHistorialAsignaciones(view: View): RecyclerView.ViewHolder(view)
     val txtMascotaHAE = view.findViewById<TextView>(R.id.txtMascotaHAE)
     val txtFechaCitaHAE = view.findViewById<TextView>(R.id.txtFechaCitaHAE)
     val txtDescripcionCitaHAE = view.findViewById<TextView>(R.id.txtDescripcionCitaHAE)
+    var txtDetalleHA = view.findViewById<TextView>(R.id.txtDetalleHA)
 }

@@ -179,6 +179,28 @@
                     android:text="Descripcion de Cita"
                     android:textColor="#555"
                     android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView59"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="2dp"
+                    android:text="Detalle de cita"
+                    android:textColor="#34313F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDetalleCitaHC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingBottom="8dp"
+                    android:scrollHorizontally="false"
+                    android:text="Detalle de Cita"
+                    android:textColor="#555"
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

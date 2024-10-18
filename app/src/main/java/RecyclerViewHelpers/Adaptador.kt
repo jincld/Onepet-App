@@ -234,6 +234,10 @@ class Adaptador(var Datos: List<dataClassEmpleado>): RecyclerView.Adapter<ViewHo
             borrarEmp.setString(1, NombreEmp)
             borrarEmp.executeUpdate()
 
+            val borrarEmpC = objConexion?.prepareStatement("DELETE FROM tbCitasEmp WHERE usuario IN (SELECT uuid_usuario FROM tbUsuariosOne WHERE nombre_usuario = ?)")!!
+            borrarEmpC.setString(1, NombreEmp)
+            borrarEmpC.executeUpdate()
+
             /*val commit = objConexion?.prepareStatement("commit")!!
             commit.executeUpdate()*/
         }

@@ -9,5 +9,6 @@ data class dataClassCitasAsignadas(
     var estado: String,
     var mascota: String,
     var vet: String,
-    var usuario: String
+    var usuario: String,
+    var detalle_cita: String
 )

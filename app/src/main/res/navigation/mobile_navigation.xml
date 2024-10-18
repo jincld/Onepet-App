@@ -175,6 +175,21 @@
         android:name="jonathan.orellana.onepetapp.resenasvistaempleado"
         android:label="fragment_resenasvistaempleado"
         tools:layout="@layout/fragment_resenasvistaempleado" />
+    <fragment
+        android:id="@+id/fragment_citasaceptadas"
+        android:name="jonathan.orellana.onepetapp.fragment_citasaceptadas"
+        android:label="fragment_citasaceptadas"
+        tools:layout="@layout/fragment_citasaceptadas" />
+    <fragment
+        android:id="@+id/fragment_citasrechazadasdm"
+        android:name="jonathan.orellana.onepetapp.fragment_citasrechazadasdm"
+        android:label="fragment_citasrechazadasdm"
+        tools:layout="@layout/fragment_citasrechazadasdm" />
+    <fragment
+        android:id="@+id/fragment_citasfinalizadas"
+        android:name="jonathan.orellana.onepetapp.fragment_citasfinalizadas"
+        android:label="fragment_citasfinalizadas"
+        tools:layout="@layout/fragment_citasfinalizadas" />
 
 
 </navigation>

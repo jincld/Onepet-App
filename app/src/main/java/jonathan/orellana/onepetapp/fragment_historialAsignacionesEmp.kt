@@ -50,7 +50,7 @@ class fragment_historialAsignacionesEmp : Fragment() {
 
             //obtenemos los datps
             val objConexion = ClaseConexion().cadenaConexion()
-            val resulSet = objConexion?.prepareStatement("SELECT tbCITASEMP.UUID_Cita, tbCITASEMP.Fecha_cita, tbCITASEMP.motivo_cita, tbCITASEMP.descripcion_motivo, tbMascotas.nombre_mascota, tbCITASEMP.estado, tbCITASEMP.vet, tbCITASEMP.usuario FROM tbCitasEMP INNER JOIN tbMascotas ON tbCitasEMP.mascota = tbMascotas.uuid_mascota WHERE tbCITASEMP.usuario = ? AND (tbCitasEmp.estado NOT LIKE 'Pendiente' AND tbCitasEmp.estado NOT LIKE 'Aceptada')")!!
+            val resulSet = objConexion?.prepareStatement("SELECT c.uuid_cita, c.fecha_cita, c.motivo_cita, c.descripcion_motivo, c.estado, c.vet,  m.nombre_mascota, u.nombre_usuario, c.detalle_cita FROM tbCitasEmp c RIGHT JOIN tbUsuariosOne u ON c.usuario = u.uuid_usuario INNER JOIN tbMascotas m ON c.mascota = m.uuid_mascota WHERE usuario = ? AND (c.estado NOT LIKE 'Pendiente' AND c.estado NOT LIKE 'Aceptada')")!!
             resulSet.setString(1, iniciarsesion.variablesLogin.UUID_Usuario)
             resulSet.executeQuery()
 
@@ -66,9 +66,10 @@ class fragment_historialAsignacionesEmp : Fragment() {
                 val estado = prueba.getString("estado")
                 val mascota = prueba.getString("nombre_mascota")
                 val vet = prueba.getString("vet")
-                val usuario = prueba.getString("usuario")
+                val usuario = prueba.getString("nombre_usuario")
+                val detalle_cita = prueba.getString("detalle_cita")
 
-                val ValoresJuntos = dataClassHistorialAsignaciones(UUID_Cita, fecha_cita, motivo_cita, descripcion_motivo, estado, mascota, vet, usuario)
+                val ValoresJuntos = dataClassHistorialAsignaciones(UUID_Cita, fecha_cita, motivo_cita, descripcion_motivo, estado, mascota, vet, usuario, detalle_cita)
                 listaAsignaciones.add(ValoresJuntos)
             }
             return listaAsignaciones
