@@ -40,7 +40,9 @@ class ActualizarVetActivity : AppCompatActivity() {
         val btnVolverMV = findViewById<ImageButton>(R.id.btnVolverMV)
 
         btnVolverMV.setOnClickListener {
-            finish()
+                val pantallaprincipal = Intent(this, MainActivity::class.java)
+                startActivity(pantallaprincipal)
+                finish()
         }
 
         //Asignarle los datos recibidos a mis textos

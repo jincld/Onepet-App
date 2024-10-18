@@ -91,6 +91,10 @@
             android:icon="@drawable/iconresenas"
             android:title="Mis reseñas                               >" />
         <item
+            android:id="@+id/resenasvistaempleado"
+            android:icon="@drawable/iconresenas"
+            android:title="Reseñas                                      >" />
+        <item
             android:id="@+id/resenasdv"
             android:icon="@drawable/iconresenas"
             android:title="Reseñas                                      >" />

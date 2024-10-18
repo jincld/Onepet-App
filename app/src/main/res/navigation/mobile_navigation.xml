@@ -170,6 +170,11 @@
         android:name="jonathan.orellana.onepetapp.fragment_citasatendidas"
         android:label="fragment_citasatendidas"
         tools:layout="@layout/fragment_citasatendidas" />
+    <fragment
+        android:id="@+id/resenasvistaempleado"
+        android:name="jonathan.orellana.onepetapp.resenasvistaempleado"
+        android:label="fragment_resenasvistaempleado"
+        tools:layout="@layout/fragment_resenasvistaempleado" />
 
 
 </navigation>

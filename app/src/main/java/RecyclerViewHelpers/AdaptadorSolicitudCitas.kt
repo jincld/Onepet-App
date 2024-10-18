@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import jonathan.orellana.onepetapp.R
-import jonathan.orellana.onepetapp.asignarcitadv1
+import jonathan.orellana.onepetapp.activity_asignacioncitanuevo
 import jonathan.orellana.onepetapp.rechazarcitadv1
 import modelo.dataClassSoliC
 
@@ -35,7 +35,7 @@ class AdaptadorSolicitudCitas (var Datos: List<dataClassSoliC>): RecyclerView.Ad
         holder.btnAceptarCitaS.setOnClickListener {
             val context =holder.itemView.context
 
-            val pantallaAsignar = Intent(context, asignarcitadv1::class.java)
+            val pantallaAsignar = Intent(context, activity_asignacioncitanuevo::class.java)
             //enviar a la otra pantalla todos mis valores
             pantallaAsignar.putExtra("UUID_cita", controlCard.UUID_Cita)
             pantallaAsignar.putExtra("motivo_cita", controlCard.motivo_cita)

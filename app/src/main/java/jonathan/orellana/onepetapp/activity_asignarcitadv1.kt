@@ -1,6 +1,7 @@
 package jonathan.orellana.onepetapp
 
 import android.content.Intent
+import android.database.SQLException
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -18,7 +19,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import modelo.dataClassUsuarios
-import java.sql.SQLException
 import java.util.UUID
 
 class asignarcitadv1 : AppCompatActivity() {
@@ -77,8 +77,15 @@ class asignarcitadv1 : AppCompatActivity() {
         txtDescripcionAsignar.text = descripcionRecibido
 
         btnCerrar.setOnClickListener {
-            finish()
+            val pantallaprincipal = Intent(this, MainActivity::class.java)
+            startActivity(pantallaprincipal)
+            finish() // Opcional: cierra la actividad actual si no necesitas volver a ella
         }
+
+
+        /*btnCerrar.setOnClickListener {
+            val pantallaprincipal = Intent(this, activity_asignarcitadv1::class.java)
+            iniciarsesion.valorCorreoUsuario = txtcorreoiniciar.text.toString()*/
 
         //funcion para obtener el uuid del rol
         fun obtenerUuidRol(): String? {
