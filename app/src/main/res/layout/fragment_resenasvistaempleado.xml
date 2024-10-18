@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".misResenas">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".resenasvistaempleado">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView189"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="400dp"
+            android:rotation="270"
+            android:src="@drawable/degcelest"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="113dp" />
+
+        <ImageView
+            android:id="@+id/imageView188"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="396dp"
+            android:src="@drawable/degcelesteinf"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView132"
@@ -43,7 +62,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:src="@drawable/circuloop1"
-            app:layout_constraintBottom_toBottomOf="@+id/rcvMisResenas"
+            app:layout_constraintBottom_toBottomOf="@+id/rcvResenasVistaEmpleado"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +103,7 @@
             android:textColor="#34313F"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/rcvMisResenas"
+            app:layout_constraintBottom_toBottomOf="@+id/rcvResenasVistaEmpleado"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.194"
             app:layout_constraintStart_toStartOf="parent"
@@ -103,18 +122,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView254"
-            android:layout_width="342dp"
-            android:layout_height="410dp"
-            android:layout_marginStart="84dp"
-            android:layout_marginTop="456dp"
-            android:src="@drawable/degcelest"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvMisResenas"
+            android:id="@+id/rcvResenasVistaEmpleado"
             android:layout_width="352dp"
             android:layout_height="628dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -123,5 +132,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

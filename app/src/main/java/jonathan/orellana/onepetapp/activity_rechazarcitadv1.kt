@@ -1,5 +1,6 @@
 package jonathan.orellana.onepetapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -60,8 +61,11 @@ class rechazarcitadv1 : AppCompatActivity() {
         txtDescripcionRechazar.text = descripcionRecibidoR
 
         btnCerrar.setOnClickListener {
-            finish()
+            val pantallaprincipal = Intent(this, MainActivity::class.java)
+            startActivity(pantallaprincipal)
+            finish() // Opcional: cierra la actividad actual si no necesitas volver a ella
         }
+
 
 //programamos del boton para rechazar cita
 

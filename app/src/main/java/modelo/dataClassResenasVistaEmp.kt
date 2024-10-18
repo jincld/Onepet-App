@@ -1,6 +1,6 @@
 package modelo
 
-data class dataClassResenas(
+data class dataClassResenasVistaEmp(
     //datos para reseñas
     var UUID_resena: String,
     var calificacion: Int,
